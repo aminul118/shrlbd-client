@@ -1,0 +1,59 @@
+import { Card, CardContent } from "@/components/ui/card";
+import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
+import services from "@/lib/constant/services";
+import Image from "next/image";
+import React from "react";
+
+const KeyServices = () => {
+  return (
+    <Container className="space-y-12">
+      <div>
+        <SectionHeading
+          title="Our Key Services"
+          description="At Smart Healthcare and Research Ltd., we offer a comprehensive range of services designed to strengthen healthcare for women and children. Our approach combines advanced technology, evidence-based practices, and a deep commitment to patient care."
+        />
+      </div>
+
+      <div className="grid md:grid-cols-2 2xl:grid-cols-3 gap-6">
+        {services.map((service) => {
+          const { id, photo, service_name, description, features } = service;
+
+          return (
+            <Card
+              className="bg-gradient-to-b from-cyan-50 to-blue-200 rounded-xl p-2 md:p-8 space-y-3 shadow-xl h-full"
+              key={id}
+            >
+              <CardContent className="space-y-3">
+                <Image
+                  src={photo}
+                  alt={`${service_name} photo`}
+                  width={60}
+                  height={60}
+                  className="object-contain"
+                />
+                <h2 className="text-2xl font-bold">{service_name}</h2>
+                <p>{description}</p>
+
+                <div>
+                  <p className="text-xl font-semibold mb-2">Features:</p>
+                  <ul className="list-disc pl-5 space-y-1">
+                    {features.map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
+
+      <div>
+        <SectionHeading description="At Smart Healthcare and Research Ltd., each of our services is designed with the goal of improving healthcare access, quality, and outcomes for women and children. We are committed to continuous innovation and compassionate care, ensuring that our clients receive the best possible support on their healthcare journey." />
+      </div>
+    </Container>
+  );
+};
+
+export default KeyServices;

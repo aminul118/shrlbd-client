@@ -1,6 +1,9 @@
-const services = [
+import { TServices } from "../types/types";
+
+const services: TServices[] = [
   {
-    photo: "https://i.ibb.co.com/Vv0Vtkh/doctor-patient.png",
+    id: 1,
+    photo: "/images/services/doctor-patient.png",
     service_name: "Online Consultation Platform",
     description:
       "BAN-GDM is Our flagship service, the online consultation platform provides secure and private access to healthcare professionals from the comfort of your home. This user-friendly platform ensures that women and families can receive online expert medical advice, especially for diabetes in pregnancy cases, consultations, and follow-up care without the need for physical visits, breaking down barriers to healthcare access.",
@@ -12,7 +15,8 @@ const services = [
     ],
   },
   {
-    photo: "https://i.ibb.co.com/ykT4QYF/medical-research.png",
+    id: 2,
+    photo: "/images/services/medical-research.png",
     service_name: "Research and Analysis",
     description:
       "Our experienced research team is at the forefront of maternal and child health research. The expert team assists in conducting research in public health, clinical trials, analysis of secondary data and so on. We ensure that the latest evidence and the highest quality of research protocols back all of our research works. Our research efforts also contribute to the national healthcare community, fostering knowledge and innovation.",
@@ -24,7 +28,8 @@ const services = [
     ],
   },
   {
-    photo: "https://i.ibb.co.com/8rdKbcH/training-program.png",
+    id: 3,
+    photo: "/images/services/training-program.png",
     service_name: "Training Programs for Healthcare Professionals",
     description:
       "We believe that well-trained healthcare professionals are the cornerstone of excellent patient care. Our specialized training programs focus on enhancing the skills and knowledge of healthcare providers, equipping them with the latest techniques and insights to offer exceptional care.",
@@ -36,7 +41,8 @@ const services = [
     ],
   },
   {
-    photo: "https://i.ibb.co.com/0tpTPCV/patient-education.png",
+    id: 4,
+    photo: "/images/services/patient-education.png",
     service_name: "Patient empowerment",
     description:
       "Empowering women and families with the knowledge and skills to engage them in the healthcare management steps, is in the core part of our mission. We provide a wide range of educational materials and resources to help individuals understand maternal and child health, nutrition, and preventive care, leading to healthier outcomes.",
@@ -49,7 +55,8 @@ const services = [
   },
 
   {
-    photo: "https://i.ibb.co.com/mR3MrQm/community.png",
+    id: 5,
+    photo: "/images/services/community.png",
     service_name: "Community Outreach",
     description:
       "Our commitment is to extend healthcare beyond individual consultations. We are actively engaged in outreach programs designed to bring quality healthcare services to undeserved and marginalized populations through digital solution. By collaborating with Government, INGOs, NGOs and Community organizations, we aim to ensure access and care to every woman and child",
@@ -61,7 +68,8 @@ const services = [
     ],
   },
   {
-    photo: "https://i.ibb.co.com/L0w3xhT/research-80.png",
+    id: 6,
+    photo: "/images/services/research-80.png",
     service_name: "Publications and Academic Collaboration",
     description:
       "As leaders in healthcare innovation, we regularly publish our research findings in esteemed academic journals. By collaborating with educational institutions and participating in global research initiatives, we contribute to the advancement of maternal and child healthcare on a global scale.",

@@ -4,11 +4,11 @@ import { TChildren } from "@/lib/types/types";
 
 const MainLayout = ({ children }: TChildren) => {
   return (
-    <main>
+    <>
       <ResponsiveNavbar />
-      <div>{children}</div>
+      <main>{children}</main>
       <Footer />
-    </main>
+    </>
   );
 };
 

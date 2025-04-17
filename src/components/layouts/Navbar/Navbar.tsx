@@ -14,13 +14,13 @@ const ResponsiveNavbar = () => {
   const [desktopBankingOpen, setDesktopBankingOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between w-full fixed top-0 left-0 z-50  px-4 md:px-8 py-1 lg:backdrop-blur-lg">
+    <header className="flex items-center justify-between w-full sticky top-0 left-0 z-50 bg-white shadow-md px-4 md:px-8">
       {/* Logo */}
       <div className="relative w-[140px] h-[40px] md:w-[200px] md:h-[70px]">
         <Link href="/">
           <Image
             src="/logo.png"
-            alt="Smart Healthcare and research limited logo"
+            alt="Smart healthcare and research limited logo"
             fill
             className="object-contain"
             priority
@@ -45,15 +45,15 @@ const ResponsiveNavbar = () => {
           onMouseEnter={() => setDesktopBankingOpen(true)}
           onMouseLeave={() => setDesktopBankingOpen(false)}
         >
-          Events <MdKeyboardArrowDown className="transition" />
+          Event <MdKeyboardArrowDown className="transition" />
           {desktopBankingOpen && (
             <div className="absolute top-full text-center bg-white shadow-lg rounded-md p-5 w-56">
               <ul className="space-y-2 text-gray-700">
                 <li className="hover:text-blue-500 transition">
-                  <Link href="/upcomming-events">Upcomming Events</Link>
+                  <Link href="/upcomming-event">Upcomming Event</Link>
                 </li>
                 <li className="hover:text-blue-500 transition">
-                  <Link href="/events">Events</Link>
+                  <Link href="/event">Event</Link>
                 </li>
               </ul>
             </div>
@@ -93,18 +93,11 @@ const ResponsiveNavbar = () => {
           <li className="hover:text-blue-500 transition cursor-pointer">
             <Link href="/">Home</Link>
           </li>
-
-          <li className="hover:text-blue-500 transition cursor-pointer">
-            <Link href="/services">Services</Link>
-          </li>
-          <li className="hover:text-blue-500 transition cursor-pointer">
-            <Link href="/team">Team</Link>
-          </li>
           <li
             className="hover:text-blue-500 transition cursor-pointer flex items-center gap-2"
             onClick={() => setMobileBankingOpen(!mobileBankingOpen)}
           >
-            Events
+            Banking
             <IoIosArrowDown
               className={`transition ${
                 mobileBankingOpen ? "rotate-180" : "rotate-0"
@@ -114,13 +107,22 @@ const ResponsiveNavbar = () => {
           {mobileBankingOpen && (
             <ul className="pl-6 space-y-2">
               <li className="hover:text-blue-500 transition">
-                <Link href="/upcomming-events">Upcomming Events</Link>
+                <Link href="/personal-banking">Personal</Link>
               </li>
               <li className="hover:text-blue-500 transition flex items-center gap-2">
-                <Link href="/events">Events</Link>
+                <Link href="/business-banking">Business</Link>
+              </li>
+              <li className="hover:text-blue-500 transition flex items-center gap-2">
+                <Link href="/corporate-banking">Corporate</Link>
               </li>
             </ul>
           )}
+          <li className="hover:text-blue-500 transition cursor-pointer">
+            <Link href="/about">About</Link>
+          </li>
+          <li className="hover:text-blue-500 transition cursor-pointer">
+            <Link href="/fintech">Fintact</Link>
+          </li>
           <li className="hover:text-blue-500 transition cursor-pointer">
             <Link href="/contact">Contact</Link>
           </li>

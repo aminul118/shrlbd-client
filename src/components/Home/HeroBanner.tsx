@@ -9,7 +9,7 @@ const HeroBanner = () => {
       <div className="container mx-auto grid md:grid-cols-2 items-center gap-12">
         {/* Left: Text */}
         <div className="space-y-8 px-4">
-          <h1 className="text-[#626C8E] text-5xl md:text-7xl tangerine">
+          <h1 className="text-[#626C8E] text-3xl md:text-5xl font-semibold">
             <Typewriter
               words={["Welcome to"]}
               cursor

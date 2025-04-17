@@ -1,12 +1,20 @@
+import Contact from "@/components/common/Contact/Contact";
 import KeyServices from "@/components/common/KeyServices/KeyServices";
+import Commitment from "@/components/Home/Commitment";
+import Faq from "@/components/Home/Faq";
+import FoundingTeam from "@/components/Home/FoundingTeam";
 import HeroBanner from "@/components/Home/HeroBanner";
 
 const HomePage = () => {
   return (
-    <div className="space-y-8">
+    <>
       <HeroBanner />
       <KeyServices />
-    </div>
+      <FoundingTeam />
+      <Commitment />
+      <Faq />
+      <Contact />
+    </>
   );
 };
 

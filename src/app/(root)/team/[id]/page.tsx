@@ -3,6 +3,44 @@ import Container from "@/components/ui/Container";
 import getTeamMembersById from "@/lib/data/getTeamMembersById";
 import { TeamMember, TParams } from "@/lib/types/types";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: TParams): Promise<Metadata> {
+  const { id } = await params;
+  const member = await getTeamMembersById(id);
+
+  if (!member) {
+    return {
+      title: "Team Member Not Found",
+      description: "No team member found with this ID.",
+    };
+  }
+
+  return {
+    title: `${member.name} | SHRL Team`,
+    description:
+      member.details_about?.[0] ||
+      `Learn more about ${member.name}, our ${member.designation}.`,
+    openGraph: {
+      title: `${member.name} | SHRL Team`,
+      description:
+        member.details_about?.[0] || `Learn more about ${member.name}.`,
+      images: [
+        {
+          url: member.photo,
+          alt: member.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${member.name} | Our Team`,
+      description:
+        member.details_about?.[0] || `Learn more about ${member.name}.`,
+      images: [member.photo],
+    },
+  };
+}
 
 const MemberDetailsPage = async ({ params }: TParams) => {
   const { id } = await params;

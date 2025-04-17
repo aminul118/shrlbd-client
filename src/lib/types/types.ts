@@ -6,6 +6,14 @@ export type TParams = {
   params: Promise<{ id: string }>;
 };
 
+export type MetaProps = {
+  title: string;
+  description: string;
+  keywords: string;
+  image?: string;
+  url?: string;
+};
+
 export type TServices = {
   id: number;
   photo: string;

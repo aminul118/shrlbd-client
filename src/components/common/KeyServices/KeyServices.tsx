@@ -7,7 +7,7 @@ import React from "react";
 
 const KeyServices = () => {
   return (
-    <div className="relative bg-[url('/images/banner/bg1.png')] dark:bg-slate-950 dark:bg-none bg-cover bg-center bg-no-repeat py-24">
+    <div className="relative bg-[url('/images/banner/bg1.png')]  dark:bg-none bg-cover bg-center bg-no-repeat py-24">
       {/* White bottom gradient overlay */}
       <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white pointer-events-none z-10 dark:hidden" />
 

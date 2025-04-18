@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Linkedin } from "lucide-react";
+import { Facebook } from "lucide-react";
 import Image from "next/image";
 import Copyright from "./Copiright";
 
@@ -36,27 +36,15 @@ const Footer = () => {
           {/* Navigation Links */}
           <div className="flex flex-col space-y-2">
             <h3 className="text-lg font-semibold">Important Links</h3>
-            <Link
-              href="/privacy-policy"
-              className="text-gray-400 hover:text-white"
-            >
-              Privacy Policy
-            </Link>
+
             <div className="flex space-x-4 mt-2">
               <Link
                 target="_blank"
-                href="https://www.facebook.com/people/TabEdge/61555053576492"
+                aria-label="Facebook"
+                href="https://www.facebook.com/smarthealthcareandresearchltd"
                 className="text-gray-400 hover:text-white"
               >
                 <Facebook />
-              </Link>
-
-              <Link
-                target="_blank"
-                href="https://www.linkedin.com/company/tabedge"
-                className="text-gray-400 hover:text-white"
-              >
-                <Linkedin />
               </Link>
             </div>
           </div>

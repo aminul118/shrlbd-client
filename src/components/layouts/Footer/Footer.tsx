@@ -22,7 +22,7 @@ const Footer = () => {
 
           {/* Navigation Links */}
           <div className="flex flex-col space-y-2">
-            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <p className="text-lg font-semibold">Quick Links</p>
             <Link href="/services" className="text-gray-400 hover:text-white">
               Services
             </Link>
@@ -35,7 +35,7 @@ const Footer = () => {
           </div>
           {/* Navigation Links */}
           <div className="flex flex-col space-y-2">
-            <h3 className="text-lg font-semibold">Important Links</h3>
+            <p className="text-lg font-semibold">Important Links</p>
 
             <div className="flex space-x-4 mt-2">
               <Link

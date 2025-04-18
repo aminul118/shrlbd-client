@@ -28,7 +28,7 @@ const Commitments = () => {
                   <Icon className="text-5xl text-green-900 dark:text-green-400" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold">{title}</h3>
+                  <p className="text-2xl font-semibold">{title}</p>
                   <p className="mt-2 font-semibold">Key Strengths:</p>
                   <ul className="list-disc list-inside mt-1 space-y-1">
                     {strengths.map((strength, i) => (

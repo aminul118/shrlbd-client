@@ -1,10 +1,18 @@
 import { ICommitments } from "../types/types";
+import {
+  FaPersonBreastfeeding,
+  FaEarthAfrica,
+  FaToolbox,
+  FaFileShield,
+  FaBookBible,
+} from "react-icons/fa6";
+import { FaFirstAid } from "react-icons/fa";
 
 const commitments: ICommitments[] = [
   {
     id: 1,
     title: "Specialized Focus on Women and Children",
-    icon: "/icons/person-breastfeeding.png",
+    icon: FaPersonBreastfeeding,
     strengths: [
       "Tailored healthcare solutions for women and children",
       "Expert care for maternal and child health issues",
@@ -14,7 +22,7 @@ const commitments: ICommitments[] = [
   {
     id: 2,
     title: "Evidence-Based Healthcare",
-    icon: "/icons/evidence-based-healthcare.png",
+    icon: FaFirstAid,
     strengths: [
       "Services built on scientific research and clinical evidence",
       "Continuous updates to stay in line with healthcare advancements",
@@ -24,7 +32,7 @@ const commitments: ICommitments[] = [
   {
     id: 3,
     title: "Global Expertise, Local Understanding",
-    icon: "/icons/earth.png",
+    icon: FaEarthAfrica,
     strengths: [
       "International standards of healthcare delivery",
       "Customized solutions for local needs and challenges",
@@ -34,7 +42,7 @@ const commitments: ICommitments[] = [
   {
     id: 4,
     title: "Comprehensive Health Tracking Tools",
-    icon: "/icons/toolbox.png",
+    icon: FaToolbox,
     strengths: [
       "Mobile apps for tracking maternal and child health milestones",
       "Personalized health insights and recommendations",
@@ -44,7 +52,7 @@ const commitments: ICommitments[] = [
   {
     id: 5,
     title: "Commitment to Privacy and Security",
-    icon: "/icons/shield.png",
+    icon: FaFileShield,
     strengths: [
       "Advanced data protection and encryption",
       "Strict privacy policies for consultations and records",
@@ -54,7 +62,7 @@ const commitments: ICommitments[] = [
   {
     id: 6,
     title: "Continuous Learning and Adaptation",
-    icon: "/icons/book.png",
+    icon: FaBookBible,
     strengths: [
       "Ongoing research to stay ahead of healthcare trends",
       "Investment in new technologies and methodologies",

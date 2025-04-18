@@ -1,3 +1,5 @@
+import { IconType } from "react-icons";
+
 export type TChildren = Readonly<{
   children: React.ReactNode;
 }>;
@@ -34,7 +36,7 @@ export interface IFoundingTeam {
 export interface ICommitments {
   id: number;
   title: string;
-  icon: string;
+  icon: IconType;
   strengths: string[];
 }
 

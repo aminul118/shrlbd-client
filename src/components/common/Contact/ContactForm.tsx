@@ -41,50 +41,49 @@ const ContactForm = () => {
     "px-6 py-3 rounded-full w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none";
 
   return (
-    <div>
-      <form
-        onSubmit={handleEmail}
-        className="grid md:grid-cols-2 gap-4 px-6 py-3 max-w-3xl w-full mx-auto"
-      >
-        <input
-          type="text"
-          name="first"
-          placeholder="First Name *"
-          className={inputField}
-          required
-        />
-        <input
-          type="text"
-          name="last"
-          placeholder="Last Name *"
-          className={inputField}
-          required
-        />
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number *"
-          className={inputField}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email *"
-          className={inputField}
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Message *"
-          className={`${inputField} " rounded-lg h-48 md:col-span-2 resize-none"`}
-          required
-        />
-        <Button type="submit" className="col-span-2 h-10">
-          Send Mail
-        </Button>
-      </form>
-    </div>
+    <form
+      onSubmit={handleEmail}
+      className="grid md:grid-cols-2 gap-4 px-6 py-3 max-w-3xl w-full mx-auto"
+      data-aos="fade-up"
+    >
+      <input
+        type="text"
+        name="first"
+        placeholder="First Name *"
+        className={inputField}
+        required
+      />
+      <input
+        type="text"
+        name="last"
+        placeholder="Last Name *"
+        className={inputField}
+        required
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number *"
+        className={inputField}
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email *"
+        className={inputField}
+        required
+      />
+      <textarea
+        name="message"
+        placeholder="Message *"
+        className={`${inputField} " rounded-lg h-48 md:col-span-2 resize-none"`}
+        required
+      />
+      <Button type="submit" className="col-span-2 h-10">
+        Send Mail
+      </Button>
+    </form>
   );
 };
 

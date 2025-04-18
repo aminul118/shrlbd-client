@@ -69,7 +69,7 @@ export type TeamMember = {
   heading_2?: string;
   work_2?: string[];
   heading_3?: string;
-  work_3?: string[];
+  wor_3?: string[];
 };
 
 export type TEvents = {

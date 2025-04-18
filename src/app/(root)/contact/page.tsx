@@ -2,6 +2,7 @@ import Contact from "@/components/common/Contact/Contact";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 
+// --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: "Contact - SHRL",
   description:
@@ -11,6 +12,7 @@ export const metadata: Metadata = generateMetaTags({
   image: "/seo/shrl-hero-ss.png",
   url: "https://www.shrlbd.com/contact",
 });
+// --> SEO End
 
 const ContactPage = () => {
   return (

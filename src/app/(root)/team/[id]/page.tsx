@@ -1,46 +1,24 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from "@/components/ui/Container";
 import getTeamMembersById from "@/lib/data/getTeamMembersById";
 import { TeamMember, TParams } from "@/lib/types/types";
 import Image from "next/image";
 import { Metadata } from "next";
+import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 
+// ------> SEO Starts
 export async function generateMetadata({ params }: TParams): Promise<Metadata> {
   const { id } = await params;
-  const member = await getTeamMembersById(id);
+  const details: TeamMember = await getTeamMembersById(id);
 
-  if (!member) {
-    return {
-      title: "Team Member Not Found",
-      description: "No team member found with this ID.",
-    };
-  }
-
-  return {
-    title: `${member.name} | SHRL Team`,
-    description:
-      member.details_about?.[0] ||
-      `Learn more about ${member.name}, our ${member.designation}.`,
-    openGraph: {
-      title: `${member.name} | SHRL Team`,
-      description:
-        member.details_about?.[0] || `Learn more about ${member.name}.`,
-      images: [
-        {
-          url: member.photo,
-          alt: member.name,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${member.name} | Our Team`,
-      description:
-        member.details_about?.[0] || `Learn more about ${member.name}.`,
-      images: [member.photo],
-    },
-  };
+  return generateMetaTags({
+    title: `${details.name} - ${details.designation}`,
+    description: `${details.details_about?.slice(0, 160)}|| "Event at SHRLBD`,
+    keywords: `shrl event, recent event of shrl,${details.name} team member of SHRL ${details.designation}`,
+    image: details.photo,
+    url: `https://www.shrlbd.com/team/${id}`,
+  });
 }
+// ------> SEO TAG END
 
 const MemberDetailsPage = async ({ params }: TParams) => {
   const { id } = await params;
@@ -57,8 +35,9 @@ const MemberDetailsPage = async ({ params }: TParams) => {
     heading_2,
     work_2,
     heading_3,
-    work_3,
+    wor_3,
   } = details;
+  console.log(details);
 
   return (
     <Container>
@@ -158,7 +137,7 @@ const MemberDetailsPage = async ({ params }: TParams) => {
           <h1 className="text-2xl font-semibold mt-4">{heading_3}</h1>
         )}
         <div className="space-y-3 mt-4">
-          {work_3?.map((item, i) => (
+          {wor_3?.map((item, i) => (
             <div key={i} className="flex gap-3">
               <p>{i + 1}.</p>
               <p>{item}</p>

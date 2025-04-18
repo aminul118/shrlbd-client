@@ -7,6 +7,7 @@ import HeroBanner from "@/components/Home/HeroBanner";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 
+// --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title:
     "Smart Healthcare and Research Ltd. - Empowering Maternal & Child Health",
@@ -17,6 +18,7 @@ export const metadata: Metadata = generateMetaTags({
   image: "/seo/shrl-hero-ss.png",
   url: "https://www.shrlbd.com",
 });
+// --> SEO End
 
 const HomePage = () => {
   return (

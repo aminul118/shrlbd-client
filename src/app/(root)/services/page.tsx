@@ -4,6 +4,7 @@ import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 import React from "react";
 
+// ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: "Services - BAN-GDM Maternal & Child Healthcare",
   description:
@@ -13,6 +14,7 @@ export const metadata: Metadata = generateMetaTags({
   image: "/seo/shrl-hero-ss.png",
   url: "https://www.shrlbd.com/services",
 });
+// ---> SEO End
 
 const ServicePage = () => {
   return (

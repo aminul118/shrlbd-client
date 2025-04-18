@@ -4,6 +4,23 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { Metadata } from "next";
+import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
+
+// ------> SEO Starts
+export async function generateMetadata({ params }: TParams): Promise<Metadata> {
+  const { id } = await params;
+  const event: TEvents = await getEventsById(id);
+
+  return generateMetaTags({
+    title: event.heading,
+    description: event.details?.slice(0, 160) || "Event at SHRLBD",
+    keywords: `shrl event, recent event of shrl, shrl event on ${event.time}`,
+    image: event.photo,
+    url: `https://www.shrlbd.com/events/${id}`,
+  });
+}
+// ------> SEO TAG END
 
 const EventDetailsPage = async ({ params }: TParams) => {
   const { id } = await params;

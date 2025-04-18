@@ -20,7 +20,7 @@ export const generateMetaTags = ({
       title: title,
       description: description,
       siteName: "Smart Healthcare and Research Ltd.",
-      images: [{ url: image }],
+      images: [{ url: image, alt: title }],
     },
     robots: { index: true, follow: true },
     twitter: {
@@ -32,5 +32,11 @@ export const generateMetaTags = ({
       description,
     },
     applicationName: "SHRLBD",
+    alternates: {
+      canonical: url,
+      languages: {
+        "en-US": "https://shrlbd.com/en-US",
+      },
+    },
   };
 };

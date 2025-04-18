@@ -6,6 +6,7 @@ import getTeamMembers from "@/lib/data/getTeamMembers";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 
+// ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: "Team Members - SHRL",
   description:
@@ -15,10 +16,11 @@ export const metadata: Metadata = generateMetaTags({
   image: "/seo/shrl-hero-ss.png",
   url: "https://www.shrlbd.com/team",
 });
+// ---> SEO END
 
 const TeamPage = async () => {
   const members = await getTeamMembers();
-  console.log(members);
+  // console.log(members);
   return (
     <Container>
       <SectionHeading title="Our Team members" />

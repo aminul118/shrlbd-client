@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Facebook } from "lucide-react";
 import Image from "next/image";
 import Copyright from "./Copiright";
+import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
@@ -37,7 +39,7 @@ const Footer = () => {
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Important Links</p>
 
-            <div className="flex space-x-4 mt-2">
+            <div className="flex space-x-4 mt-2 justify-center items-center">
               <Link
                 target="_blank"
                 aria-label="Facebook"
@@ -45,6 +47,20 @@ const Footer = () => {
                 className="text-gray-400 hover:text-white"
               >
                 <Facebook />
+              </Link>
+
+              <Link
+                href="https://play.google.com/store/apps/details?id=co.logicaltriangle.mhealth"
+                target="_blank"
+                aria-label="BAN GDM app download link"
+              >
+                <Button variant="ghost" className="h-12  border-[1px]">
+                  <IoLogoGooglePlaystore className="text-3xl" />
+                  <div className="flex items-start flex-col">
+                    <span className="text-xs text-white/75">BAN GDM</span>
+                    <span>Google Play</span>
+                  </div>
+                </Button>
               </Link>
             </div>
           </div>

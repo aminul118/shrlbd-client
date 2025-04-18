@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   applicationName: "SHRLBD",
-  facebook: { appId: "1615679795750113" },
+  facebook: { appId: "580317868506376" },
   authors: [
     {
       name: "Dr. Fatema Ashraf",

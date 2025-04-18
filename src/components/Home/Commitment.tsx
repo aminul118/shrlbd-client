@@ -19,7 +19,11 @@ const Commitments = () => {
         {commitments.map((commitment: ICommitments) => {
           const { id, icon, title } = commitment;
           return (
-            <Card key={id} className="bg-green-200 rounded-3xl shadow-lg">
+            <Card
+              data-aos="fade-up"
+              key={id}
+              className="bg-green-200 rounded-3xl shadow-lg dark:bg-slate-900"
+            >
               <CardContent className="flex flex-col md:flex-row items-center gap-4 p-6">
                 <div className="relative w-16 h-16">
                   <Image

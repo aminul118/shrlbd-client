@@ -17,8 +17,9 @@ const FoundingTeam = () => {
           const { id, photo, name, position, about_shrl } = team;
           return (
             <Card
+              data-aos="fade-up"
               key={id}
-              className="relative flex items-center w-full h-full px-3 py-6 lg:p-6 rounded-xl shadow-lg bg-gradient-to-b from-cyan-50 to-blue-200"
+              className="relative flex items-center w-full h-full px-3 py-6 lg:p-6 rounded-xl shadow-lg bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900"
             >
               <div className="absolute -top-14 -left-1">
                 <Image

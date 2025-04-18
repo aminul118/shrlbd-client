@@ -21,11 +21,11 @@ const HeroBanner = () => {
             />
           </h1>
 
-          <h2 className="text-3xl md:text-5xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold text-black">
             Smart Healthcare and Research Ltd.
           </h2>
 
-          <p className="text-xl md:text-2xl mt-4">
+          <p className="text-xl md:text-2xl mt-4 text-black">
             <em>
               <strong>U</strong>
             </em>

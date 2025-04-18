@@ -3,6 +3,8 @@ import { TChildren } from "@/lib/types/types";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { poppins } from "./fonts";
 import { Metadata } from "next";
+import AosProvider from "@/providers/AosProvider";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 /**
  *--------->> SEO
@@ -68,7 +70,16 @@ const RootLayout = ({ children }: TChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="GTM-N3R2QQ7Q" />
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AosProvider>{children}</AosProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 };

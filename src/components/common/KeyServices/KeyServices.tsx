@@ -7,9 +7,9 @@ import React from "react";
 
 const KeyServices = () => {
   return (
-    <div className="relative bg-[url('/images/banner/bg1.png')] bg-cover bg-center bg-no-repeat py-24">
+    <div className="relative bg-[url('/images/banner/bg1.png')] dark:bg-slate-950 dark:bg-none bg-cover bg-center bg-no-repeat py-24">
       {/* White bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white pointer-events-none z-10 dark:hidden" />
 
       <Container className="relative z-20 space-y-8">
         <div>
@@ -25,7 +25,8 @@ const KeyServices = () => {
 
             return (
               <Card
-                className="bg-gradient-to-b from-cyan-50 to-blue-200 rounded-xl p-2 md:p-8 space-y-3 shadow-xl h-full"
+                data-aos="fade-up"
+                className="bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900 rounded-xl p-2 md:p-8 space-y-3 shadow-xl h-full"
                 key={id}
               >
                 <CardContent className="space-y-3">

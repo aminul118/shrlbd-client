@@ -8,7 +8,10 @@ const TeamMemberCard: FC<MemberProps> = ({ member }) => {
   const { _id, name, designation, short_about, phone, email, photo } = member;
 
   return (
-    <Card className="shadow-lg rounded-xl p-4 flex flex-col items-center bg-gradient-to-b from-cyan-50 to-blue-200 dark:bg-slate-800">
+    <Card
+      data-aos="fade-up"
+      className="shadow-lg rounded-xl p-4 flex flex-col items-center bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900"
+    >
       {/* Photo */}
       <div className="flex justify-center -mt-14 mb-4">
         <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#808BAF] bg-slate-100">

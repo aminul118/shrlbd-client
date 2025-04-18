@@ -5,8 +5,8 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { ModeToggle } from "./ModeToggle";
 
 const ResponsiveNavbar = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -14,7 +14,7 @@ const ResponsiveNavbar = () => {
   const [desktopBankingOpen, setDesktopBankingOpen] = useState(false);
 
   return (
-    <header className="flex items-center justify-between w-full sticky top-0 left-0 z-50 bg-white shadow-md px-4 md:px-8">
+    <header className="flex items-center justify-between w-full sticky top-0 left-0 z-50 bg-white dark:bg-slate-800  shadow-md px-4 md:px-8">
       {/* Logo */}
       <div className="relative w-[140px] h-[40px] md:w-[200px] md:h-[70px]">
         <Link href="/">
@@ -29,7 +29,7 @@ const ResponsiveNavbar = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <ul className="hidden md:flex items-center gap-6 text-gray-700 text-lg">
+      <ul className="hidden md:flex items-center gap-6 text-gray-700 dark:text-white text-lg">
         <li className="hover:text-blue-500 transition cursor-pointer">
           <Link href="/">Home</Link>
         </li>
@@ -48,7 +48,7 @@ const ResponsiveNavbar = () => {
           Event <MdKeyboardArrowDown className="transition" />
           {desktopBankingOpen && (
             <div className="absolute top-full text-center bg-white shadow-lg rounded-md p-5 w-56">
-              <ul className="space-y-2 text-gray-700">
+              <ul className="space-y-2 text-gray-700 dark:text-white ">
                 <li className="hover:text-blue-500 transition">
                   <Link href="/upcomming-event">Upcomming Event</Link>
                 </li>
@@ -64,12 +64,8 @@ const ResponsiveNavbar = () => {
         </li>
       </ul>
 
-      {/* Account Button */}
-      <Link href="https://portal.tabedge.com">
-        <button className="hidden md:block bg-blue-500 text-white px-4 py-2 rounded-md">
-          Account
-        </button>
-      </Link>
+      {/* Theme change button */}
+      <ModeToggle />
 
       {/* Mobile Menu Toggle */}
       <Menu
@@ -127,9 +123,7 @@ const ResponsiveNavbar = () => {
             <Link href="/contact">Contact</Link>
           </li>
           <li className="hover:text-blue-500 transition cursor-pointer">
-            <Link href="https://portal.tabedge.com/login">
-              <Button>Account</Button>
-            </Link>
+            <ModeToggle />
           </li>
         </ul>
       </aside>

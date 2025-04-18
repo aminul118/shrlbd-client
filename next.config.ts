@@ -5,12 +5,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "i.ibb.co.com",
+        hostname: "i.ibb.co",
         port: "",
         search: "",
       },
     ],
   },
+
+  // Enable source maps in production
+  productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;

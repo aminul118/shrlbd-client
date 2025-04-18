@@ -6,7 +6,7 @@ const MainLayout = ({ children }: TChildren) => {
   return (
     <>
       <ResponsiveNavbar />
-      <main>{children}</main>
+      <main className="min-h-[calc(100vh-351px)]">{children}</main>
       <Footer />
     </>
   );

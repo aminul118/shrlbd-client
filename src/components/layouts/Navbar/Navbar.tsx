@@ -45,15 +45,15 @@ const ResponsiveNavbar = () => {
           onMouseEnter={() => setDesktopBankingOpen(true)}
           onMouseLeave={() => setDesktopBankingOpen(false)}
         >
-          Event <MdKeyboardArrowDown className="transition" />
+          Events <MdKeyboardArrowDown className="transition" />
           {desktopBankingOpen && (
-            <div className="absolute top-full text-center bg-white shadow-lg rounded-md p-5 w-56">
+            <div className="absolute top-full text-center bg-white dark:bg-slate-800 shadow-lg rounded-md p-5 w-56">
               <ul className="space-y-2 text-gray-700 dark:text-white ">
                 <li className="hover:text-blue-500 transition">
-                  <Link href="/upcomming-event">Upcomming Event</Link>
+                  <Link href="/upcomming-events">Upcomming Events</Link>
                 </li>
                 <li className="hover:text-blue-500 transition">
-                  <Link href="/event">Event</Link>
+                  <Link href="/events">Events</Link>
                 </li>
               </ul>
             </div>

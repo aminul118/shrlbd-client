@@ -17,12 +17,12 @@ const Footer = () => {
                 src="/logo-white.png"
                 width={140}
                 height={60}
-                alt="Tab Statup logo png"
+                alt="Smart Healthcare and Research Ltd footer logo"
               />
             </Link>
           </div>
 
-          {/* Navigation Links */}
+          {/* Quick Links */}
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Quick Links</p>
             <Link href="/services" className="text-gray-400 hover:text-white">
@@ -35,11 +35,12 @@ const Footer = () => {
               Contact
             </Link>
           </div>
-          {/* Navigation Links */}
+          {/* Important Links */}
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Important Links</p>
 
             <div className="flex space-x-4 mt-2 justify-center items-center">
+              {/* Facebook link */}
               <Link
                 target="_blank"
                 aria-label="Facebook"
@@ -48,7 +49,7 @@ const Footer = () => {
               >
                 <Facebook />
               </Link>
-
+              {/* BAN GDM APP download  */}
               <Link
                 href="https://play.google.com/store/apps/details?id=co.logicaltriangle.mhealth"
                 target="_blank"
@@ -65,8 +66,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
-        {/* Social Media Links */}
         <Copyright />
       </div>
     </footer>

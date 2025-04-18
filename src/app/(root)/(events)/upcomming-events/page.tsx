@@ -4,11 +4,11 @@ import UpcommingEvents from "@/components/UpcommingEvents/UpcommingEvents";
 
 const UpcommingEventPage = () => {
   return (
-    <div>
+    <>
       <TypeWritterHeading />
       <ScrollingText />
       <UpcommingEvents />
-    </div>
+    </>
   );
 };
 

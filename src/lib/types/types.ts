@@ -71,3 +71,15 @@ export type TeamMember = {
   heading_3?: string;
   work_3?: string[];
 };
+
+export type TEvents = {
+  _id: string;
+  heading: string;
+  facilitators: string;
+  details: string;
+  time: string;
+  venue: string;
+  photo: string;
+  date: string;
+  createdAt: string;
+};

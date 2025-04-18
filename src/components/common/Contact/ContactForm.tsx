@@ -37,6 +37,9 @@ const ContactForm = () => {
       );
   };
 
+  const inputField =
+    "px-6 py-3 rounded-full w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none";
+
   return (
     <div>
       <form
@@ -47,37 +50,37 @@ const ContactForm = () => {
           type="text"
           name="first"
           placeholder="First Name *"
-          className="px-6 py-3 rounded-full w-full border bg-white"
+          className={inputField}
           required
         />
         <input
           type="text"
           name="last"
           placeholder="Last Name *"
-          className="px-6 py-3 rounded-full w-full border bg-white"
+          className={inputField}
           required
         />
         <input
           type="tel"
           name="phone"
           placeholder="Phone Number *"
-          className="px-6 py-3 rounded-full w-full border bg-white"
+          className={inputField}
           required
         />
         <input
           type="email"
           name="email"
           placeholder="Email *"
-          className="px-6 py-3 rounded-full w-full border bg-white"
+          className={inputField}
           required
         />
         <textarea
           name="message"
           placeholder="Message *"
-          className="px-6 py-3 rounded-lg w-full h-48 md:col-span-2 resize-none border bg-white"
+          className={`${inputField} " rounded-lg h-48 md:col-span-2 resize-none"`}
           required
         />
-        <Button type="submit" className="col-span-2">
+        <Button type="submit" className="col-span-2 h-10">
           Send Mail
         </Button>
       </form>

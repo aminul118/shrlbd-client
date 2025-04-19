@@ -39,7 +39,7 @@ const Footer = () => {
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Important Links</p>
 
-            <div className="flex space-x-4 mt-2 justify-center items-center">
+            <div className="flex space-x-4 mt-2  items-center">
               {/* Facebook link */}
               <Link
                 target="_blank"

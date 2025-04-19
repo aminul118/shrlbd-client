@@ -18,10 +18,10 @@ export const metadata: Metadata = generateMetaTags({
 
 const ServicePage = () => {
   return (
-    <div>
+    <>
       <KeyServices />
       <Commitments />
-    </div>
+    </>
   );
 };
 

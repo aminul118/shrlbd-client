@@ -25,7 +25,7 @@ const HeroBanner = () => {
             Smart Healthcare and Research Ltd.
           </h2>
 
-          <p className="text-xl md:text-2xl mt-4 text-black">
+          <p className="md:text-2xl mt-4 text-black">
             <em>
               <strong>U</strong>
             </em>

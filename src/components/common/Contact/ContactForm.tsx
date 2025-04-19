@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 const ContactForm = () => {
   const handleEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const form = e.currentTarget;
 
     emailjs
@@ -38,12 +37,12 @@ const ContactForm = () => {
   };
 
   const inputField =
-    "px-6 py-3 rounded-full w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none";
+    "px-4 py-3 rounded-full w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none";
 
   return (
     <form
       onSubmit={handleEmail}
-      className="grid md:grid-cols-2 gap-4 px-6 py-3 max-w-3xl w-full mx-auto"
+      className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 sm:p-6 md:p-8 max-w-4xl w-full mx-auto"
       data-aos="fade-up"
     >
       <input
@@ -77,10 +76,10 @@ const ContactForm = () => {
       <textarea
         name="message"
         placeholder="Message *"
-        className={`${inputField} " rounded-lg h-48 md:col-span-2 resize-none"`}
+        className={`px-4 py-3 rounded-lg w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none h-48 resize-none sm:col-span-2`}
         required
       />
-      <Button type="submit" className="col-span-2 h-10">
+      <Button type="submit" className="sm:col-span-2 h-10 w-full">
         Send Mail
       </Button>
     </form>

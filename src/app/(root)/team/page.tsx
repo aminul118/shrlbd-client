@@ -20,7 +20,7 @@ export const metadata: Metadata = generateMetaTags({
 
 const TeamPage = async () => {
   const members = await getTeamMembers();
-  // console.log(members);
+
   return (
     <Container>
       <SectionHeading title="Our Team members" />

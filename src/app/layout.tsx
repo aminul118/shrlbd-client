@@ -69,7 +69,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: TChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <GoogleAnalytics gaId="GTM-N3R2QQ7Q" />
+      <GoogleAnalytics gaId="G-L76ZPJFQS4" />
       <body className={poppins.className}>
         <ThemeProvider
           attribute="class"

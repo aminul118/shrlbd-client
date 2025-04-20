@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: today,
       changeFrequency: "monthly",
       priority: 1.0,
-      images: ["/seo/shrl-hero-ss.png"],
+      images: [`${baseUrl}/seo/shrl-hero-ss.png`],
     },
     {
       url: `${baseUrl}/services`,
@@ -33,10 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.7,
       images: [
-        "/images/founding-team/fatema.png",
-        "/images/founding-team/sharmin.png",
-        "/images/founding-team/moomtahina.png",
-        "/images/founding-team/furkan.png",
+        `${baseUrl}/images/founding-team/fatema.png`,
+        `${baseUrl}/images/founding-team/sharmin.png`,
+        `${baseUrl}/images/founding-team/moomtahina.png`,
+        `${baseUrl}/images/founding-team/furkan.png`,
       ],
     },
     {

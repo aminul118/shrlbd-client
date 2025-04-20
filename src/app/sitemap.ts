@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import getAllEventsDone from "@/lib/data/getAllEventsDone";
 import getTeamMembers from "@/lib/data/getTeamMembers";
 import type { MetadataRoute } from "next";

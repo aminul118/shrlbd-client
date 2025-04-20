@@ -1,5 +1,29 @@
 import type { NextConfig } from "next";
 
+const securityHeaders = [
+  {
+    key: "Content-Security-Policy",
+    value:
+      "default-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none';",
+  },
+  {
+    key: "X-Frame-Options",
+    value: "DENY",
+  },
+  {
+    key: "X-Content-Type-Options",
+    value: "nosniff",
+  },
+  {
+    key: "Referrer-Policy",
+    value: "no-referrer-when-downgrade",
+  },
+  {
+    key: "Permissions-Policy",
+    value: "geolocation=(), microphone=(), camera=()",
+  },
+];
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -20,6 +44,16 @@ const nextConfig: NextConfig = {
 
   // Enable source maps in production
   productionBrowserSourceMaps: true,
+
+  // Add security headers
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: securityHeaders,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

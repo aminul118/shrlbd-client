@@ -47,14 +47,14 @@ const ContactForm = () => {
     >
       <input
         type="text"
-        name="first"
+        name="first_name"
         placeholder="First Name *"
         className={inputField}
         required
       />
       <input
         type="text"
-        name="last"
+        name="last_name"
         placeholder="Last Name *"
         className={inputField}
         required

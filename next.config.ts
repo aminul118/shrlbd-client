@@ -4,7 +4,7 @@ const securityHeaders = [
   {
     key: "Content-Security-Policy",
     value:
-      "default-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none';",
+      "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' https://www.google-analytics.com data:; object-src 'none'; frame-ancestors 'none';",
   },
   {
     key: "X-Frame-Options",
@@ -16,7 +16,7 @@ const securityHeaders = [
   },
   {
     key: "Referrer-Policy",
-    value: "strict-origin-when-cross-origin", 
+    value: "strict-origin-when-cross-origin",
   },
   {
     key: "Permissions-Policy",

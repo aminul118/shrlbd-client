@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://shrlbd.com/sitemap.xml",
-    host: "https://shrlbd.com",
+    sitemap: "https://www.shrlbd.com/sitemap.xml",
+
   };
 }

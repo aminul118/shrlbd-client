@@ -6,6 +6,7 @@ import { IoLogoGooglePlaystore } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
+  const linkStyle = "text-gray-400 hover:text-white";
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-6 md:px-12">
@@ -25,35 +26,26 @@ const Footer = () => {
           {/* Quick Links */}
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Quick Links</p>
-            <Link href="/services" className="text-gray-400 hover:text-white">
+            <Link href="/services" className={linkStyle}>
               Services
             </Link>
-            <Link href="/team" className="text-gray-400 hover:text-white">
+            <Link href="/team" className={linkStyle}>
               Team
             </Link>
-            <Link href="/contact" className="text-gray-400 hover:text-white">
+            <Link href="/contact" className={linkStyle}>
               Contact
             </Link>
           </div>
           {/* Important Links */}
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Important Links</p>
-            <Link
-              href="/privacy-policy"
-              className="text-gray-400 hover:text-white"
-            >
+            <Link href="/privacy-policy" className={linkStyle}>
               Privacy Policy
             </Link>
-            <Link
-              href="/return-refund-policy"
-              className="text-gray-400 hover:text-white"
-            >
+            <Link href="/return-refund-policy" className={linkStyle}>
               Return Refund Policy
             </Link>
-            <Link
-              href="/terms-conditions"
-              className="text-gray-400 hover:text-white"
-            >
+            <Link href="/terms-conditions" className={linkStyle}>
               Terms & Conditions
             </Link>
 
@@ -63,7 +55,7 @@ const Footer = () => {
                 target="_blank"
                 aria-label="Facebook"
                 href="https://www.facebook.com/smarthealthcareandresearchltd"
-                className="text-gray-400 hover:text-white"
+                className={linkStyle}
               >
                 <Facebook />
               </Link>

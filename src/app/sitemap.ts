@@ -56,6 +56,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/terms-conditions`,
+      lastModified: today,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/return-refund-policy`,
+      lastModified: today,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: today,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
   ];
 
   const memberUrls = members.map((member: any) => ({

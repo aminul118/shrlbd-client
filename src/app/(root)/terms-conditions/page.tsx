@@ -1,6 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import termsData from "@/lib/constant/termsData";
+import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
+import { Metadata } from "next";
 
+export const metadata: Metadata = generateMetaTags({
+  title: "Terms and Conditions - SHRL",
+  description:
+    "Review the Terms and Conditions for using Smart Healthcare and Research Ltd.'s online consultation services, payment policies, and user responsibilities.",
+  keywords:
+    "Smart Healthcare, SHRL, Terms and Conditions, SHRL policies, Healthcare services, Refund policy, Consultation rules, Online medical consultation, Bangladesh healthcare, SHRLBD",
+  image: "/seo/shrl-hero-ss.png",
+  url: "https://www.shrlbd.com/terms-conditions",
+});
 const TermsPage = () => {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">

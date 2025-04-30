@@ -38,6 +38,24 @@ const Footer = () => {
           {/* Important Links */}
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Important Links</p>
+            <Link
+              href="/privacy-policy"
+              className="text-gray-400 hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/return-refund-policy"
+              className="text-gray-400 hover:text-white"
+            >
+              Return Refund Policy
+            </Link>
+            <Link
+              href="/terms-conditions"
+              className="text-gray-400 hover:text-white"
+            >
+              Terms & Conditions
+            </Link>
 
             <div className="flex space-x-4 mt-2  items-center">
               {/* Facebook link */}
@@ -66,6 +84,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <Image
+          src="/images/ssl/ssl_banner.png"
+          alt="SSl Image for Smart Healthcare and Research Limited"
+          height={400}
+          width={600}
+          className="mt-6 mx-auto rounded-2xl"
+        />
         <Copyright />
       </div>
     </footer>

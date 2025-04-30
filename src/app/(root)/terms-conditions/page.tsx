@@ -18,11 +18,11 @@ const TermsPage = () => {
       <h1 className="text-4xl font-bold text-center mb-2">
         Terms and Conditions
       </h1>
-      <p className="text-center text-gray-500 mb-8">
+      <p className="text-center text-gray-500 dark:text-white/80 mb-8">
         Effective Date: 1st May, 2025
       </p>
 
-      <p className="mb-8 text-gray-700">
+      <p className="mb-8 text-gray-700 dark:text-white/80">
         Welcome to <strong>Smart Healthcare and Research Ltd.</strong> ("we,"
         "our," "us"). By accessing or using our services, including online video
         consultations, websites, and applications, you agree to be bound by
@@ -31,15 +31,19 @@ const TermsPage = () => {
 
       {termsData.map((section, idx) => (
         <div key={idx} className="mb-8">
-          <h2 className="text-2xl font-semibold mb-2">{section.title}</h2>
+          <h2 className="text-2xl font-semibold mb-2 dark:text-white">
+            {section.title}
+          </h2>
           {Array.isArray(section.content) ? (
-            <ul className="list-disc pl-5 space-y-2 text-gray-700">
+            <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-white/80">
               {section.content.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
           ) : (
-            <p className="text-gray-700">{section.content}</p>
+            <p className="text-gray-700 dark:text-white/80">
+              {section.content}
+            </p>
           )}
         </div>
       ))}

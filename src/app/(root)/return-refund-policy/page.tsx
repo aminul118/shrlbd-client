@@ -14,7 +14,7 @@ export const metadata: Metadata = generateMetaTags({
 
 const ReturnRefundPolicyPage = () => {
   return (
-    <div className="container mx-auto py-10 px-4 text-gray-800 font-sans">
+    <div className="container mx-auto py-10 px-4 text-gray-800 dark:text-white/90 font-sans">
       <h1 className="text-4xl font-bold text-center mb-4">
         Return and Refund Policy
       </h1>

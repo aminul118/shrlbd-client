@@ -26,6 +26,9 @@ const Footer = () => {
           {/* Quick Links */}
           <div className="flex flex-col space-y-2">
             <p className="text-lg font-semibold">Quick Links</p>
+            <Link href="/about" className={linkStyle}>
+              About
+            </Link>
             <Link href="/services" className={linkStyle}>
               Services
             </Link>

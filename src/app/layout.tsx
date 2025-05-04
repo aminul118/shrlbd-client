@@ -15,6 +15,7 @@ const title =
   "Smart Healthcare and Research Ltd. | Empowering Maternal & Child Health Through Innovation";
 const description =
   "Discover Smart Healthcare and Research Ltd.'s comprehensive services enhancing women's and children's health. From online consultations and medical research to professional training, patient education, and community outreach — we are transforming care with innovation, compassion, and global collaboration.";
+  
 export const metadata: Metadata = {
   title,
   description,

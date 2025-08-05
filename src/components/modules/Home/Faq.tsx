@@ -5,8 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import SectionHeading from "../ui/SectionHeading";
-import Container from "../ui/Container";
+import SectionHeading from "../../ui/SectionHeading";
+import Container from "../../ui/Container";
 
 const faqData = [
   {

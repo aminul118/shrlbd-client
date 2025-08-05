@@ -1,8 +1,8 @@
 import foundingTeam from "@/lib/constant/foundingTeam";
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "../../ui/card";
 import { IFoundingTeam } from "@/lib/types/types";
-import Container from "../ui/Container";
-import SectionHeading from "../ui/SectionHeading";
+import Container from "../../ui/Container";
+import SectionHeading from "../../ui/SectionHeading";
 import Image from "next/image";
 
 const FoundingTeam = () => {

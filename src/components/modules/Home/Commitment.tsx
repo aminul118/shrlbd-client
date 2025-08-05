@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
-import SectionHeading from "../ui/SectionHeading";
+import SectionHeading from "../../ui/SectionHeading";
 import commitments from "@/lib/constant/commitments";
 import { ICommitments } from "@/lib/types/types";
-import Container from "../ui/Container";
+import Container from "../../ui/Container";
 
 const Commitments = () => {
   return (

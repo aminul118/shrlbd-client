@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import TeamMemberCard from "@/components/Team/TeamMemberCard";
+import TeamMemberCard from "@/components/modules/Team/TeamMemberCard";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import getTeamMembers from "@/lib/data/getTeamMembers";

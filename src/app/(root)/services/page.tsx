@@ -1,5 +1,5 @@
-import KeyServices from "@/components/common/KeyServices/KeyServices";
-import Commitments from "@/components/Home/Commitment";
+import KeyServices from "@/components/modules/KeyServices/KeyServices";
+import Commitments from "@/components/modules/Home/Commitment";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 import React from "react";

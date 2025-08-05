@@ -1,9 +1,9 @@
-import Contact from "@/components/common/Contact/Contact";
-import KeyServices from "@/components/common/KeyServices/KeyServices";
-import Commitment from "@/components/Home/Commitment";
-import Faq from "@/components/Home/Faq";
-import FoundingTeam from "@/components/Home/FoundingTeam";
-import HeroBanner from "@/components/Home/HeroBanner";
+import Contact from "@/components/modules/Contact/Contact";
+import KeyServices from "@/components/modules/KeyServices/KeyServices";
+import Commitment from "@/components/modules/Home/Commitment";
+import Faq from "@/components/modules/Home/Faq";
+import FoundingTeam from "@/components/modules/Home/FoundingTeam";
+import HeroBanner from "@/components/modules/Home/HeroBanner";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 

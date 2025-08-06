@@ -1,6 +1,6 @@
+import { Button } from "@/components/ui/button";
 import getScrollingText from "@/lib/data/getScrollingText";
 import Marquee from "react-fast-marquee";
-import { Button } from "../ui/button";
 
 type TScrool = {
   _id: string;

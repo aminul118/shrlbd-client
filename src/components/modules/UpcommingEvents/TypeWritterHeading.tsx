@@ -1,7 +1,7 @@
 "use client";
 import { Typewriter } from "react-simple-typewriter";
 
-const TypeWritterHeading = () => {
+const TypeWriterHeading = () => {
   return (
     <h1 className="text-2xl lg:text-4xl text-red-500 font-bold text-center py-4 ">
       <Typewriter
@@ -17,4 +17,4 @@ const TypeWritterHeading = () => {
   );
 };
 
-export default TypeWritterHeading;
+export default TypeWriterHeading;

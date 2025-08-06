@@ -4,9 +4,9 @@ export type TChildren = Readonly<{
   children: React.ReactNode;
 }>;
 
-export type TParams = {
-  params: Promise<{ id: string }>;
-};
+export interface IParams {
+  params: Promise<{ slug: string }>;
+}
 
 export type MetaProps = {
   title: string;

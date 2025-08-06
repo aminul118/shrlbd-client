@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import TeamMemberCard from "@/components/modules/Team/TeamMemberCard";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import getTeamMembers from "@/lib/data/getTeamMembers";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
+import getTeams from "@/lib/data/getTeam";
+import { Suspense } from "react";
+import TeamMembersCardSkeleton from "@/components/modules/Team/TeamMembersCardSkeleton";
+import TeamList from "@/components/modules/Team/TeamList";
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
@@ -18,20 +18,17 @@ export const metadata: Metadata = generateMetaTags({
 });
 // ---> SEO END
 
-const TeamPage = async () => {
-  const members = await getTeamMembers();
+const TeamMemberPage = async () => {
+  const data = await getTeams();
+  console.log(data);
 
   return (
-    <Container>
-      <SectionHeading title="Our Team members" />
-      <div className="grid md:grid-cols-2 2xl:grid-cols-3 mt-20  gap-14 ">
-        {members.map((member: any) => {
-          const { _id } = member;
-          return <TeamMemberCard key={_id} member={member} />;
-        })}
-      </div>
+    <Container className="grid md:grid-cols-2 2xl:grid-cols-3 mt-20 gap-14">
+      <Suspense fallback={<TeamMembersCardSkeleton />}>
+        <TeamList />
+      </Suspense>
     </Container>
   );
 };
 
-export default TeamPage;
+export default TeamMemberPage;

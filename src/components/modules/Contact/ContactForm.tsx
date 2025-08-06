@@ -1,39 +1,41 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { FormEvent } from "react";
-import emailjs from "@emailjs/browser";
-import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const ContactForm = () => {
-  const handleEmail = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<ContactFormData>();
 
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
-        form,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
-      )
-      .then(
-        () => {
-          Swal.fire({
-            title: "Good job!",
-            text: "Email sent successfully!",
-            icon: "success",
-          });
-          form.reset();
-        },
-        () => {
-          Swal.fire({
-            title: "Oops!",
-            text: "Something went wrong. Please try again.",
-            icon: "error",
-          });
-        }
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const response = await axios.post(
+        "https://server.shrlbd.com/api/v1/contact/create",
+        data
       );
+
+      console.log("Response:", response.data);
+      reset();
+      toast.success("Message Sent Successfully!");
+    } catch (error: any) {
+      console.error("Submission Error:", error);
+      toast.error("Failed to send message. Please try again later");
+    }
   };
 
   const inputField =
@@ -41,46 +43,43 @@ const ContactForm = () => {
 
   return (
     <form
-      onSubmit={handleEmail}
+      onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 sm:p-6 md:p-8 max-w-4xl w-full mx-auto"
       data-aos="fade-up"
     >
       <input
         type="text"
-        name="first_name"
-        placeholder="First Name *"
+        placeholder="Name"
+        {...register("name", { required: true })}
         className={inputField}
-        required
       />
-      <input
-        type="text"
-        name="last_name"
-        placeholder="Last Name *"
-        className={inputField}
-        required
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone Number *"
-        className={inputField}
-        required
-      />
+
       <input
         type="email"
-        name="email"
-        placeholder="Email *"
+        placeholder="Email"
+        {...register("email", { required: true })}
         className={inputField}
-        required
       />
+
+      <input
+        type="text"
+        placeholder="Subject"
+        {...register("subject", { required: true })}
+        className={`${inputField} sm:col-span-2`}
+      />
+
       <textarea
-        name="message"
         placeholder="Message *"
+        {...register("message", { required: true })}
         className={`px-4 py-3 rounded-lg w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none h-48 resize-none sm:col-span-2`}
-        required
       />
-      <Button type="submit" className="sm:col-span-2 h-10 w-full">
-        Send Mail
+
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="sm:col-span-2 h-10 w-full"
+      >
+        {isSubmitting ? "Sending..." : "Send Mail"}
       </Button>
     </form>
   );

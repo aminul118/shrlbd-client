@@ -79,13 +79,13 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <Image
+        {/* <Image
           src="/images/ssl/ssl_banner.png"
           alt="SSl Image for Smart Healthcare and Research Limited"
           height={400}
           width={600}
           className="mt-6 mx-auto rounded-2xl"
-        />
+        /> */}
         <Copyright />
       </div>
     </footer>

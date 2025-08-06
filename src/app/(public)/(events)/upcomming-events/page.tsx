@@ -1,6 +1,5 @@
-import ScrollingText from "@/components/UpcommingEvents/ScrollingText";
-import TypeWritterHeading from "@/components/UpcommingEvents/TypeWritterHeading";
-import UpcommingEvents from "@/components/UpcommingEvents/UpcommingEvents";
+import TypeWriterHeading from "@/components/modules/UpcommingEvents/TypeWritterHeading";
+import UpcommingEvents from "@/components/modules/UpcommingEvents/UpcomingEvents";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 
@@ -16,14 +15,14 @@ export const metadata: Metadata = generateMetaTags({
 });
 // --> SEO End
 
-const UpcommingEventPage = () => {
+const UpcomingEventPage = () => {
   return (
     <>
-      <TypeWritterHeading />
-      <ScrollingText />
+      <TypeWriterHeading />
+      {/* <ScrollingText /> */}
       <UpcommingEvents />
     </>
   );
 };
 
-export default UpcommingEventPage;
+export default UpcomingEventPage;

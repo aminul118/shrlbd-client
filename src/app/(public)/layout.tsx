@@ -1,5 +1,5 @@
 import Footer from "@/components/layouts/Footer/Footer";
-import ResponsiveNavbar from "@/components/layouts/Navbar/Navbar";
+import Navbar2 from "@/components/layouts/Navbar/Navbar2";
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { TChildren } from "@/lib/types/types";
 import { Metadata } from "next";
@@ -20,7 +20,8 @@ export const metadata: Metadata = generateMetaTags({
 const MainLayout = ({ children }: TChildren) => {
   return (
     <>
-      <ResponsiveNavbar />
+      {/* <ResponsiveNavbar /> */}
+      <Navbar2 />
       <main className="min-h-[calc(100vh-351px)]">{children}</main>
       <Footer />
     </>

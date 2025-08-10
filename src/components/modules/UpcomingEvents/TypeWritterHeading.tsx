@@ -1,11 +1,11 @@
-"use client";
-import { Typewriter } from "react-simple-typewriter";
+'use client';
+import { Typewriter } from 'react-simple-typewriter';
 
 const TypeWriterHeading = () => {
   return (
     <h1 className="text-2xl lg:text-4xl text-red-500 font-bold text-center py-4 ">
       <Typewriter
-        words={["Upcoming Events"]}
+        words={['Upcoming Events']}
         loop
         cursor
         cursorStyle="_"

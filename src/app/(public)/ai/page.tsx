@@ -1,4 +1,4 @@
-import ChatForm from "@/components/modules/AI/ChatForm";
+import ChatForm from '@/components/modules/AI/ChatForm';
 
 const AIPage = () => {
   return (
@@ -8,8 +8,7 @@ const AIPage = () => {
           Chatting with AI
         </h1>
         <p className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-5">
-          Know about Epidemiological Surveillance on maternal and child health
-          related information
+          Know about Epidemiological Surveillance on maternal and child health related information
         </p>
       </div>
       <ChatForm />

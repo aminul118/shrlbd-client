@@ -1,7 +1,7 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { ITeamMember } from "@/lib/data/getTeam";
-import Image from "next/image";
-import Link from "next/link";
+import { Card, CardContent } from '@/components/ui/card';
+import { ITeamMember } from '@/lib/data/getTeam';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface TeamCardProps {
   member: ITeamMember;
@@ -16,8 +16,8 @@ const TeamMembersCard = ({ member }: TeamCardProps) => {
         <div className="flex justify-center -mt-14 mb-4">
           <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#808BAF] bg-slate-100">
             <Image
-              src={member.photo || "/default-avatar.png"}
-              alt={member.name || "Team member"}
+              src={member.photo || '/default-avatar.png'}
+              alt={member.name || 'Team member'}
               fill
               className="object-cover"
             />

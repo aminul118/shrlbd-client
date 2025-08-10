@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { Facebook } from "lucide-react";
-import Image from "next/image";
-import Copyright from "./Copiright";
-import { IoLogoGooglePlaystore } from "react-icons/io5";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Facebook } from 'lucide-react';
+import Image from 'next/image';
+import Copyright from './Copiright';
+import { IoLogoGooglePlaystore } from 'react-icons/io5';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
-  const linkStyle = "text-gray-400 hover:text-white";
+  const linkStyle = 'text-gray-400 hover:text-white';
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-6 md:px-12">

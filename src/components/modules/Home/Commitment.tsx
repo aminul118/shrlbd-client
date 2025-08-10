@@ -1,8 +1,8 @@
-import { Card, CardContent } from "@/components/ui/card";
-import SectionHeading from "../../ui/SectionHeading";
-import commitments from "@/lib/constant/commitments";
-import { ICommitments } from "@/lib/types/types";
-import Container from "../../ui/Container";
+import { Card, CardContent } from '@/components/ui/card';
+import SectionHeading from '../../ui/SectionHeading';
+import commitments from '@/lib/constant/commitments';
+
+import Container from '../../ui/Container';
 
 const Commitments = () => {
   return (
@@ -15,7 +15,7 @@ const Commitments = () => {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-        {commitments.map((commitment: ICommitments) => {
+        {commitments.map((commitment) => {
           const { id, icon: Icon, title, strengths } = commitment;
           return (
             <Card

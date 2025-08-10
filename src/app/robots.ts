@@ -1,14 +1,14 @@
-import type { MetadataRoute } from 'next'
- 
-const robots=(): MetadataRoute.Robots=> {
+import type { MetadataRoute } from 'next';
+
+const robots = (): MetadataRoute.Robots => {
   return {
     rules: {
-      userAgent: "*",
-      allow: "*",
-      disallow: "/private/",
+      userAgent: '*',
+      allow: '*',
+      disallow: '/private/',
     },
-    sitemap: "https://www.shrlbd.com/sitemap.xml",
+    sitemap: 'https://www.shrlbd.com/sitemap.xml',
   };
-}
+};
 
-export default robots
+export default robots;

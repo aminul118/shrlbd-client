@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import getScrollingText from "@/lib/data/getScrollingText";
-import Marquee from "react-fast-marquee";
+import { Button } from '@/components/ui/button';
+import getScrollingText from '@/lib/data/getScrollingText';
+import Marquee from 'react-fast-marquee';
 
 interface Scroll {
   _id: string;
@@ -12,8 +12,7 @@ interface Scroll {
 const ScrollingText = async () => {
   const scrolls = await getScrollingText();
 
-  const texts =
-    scrolls?.data?.map((s: Scroll) => s?.text?.trim())?.filter(Boolean) || [];
+  const texts = scrolls?.data?.map((s: Scroll) => s?.text?.trim())?.filter(Boolean) || [];
 
   if (texts.length === 0) return null;
 

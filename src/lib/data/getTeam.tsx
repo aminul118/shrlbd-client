@@ -1,4 +1,4 @@
-import config from "@/config";
+import config from '@/config';
 
 export interface ITeamMember {
   _id: string;
@@ -15,7 +15,7 @@ export interface ITeamMember {
 // Get all team members
 const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
   const res = await fetch(`${config.baseUrl}/team/get-all`, {
-    cache: "no-store", // ensures fresh data on every request
+    cache: 'no-store', // ensures fresh data on every request
   });
 
   if (!res.ok) {
@@ -26,11 +26,9 @@ const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
 };
 
 // Get single team member by slug
-export const getSingleTeamMember = async (
-  slug: string
-): Promise<{ data: ITeamMember }> => {
+export const getSingleTeamMember = async (slug: string): Promise<{ data: ITeamMember }> => {
   const res = await fetch(`${config.baseUrl}/team/${slug}`, {
-    cache: "no-store",
+    cache: 'no-store',
   });
 
   if (!res.ok) {

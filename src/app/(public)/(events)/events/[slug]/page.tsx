@@ -1,11 +1,5 @@
-
-
 const EventDetailsPage = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div></div>;
 };
 
 export default EventDetailsPage;

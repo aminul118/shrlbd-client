@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { Typewriter } from "react-simple-typewriter";
+import Image from 'next/image';
+import { Typewriter } from 'react-simple-typewriter';
 
 const HeroBanner = () => {
   return (
@@ -11,7 +11,7 @@ const HeroBanner = () => {
         <div className="space-y-8 px-4">
           <h1 className="text-[#626C8E] text-3xl md:text-5xl font-semibold">
             <Typewriter
-              words={["Welcome to"]}
+              words={['Welcome to']}
               cursor
               loop
               cursorStyle="_"

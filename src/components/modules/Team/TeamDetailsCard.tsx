@@ -1,6 +1,6 @@
-import HtmlContent from "@/components/ui/HtmlContent";
-import { getSingleTeamMember } from "@/lib/data/getTeam";
-import Image from "next/image";
+import HtmlContent from '@/components/ui/HtmlContent';
+import { getSingleTeamMember } from '@/lib/data/getTeam';
+import Image from 'next/image';
 
 const TeamDetailsCard = async ({ slug }: { slug: string }) => {
   const { data: team } = await getSingleTeamMember(slug);

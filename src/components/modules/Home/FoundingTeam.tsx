@@ -1,9 +1,8 @@
-import foundingTeam from "@/lib/constant/foundingTeam";
-import { Card, CardContent } from "../../ui/card";
-import { IFoundingTeam } from "@/lib/types/types";
-import Container from "../../ui/Container";
-import SectionHeading from "../../ui/SectionHeading";
-import Image from "next/image";
+import foundingTeam from '@/lib/constant/foundingTeam';
+import { Card, CardContent } from '../../ui/card';
+import Container from '../../ui/Container';
+import SectionHeading from '../../ui/SectionHeading';
+import Image from 'next/image';
 
 const FoundingTeam = () => {
   return (
@@ -13,7 +12,7 @@ const FoundingTeam = () => {
         description="Our team is the driving force with the mission to lead healthcare with UTLC for women and children. Our success is built on the passion, expertise, and dedication of healthcare professionals, researchers, and innovators who share a common goal—making healthcare accessible, compassionate, and impactful. Meet the people who are making a difference every day."
       />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mt-20">
-        {foundingTeam.map((team: IFoundingTeam) => {
+        {foundingTeam.map((team) => {
           const { id, photo, name, position, about_shrl } = team;
           return (
             <Card

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
+'use client';
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -14,41 +14,41 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import axios from "axios";
-import config from "@/config";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { toast } from 'sonner';
+import axios from 'axios';
+import config from '@/config';
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name is too short").max(50, "Name is too long"),
-  email: z.string().email("Enter a valid email"),
-  subject: z.string().min(1, "Subject is required"),
-  message: z.string().min(1, "Message is required"),
+  name: z.string().min(2, 'Name is too short').max(50, 'Name is too long'),
+  email: z.string().email('Enter a valid email'),
+  subject: z.string().min(1, 'Subject is required'),
+  message: z.string().min(1, 'Message is required'),
 });
 
 const ContactForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
     },
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log(data);
-    const toastId = toast.loading("Message Sending");
+    const toastId = toast.loading('Message Sending');
     try {
       const res = await axios.post(`${config.baseUrl}/contact/create`, data);
       console.log(res);
-      toast.success("Message sent", { id: toastId });
+      toast.success('Message sent', { id: toastId });
       form.reset();
     } catch (error: any) {
-      toast.error("Message not sent!");
+      toast.error('Message not sent!');
     }
   };
 
@@ -65,15 +65,9 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="John Doe"
-                      autoComplete="name"
-                      {...field}
-                    />
+                    <Input placeholder="John Doe" autoComplete="name" {...field} />
                   </FormControl>
-                  <FormDescription className="sr-only">
-                    Your full name
-                  </FormDescription>
+                  <FormDescription className="sr-only">Your full name</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -93,9 +87,7 @@ const ContactForm = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="sr-only">
-                    Your email address
-                  </FormDescription>
+                  <FormDescription className="sr-only">Your email address</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -112,9 +104,7 @@ const ContactForm = () => {
                 <FormControl>
                   <Input placeholder="Joining Your Team" {...field} />
                 </FormControl>
-                <FormDescription className="sr-only">
-                  The topic of your message
-                </FormDescription>
+                <FormDescription className="sr-only">The topic of your message</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -128,15 +118,9 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea
-                    className="h-36"
-                    placeholder="Write your message here..."
-                    {...field}
-                  />
+                  <Textarea className="h-36" placeholder="Write your message here..." {...field} />
                 </FormControl>
-                <FormDescription className="sr-only">
-                  Your full message
-                </FormDescription>
+                <FormDescription className="sr-only">Your full message</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

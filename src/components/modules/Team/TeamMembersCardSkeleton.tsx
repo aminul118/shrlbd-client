@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
-import Container from "@/components/ui/Container";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent } from '@/components/ui/card';
+import Container from '@/components/ui/Container';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type Props = { count?: number };
 

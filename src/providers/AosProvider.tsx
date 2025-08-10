@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { TChildren } from "@/lib/types/types";
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { IChildren } from '@/types';
 
-const AosProvider = ({ children }: TChildren) => {
+const AosProvider = ({ children }: IChildren) => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);

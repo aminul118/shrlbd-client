@@ -1,6 +1,6 @@
-import { TChildren } from "@/lib/types/types";
+import { IChildren } from '@/types';
 
-type TContainer = TChildren & {
+type TContainer = IChildren & {
   className?: string;
   background?: string;
 };

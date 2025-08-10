@@ -4,9 +4,7 @@ interface IHtml {
 }
 
 const HtmlContent = ({ content, className }: IHtml) => {
-  return (
-    <div className={className} dangerouslySetInnerHTML={{ __html: content }} />
-  );
+  return <div className={className} dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 export default HtmlContent;

@@ -1,7 +1,7 @@
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import React from "react";
-import ContactForm from "./ContactForm";
+import Container from '@/components/ui/Container';
+import SectionHeading from '@/components/ui/SectionHeading';
+import React from 'react';
+import ContactForm from './ContactForm';
 
 const Contact = () => {
   return (

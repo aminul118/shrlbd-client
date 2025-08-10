@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { IoIosArrowDown } from "react-icons/io";
-import Link from "next/link";
-import Image from "next/image";
-import { Menu } from "lucide-react";
-import { ModeToggle } from "./ModeToggle";
+import React, { useState, useEffect } from 'react';
+import { MdKeyboardArrowDown } from 'react-icons/md';
+import { IoIosArrowDown } from 'react-icons/io';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Menu } from 'lucide-react';
+import { ModeToggle } from './ModeToggle';
 
 const ResponsiveNavbar = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -15,7 +15,7 @@ const ResponsiveNavbar = () => {
 
   // Lock scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = mobileSidebarOpen ? "hidden" : "auto";
+    document.body.style.overflow = mobileSidebarOpen ? 'hidden' : 'auto';
   }, [mobileSidebarOpen]);
 
   const closeMobileMenu = () => {
@@ -86,16 +86,13 @@ const ResponsiveNavbar = () => {
 
       {/* Overlay when mobile sidebar is open */}
       {mobileSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/40 z-40"
-          onClick={closeMobileMenu}
-        />
+        <div className="fixed inset-0 bg-black/40 z-40" onClick={closeMobileMenu} />
       )}
 
       {/* Mobile Sidebar */}
       <aside
         className={`fixed top-0 right-0 w-64 h-full bg-white dark:bg-slate-900 shadow-lg p-6 z-50 transform transition-transform duration-300 ${
-          mobileSidebarOpen ? "translate-x-0" : "translate-x-full"
+          mobileSidebarOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <button
@@ -105,22 +102,13 @@ const ResponsiveNavbar = () => {
           &times;
         </button>
         <ul className="mt-10 space-y-4 text-gray-700 dark:text-white">
-          <li
-            onClick={closeMobileMenu}
-            className="hover:text-blue-500 transition"
-          >
+          <li onClick={closeMobileMenu} className="hover:text-blue-500 transition">
             <Link href="/">Home</Link>
           </li>
-          <li
-            onClick={closeMobileMenu}
-            className="hover:text-blue-500 transition"
-          >
+          <li onClick={closeMobileMenu} className="hover:text-blue-500 transition">
             <Link href="/services">Services</Link>
           </li>
-          <li
-            onClick={closeMobileMenu}
-            className="hover:text-blue-500 transition"
-          >
+          <li onClick={closeMobileMenu} className="hover:text-blue-500 transition">
             <Link href="/team">Team</Link>
           </li>
           <li
@@ -129,31 +117,20 @@ const ResponsiveNavbar = () => {
           >
             Events
             <IoIosArrowDown
-              className={`transition transform ${
-                mobileEventsOpen ? "rotate-180" : "rotate-0"
-              }`}
+              className={`transition transform ${mobileEventsOpen ? 'rotate-180' : 'rotate-0'}`}
             />
           </li>
           {mobileEventsOpen && (
             <ul className="pl-4 space-y-2">
-              <li
-                onClick={closeMobileMenu}
-                className="hover:text-blue-500 transition"
-              >
+              <li onClick={closeMobileMenu} className="hover:text-blue-500 transition">
                 <Link href="/upcomming-events">Upcoming Events</Link>
               </li>
-              <li
-                onClick={closeMobileMenu}
-                className="hover:text-blue-500 transition"
-              >
+              <li onClick={closeMobileMenu} className="hover:text-blue-500 transition">
                 <Link href="/events">Events</Link>
               </li>
             </ul>
           )}
-          <li
-            onClick={closeMobileMenu}
-            className="hover:text-blue-500 transition"
-          >
+          <li onClick={closeMobileMenu} className="hover:text-blue-500 transition">
             <Link href="/contact">Contact</Link>
           </li>
           <li>

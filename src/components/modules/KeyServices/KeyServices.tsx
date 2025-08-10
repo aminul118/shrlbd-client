@@ -1,9 +1,9 @@
-import { Card, CardContent } from "@/components/ui/card";
-import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import services from "@/lib/constant/services";
-import Image from "next/image";
-import React from "react";
+import { Card, CardContent } from '@/components/ui/card';
+import Container from '@/components/ui/Container';
+import SectionHeading from '@/components/ui/SectionHeading';
+import services from '@/lib/constant/services';
+import Image from 'next/image';
+import React from 'react';
 
 const KeyServices = () => {
   return (

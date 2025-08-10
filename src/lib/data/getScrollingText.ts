@@ -1,5 +1,7 @@
+import config from "@/config";
+
 const getScrollingText = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/scrolling`);
+  const res = await fetch(`${config.baseUrl}/scrolling-text/get-all`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

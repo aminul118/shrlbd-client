@@ -1,9 +1,11 @@
+import config from "@/config";
+
 const getEventsById = async (id: string) => {
-  if (!process.env.NEXT_PUBLIC_BASE_URL) {
+  if (!config.baseUrl) {
     throw new Error("NEXT_PUBLIC_BASE_URL is not defined");
   }
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/event/${id}`);
+  const res = await fetch(`${config.baseUrl}/event/${id}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch team member details.");

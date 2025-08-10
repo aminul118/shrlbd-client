@@ -1,5 +1,7 @@
+import config from "@/config";
+
 const getTeamMembers = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/members`);
+  const res = await fetch(`${config.baseUrl}/members`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch team members");

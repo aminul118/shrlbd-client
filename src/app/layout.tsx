@@ -74,12 +74,12 @@ const RootLayout = ({ children }: TChildren) => {
       <body className={poppins.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
           <AosProvider>{children}</AosProvider>
-          <Toaster position="top-center" />
+          <Toaster position="top-right" richColors />
         </ThemeProvider>
       </body>
     </html>

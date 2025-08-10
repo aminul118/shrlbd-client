@@ -1,5 +1,7 @@
-import TypeWriterHeading from "@/components/modules/UpcommingEvents/TypeWritterHeading";
-import UpcommingEvents from "@/components/modules/UpcommingEvents/UpcomingEvents";
+import ScrollingText from "@/components/modules/UpcomingEvents/ScrollingText";
+import TypeWriterHeading from "@/components/modules/UpcomingEvents/TypeWritterHeading";
+import UpcomingEvents from "@/components/modules/UpcomingEvents/UpcomingEvents";
+
 import { generateMetaTags } from "@/lib/seo/genarateMetaTags";
 import { Metadata } from "next";
 
@@ -19,8 +21,8 @@ const UpcomingEventPage = () => {
   return (
     <>
       <TypeWriterHeading />
-      {/* <ScrollingText /> */}
-      <UpcommingEvents />
+      <ScrollingText />
+      <UpcomingEvents />
     </>
   );
 };

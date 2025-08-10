@@ -23,8 +23,8 @@ const TeamMemberPage = async () => {
   console.log(data);
 
   return (
-    <Container className="grid md:grid-cols-2 2xl:grid-cols-3 mt-20 gap-14">
-      <Suspense fallback={<TeamMembersCardSkeleton />}>
+    <Container className=" mt-20">
+      <Suspense fallback={<TeamMembersCardSkeleton count={6} />}>
         <TeamList />
       </Suspense>
     </Container>

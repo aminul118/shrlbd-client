@@ -1,5 +1,7 @@
+import config from "@/config";
+
 const getAllEventsDone = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/events`);
+  const res = await fetch(`${config.baseUrl}/events`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch events");

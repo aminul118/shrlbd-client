@@ -1,87 +1,153 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import axios from "axios";
+import config from "@/config";
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+const formSchema = z.object({
+  name: z.string().min(2, "Name is too short").max(50, "Name is too long"),
+  email: z.string().email("Enter a valid email"),
+  subject: z.string().min(1, "Subject is required"),
+  message: z.string().min(1, "Message is required"),
+});
 
 const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { isSubmitting },
-  } = useForm<ContactFormData>();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    console.log(data);
+    const toastId = toast.loading("Message Sending");
     try {
-      const response = await axios.post(
-        "https://server.shrlbd.com/api/v1/contact/create",
-        data
-      );
-
-      console.log("Response:", response.data);
-      reset();
-      toast.success("Message Sent Successfully!");
+      const res = await axios.post(`${config.baseUrl}/contact/create`, data);
+      console.log(res);
+      toast.success("Message sent", { id: toastId });
+      form.reset();
     } catch (error: any) {
-      console.error("Submission Error:", error);
-      toast.error("Failed to send message. Please try again later");
+      toast.error("Message not sent!");
     }
   };
 
-  const inputField =
-    "px-4 py-3 rounded-full w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none";
-
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 sm:p-6 md:p-8 max-w-4xl w-full mx-auto"
-      data-aos="fade-up"
-    >
-      <input
-        type="text"
-        placeholder="Name"
-        {...register("name", { required: true })}
-        className={inputField}
-      />
+    <div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Top row: Name + Email */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="John Doe"
+                      autoComplete="name"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription className="sr-only">
+                    Your full name
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-      <input
-        type="email"
-        placeholder="Email"
-        {...register("email", { required: true })}
-        className={inputField}
-      />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="email"
+                      placeholder="john@company.com"
+                      autoComplete="email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription className="sr-only">
+                    Your email address
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-      <input
-        type="text"
-        placeholder="Subject"
-        {...register("subject", { required: true })}
-        className={`${inputField} sm:col-span-2`}
-      />
+          {/* Subject (full width) */}
+          <FormField
+            control={form.control}
+            name="subject"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Subject</FormLabel>
+                <FormControl>
+                  <Input placeholder="Joining Your Team" {...field} />
+                </FormControl>
+                <FormDescription className="sr-only">
+                  The topic of your message
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-      <textarea
-        placeholder="Message *"
-        {...register("message", { required: true })}
-        className={`px-4 py-3 rounded-lg w-full border dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none h-48 resize-none sm:col-span-2`}
-      />
+          {/* Message (full width) */}
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Message</FormLabel>
+                <FormControl>
+                  <Textarea
+                    className="h-36"
+                    placeholder="Write your message here..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription className="sr-only">
+                  Your full message
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-      <Button
-        type="submit"
-        disabled={isSubmitting}
-        className="sm:col-span-2 h-10 w-full"
-      >
-        {isSubmitting ? "Sending..." : "Send Mail"}
-      </Button>
-    </form>
+          <div className="pt-2">
+            <Button type="submit">Submit</Button>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
 

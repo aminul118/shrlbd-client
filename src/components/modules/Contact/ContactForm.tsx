@@ -43,7 +43,9 @@ const ContactForm = () => {
     console.log(data);
     const toastId = toast.loading('Message Sending');
     try {
-      const res = await axios.post(`${config.baseUrl}/contact/create`, data);
+      const res = await axios.post(`${config.baseUrl}/contact/create`, data, {
+        withCredentials: true,
+      });
       console.log(res);
       toast.success('Message sent', { id: toastId });
       form.reset();

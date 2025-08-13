@@ -5,7 +5,7 @@ import AosProvider from '@/providers/AosProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { Toaster } from 'sonner';
 import { Metadata } from 'next';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 import { IChildren } from '@/types';
 
 // >> SEO Start
@@ -24,9 +24,14 @@ const RootLayout = ({ children }: IChildren) => {
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
       <body className={poppins.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <AosProvider>{children}</AosProvider>
-          <Toaster position="top-right" richColors />
+          <Toaster position="top-right" richColors theme="system" />
         </ThemeProvider>
       </body>
     </html>

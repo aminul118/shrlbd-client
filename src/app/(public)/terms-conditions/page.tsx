@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import termsData from '@/lib/constant/termsData';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // SEO Starts

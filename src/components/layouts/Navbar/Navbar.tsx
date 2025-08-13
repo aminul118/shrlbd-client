@@ -6,7 +6,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu } from 'lucide-react';
-import { ModeToggle } from './ModeToggle';
+import ModeToggle from './ModeToggle';
 
 const ResponsiveNavbar = () => {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);

@@ -1,6 +1,6 @@
 import Footer from '@/components/layouts/Footer/Footer';
 import Navbar2 from '@/components/layouts/Navbar/Navbar2';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 import { IChildren } from '@/types';
 import { Metadata } from 'next';
 

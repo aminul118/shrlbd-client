@@ -12,7 +12,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import Link from 'next/link';
 import Logo from '../Logo';
-import { ModeToggle } from './ModeToggle';
+import ModeToggle from './ModeToggle';
 
 /* ---------- Types to make `href` never undefined on simple links ---------- */
 type SimpleLink = {
@@ -298,6 +298,7 @@ export default function Navbar2() {
           <Button asChild variant="outline" size="sm" className="text-sm">
             <Link href="/contact">Contact</Link>
           </Button>
+
           <ModeToggle />
         </div>
       </div>

@@ -5,7 +5,7 @@ import Faq from '@/components/modules/Home/Faq';
 import FoundingTeam from '@/components/modules/Home/FoundingTeam';
 import HeroBanner from '@/components/modules/Home/HeroBanner';
 import { Metadata } from 'next';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({

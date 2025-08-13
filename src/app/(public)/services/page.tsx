@@ -2,7 +2,7 @@ import KeyServices from '@/components/modules/KeyServices/KeyServices';
 import Commitments from '@/components/modules/Home/Commitment';
 import { Metadata } from 'next';
 import React from 'react';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({

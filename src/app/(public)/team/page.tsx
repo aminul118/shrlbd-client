@@ -4,7 +4,7 @@ import getTeams from '@/lib/data/getTeam';
 import { Suspense } from 'react';
 import TeamMembersCardSkeleton from '@/components/modules/Team/TeamMembersCardSkeleton';
 import TeamList from '@/components/modules/Team/TeamList';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({

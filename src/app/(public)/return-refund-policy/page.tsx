@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import policySections from '@/lib/constant/refund';
-import { generateMetaTags } from '@/Seo/genarateMetaTags';
+import { generateMetaTags } from '@/Seo/generateMetaTags';
 
 // SEO stats
 export const metadata: Metadata = generateMetaTags({

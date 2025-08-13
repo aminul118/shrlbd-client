@@ -8,7 +8,7 @@ interface TeamCardProps {
 }
 
 const TeamMembersCard = ({ member }: TeamCardProps) => {
-  console.log(member);
+  // console.log(member);
   return (
     <div className="flex ">
       <Card className="shadow-lg rounded-xl p-4 flex flex-col items-center w-full bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900 h-full">

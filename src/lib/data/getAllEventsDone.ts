@@ -1,14 +1,11 @@
 import config from '@/config';
 
 const getAllEventsDone = async () => {
-  const res = await fetch(`${config.baseUrl}/events`);
-
+  const res = await fetch(`${config.baseUrl}/events`, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch events');
   }
-
-  const data = await res.json();
-  return data;
+  return await res.json();
 };
 
 export default getAllEventsDone;

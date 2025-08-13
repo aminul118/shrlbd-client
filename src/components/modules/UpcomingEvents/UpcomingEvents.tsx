@@ -17,31 +17,48 @@ export interface IUpcomingEvent {
 const UpcomingEvents = async () => {
   const events = await getUpcomingEvents();
 
-  return (
-    <div className="grid grid-cols-1 gap-8 px-4 py-8 max-w-2xl mx-auto">
-      {events?.data.map((event: IUpcomingEvent) => {
-        const formattedDate = format(new Date(event.date), 'dd MMM yyyy');
-        // You can change the pattern to "MMMM d, yyyy" or any style you like
+  if (!events?.data || events.data.length === 0) {
+    return (
+      <div className="py-16 text-center text-primary text-lg">
+        No upcoming events at the moment. Stay tuned!
+      </div>
+    );
+  }
 
-        return (
-          <Card className="p-0 bg-slate-600 text-white" key={event._id}>
-            <Image src={event.photo} width={800} height={700} alt={event.title} />
-            <CardContent>
-              <h1 className="text-2xl font-semibold mb-4"> {event.title},</h1>
-              <p className="flex gap-2 items-center">
-                <Calendar size={18} /> {formattedDate}
-              </p>
-              <p className="flex gap-2 items-center">
-                <Clock size={18} /> {event.time}
-              </p>
-              <p className="flex gap-2 items-center">
-                <MapPinCheck size={18} /> {event.venue}
-              </p>
-              <p className="my-4">{event.details}</p>
-            </CardContent>
-          </Card>
-        );
-      })}
+  return (
+    <div className="px-4 py-12 max-w-6xl mx-auto">
+      <h1 className="text-4xl font-bold mb-10 text-center text-gray-900">Upcoming Events</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {events.data.map((event: IUpcomingEvent) => {
+          const formattedDate = format(new Date(event.date), 'dd MMM yyyy');
+
+          return (
+            <Card
+              key={event._id}
+              className="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+            >
+              <div className="relative h-64 md:h-48 w-full">
+                <Image src={event.photo} alt={event.title} fill className="object-cover" />
+              </div>
+              <CardContent className="bg-white p-6">
+                <h2 className="text-2xl font-semibold mb-3 text-gray-900">{event.title}</h2>
+                <div className="flex flex-col gap-2 text-gray-600 mb-4">
+                  <p className="flex items-center gap-2">
+                    <Calendar size={18} /> {formattedDate}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Clock size={18} /> {event.time}
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <MapPinCheck size={18} /> {event.venue}
+                  </p>
+                </div>
+                <p className="text-gray-700">{event.details}</p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 };

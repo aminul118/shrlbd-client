@@ -1,6 +1,5 @@
 import Container from '@/components/ui/Container';
 import { Metadata } from 'next';
-import getTeams from '@/lib/data/getTeam';
 import { Suspense } from 'react';
 import TeamMembersCardSkeleton from '@/components/modules/Team/TeamMembersCardSkeleton';
 import TeamList from '@/components/modules/Team/TeamList';
@@ -19,9 +18,6 @@ export const metadata: Metadata = generateMetaTags({
 // ---> SEO END
 
 const TeamMemberPage = async () => {
-  const data = await getTeams();
-  console.log(data);
-
   return (
     <Container className=" mt-20">
       <Suspense fallback={<TeamMembersCardSkeleton count={6} />}>

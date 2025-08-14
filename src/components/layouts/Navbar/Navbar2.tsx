@@ -72,6 +72,7 @@ const navigationLinks: NavItem[] = [
     ],
   },
   { href: '/ai', label: 'AI' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 /* ------------------------------ Component -------------------------------- */
@@ -296,7 +297,7 @@ export default function Navbar2() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           <Button asChild variant="outline" size="sm" className="text-sm">
-            <Link href="/contact">Contact</Link>
+            <Link href="/join-team">Join Team</Link>
           </Button>
 
           <ModeToggle />

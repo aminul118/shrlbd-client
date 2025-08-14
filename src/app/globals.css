@@ -124,3 +124,8 @@
 .tangerine {
   font-family: 'Tangerine', cursive;
 }
+
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}

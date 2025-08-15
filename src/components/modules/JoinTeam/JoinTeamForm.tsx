@@ -69,7 +69,7 @@ const JoinTeamForm = () => {
     const toastId = toast.loading('Application sending…');
     try {
       const res = await axios.post<Partial<JoinTeamResponse>>(
-        'https://server.shrlbd.com/api/v1/team/join-team',
+        'https://server.shrlbd.com/api/v1/join-team/create',
         values,
       );
 

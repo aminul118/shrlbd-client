@@ -19,7 +19,7 @@ const MainLayout = ({ children }: IChildren) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar2 />
-      <main className="flex-grow">{children}</main>
+      <main className="flex-grow mt-20">{children}</main>
       <Footer />
     </div>
   );

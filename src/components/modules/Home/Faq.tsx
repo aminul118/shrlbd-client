@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +9,7 @@ import {
 import SectionHeading from '../../ui/SectionHeading';
 import Container from '../../ui/Container';
 
+// FAQ Data
 const faqData = [
   {
     question: 'Why join the SHRL?',
@@ -16,9 +18,9 @@ const faqData = [
         <p>
           Scopes for medical professionals: SHRL provides a unique opportunity for networking and
           developing evidence-based knowledge and skills with proper tools. Check out{' '}
-          <strong className="text-blue-600 underline">
-            <a href="./services.html">Our Key Services</a>
-          </strong>{' '}
+          <Link href="/services" className="text-blue-600 underline font-semibold">
+            Our Key Services
+          </Link>{' '}
           to learn more.
         </p>
         <br />
@@ -35,11 +37,9 @@ const faqData = [
       <>
         <p>Fill out the following form to join our team.</p>
         <p>
-          <strong className="underline text-blue-600">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScRMCIkgGCYeqs_m6Ak6b67jIVFZ6GfVMEsNix2i9Mwgu3IOg/viewform">
-              Google Form
-            </a>
-          </strong>
+          <Link href="/join-team" className="underline text-blue-600 font-semibold">
+            Join Team
+          </Link>
         </p>
         <br />
         <p>Your response form will be reviewed and we shall contact you for further procedures.</p>
@@ -50,10 +50,10 @@ const faqData = [
     question: 'What services do we provide?',
     answer: (
       <p>
-        Check out the{' '}
-        <strong className="underline text-blue-600">
-          <a href="./services.html">Our Key Services</a>
-        </strong>
+        Check out{' '}
+        <Link href="/services" className="underline text-blue-600 font-semibold">
+          Our Key Services
+        </Link>
       </p>
     ),
   },
@@ -61,10 +61,10 @@ const faqData = [
     question: 'Does SHRL have any certified training?',
     answer: (
       <p>
-        Check the segment of{' '}
-        <strong className="underline text-blue-600">
-          <a href="./events.html">Events</a>
-        </strong>{' '}
+        Check{' '}
+        <Link href="/events" className="underline text-blue-600 font-semibold">
+          Events
+        </Link>{' '}
         to learn about our upcoming training events.
       </p>
     ),
@@ -74,11 +74,9 @@ const faqData = [
     answer: (
       <p>
         Yes. To join, fill out the{' '}
-        <strong className="underline text-blue-600">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScRMCIkgGCYeqs_m6Ak6b67jIVFZ6GfVMEsNix2i9Mwgu3IOg/viewform">
-            Form
-          </a>
-        </strong>{' '}
+        <Link href="/join-team" className="underline text-blue-600 font-semibold">
+          Form
+        </Link>{' '}
         and we’ll get back to you.
       </p>
     ),
@@ -90,9 +88,9 @@ const Faq = () => {
     <Container>
       <SectionHeading title="FAQ Section" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center">
-        {/* Left */}
-        <div className="my-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
+        {/* Left Image */}
+        <div>
           <Image
             src="/images/banner/faq.png"
             alt="FAQ"
@@ -102,19 +100,15 @@ const Faq = () => {
           />
         </div>
 
-        {/* Right */}
-        <div className="mt-8">
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqData.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left text-xl font-medium">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="mt-2 text-base">{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        {/* Right Accordion */}
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          {faqData.map((faq, index) => (
+            <AccordionItem key={index} value={`item-${index}`}>
+              <AccordionTrigger className="text-base">{faq.question}</AccordionTrigger>
+              <AccordionContent>{faq.answer}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </Container>
   );

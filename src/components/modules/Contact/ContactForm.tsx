@@ -19,7 +19,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 import axios from 'axios';
-import config from '@/config';
+import config from '@/config/env.config';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name is too short').max(50, 'Name is too long'),

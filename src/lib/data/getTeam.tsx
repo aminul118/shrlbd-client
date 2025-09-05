@@ -1,4 +1,4 @@
-import config from '@/config';
+import envVars from '@/config/env.config';
 
 export interface ITeamMember {
   _id: string;
@@ -14,7 +14,7 @@ export interface ITeamMember {
 
 // Get all team members
 const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
-  const res = await fetch(`${config.baseUrl}/team/get-all`, {
+  const res = await fetch(`${envVars.baseUrl}/team/get-all`, {
     cache: 'no-store', // ensures fresh data on every request
   });
 
@@ -27,7 +27,7 @@ const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
 
 // Get single team member by slug
 export const getSingleTeamMember = async (slug: string): Promise<{ data: ITeamMember }> => {
-  const res = await fetch(`${config.baseUrl}/team/${slug}`, {
+  const res = await fetch(`${envVars.baseUrl}/team/${slug}`, {
     cache: 'no-store',
   });
 

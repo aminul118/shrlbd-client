@@ -1,4 +1,4 @@
-import config from '@/config';
+import envVars from '@/config/env.config';
 import { ApiResponse } from '@/types';
 
 export interface IEvent {
@@ -11,7 +11,7 @@ export interface IEvent {
 }
 
 const getEvents = async (): Promise<ApiResponse<IEvent[]>> => {
-  const res = await fetch(`${config.baseUrl}/event/get-all`, { cache: 'no-store' });
+  const res = await fetch(`${envVars.baseUrl}/event/get-all`, { cache: 'no-store' });
   if (!res.ok) {
     throw new Error('Failed to fetch events');
   }

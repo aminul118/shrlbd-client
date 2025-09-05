@@ -1,7 +1,7 @@
-import config from '@/config';
+import envVars from '@/config/env.config';
 
 const getTeamMembersById = async (slug: string) => {
-  const res = await fetch(`${config.baseUrl}/team/${slug}`);
+  const res = await fetch(`${envVars.baseUrl}/team/${slug}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch team member details.');

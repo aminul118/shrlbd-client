@@ -19,7 +19,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils'; // optional helper if you have it
 import Image from 'next/image';
 import { Copy, Loader2, Send, User, Bot, Link as LinkIcon, Image as ImageIcon } from 'lucide-react';
-import config from '@/config';
+import config from '@/config/env.config';
 
 // ---- Types ----
 export type ChatMessage = {

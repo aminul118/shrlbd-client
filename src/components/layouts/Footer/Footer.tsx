@@ -77,7 +77,7 @@ const legalLinks = [
   },
   {
     name: 'Return Refund Policy',
-    href: '/terms-conditions',
+    href: '/return-refund-policy',
   },
   {
     name: 'Privacy Policy',
@@ -139,7 +139,7 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
         </div>
         <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
           <p className="order-2 lg:order-1">
-            &copy; {new Date().getFullYear()}Smart Healthcare and Research Ltd . All rights
+            &copy; {new Date().getFullYear()} Smart Healthcare and Research Ltd . All rights
             reserved.
           </p>
 

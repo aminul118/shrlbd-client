@@ -175,7 +175,7 @@ export default function ChatForm() {
 
     // OPTION A: simple JSON response (your current API)
     try {
-      const res = await fetch(`${config.baseUrl}/ai/chat`, {
+      const res = await fetch(`https://server.shrlbd.com/api/v1/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),

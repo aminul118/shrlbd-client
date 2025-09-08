@@ -65,7 +65,7 @@ const sections = [
 const socialLinks = [
   {
     icon: <FaFacebook className="size-5" />,
-    href: '#',
+    href: 'https://www.facebook.com/smarthealthcareandresearchltd',
     label: 'Facebook',
   },
 ];
@@ -99,9 +99,9 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
             <ul className="text-muted-foreground flex items-center space-x-6">
               {socialLinks.map((social, idx) => (
                 <li key={idx} className="hover:text-primary font-medium">
-                  <a href={social.href} aria-label={social.label}>
+                  <Link href={social.href} aria-label={social.label} target="_blank">
                     {social.icon}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <div className="flex space-x-4 mt-2  items-center">

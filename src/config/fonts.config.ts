@@ -57,41 +57,71 @@ const poppins = localFont({
   display: 'swap',
 });
 
-const spaceGrotesk = localFont({
+const montserrat = localFont({
   src: [
     {
-      path: '../fonts/Space_Grotesk/SpaceGrotesk-Light.ttf',
+      path: '../fonts/Montserrat/Montserrat-Thin.ttf',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Montserrat/Montserrat-ExtraLight.ttf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Montserrat/Montserrat-Light.ttf',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '../fonts/Space_Grotesk/SpaceGrotesk-Regular.ttf',
+      path: '../fonts/Montserrat/Montserrat-Regular.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../fonts/Space_Grotesk/SpaceGrotesk-Medium.ttf',
+      path: '../fonts/Montserrat/Montserrat-Italic.ttf',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/Montserrat/Montserrat-Medium.ttf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../fonts/Space_Grotesk/SpaceGrotesk-SemiBold.ttf',
+      path: '../fonts/Montserrat/Montserrat-SemiBold.ttf',
       weight: '600',
       style: 'normal',
     },
     {
-      path: '../fonts/Space_Grotesk/SpaceGrotesk-Bold.ttf',
+      path: '../fonts/Montserrat/Montserrat-SemiBoldItalic.ttf',
+      weight: '600',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/Montserrat/Montserrat-Bold.ttf',
       weight: '700',
       style: 'normal',
     },
+    {
+      path: '../fonts/Montserrat/Montserrat-ExtraBold.ttf',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Montserrat/Montserrat-Black.ttf',
+      weight: '900',
+      style: 'normal',
+    },
   ],
-  variable: '--font-space-grotesk',
+  variable: '--font-montserrat',
   display: 'swap',
 });
 
 const fonts = {
   poppins,
-  spaceGrotesk,
+  montserrat,
 };
 
 export default fonts;

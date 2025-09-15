@@ -23,7 +23,7 @@ const RootLayout = ({ children }: IChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-      <body className={fonts.poppins.className}>
+      <body className={fonts.montserrat.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -1,16 +1,17 @@
-import './globals.css';
-import { GoogleAnalytics } from '@next/third-parties/google';
+import fonts from '@/config/fonts.config';
 import AosProvider from '@/providers/AosProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import { Toaster } from 'sonner';
-import { Metadata } from 'next';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { IChildren } from '@/types';
-import fonts from '@/config/fonts.config';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { Metadata } from 'next';
+import { Toaster } from 'sonner';
+import './globals.css';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Smart Healthcare and Research Ltd. - Empowering Maternal & Child Health',
+  title:
+    'Smart Healthcare and Research Ltd. - Empowering Maternal & Child Health',
   description:
     'Smart Healthcare and Research Ltd. offers innovative healthcare solutions for women and children, including online consultations, research, professional training, and community outreach.',
   keywords:

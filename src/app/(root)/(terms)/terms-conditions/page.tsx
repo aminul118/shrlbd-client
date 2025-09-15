@@ -75,7 +75,8 @@ const termsData = [
   },
   {
     title: '10. Governing Law',
-    content: 'These Terms are governed by and construed in accordance with the laws of Bangladesh.',
+    content:
+      'These Terms are governed by and construed in accordance with the laws of Bangladesh.',
   },
   {
     title: '11. Contact Us',
@@ -89,30 +90,34 @@ const termsData = [
 
 const TermsPage = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-12">
-      <h1 className="font-bold text-center mb-2 text-2xl">Terms and Conditions</h1>
-      <p className="text-center text-xs text-gray-500 dark:text-white/80 mb-8">
+    <div className="mx-auto max-w-4xl px-4 py-12">
+      <h1 className="mb-2 text-center text-2xl font-bold">
+        Terms and Conditions
+      </h1>
+      <p className="mb-8 text-center text-xs text-gray-500 dark:text-white/80">
         Effective Date: 1st May, 2025
       </p>
 
       <p className="mb-8 text-gray-700 dark:text-white/80">
-        Welcome to <strong>Smart Healthcare and Research Ltd.</strong> ("we," "our," "us"). By
-        accessing or using our services, including online video consultations, websites, and
-        applications, you agree to be bound by these Terms and Conditions. Please read them
-        carefully.
+        Welcome to <strong>Smart Healthcare and Research Ltd.</strong> ("we,"
+        "our," "us"). By accessing or using our services, including online video
+        consultations, websites, and applications, you agree to be bound by
+        these Terms and Conditions. Please read them carefully.
       </p>
 
       {termsData.map((section, idx) => (
         <div key={idx} className="mb-8">
-          <h2 className="font-semibold mb-2 dark:text-white">{section.title}</h2>
+          <h2 className="mb-2 font-semibold dark:text-white">
+            {section.title}
+          </h2>
           {Array.isArray(section.content) ? (
-            <ul className="list-disc pl-5 space-y-2 text-gray-700 dark:text-white/80 text-sm">
+            <ul className="list-disc space-y-2 pl-5 text-sm text-gray-700 dark:text-white/80">
               {section.content.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
           ) : (
-            <p className="text-gray-700 dark:text-white/80 className='text-sm'">
+            <p className="className='text-sm' text-gray-700 dark:text-white/80">
               {section.content}
             </p>
           )}

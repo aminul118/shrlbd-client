@@ -1,9 +1,9 @@
+import TeamList from '@/components/modules/Team/TeamList';
+import TeamMembersCardSkeleton from '@/components/modules/Team/TeamMembersCardSkeleton';
 import Container from '@/components/ui/Container';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
-import TeamMembersCardSkeleton from '@/components/modules/Team/TeamMembersCardSkeleton';
-import TeamList from '@/components/modules/Team/TeamList';
-import generateMetaTags from '@/Seo/generateMetaTags';
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
@@ -19,7 +19,7 @@ export const metadata: Metadata = generateMetaTags({
 
 const TeamMemberPage = async () => {
   return (
-    <Container className=" mt-20">
+    <Container className="mt-20">
       <Suspense fallback={<TeamMembersCardSkeleton count={6} />}>
         <TeamList />
       </Suspense>

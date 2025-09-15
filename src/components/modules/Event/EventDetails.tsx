@@ -13,18 +13,18 @@ const EventDetails = async ({ slug }: { slug: string }) => {
       {/* Photos Grid */}
       {photos.length > 0 && (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {photos.map((photo, index) => (
               <div
                 key={index}
-                className="overflow-hidden rounded-lg relative transition-transform duration-500 ease-in-out hover:scale-105"
+                className="relative overflow-hidden rounded-lg transition-transform duration-500 ease-in-out hover:scale-105"
               >
                 <Image
                   src={photo}
                   width={600}
                   height={400}
                   alt={`Photo ${index + 1}`}
-                  className="w-full h-48 xl:h-70 object-cover"
+                  className="h-48 w-full object-cover xl:h-70"
                 />
               </div>
             ))}

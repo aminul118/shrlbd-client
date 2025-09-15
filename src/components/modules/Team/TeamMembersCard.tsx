@@ -10,11 +10,11 @@ interface TeamCardProps {
 const TeamMembersCard = ({ member }: TeamCardProps) => {
   // console.log(member);
   return (
-    <div className="flex ">
-      <Card className="shadow-lg rounded-xl p-4 flex flex-col items-center w-full bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900 h-full">
+    <div className="flex">
+      <Card className="flex h-full w-full flex-col items-center rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 p-4 shadow-lg dark:from-slate-950 dark:to-slate-900">
         {/* Photo */}
-        <div className="flex justify-center -mt-14 mb-4">
-          <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#808BAF] bg-slate-100">
+        <div className="-mt-14 mb-4 flex justify-center">
+          <div className="relative h-24 w-24 overflow-hidden rounded-full border-2 border-[#808BAF] bg-slate-100">
             <Image
               src={member.photo || '/default-avatar.png'}
               alt={member.name || 'Team member'}
@@ -24,13 +24,13 @@ const TeamMembersCard = ({ member }: TeamCardProps) => {
           </div>
         </div>
 
-        <CardContent className="text-center w-full flex flex-col flex-grow">
+        <CardContent className="flex w-full flex-grow flex-col text-center">
           {/* Name */}
           <h1 className="text-xl font-bold">{member.name}</h1>
           <p className="mt-1">{member.shrlDesignation}</p>
           {/* Designation */}
           {member.designation && (
-            <div className="flex flex-col mt-4 mb-6 flex-grow">
+            <div className="mt-4 mb-6 flex flex-grow flex-col">
               {member?.designation?.map((d, i) => (
                 <p key={i} className="text-sm text-gray-700 dark:text-gray-300">
                   {d}
@@ -42,7 +42,7 @@ const TeamMembersCard = ({ member }: TeamCardProps) => {
           <div className="mt-auto">
             <Link
               href={`/team/${member.slug}`}
-              className="block w-full text-center py-2 px-4  text-blue-600 rounded-lg font-semibold transition"
+              className="block w-full rounded-lg px-4 py-2 text-center font-semibold text-blue-600 transition"
             >
               Portfolio
             </Link>

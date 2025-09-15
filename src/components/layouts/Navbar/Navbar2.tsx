@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import Logo from '../Logo';
-import ModeToggle from './ModeToggle';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -14,9 +13,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
-import { BookOpenIcon, InfoIcon, LifeBuoyIcon } from 'lucide-react';
+import { BookOpenIcon, InfoIcon, LifeBuoyIcon, Users } from 'lucide-react';
 
 /* ---------- Types to make `href` never undefined on simple links ---------- */
 type SimpleLink = {
@@ -82,8 +85,8 @@ const navigationLinks: NavItem[] = [
 /* ------------------------------ Component -------------------------------- */
 export default function Navbar2() {
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-white px-4 py-2 dark:bg-black md:px-6 ">
-      <div className="container mx-auto flex h-16 items-center justify-between gap-4 ">
+    <header className="fixed top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
+      <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">
           {/* Mobile menu trigger */}
@@ -129,7 +132,7 @@ export default function Navbar2() {
                   <li key={index} className="w-full">
                     {'submenu' in link && link.submenu ? (
                       <>
-                        <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+                        <div className="text-muted-foreground px-2 py-1.5 text-xs font-medium">
                           {link.label}
                         </div>
 
@@ -139,11 +142,13 @@ export default function Navbar2() {
                               <li key={item.href}>
                                 <Link
                                   href={item.href}
-                                  className="block rounded-md px-2 py-1.5 hover:bg-accent"
+                                  className="hover:bg-accent block rounded-md px-2 py-1.5"
                                 >
                                   <div className="space-y-1">
-                                    <div className="font-medium">{item.label}</div>
-                                    <p className="line-clamp-2 text-xs text-muted-foreground">
+                                    <div className="font-medium">
+                                      {item.label}
+                                    </div>
+                                    <p className="text-muted-foreground line-clamp-2 text-xs">
                                       {item.description}
                                     </p>
                                   </div>
@@ -156,16 +161,25 @@ export default function Navbar2() {
                               <li key={item.href}>
                                 <Link
                                   href={item.href}
-                                  className="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-accent"
+                                  className="hover:bg-accent flex items-center gap-2 rounded-md px-2 py-1.5"
                                 >
                                   {item.icon === 'BookOpenIcon' && (
-                                    <BookOpenIcon size={16} className="opacity-70" />
+                                    <BookOpenIcon
+                                      size={16}
+                                      className="opacity-70"
+                                    />
                                   )}
                                   {item.icon === 'LifeBuoyIcon' && (
-                                    <LifeBuoyIcon size={16} className="opacity-70" />
+                                    <LifeBuoyIcon
+                                      size={16}
+                                      className="opacity-70"
+                                    />
                                   )}
                                   {item.icon === 'InfoIcon' && (
-                                    <InfoIcon size={16} className="opacity-70" />
+                                    <InfoIcon
+                                      size={16}
+                                      className="opacity-70"
+                                    />
                                   )}
                                   <span>{item.label}</span>
                                 </Link>
@@ -178,14 +192,14 @@ export default function Navbar2() {
                           <div
                             role="separator"
                             aria-orientation="horizontal"
-                            className="my-1 -mx-1 h-px w-full bg-border"
+                            className="bg-border -mx-1 my-1 h-px w-full"
                           />
                         )}
                       </>
                     ) : (
                       <Link
                         href={link.href}
-                        className="block rounded-md px-2 py-1.5 hover:bg-accent"
+                        className="hover:bg-accent block rounded-md px-2 py-1.5"
                       >
                         {link.label}
                       </Link>
@@ -211,19 +225,30 @@ export default function Navbar2() {
                   <NavigationMenuItem key={index}>
                     {'submenu' in link && link.submenu ? (
                       <>
-                        <NavigationMenuTrigger className="bg-transparent px-2 py-1.5 font-medium text-muted-foreground hover:text-primary *:[svg]:-me-0.5 *:[svg]:size-3.5">
+                        <NavigationMenuTrigger className="text-muted-foreground hover:text-primary bg-transparent px-2 py-1.5 font-medium *:[svg]:-me-0.5 *:[svg]:size-3.5">
                           {link.label}
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="z-50 p-1 data-[motion=from-end]:slide-in-from-right-16! data-[motion=from-start]:slide-in-from-left-16! data-[motion=to-end]:slide-out-to-right-16! data-[motion=to-start]:slide-out-to-left-16!">
-                          <ul className={cn(link.type === 'description' ? 'min-w-64' : 'min-w-48')}>
+                        <NavigationMenuContent className="data-[motion=from-end]:slide-in-from-right-16! data-[motion=from-start]:slide-in-from-left-16! data-[motion=to-end]:slide-out-to-right-16! data-[motion=to-start]:slide-out-to-left-16! z-50 p-1">
+                          <ul
+                            className={cn(
+                              link.type === 'description'
+                                ? 'min-w-64'
+                                : 'min-w-48',
+                            )}
+                          >
                             {link.type === 'description' &&
                               link.items.map((item) => (
                                 <li key={item.href}>
                                   <NavigationMenuLink asChild>
-                                    <Link href={item.href} className="block py-1.5">
+                                    <Link
+                                      href={item.href}
+                                      className="block py-1.5"
+                                    >
                                       <div className="space-y-1">
-                                        <div className="font-medium">{item.label}</div>
-                                        <p className="line-clamp-2 text-xs text-muted-foreground">
+                                        <div className="font-medium">
+                                          {item.label}
+                                        </div>
+                                        <p className="text-muted-foreground line-clamp-2 text-xs">
                                           {item.description}
                                         </p>
                                       </div>
@@ -236,16 +261,28 @@ export default function Navbar2() {
                               link.items.map((item) => (
                                 <li key={item.href}>
                                   <NavigationMenuLink asChild>
-                                    <Link href={item.href} className="block py-1.5">
+                                    <Link
+                                      href={item.href}
+                                      className="block py-1.5"
+                                    >
                                       <div className="flex items-center gap-2">
                                         {item.icon === 'BookOpenIcon' && (
-                                          <BookOpenIcon size={16} className="opacity-70" />
+                                          <BookOpenIcon
+                                            size={16}
+                                            className="opacity-70"
+                                          />
                                         )}
                                         {item.icon === 'LifeBuoyIcon' && (
-                                          <LifeBuoyIcon size={16} className="opacity-70" />
+                                          <LifeBuoyIcon
+                                            size={16}
+                                            className="opacity-70"
+                                          />
                                         )}
                                         {item.icon === 'InfoIcon' && (
-                                          <InfoIcon size={16} className="opacity-70" />
+                                          <InfoIcon
+                                            size={16}
+                                            className="opacity-70"
+                                          />
                                         )}
                                         <span>{item.label}</span>
                                       </div>
@@ -260,7 +297,7 @@ export default function Navbar2() {
                       <NavigationMenuLink asChild>
                         <Link
                           href={link.href}
-                          className="py-1.5 font-medium text-muted-foreground hover:text-primary"
+                          className="text-muted-foreground hover:text-primary py-1.5 font-medium"
                         >
                           {link.label}
                         </Link>
@@ -275,10 +312,9 @@ export default function Navbar2() {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-          <Button asChild variant="outline" size="sm" className="text-sm">
-            <Link href="/join-team">Join Team</Link>
+          <Button variant="destructive" size="sm" className="text-sm">
+            <Users /> <Link href="/join-team">Join Team</Link>
           </Button>
-          <ModeToggle />
         </div>
       </div>
     </header>

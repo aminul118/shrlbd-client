@@ -3,13 +3,12 @@ import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import services from '@/constants/services';
 import Image from 'next/image';
-import React from 'react';
 
 const KeyServices = () => {
   return (
-    <div className="relative bg-[url('/images/banner/bg1.png')]  dark:bg-none bg-cover bg-center bg-no-repeat py-24">
+    <div className="relative bg-[url('/images/banner/bg1.png')] bg-cover bg-center bg-no-repeat py-24 dark:bg-none">
       {/* White bottom gradient overlay */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white pointer-events-none z-10 dark:hidden" />
+      <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-24 w-full bg-gradient-to-b from-transparent to-white dark:hidden" />
 
       <Container className="relative z-20 space-y-8">
         <div>
@@ -19,14 +18,14 @@ const KeyServices = () => {
           />
         </div>
 
-        <div className="grid md:grid-cols-2 2xl:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
           {services.map((service) => {
             const { id, photo, service_name, description, features } = service;
 
             return (
               <Card
                 data-aos="fade-up"
-                className="bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900 rounded-xl p-2 md:p-8 space-y-3 shadow-xl h-full"
+                className="h-full space-y-3 rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 p-2 shadow-xl md:p-8 dark:from-slate-950 dark:to-slate-900"
                 key={id}
               >
                 <CardContent className="space-y-3">
@@ -41,8 +40,8 @@ const KeyServices = () => {
                   <p>{description}</p>
 
                   <div>
-                    <p className="text-xl font-semibold mb-2">Features:</p>
-                    <ul className="list-disc pl-5 space-y-1">
+                    <p className="mb-2 text-xl font-semibold">Features:</p>
+                    <ul className="list-disc space-y-1 pl-5">
                       {features.map((feature, i) => (
                         <li key={i}>{feature}</li>
                       ))}

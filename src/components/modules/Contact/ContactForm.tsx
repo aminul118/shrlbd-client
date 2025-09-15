@@ -2,9 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -17,9 +14,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { toast } from 'sonner';
-import axios from 'axios';
 import config from '@/config/env.config';
+import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name is too short').max(50, 'Name is too long'),
@@ -59,7 +59,7 @@ const ContactForm = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Top row: Name + Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
               name="name"
@@ -67,9 +67,15 @@ const ContactForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" autoComplete="name" {...field} />
+                    <Input
+                      placeholder="John Doe"
+                      autoComplete="name"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription className="sr-only">Your full name</FormDescription>
+                  <FormDescription className="sr-only">
+                    Your full name
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -89,7 +95,9 @@ const ContactForm = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="sr-only">Your email address</FormDescription>
+                  <FormDescription className="sr-only">
+                    Your email address
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -106,7 +114,9 @@ const ContactForm = () => {
                 <FormControl>
                   <Input placeholder="Joining Your Team" {...field} />
                 </FormControl>
-                <FormDescription className="sr-only">The topic of your message</FormDescription>
+                <FormDescription className="sr-only">
+                  The topic of your message
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -120,9 +130,15 @@ const ContactForm = () => {
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea className="h-36" placeholder="Write your message here..." {...field} />
+                  <Textarea
+                    className="h-36"
+                    placeholder="Write your message here..."
+                    {...field}
+                  />
                 </FormControl>
-                <FormDescription className="sr-only">Your full message</FormDescription>
+                <FormDescription className="sr-only">
+                  Your full message
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}

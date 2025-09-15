@@ -14,14 +14,14 @@ const TeamMembersCardSkeleton = ({ count = 8 }: Props) => {
       {Array.from({ length: count }).map((_, i) => (
         <Card
           key={i}
-          className="relative w-full  rounded-2xl border-0 shadow-lg bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900 h-[400px] mt-12"
+          className="relative mt-12 h-[400px] w-full rounded-2xl border-0 bg-gradient-to-b from-cyan-50 to-blue-200 shadow-lg dark:from-slate-950 dark:to-slate-900"
         >
           {/* Floating avatar */}
-          <div className="absolute inset-x-0 -top-12 flex justify-center z-50">
+          <div className="absolute inset-x-0 -top-12 z-50 flex justify-center">
             <Skeleton className="size-24 rounded-full ring-2 ring-[#808BAF]/60" />
           </div>
 
-          <CardContent className="pt-16 pb-5 px-5">
+          <CardContent className="px-5 pt-16 pb-5">
             {/* Name */}
             <div className="flex justify-center">
               <Skeleton className="h-5 w-40" />
@@ -29,9 +29,9 @@ const TeamMembersCardSkeleton = ({ count = 8 }: Props) => {
 
             {/* Designations / Lines of text */}
             <div className="mt-4 space-y-2">
-              <Skeleton className="h-4 w-56 mx-auto" />
-              <Skeleton className="h-4 w-48 mx-auto" />
-              <Skeleton className="h-4 w-60 mx-auto" />
+              <Skeleton className="mx-auto h-4 w-56" />
+              <Skeleton className="mx-auto h-4 w-48" />
+              <Skeleton className="mx-auto h-4 w-60" />
             </div>
 
             {/* Spacer so buttons align to bottom at variable heights */}

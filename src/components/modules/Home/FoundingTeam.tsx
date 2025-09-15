@@ -1,8 +1,8 @@
 import images from '@/constants/images';
+import Image from 'next/image';
 import { Card, CardContent } from '../../ui/card';
 import Container from '../../ui/Container';
 import SectionHeading from '../../ui/SectionHeading';
-import Image from 'next/image';
 
 const foundingTeam = [
   {
@@ -46,14 +46,14 @@ const FoundingTeam = () => {
         title="Founding Team"
         description="Our team is the driving force with the mission to lead healthcare with UTLC for women and children. Our success is built on the passion, expertise, and dedication of healthcare professionals, researchers, and innovators who share a common goal—making healthcare accessible, compassionate, and impactful. Meet the people who are making a difference every day."
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 mt-20">
+      <div className="mt-20 grid grid-cols-1 gap-20 md:grid-cols-2">
         {foundingTeam.map((team) => {
           const { id, photo, name, position, about_shrl } = team;
           return (
             <Card
               data-aos="fade-up"
               key={id}
-              className="relative flex items-center w-full h-full px-3 py-6 lg:p-6 rounded-xl shadow-lg bg-gradient-to-b from-cyan-50 to-blue-200 dark:from-slate-950 dark:to-slate-900"
+              className="relative flex h-full w-full items-center rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 px-3 py-6 shadow-lg lg:p-6 dark:from-slate-950 dark:to-slate-900"
             >
               <div className="absolute -top-14 -left-1">
                 <Image

@@ -2,11 +2,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const EventDetailsSkeleton = () => {
   return (
-    <div className="container mx-auto py-8 space-y-6">
+    <div className="container mx-auto space-y-6 py-8">
       {/* Photos Grid Skeleton */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {Array.from({ length: 8 }).map((_, index) => (
-          <Skeleton key={index} className="w-full h-48 xl:h-70 rounded-lg" />
+          <Skeleton key={index} className="h-48 w-full rounded-lg xl:h-70" />
         ))}
       </div>
 

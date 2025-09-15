@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { z } from 'zod';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -13,8 +10,8 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import GrediantHeading from '@/components/ui/GrediantHeading';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
@@ -22,9 +19,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import GrediantHeading from '@/components/ui/GrediantHeading';
+import { z } from 'zod';
 
 interface JoinTeamResponse {
   statusCode: number;
@@ -37,13 +37,21 @@ const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   phone: z.string().min(4, { message: 'Phone must be at least 4 digits.' }),
   gender: z.string().min(1, { message: 'Please select a gender.' }),
-  occupation: z.string().min(2, { message: 'Occupation must be at least 2 characters.' }),
-  organization: z.string().min(2, { message: 'Organization must be at least 2 characters.' }),
+  occupation: z
+    .string()
+    .min(2, { message: 'Occupation must be at least 2 characters.' }),
+  organization: z
+    .string()
+    .min(2, { message: 'Organization must be at least 2 characters.' }),
   field_of_interest: z
     .string()
     .min(2, { message: 'Field of interest must be at least 2 characters.' }),
-  Why_join_team: z.string().min(10, { message: 'Please write at least 10 characters.' }),
-  time_commitment: z.string().min(1, { message: 'Please select a time commitment.' }),
+  Why_join_team: z
+    .string()
+    .min(10, { message: 'Please write at least 10 characters.' }),
+  time_commitment: z
+    .string()
+    .min(1, { message: 'Please select a time commitment.' }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -80,7 +88,8 @@ const JoinTeamForm = () => {
       }
       toast.error(res.data?.message || 'Application not sent', { id: toastId });
     } catch (err: any) {
-      const msg = err.response?.data?.message || err.message || 'Application not sent';
+      const msg =
+        err.response?.data?.message || err.message || 'Application not sent';
       toast.error(msg, { id: toastId });
     }
   };
@@ -91,9 +100,13 @@ const JoinTeamForm = () => {
     <div>
       <GrediantHeading heading="Join the SHRL Team" />
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" noValidate>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8"
+          noValidate
+        >
           {/* Row 1: Name + Email */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
               name="name"
@@ -115,7 +128,11 @@ const JoinTeamForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="john@example.com" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="john@example.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -124,7 +141,7 @@ const JoinTeamForm = () => {
           </div>
 
           {/* Row 2: Phone + Gender */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
               name="phone"
@@ -145,7 +162,10 @@ const JoinTeamForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Gender</FormLabel>
-                  <Select value={field.value || undefined} onValueChange={field.onChange}>
+                  <Select
+                    value={field.value || undefined}
+                    onValueChange={field.onChange}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select gender" />
@@ -154,7 +174,9 @@ const JoinTeamForm = () => {
                     <SelectContent>
                       <SelectItem value="male">Male</SelectItem>
                       <SelectItem value="female">Female</SelectItem>
-                      <SelectItem value="other">Other / Prefer not to say</SelectItem>
+                      <SelectItem value="other">
+                        Other / Prefer not to say
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -164,7 +186,7 @@ const JoinTeamForm = () => {
           </div>
 
           {/* Row 3: Occupation + Organization */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
               name="occupation"
@@ -195,7 +217,7 @@ const JoinTeamForm = () => {
           </div>
 
           {/* Row 4: Field of Interest + Time Commitment */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <FormField
               control={form.control}
               name="field_of_interest"
@@ -203,7 +225,10 @@ const JoinTeamForm = () => {
                 <FormItem>
                   <FormLabel>Field of Interest</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g., AI in healthcare, Frontend, Research" {...field} />
+                    <Input
+                      placeholder="e.g., AI in healthcare, Frontend, Research"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -216,7 +241,10 @@ const JoinTeamForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Time Commitment</FormLabel>
-                  <Select value={field.value || undefined} onValueChange={field.onChange}>
+                  <Select
+                    value={field.value || undefined}
+                    onValueChange={field.onChange}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Choose an option" />

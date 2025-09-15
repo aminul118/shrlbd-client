@@ -5,9 +5,9 @@ import Image from 'next/image';
 const TeamDetailsCard = async ({ slug }: { slug: string }) => {
   const { data: team } = await getSingleTeamMember(slug);
   return (
-    <div className="py-16 ">
+    <div className="py-16">
       {/* Profile Photo */}
-      <div className="group relative mx-auto rounded-full overflow-hidden border-2 w-36 h-36 shadow-lg transition-all duration-300 ease-in-out hover:w-48 hover:h-48 hover:shadow-2xl hover:bg-slate-500 ">
+      <div className="group relative mx-auto h-36 w-36 overflow-hidden rounded-full border-2 shadow-lg transition-all duration-300 ease-in-out hover:h-48 hover:w-48 hover:bg-slate-500 hover:shadow-2xl">
         <Image
           src={team.photo}
           alt={team.name}
@@ -19,15 +19,15 @@ const TeamDetailsCard = async ({ slug }: { slug: string }) => {
       </div>
 
       {/* Basic Info */}
-      <div className="text-center mt-4 ">
+      <div className="mt-4 text-center">
         <h2 className="text-xl font-bold">{team.name}</h2>
         <h2 className="font-semibold">{team.shrlDesignation}</h2>
-        {team?.email && <p className="text-sm ">{team.email}</p>}
+        {team?.email && <p className="text-sm">{team.email}</p>}
         {team?.phone && <p className="text-sm">{team.phone}</p>}
       </div>
 
       {/* Designations */}
-      <div className="mt-2 text-center max-w-xl mx-auto dark:text-white/95">
+      <div className="mx-auto mt-2 max-w-xl text-center dark:text-white/95">
         {team.designation?.map((d, index) => (
           <p key={index}>{d}</p>
         ))}
@@ -35,7 +35,7 @@ const TeamDetailsCard = async ({ slug }: { slug: string }) => {
 
       {/* Render HTML Content */}
       <HtmlContent
-        className="mt-16 prose md:border shadow-2xl shadow-slate-600 rounded-lg px-8 md:p-12 md:mt-4 mx-auto max-w-4xl pb-10"
+        className="prose mx-auto mt-16 max-w-4xl rounded-lg px-8 pb-10 shadow-2xl shadow-slate-600 md:mt-4 md:border md:p-12"
         content={team.content}
       />
     </div>

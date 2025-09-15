@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
-import { MoonIcon, SunIcon } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
+import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useEffect, useId, useState } from 'react';
 
 export default function ModeToggle() {
   const id = useId();
@@ -18,7 +18,12 @@ export default function ModeToggle() {
 
   return (
     <div className="inline-flex items-center gap-2">
-      <Switch id={id} checked={checked} onCheckedChange={setChecked} aria-label="Toggle switch" />
+      <Switch
+        id={id}
+        checked={checked}
+        onCheckedChange={setChecked}
+        aria-label="Toggle switch"
+      />
       <Label htmlFor={id}>
         <span className="sr-only">Toggle switch</span>
         {checked ? (

@@ -12,12 +12,13 @@ interface Scroll {
 const ScrollingText = async () => {
   const scrolls = await getScrollingText();
 
-  const texts = scrolls?.data?.map((s: Scroll) => s?.text?.trim())?.filter(Boolean) || [];
+  const texts =
+    scrolls?.data?.map((s: Scroll) => s?.text?.trim())?.filter(Boolean) || [];
 
   if (texts.length === 0) return null;
 
   return (
-    <div className="bg-slate-200 dark:bg-slate-900  p-2 rounded-lg container mx-auto text-black dark:text-white">
+    <div className="container mx-auto rounded-lg bg-slate-200 p-2 text-black dark:bg-slate-900 dark:text-white">
       <div className="flex items-center gap-4">
         <Button variant="destructive">Latest</Button>
 

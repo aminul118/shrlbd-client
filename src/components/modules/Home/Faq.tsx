@@ -1,13 +1,13 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import SectionHeading from '../../ui/SectionHeading';
+import Image from 'next/image';
+import Link from 'next/link';
 import Container from '../../ui/Container';
+import SectionHeading from '../../ui/SectionHeading';
 
 // FAQ Data
 const faqData = [
@@ -16,17 +16,22 @@ const faqData = [
     answer: (
       <>
         <p>
-          Scopes for medical professionals: SHRL provides a unique opportunity for networking and
-          developing evidence-based knowledge and skills with proper tools. Check out{' '}
-          <Link href="/services" className="text-blue-600 underline font-semibold">
+          Scopes for medical professionals: SHRL provides a unique opportunity
+          for networking and developing evidence-based knowledge and skills with
+          proper tools. Check out{' '}
+          <Link
+            href="/services"
+            className="font-semibold text-blue-600 underline"
+          >
             Our Key Services
           </Link>{' '}
           to learn more.
         </p>
         <br />
         <p>
-          Scopes for patients and aware citizens: You have the opportunity to empower yourself with
-          knowledge to maintain maternal and child health in the most evidence-based approach.
+          Scopes for patients and aware citizens: You have the opportunity to
+          empower yourself with knowledge to maintain maternal and child health
+          in the most evidence-based approach.
         </p>
       </>
     ),
@@ -37,12 +42,18 @@ const faqData = [
       <>
         <p>Fill out the following form to join our team.</p>
         <p>
-          <Link href="/join-team" className="underline text-blue-600 font-semibold">
+          <Link
+            href="/join-team"
+            className="font-semibold text-blue-600 underline"
+          >
             Join Team
           </Link>
         </p>
         <br />
-        <p>Your response form will be reviewed and we shall contact you for further procedures.</p>
+        <p>
+          Your response form will be reviewed and we shall contact you for
+          further procedures.
+        </p>
       </>
     ),
   },
@@ -51,7 +62,10 @@ const faqData = [
     answer: (
       <p>
         Check out{' '}
-        <Link href="/services" className="underline text-blue-600 font-semibold">
+        <Link
+          href="/services"
+          className="font-semibold text-blue-600 underline"
+        >
           Our Key Services
         </Link>
       </p>
@@ -62,7 +76,7 @@ const faqData = [
     answer: (
       <p>
         Check{' '}
-        <Link href="/events" className="underline text-blue-600 font-semibold">
+        <Link href="/events" className="font-semibold text-blue-600 underline">
           Events
         </Link>{' '}
         to learn about our upcoming training events.
@@ -70,11 +84,15 @@ const faqData = [
     ),
   },
   {
-    question: 'Do medical graduates and non-medical postgraduates have scopes to join SHRL?',
+    question:
+      'Do medical graduates and non-medical postgraduates have scopes to join SHRL?',
     answer: (
       <p>
         Yes. To join, fill out the{' '}
-        <Link href="/join-team" className="underline text-blue-600 font-semibold">
+        <Link
+          href="/join-team"
+          className="font-semibold text-blue-600 underline"
+        >
           Form
         </Link>{' '}
         and we’ll get back to you.
@@ -88,7 +106,7 @@ const Faq = () => {
     <Container>
       <SectionHeading title="FAQ Section" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
         {/* Left Image */}
         <div>
           <Image
@@ -104,7 +122,9 @@ const Faq = () => {
         <Accordion type="single" collapsible className="w-full space-y-4">
           {faqData.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-base">{faq.question}</AccordionTrigger>
+              <AccordionTrigger className="text-base">
+                {faq.question}
+              </AccordionTrigger>
               <AccordionContent>{faq.answer}</AccordionContent>
             </AccordionItem>
           ))}

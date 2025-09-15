@@ -4,9 +4,9 @@ import { IChildren } from '@/types';
 
 const MainLayout = ({ children }: IChildren) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Navbar2 />
-      <main className="flex-grow mt-20">{children}</main>
+      <main className="mt-20 flex-grow">{children}</main>
       <Footer />
     </div>
   );

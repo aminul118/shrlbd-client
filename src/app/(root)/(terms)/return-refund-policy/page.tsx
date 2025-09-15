@@ -1,5 +1,5 @@
-import { Metadata } from 'next';
 import generateMetaTags from '@/Seo/generateMetaTags';
+import { Metadata } from 'next';
 
 // SEO stats
 export const metadata: Metadata = generateMetaTags({
@@ -52,20 +52,23 @@ const policySections = [
 
 const ReturnRefundPolicyPage = () => {
   return (
-    <div className="max-w-4xl mx-auto py-10 px-4 text-gray-800 dark:text-white/90 font-sans">
-      <h1 className="text-2xl font-bold text-center mb-4">Return and Refund Policy</h1>
+    <div className="mx-auto max-w-4xl px-4 py-10 font-sans text-gray-800 dark:text-white/90">
+      <h1 className="mb-4 text-center text-2xl font-bold">
+        Return and Refund Policy
+      </h1>
 
       <p className="mb-6 text-sm">
-        <strong>Smart Healthcare and Research Ltd.</strong> strives to provide high-quality online
-        video consultation services by licensed doctors. We are committed to ensuring a satisfactory
-        experience for all our patients. Please read our Return and Refund Policy carefully before
+        <strong>Smart Healthcare and Research Ltd.</strong> strives to provide
+        high-quality online video consultation services by licensed doctors. We
+        are committed to ensuring a satisfactory experience for all our
+        patients. Please read our Return and Refund Policy carefully before
         making a booking.
       </p>
 
       {policySections.map((section, idx) => (
         <div key={idx} className="mt-8">
-          <h2 className="font-semibold mb-2">{section.title}</h2>
-          <ul className="list-disc pl-5 space-y-2">
+          <h2 className="mb-2 font-semibold">{section.title}</h2>
+          <ul className="list-disc space-y-2 pl-5">
             {section.content.map((item, i) => (
               <li key={i} className="text-sm">
                 {item}

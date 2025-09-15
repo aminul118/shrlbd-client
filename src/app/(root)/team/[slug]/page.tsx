@@ -1,9 +1,9 @@
 import TeamDetailsCard from '@/components/modules/Team/TeamDetailsCard';
 import TeamDetailsCardSkeleton from '@/components/modules/Team/TeamDetailsCardSkeleton';
-import { IParams } from '@/types';
-import { Suspense } from 'react';
 import { getSingleTeamMember } from '@/lib/data/getTeam';
 import generateMetaTags from '@/Seo/generateMetaTags';
+import { IParams } from '@/types';
+import { Suspense } from 'react';
 
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {

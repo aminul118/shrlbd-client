@@ -7,8 +7,8 @@ type TContainer = IChildren & {
 
 const Container = ({ children, className, background }: TContainer) => {
   return (
-    <section className={`${background} py-6 lg:py-8 px-2`}>
-      <div className={`${className} mx-auto container`}> {children}</div>
+    <section className={`${background} px-2 py-6 lg:py-8`}>
+      <div className={`${className} container mx-auto`}> {children}</div>
     </section>
   );
 };

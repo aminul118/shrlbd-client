@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 const TeamDetailsCardSkeleton = () => {
   return (
-    <div className="flex flex-col items-center py-16 space-y-6">
+    <div className="flex flex-col items-center space-y-6 py-16">
       {/* Profile Image */}
       <Skeleton className="h-32 w-32 rounded-full" />
 

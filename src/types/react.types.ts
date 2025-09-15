@@ -13,7 +13,8 @@ export interface IGlobalError {
   reset: () => void;
 }
 
-export type ElementProps<T extends React.ElementType> = React.ComponentPropsWithoutRef<T>;
+export type ElementProps<T extends React.ElementType> =
+  React.ComponentPropsWithoutRef<T>;
 
 export type DivProps = ElementProps<'div'>;
 export type SectionProps = ElementProps<'div'>;

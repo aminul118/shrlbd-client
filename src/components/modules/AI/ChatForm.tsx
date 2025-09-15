@@ -2,24 +2,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import 'highlight.js/styles/github.css'; // or 'atom-one-dark.css'
+import 'katex/dist/katex.min.css';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
-import rehypeSlug from 'rehype-slug';
+import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
-import 'katex/dist/katex.min.css';
-import 'highlight.js/styles/github.css'; // or 'atom-one-dark.css'
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils'; // optional helper if you have it
-import Image from 'next/image';
-import { Copy, Loader2, Send, User, Bot, Link as LinkIcon, Image as ImageIcon } from 'lucide-react';
-import config from '@/config/env.config';
+import { Bot, Copy, Link as LinkIcon, Loader2, Send, User } from 'lucide-react';
 
 // ---- Types ----
 export type ChatMessage = {
@@ -38,14 +36,17 @@ const CodeBlock: React.FC<
   { language?: string; value: string } & React.HTMLAttributes<HTMLPreElement>
 > = ({ language, value, ...rest }) => {
   return (
-    <div className="relative group">
-      <pre className="rounded-xl bg-zinc-900 text-zinc-50 p-4 overflow-x-auto text-sm" {...rest}>
+    <div className="group relative">
+      <pre
+        className="overflow-x-auto rounded-xl bg-zinc-900 p-4 text-sm text-zinc-50"
+        {...rest}
+      >
         <code className={`language-${language ?? ''}`}>{value}</code>
       </pre>
       <button
         type="button"
         onClick={() => copyToClipboard(value)}
-        className="opacity-0 group-hover:opacity-100 transition-opacity absolute top-2 right-2 inline-flex items-center gap-2 rounded-md border px-2 py-1 text-xs bg-zinc-800 text-zinc-100 hover:bg-zinc-700"
+        className="absolute top-2 right-2 inline-flex items-center gap-2 rounded-md border bg-zinc-800 px-2 py-1 text-xs text-zinc-100 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-zinc-700"
         aria-label="Copy code"
       >
         <Copy className="h-3.5 w-3.5" /> Copy
@@ -56,23 +57,35 @@ const CodeBlock: React.FC<
 
 // ---- Markdown Components (ChatGPT-like) ----
 const mdComponents = {
-  h1: (props: any) => <h1 className="text-2xl font-bold mt-4 mb-2" {...props} />,
-  h2: (props: any) => <h2 className="text-xl font-semibold mt-4 mb-2" {...props} />,
-  h3: (props: any) => <h3 className="text-lg font-semibold mt-3 mb-2" {...props} />,
-  p: (props: any) => <p className="leading-7 mb-3" {...props} />,
-  ul: (props: any) => <ul className="list-disc ml-6 mb-3 space-y-1" {...props} />,
-  ol: (props: any) => <ol className="list-decimal ml-6 mb-3 space-y-1" {...props} />,
+  h1: (props: any) => (
+    <h1 className="mt-4 mb-2 text-2xl font-bold" {...props} />
+  ),
+  h2: (props: any) => (
+    <h2 className="mt-4 mb-2 text-xl font-semibold" {...props} />
+  ),
+  h3: (props: any) => (
+    <h3 className="mt-3 mb-2 text-lg font-semibold" {...props} />
+  ),
+  p: (props: any) => <p className="mb-3 leading-7" {...props} />,
+  ul: (props: any) => (
+    <ul className="mb-3 ml-6 list-disc space-y-1" {...props} />
+  ),
+  ol: (props: any) => (
+    <ol className="mb-3 ml-6 list-decimal space-y-1" {...props} />
+  ),
   li: (props: any) => <li className="mb-0.5" {...props} />,
   table: (props: any) => (
-    <div className="overflow-x-auto mb-4 border rounded-lg">
-      <table className="w-full text-left border-collapse" {...props} />
+    <div className="mb-4 overflow-x-auto rounded-lg border">
+      <table className="w-full border-collapse text-left" {...props} />
     </div>
   ),
-  th: (props: any) => <th className="border-b bg-zinc-50 p-2 font-medium" {...props} />,
+  th: (props: any) => (
+    <th className="border-b bg-zinc-50 p-2 font-medium" {...props} />
+  ),
   td: (props: any) => <td className="border-b p-2 align-top" {...props} />,
   a: ({ node, ...props }: any) => (
     <a
-      className="text-blue-600 underline underline-offset-4 hover:text-blue-700 inline-flex items-center gap-1"
+      className="inline-flex items-center gap-1 text-blue-600 underline underline-offset-4 hover:text-blue-700"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -84,9 +97,9 @@ const mdComponents = {
   img: ({ src = '', alt = '' }: any) => {
     // Next/Image requires allowed domains in next.config.js
     return (
-      <span className="block my-3">
+      <span className="my-3 block">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} className="rounded-xl max-h-[420px] w-auto" />
+        <img src={src} alt={alt} className="max-h-[420px] w-auto rounded-xl" />
       </span>
     );
   },
@@ -95,7 +108,10 @@ const mdComponents = {
     const value = String(children).replace(/\n$/, '');
     if (inline) {
       return (
-        <code className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-[13px]" {...props}>
+        <code
+          className="rounded bg-zinc-100 px-1.5 py-0.5 font-mono text-[13px]"
+          {...props}
+        >
           {children}
         </code>
       );
@@ -111,22 +127,27 @@ const Bubble: React.FC<{
 }> = ({ role, children }) => {
   const isUser = role === 'user';
   return (
-    <div className={cn('flex w-full gap-3', isUser ? 'justify-end' : 'justify-start')}>
+    <div
+      className={cn(
+        'flex w-full gap-3',
+        isUser ? 'justify-end' : 'justify-start',
+      )}
+    >
       {!isUser && (
-        <div className="h-9 w-9 shrink-0 rounded-full bg-zinc-100 flex items-center justify-center border">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-zinc-100">
           <Bot className="h-5 w-5 text-zinc-700" />
         </div>
       )}
       <div
         className={cn(
           'max-w-[85%] rounded-2xl px-4 py-3 leading-6 shadow-sm',
-          isUser ? 'bg-blue-600 text-white' : 'dark:bg-slate-900 border',
+          isUser ? 'bg-blue-600 text-white' : 'border dark:bg-slate-900',
         )}
       >
         {children}
       </div>
       {isUser && (
-        <div className="h-9 w-9 shrink-0 rounded-full bg-blue-600 flex items-center justify-center text-white">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white">
           <User className="h-5 w-5" />
         </div>
       )}
@@ -182,7 +203,8 @@ export default function ChatForm() {
       });
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await res.json();
-      const content = typeof data?.data === 'string' ? data.data : JSON.stringify(data);
+      const content =
+        typeof data?.data === 'string' ? data.data : JSON.stringify(data);
       setMessages((prev) => [...prev, { role: 'assistant', content }]);
     } catch (e) {
       setMessages((prev) => [
@@ -220,15 +242,16 @@ export default function ChatForm() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-4xl min-h-[500px] p-4 flex flex-col rounded-2xl border">
+    <div className="mx-auto flex min-h-[500px] w-full max-w-4xl flex-col rounded-2xl border p-4">
       {/* Messages */}
-      <div ref={listRef} className="flex-1 overflow-y-auto pr-1 space-y-4">
+      <div ref={listRef} className="flex-1 space-y-4 overflow-y-auto pr-1">
         {messages.length === 0 && (
-          <div className="text-center text-zinc-500 mt-16">
-            <div className="mx-auto h-12 w-12 rounded-full  border flex items-center justify-center mb-3">
+          <div className="mt-16 text-center text-zinc-500">
+            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full border">
               <Bot className="h-6 w-6 text-zinc-700" />
             </div>
-            Ask me anything. I can return text, links, tables, images, code, math, and more!
+            Ask me anything. I can return text, links, tables, images, code,
+            math, and more!
           </div>
         )}
         {messages.map((m, i) => (
@@ -248,12 +271,12 @@ export default function ChatForm() {
                 {m.content}
               </ReactMarkdown>
             ) : (
-              <div className="whitespace-pre-wrap break-words">{m.content}</div>
+              <div className="break-words whitespace-pre-wrap">{m.content}</div>
             )}
           </Bubble>
         ))}
         {loading && (
-          <div className="flex gap-2 items-center text-zinc-500 text-sm">
+          <div className="flex items-center gap-2 text-sm text-zinc-500">
             <Loader2 className="h-4 w-4 animate-spin" />
             Generating…
           </div>
@@ -288,9 +311,9 @@ export default function ChatForm() {
       </div>
 
       {/* Hints */}
-      <div className="text-xs text-zinc-500 mt-2 text-center py-4 max-w-lg mx-auto">
-        Tip: The assistant supports Markdown, math (LaTeX), tables, and syntax-highlighted code.
-        Paste image URLs to show images.
+      <div className="mx-auto mt-2 max-w-lg py-4 text-center text-xs text-zinc-500">
+        Tip: The assistant supports Markdown, math (LaTeX), tables, and
+        syntax-highlighted code. Paste image URLs to show images.
       </div>
     </div>
   );

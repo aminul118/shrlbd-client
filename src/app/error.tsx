@@ -10,7 +10,8 @@ const Error = ({ error, reset }: IGlobalError) => {
         <CardContent className="space-y-6 text-center">
           <h2 className="mb-4 text-4xl font-bold">Oops!</h2>
           <p className="text-lg">
-            {error.message || 'An unexpected error occurred. We’re working on it!'}
+            {error.message ||
+              'An unexpected error occurred. We’re working on it!'}
           </p>
           <Button onClick={() => reset()}>Try Again</Button>
         </CardContent>

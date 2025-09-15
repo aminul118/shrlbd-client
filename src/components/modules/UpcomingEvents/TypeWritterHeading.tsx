@@ -3,7 +3,7 @@ import { Typewriter } from 'react-simple-typewriter';
 
 const TypeWriterHeading = () => {
   return (
-    <h1 className="text-2xl lg:text-4xl text-red-500 font-bold text-center py-4 ">
+    <h1 className="py-4 text-center text-2xl font-bold text-red-500 lg:text-4xl">
       <Typewriter
         words={['Upcoming Events']}
         loop

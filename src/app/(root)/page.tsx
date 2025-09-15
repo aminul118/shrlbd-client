@@ -1,15 +1,16 @@
 import Contact from '@/components/modules/Contact/Contact';
-import KeyServices from '@/components/modules/KeyServices/KeyServices';
 import Commitment from '@/components/modules/Home/Commitment';
 import Faq from '@/components/modules/Home/Faq';
 import FoundingTeam from '@/components/modules/Home/FoundingTeam';
 import HeroBanner from '@/components/modules/Home/HeroBanner';
-import { Metadata } from 'next';
+import KeyServices from '@/components/modules/KeyServices/KeyServices';
 import generateMetaTags from '@/Seo/generateMetaTags';
+import { Metadata } from 'next';
 
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
-  title: 'Smart Healthcare and Research Ltd. - Empowering Maternal & Child Health',
+  title:
+    'Smart Healthcare and Research Ltd. - Empowering Maternal & Child Health',
   description:
     'Smart Healthcare and Research Ltd. offers innovative healthcare solutions for women and children, including online consultations, research, professional training, and community outreach.',
   keywords:

@@ -26,7 +26,9 @@ const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
 };
 
 // Get single team member by slug (revalidate every 1 hour)
-export const getSingleTeamMember = async (slug: string): Promise<{ data: ITeamMember }> => {
+export const getSingleTeamMember = async (
+  slug: string,
+): Promise<{ data: ITeamMember }> => {
   const res = await fetch(`${envVars.baseUrl}/team/${slug}`, {
     next: { revalidate: 3600 }, // ✅ revalidate after 1 hour
   });

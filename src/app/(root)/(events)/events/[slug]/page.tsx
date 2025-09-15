@@ -7,7 +7,7 @@ const EventDetailsPage = async ({ params }: IParams) => {
   const { slug } = await params;
 
   return (
-    <div className="container mx-auto py-8 space-y-6">
+    <div className="container mx-auto space-y-6 py-8">
       <Suspense fallback={<EventDetailsSkeleton />}>
         <EventDetails slug={slug} />
       </Suspense>

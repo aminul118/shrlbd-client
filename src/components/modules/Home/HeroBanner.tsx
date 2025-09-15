@@ -5,11 +5,11 @@ import { Typewriter } from 'react-simple-typewriter';
 
 const HeroBanner = () => {
   return (
-    <section className="bg-[#CCD8E6] py-12 md:py-24 2xl:h-screen flex justify-center items-center">
-      <div className="container mx-auto grid md:grid-cols-2 items-center gap-12">
+    <section className="flex items-center justify-center bg-[#CCD8E6] py-12 md:py-24 2xl:h-screen">
+      <div className="container mx-auto grid items-center gap-12 md:grid-cols-2">
         {/* Left: Text */}
         <div className="space-y-8 px-4">
-          <h1 className="text-[#626C8E] text-3xl md:text-5xl font-semibold">
+          <h1 className="text-3xl font-semibold text-[#626C8E] md:text-5xl">
             <Typewriter
               words={['Welcome to']}
               cursor
@@ -21,11 +21,11 @@ const HeroBanner = () => {
             />
           </h1>
 
-          <h2 className="text-3xl md:text-5xl font-bold text-black">
+          <h2 className="text-3xl font-bold text-black md:text-5xl">
             Smart Healthcare and Research Ltd.
           </h2>
 
-          <p className="md:text-2xl mt-4 text-black">
+          <p className="mt-4 text-black md:text-2xl">
             <em>
               <strong>U</strong>
             </em>
@@ -52,7 +52,7 @@ const HeroBanner = () => {
             width={800}
             height={600}
             alt="Smart Healthcare and Research Ltd."
-            className="w-full h-auto"
+            className="h-auto w-full"
             priority
           />
         </div>

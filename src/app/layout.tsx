@@ -1,4 +1,5 @@
 import fonts from '@/config/fonts.config';
+import { cn } from '@/lib/utils';
 import AosProvider from '@/providers/AosProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import generateMetaTags from '@/Seo/generateMetaTags';
@@ -24,7 +25,7 @@ const RootLayout = ({ children }: IChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-      <body className={fonts.montserrat.className}>
+      <body className={cn(fonts.montserrat.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

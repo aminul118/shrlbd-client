@@ -19,7 +19,7 @@ export const metadata: Metadata = generateMetaTags({
 
 const TeamMemberPage = async () => {
   return (
-    <Container className="mt-20">
+    <Container className="py-12">
       <Suspense fallback={<TeamMembersCardSkeleton count={6} />}>
         <TeamList />
       </Suspense>

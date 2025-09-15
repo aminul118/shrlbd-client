@@ -19,14 +19,14 @@ export const metadata: Metadata = generateMetaTags({
 
 const JoinTeamPage = () => {
   return (
-    <Container className="max-w-3xl">
+    <Container className="max-w-4xl">
       <div className="space-y-10 py-8">
-        <GrediantHeading heading="Join Team" />
+        <GrediantHeading data-aos="fade-left" heading="Join Team" />
 
         {/* Intro / Mission */}
         <section>
-          <div className="max-w-3xl">
-            <p className="mt-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
+          <div>
+            <p className="mt-4 text-center leading-relaxed text-zinc-700 dark:text-zinc-300">
               <span className="font-medium">
                 Smart Healthcare and Research Ltd (SHRL)
               </span>{' '}
@@ -38,7 +38,10 @@ const JoinTeamPage = () => {
           {/* Leadership messages */}
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {/* Chairman */}
-            <article className="group relative rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm md:p-8 dark:border-zinc-800 dark:bg-zinc-900/60">
+            <article
+              className="group relative rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm md:p-8 dark:border-zinc-800 dark:bg-zinc-900/60"
+              data-aos="fade-right"
+            >
               <div className="absolute -top-4 left-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs tracking-wide text-zinc-600 uppercase dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
                 <Sparkles className="h-3.5 w-3.5" />
                 Words from the Chairman
@@ -57,7 +60,10 @@ const JoinTeamPage = () => {
             </article>
 
             {/* Managing Director */}
-            <article className="group relative rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm md:p-8 dark:border-zinc-800 dark:bg-zinc-900/60">
+            <article
+              className="group relative rounded-2xl border border-zinc-200 bg-white/80 p-6 shadow-sm md:p-8 dark:border-zinc-800 dark:bg-zinc-900/60"
+              data-aos="fade-left"
+            >
               <div className="absolute -top-4 left-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs tracking-wide text-zinc-600 uppercase dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
                 <Sparkles className="h-3.5 w-3.5" />
                 Words from the Managing Director
@@ -77,7 +83,10 @@ const JoinTeamPage = () => {
           </div>
 
           {/* Call to action */}
-          <div className="mt-8 rounded-2xl border border-zinc-200 bg-zinc-50/60 p-6 md:p-8 dark:border-zinc-800 dark:bg-zinc-900/40">
+          <div
+            className="mt-8 rounded-2xl border border-zinc-200 bg-zinc-50/60 p-6 md:p-8 dark:border-zinc-800 dark:bg-zinc-900/40"
+            data-aos="fade-up"
+          >
             <p className="leading-relaxed text-zinc-800 dark:text-zinc-200">
               To achieve our goals, we welcome the amalgamation of brilliant and
               empathetic minds from across society. Please fill out the form to

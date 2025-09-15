@@ -1,6 +1,6 @@
-import DateFormat from '@/components/ui/dateFormat';
 import HtmlContent from '@/components/ui/HtmlContent';
 import getEventsById from '@/lib/data/getEventsById';
+import DateFormat from '@/utils/dateFormat';
 import Image from 'next/image';
 
 const EventDetails = async ({ slug }: { slug: string }) => {

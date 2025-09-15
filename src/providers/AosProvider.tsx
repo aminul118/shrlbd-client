@@ -1,16 +1,20 @@
 'use client';
 
-import { IChildren } from '@/types';
+import { IChildren, SectionProps } from '@/types';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-const AosProvider = ({ children }: IChildren) => {
+const AosProvider = ({ children, ...props }: IChildren & SectionProps) => {
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  return <div className="overflow-x-hidden">{children}</div>;
+  return (
+    <section {...props} className="overflow-x-hidden">
+      {children}
+    </section>
+  );
 };
 
 export default AosProvider;

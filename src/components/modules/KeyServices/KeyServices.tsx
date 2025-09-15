@@ -2,11 +2,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import services from '@/constants/services';
+import { SectionProps } from '@/types';
 import Image from 'next/image';
 
-const KeyServices = () => {
+const KeyServices = ({ ...props }: SectionProps) => {
   return (
-    <div className="relative bg-[url('/images/banner/bg1.png')] bg-cover bg-center bg-no-repeat py-24 dark:bg-none">
+    <section {...props}>
       {/* White bottom gradient overlay */}
       <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-24 w-full bg-gradient-to-b from-transparent to-white dark:hidden" />
 
@@ -57,7 +58,7 @@ const KeyServices = () => {
           <SectionHeading description="At Smart Healthcare and Research Ltd., each of our services is designed with the goal of improving healthcare access, quality, and outcomes for women and children. We are committed to continuous innovation and compassionate care, ensuring that our clients receive the best possible support on their healthcare journey." />
         </div>
       </Container>
-    </div>
+    </section>
   );
 };
 

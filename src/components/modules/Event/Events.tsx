@@ -1,6 +1,6 @@
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
-import DateFormat from '@/components/ui/dateFormat';
 import getEvents from '@/lib/data/getEvents';
+import DateFormat from '@/utils/dateFormat';
 import Image from 'next/image';
 import Link from 'next/link';
 

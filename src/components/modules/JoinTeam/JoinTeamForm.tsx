@@ -97,7 +97,7 @@ const JoinTeamForm = () => {
   const submitting = form.formState.isSubmitting;
 
   return (
-    <div>
+    <div data-aos="fade-left">
       <GrediantHeading heading="Join the SHRL Team" />
       <Form {...form}>
         <form

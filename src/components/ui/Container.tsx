@@ -1,14 +1,21 @@
-import { IChildren } from '@/types';
+import { cn } from '@/lib/utils';
+import { IChildren, SectionProps } from '@/types';
 
-type TContainer = IChildren & {
-  className?: string;
-  background?: string;
-};
+type TContainer = IChildren &
+  SectionProps & {
+    className?: string;
+    background?: string;
+  };
 
-const Container = ({ children, className, background }: TContainer) => {
+const Container = ({
+  children,
+  className,
+  background,
+  ...props
+}: TContainer) => {
   return (
-    <section className={`${background} px-2 py-6 lg:py-8`}>
-      <div className={`${className} container mx-auto`}> {children}</div>
+    <section {...props} className={cn('px-2 py-6 lg:py-8', background)}>
+      <div className={cn('container mx-auto', className)}> {children}</div>
     </section>
   );
 };

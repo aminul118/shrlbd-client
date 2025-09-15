@@ -15,11 +15,7 @@ export const metadata: Metadata = generateMetaTags({
 // --> SEO End
 
 const ContactPage = () => {
-  return (
-    <>
-      <Contact />
-    </>
-  );
+  return <Contact data-aos="fade-up" />;
 };
 
 export default ContactPage;

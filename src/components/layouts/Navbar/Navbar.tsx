@@ -1,9 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import Logo from '../Logo';
-
 import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
@@ -18,6 +14,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import Logo from '../Logo';
 
 import { BookOpenIcon, InfoIcon, LifeBuoyIcon, Users } from 'lucide-react';
 
@@ -83,7 +82,7 @@ const navigationLinks: NavItem[] = [
 ];
 
 /* ------------------------------ Component -------------------------------- */
-export default function Navbar2() {
+const Navbar = () => {
   return (
     <header className="fixed top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
@@ -319,4 +318,6 @@ export default function Navbar2() {
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;

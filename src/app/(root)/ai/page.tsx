@@ -1,4 +1,5 @@
 import ChatForm from '@/components/modules/AI/ChatForm';
+import Container from '@/components/ui/Container';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 // SEO Starts
@@ -14,8 +15,8 @@ export const metadata: Metadata = generateMetaTags({
 
 const AIPage = () => {
   return (
-    <section>
-      <div className="mx-auto max-w-lg py-24 text-center">
+    <Container>
+      <div className="mx-auto text-center">
         <h1 className="mb-5 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 bg-clip-text text-3xl font-bold text-transparent">
           Chatting with AI
         </h1>
@@ -25,7 +26,7 @@ const AIPage = () => {
         </p>
       </div>
       <ChatForm />
-    </section>
+    </Container>
   );
 };
 

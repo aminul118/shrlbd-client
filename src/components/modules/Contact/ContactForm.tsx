@@ -55,7 +55,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div>
+    <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Top row: Name + Email */}
@@ -149,7 +149,7 @@ const ContactForm = () => {
           </div>
         </form>
       </Form>
-    </div>
+    </>
   );
 };
 

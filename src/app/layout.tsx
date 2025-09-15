@@ -1,12 +1,12 @@
 import './globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { poppins } from './fonts';
 import AosProvider from '@/providers/AosProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { Toaster } from 'sonner';
 import { Metadata } from 'next';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { IChildren } from '@/types';
+import fonts from '@/config/fonts.config';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
@@ -23,7 +23,7 @@ const RootLayout = ({ children }: IChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-      <body className={poppins.className}>
+      <body className={fonts.poppins.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

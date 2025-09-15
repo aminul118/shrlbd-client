@@ -1,6 +1,6 @@
 const metaConfig = {
   baseUrl: 'https://www.shrlbd.com',
-  baseImage: '/og-image.png',
+  baseImage: '/seo/shrl-hero-ss.png',
   site_name: 'SHRL',
   website_category: 'Health',
   applicationName: 'Smart Healthcare and Research Limited',

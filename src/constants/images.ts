@@ -8,6 +8,7 @@ import training_program from '@/assets/images/services/training-program.png';
 import patient_education from '@/assets/images/services/patient-education.png';
 import community from '@/assets/images/services/community.png';
 import research from '@/assets/images/services/research.png';
+import notFound from '@/assets/images/not-found.svg';
 
 const images = {
   founding_team: {
@@ -24,6 +25,7 @@ const images = {
     community,
     research,
   },
+  notFound,
 };
 
 export default images;

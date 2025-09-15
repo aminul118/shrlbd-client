@@ -5,7 +5,7 @@ import AosProvider from '@/providers/AosProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { Toaster } from 'sonner';
 import { Metadata } from 'next';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { IChildren } from '@/types';
 
 // >> SEO Start

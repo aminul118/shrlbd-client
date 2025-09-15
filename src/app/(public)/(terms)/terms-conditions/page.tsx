@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // SEO Starts
@@ -10,7 +10,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     'Smart Healthcare, SHRL, Terms and Conditions, SHRL policies, Healthcare services, Refund policy, Consultation rules, Online medical consultation, Bangladesh healthcare, SHRLBD',
   image: '/seo/shrl-hero-ss.png',
-  path: 'terms-conditions',
+  websitePath: '/terms-conditions',
 });
 // SEO End
 

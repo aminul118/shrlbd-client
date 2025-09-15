@@ -1,7 +1,7 @@
 import ScrollingText from '@/components/modules/UpcomingEvents/ScrollingText';
 import TypeWriterHeading from '@/components/modules/UpcomingEvents/TypeWritterHeading';
 import UpcomingEvents from '@/components/modules/UpcomingEvents/UpcomingEvents';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // --> SEO Starts
@@ -12,7 +12,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     'SHRL upcoming events, healthcare workshops Bangladesh, SHRL seminars, public health events, medical events Bangladesh, maternal health programs, child health awareness, SHRL community events, healthcare innovation events, SHRL training sessions, digital health campaigns',
   image: '/seo/shrl-hero-ss.png',
-  path: 'upcoming-events',
+  websitePath: 'upcoming-events',
 });
 // --> SEO End
 

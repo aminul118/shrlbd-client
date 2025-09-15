@@ -1,8 +1,20 @@
-import React from 'react';
+import generateMetaTags from '@/Seo/generateMetaTags';
+import { Metadata } from 'next';
+
+// SEO Starts
+export const metadata: Metadata = generateMetaTags({
+  title: 'About | SHRL',
+  description:
+    "Review the About for Smart Healthcare and Research Ltd.'s online consultation services, including data collection practices, security, cookies, and user rights.",
+  keywords:
+    'Smart Healthcare, SHRL, Privacy Policy, Data collection, Cookies, User rights, Online consultation, Healthcare services, SHRLBD, Data protection',
+  websitePath: '/about',
+});
+// SEO End
 
 const AboutPage = () => {
   return (
-    <div className="px-6 md:px-20 py-10 max-w-5xl mx-auto text-gray-800">
+    <div className="px-6 md:px-20 py-10 max-w-5xl mx-auto">
       <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center text-primary">About Us</h1>
       <p className="mb-4">
         At <strong>Smart Healthcare and Research Ltd. (SHRL)</strong>, we are committed to advancing

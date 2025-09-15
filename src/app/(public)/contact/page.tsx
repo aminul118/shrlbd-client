@@ -1,5 +1,5 @@
 import Contact from '@/components/modules/Contact/Contact';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // --> SEO Starts
@@ -10,7 +10,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     'Smart Healthcare contact, SHRL contact, healthcare consultation Bangladesh, maternal health contact, child healthcare support, healthcare training Bangladesh, public health research contact, digital health services Bangladesh, partner with SHRL, SHRL Bangladesh location, SHRL email, SHRL phone number',
   image: '/seo/shrl-hero-ss.png',
-  path: 'contact',
+  websitePath: 'contact',
 });
 // --> SEO End
 

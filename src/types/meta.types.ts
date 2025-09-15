@@ -3,7 +3,7 @@ export interface MetaProps {
   description: string;
   keywords: string;
   image?: string;
-  path?: string;
+  websitePath?: string;
 }
 
 export interface Routes {

@@ -2,7 +2,7 @@ import KeyServices from '@/components/modules/KeyServices/KeyServices';
 import Commitments from '@/components/modules/Home/Commitment';
 import { Metadata } from 'next';
 import React from 'react';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
@@ -12,7 +12,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     "BAN-GDM, online healthcare consultation, digital maternal care, diabetes in pregnancy support, SHRL healthcare platform, virtual doctor consultation, women's health online, child health consultation Bangladesh, secure telemedicine, healthcare accessibility",
   image: '/seo/shrl-hero-ss.png',
-  path: 'services',
+  websitePath: '/services',
 });
 // ---> SEO End
 

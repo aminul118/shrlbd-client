@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 
 // SEO stats
 export const metadata: Metadata = generateMetaTags({
@@ -9,7 +9,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     'Smart Healthcare, SHRL, Return Policy, Refund Policy, Healthcare services, Online consultation, Medical services, SHRLBD',
   image: '/seo/shrl-hero-ss.png',
-  path: 'https://www.shrlbd.com/return-refund-policy',
+  websitePath: 'return-refund-policy',
 });
 // SEO End
 

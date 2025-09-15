@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import TeamMembersCardSkeleton from '@/components/modules/Team/TeamMembersCardSkeleton';
 import TeamList from '@/components/modules/Team/TeamList';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
@@ -13,7 +13,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     'Smart Healthcare team, SHRL team members, healthcare professionals Bangladesh, maternal and child health experts, public health specialists, BAN-GDM team, SHRL founding members, healthcare leadership Bangladesh, women’s health experts, clinical researchers Bangladesh, SHRL board, digital health innovators, healthcare team Bangladesh, SHRL doctors and researchers',
   image: '/seo/shrl-hero-ss.png',
-  path: 'team',
+  websitePath: 'team',
 });
 // ---> SEO END
 

@@ -3,7 +3,7 @@ import TeamDetailsCardSkeleton from '@/components/modules/Team/TeamDetailsCardSk
 import { IParams } from '@/types';
 import { Suspense } from 'react';
 import { getSingleTeamMember } from '@/lib/data/getTeam';
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: IParams) {
     description: team.content?.replace(/<[^>]*>/g, '').slice(0, 160),
     keywords: `${team.name}, ${team.shrlDesignation}, SHRL team`,
     image: team.photo,
-    path: `team/${slug}`,
+    websitePath: `/team/${slug}`,
   });
 }
 // ---> SEO END

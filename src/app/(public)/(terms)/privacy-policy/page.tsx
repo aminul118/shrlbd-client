@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { generateMetaTags } from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // SEO Starts
@@ -11,7 +11,7 @@ export const metadata: Metadata = generateMetaTags({
   keywords:
     'Smart Healthcare, SHRL, Privacy Policy, Data collection, Cookies, User rights, Online consultation, Healthcare services, SHRLBD, Data protection',
   image: '/seo/shrl-hero-ss.png',
-  path: 'privacy-policy',
+  websitePath: 'privacy-policy',
 });
 
 // SEO End

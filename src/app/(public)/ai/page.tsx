@@ -1,4 +1,16 @@
 import ChatForm from '@/components/modules/AI/ChatForm';
+import generateMetaTags from '@/Seo/generateMetaTags';
+import { Metadata } from 'next';
+// SEO Starts
+export const metadata: Metadata = generateMetaTags({
+  title: 'AI | SHRL',
+  description:
+    'Know about Epidemiological Surveillance on maternal and child health related information',
+  keywords:
+    'Smart Healthcare, SHRL, about Epidemiological, Data collection, Online consultation, Healthcare services, SHRLBD',
+  websitePath: 'about',
+});
+// SEO End
 
 const AIPage = () => {
   return (

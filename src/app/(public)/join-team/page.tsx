@@ -1,7 +1,21 @@
 import JoinTeamForm from '@/components/modules/JoinTeam/JoinTeamForm';
 import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import { Quote, Sparkles } from 'lucide-react';
+import { Metadata } from 'next';
+
+// ---> SEO Starts
+export const metadata: Metadata = generateMetaTags({
+  title: 'Join Our Team | Smart Healthcare and Research Ltd (SHRL)',
+  description:
+    'Looking for a career in digital healthcare and research? Join SHRL’s multidisciplinary team and contribute to maternal, child, and adolescent health innovations in Bangladesh.',
+  keywords:
+    'Join SHRL team, healthcare careers Bangladesh, SHRL jobs, maternal health research careers, adolescent health jobs, healthcare innovation careers, digital health Bangladesh, career in research and healthcare, Smart Healthcare and Research Ltd jobs',
+  image: '/seo/shrl-hero-ss.png',
+  websitePath: '/join-team',
+});
+// ---> SEO End
 
 const JoinTeamPage = () => {
   return (

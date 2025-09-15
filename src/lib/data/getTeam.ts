@@ -12,10 +12,10 @@ export interface ITeamMember {
   content: string;
 }
 
-// Get all team members
+// Get all team members (with revalidation every 1 hour)
 const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
   const res = await fetch(`${envVars.baseUrl}/team/get-all`, {
-    cache: 'no-store', // ensures fresh data on every request
+    next: { revalidate: 3600 }, // ✅ cache & revalidate every hour
   });
 
   if (!res.ok) {
@@ -25,10 +25,10 @@ const getTeams = async (): Promise<{ data: ITeamMember[] }> => {
   return res.json();
 };
 
-// Get single team member by slug
+// Get single team member by slug (revalidate every 1 hour)
 export const getSingleTeamMember = async (slug: string): Promise<{ data: ITeamMember }> => {
   const res = await fetch(`${envVars.baseUrl}/team/${slug}`, {
-    cache: 'no-store',
+    next: { revalidate: 3600 }, // ✅ revalidate after 1 hour
   });
 
   if (!res.ok) {

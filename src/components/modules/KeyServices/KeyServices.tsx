@@ -8,9 +8,6 @@ import Image from 'next/image';
 const KeyServices = ({ ...props }: SectionProps) => {
   return (
     <section {...props}>
-      {/* White bottom gradient overlay */}
-      <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-24 w-full bg-gradient-to-b from-transparent to-white dark:hidden" />
-
       <Container className="relative z-20 space-y-8">
         <div>
           <SectionHeading

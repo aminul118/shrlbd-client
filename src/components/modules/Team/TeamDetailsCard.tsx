@@ -1,9 +1,10 @@
 import HtmlContent from '@/components/ui/HtmlContent';
-import { getSingleTeamMember } from '@/lib/data/getTeam';
+import api from '@/lib/api';
 import Image from 'next/image';
 
 const TeamDetailsCard = async ({ slug }: { slug: string }) => {
-  const { data: team } = await getSingleTeamMember(slug);
+  const { data: team } = await api.team.getSingleTeamMember(slug);
+
   return (
     <div className="py-16">
       {/* Profile Photo */}

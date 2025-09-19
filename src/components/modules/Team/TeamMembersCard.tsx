@@ -1,5 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { ITeamMember } from '@/lib/data/getTeam';
+import { ITeamMember } from '@/types';
+
 import Image from 'next/image';
 import Link from 'next/link';
 

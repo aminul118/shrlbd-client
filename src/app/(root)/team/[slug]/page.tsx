@@ -1,6 +1,6 @@
 import TeamDetailsCard from '@/components/modules/Team/TeamDetailsCard';
 import TeamDetailsCardSkeleton from '@/components/modules/Team/TeamDetailsCardSkeleton';
-import { getSingleTeamMember } from '@/lib/data/getTeam';
+import api from '@/lib/api';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { IParams } from '@/types';
 import { Suspense } from 'react';
@@ -8,7 +8,7 @@ import { Suspense } from 'react';
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {
   const { slug } = await params;
-  const { data: team } = await getSingleTeamMember(slug);
+  const { data: team } = await api.team.getSingleTeamMember(slug);
 
   return generateMetaTags({
     title: `${team.name} | ${team.shrlDesignation}`,

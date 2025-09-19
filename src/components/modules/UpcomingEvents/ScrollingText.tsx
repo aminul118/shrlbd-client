@@ -1,19 +1,12 @@
 import { Button } from '@/components/ui/button';
-import getScrollingText from '@/lib/data/getScrollingText';
+import api from '@/lib/api';
 import Marquee from 'react-fast-marquee';
 
-interface Scroll {
-  _id: string;
-  text: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
 const ScrollingText = async () => {
-  const scrolls = await getScrollingText();
+  const scrolls = await api.scrollingText.getScrollingText();
 
   const texts =
-    scrolls?.data?.map((s: Scroll) => s?.text?.trim())?.filter(Boolean) || [];
+    scrolls?.data?.map((s) => s?.text?.trim())?.filter(Boolean) || [];
 
   if (texts.length === 0) return null;
 

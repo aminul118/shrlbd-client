@@ -3,9 +3,23 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';
 import api from '@/lib/api';
+import generateMetaTags from '@/Seo/generateMetaTags';
 import DateFormat from '@/utils/dateFormat';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+
+// --> SEO Starts
+export const metadata: Metadata = generateMetaTags({
+  title: 'Events | Smart Healthcare and Research Ltd. (SHRL)',
+  description:
+    'Stay updated with the latest upcoming events organized by Smart Healthcare and Research Ltd. (SHRL), including workshops, seminars, and public health campaigns aimed at improving healthcare in Bangladesh.',
+  keywords:
+    'SHRL upcoming events, healthcare workshops Bangladesh, SHRL seminars, public health events, medical events Bangladesh, maternal health programs, child health awareness, SHRL community events, healthcare innovation events, SHRL training sessions, digital health campaigns',
+  image: '/seo/shrl-hero-ss.png',
+  websitePath: 'upcoming-events',
+});
+// --> SEO End
 
 const EventPage = async () => {
   const { data } = await api.event.getEvents();

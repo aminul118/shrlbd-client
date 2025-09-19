@@ -1,7 +1,7 @@
 import Container from '@/components/ui/Container';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function EventDetailsLoading() {
+const EventDetailsLoading = () => {
   return (
     <Container className="space-y-6">
       {/* Photos Grid Skeleton */}
@@ -25,4 +25,6 @@ export default function EventDetailsLoading() {
       </div>
     </Container>
   );
-}
+};
+
+export default EventDetailsLoading;

@@ -1,18 +1,8 @@
-import metaConfig from '@/config/seo.config';
+import generateSitemapEntries from '@/Seo/generateSitemapEntries';
 import { staticRoutes } from '@/Seo/staticRoutes';
-import { Routes } from '@/types';
 import { MetadataRoute } from 'next';
 
-const generateSitemapEntries = (routes: Routes[]): MetadataRoute.Sitemap => {
-  return routes.map((route) => ({
-    url: `${metaConfig.baseUrl}/${route?.url}`.replace(/\/+$/, ''),
-    lastModified: new Date(),
-    changeFrequency: route?.changeFrequency,
-    priority: route?.priority,
-  }));
-};
-
-const sitemap = (): MetadataRoute.Sitemap => {
+const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   return [...generateSitemapEntries(staticRoutes)];
 };
 

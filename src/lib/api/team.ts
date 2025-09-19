@@ -5,7 +5,12 @@ export interface IApiGetParams {
 }
 
 export const getTeamMembers = async ({ params }: IApiGetParams) => {
-  return await apiGet<ApiResponse<ITeamMember[]>>('/team/get-all', params);
+  return await apiGet<ApiResponse<ITeamMember[]>>('/team/get-all', params, {
+    cache: 'force-cache',
+    next: {
+      tags: ['team-members'],
+    },
+  });
 };
 
 export const getSingleTeamMember = async (

@@ -3,6 +3,7 @@ import { IApiParams, IFetchOptions } from '@/types';
 
 export const apiGet = async <T>(
   endpoint: string,
+
   params: IApiParams = {},
   fetchOptions: IFetchOptions = {},
 ): Promise<T> => {

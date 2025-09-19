@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import TeamList from '@/components/modules/Team/TeamList';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/Seo/generateMetaTags';
+
 import { Metadata } from 'next';
 
 // ---> SEO Starts
@@ -15,14 +17,18 @@ export const metadata: Metadata = generateMetaTags({
 });
 // ---> SEO END
 
-// app/team/page.tsx
-
-const TeamMemberPage = async () => {
+const TeamMemberPage = async ({
+  searchParams,
+}: {
+  params: Record<string, string>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) => {
+  const resolve = await searchParams;
+  console.log(resolve);
   return (
     <Container className="py-12">
-      <TeamList />
+      <TeamList searchParams={resolve} />
     </Container>
   );
 };
-
 export default TeamMemberPage;

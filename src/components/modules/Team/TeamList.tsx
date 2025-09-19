@@ -1,10 +1,27 @@
+import AppPagination from '@/components/common/AppPagination';
 import NotFound from '@/components/common/NotFound';
 import api from '@/lib/api';
 import TeamMembersCard from './TeamMembersCard';
 
-const TeamList = async () => {
-  const { data, meta } = await api.team.getTeamMembers();
-  console.log(data, meta);
+export type TeamListProps = {
+  searchParams: Record<string, string | string[] | undefined>;
+};
+
+const TeamList = async ({ searchParams }: TeamListProps) => {
+  // Default values for SSG
+  const pageParam = searchParams?.page || '1';
+  const limitParam = searchParams?.limit || '4';
+
+  console.log(searchParams);
+
+  const params = {
+    page: pageParam,
+    limit: limitParam,
+  };
+
+  const { data, meta } = await api.team.getTeamMembers(
+    params as Record<string, string>,
+  );
 
   if (!data || data.length === 0) {
     return <NotFound title="Team Members Not Found" />;
@@ -17,6 +34,7 @@ const TeamList = async () => {
           <TeamMembersCard key={member._id} member={member} />
         ))}
       </div>
+      {meta && <AppPagination meta={meta} />}
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// components/common/NotFound.tsx
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ const NotFound = ({
   action,
 }: NotFoundProps) => {
   return (
-    <div className="flex min-h-[calc(100vh-440px)] flex-col items-center justify-center py-20 text-center">
+    <div className="center-content flex flex-col items-center justify-center py-20 text-center">
       <Frown className="text-muted-foreground h-16 w-16" />
       <h1 className="mt-6 text-2xl font-bold tracking-tight">{title}</h1>
       <p className="text-muted-foreground mt-2">{description}</p>

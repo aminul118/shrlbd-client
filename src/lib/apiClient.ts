@@ -1,13 +1,11 @@
 import envVars from '@/config/env.config';
+import { IApiParams, IFetchOptions } from '@/types';
 
-export interface IApiParams {
-  [key: string]: string | number | undefined;
-}
-
-export async function apiGet<T>(
+export const apiGet = async <T>(
   endpoint: string,
   params: IApiParams = {},
-): Promise<T> {
+  fetchOptions: IFetchOptions = {},
+): Promise<T> => {
   const query = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {
@@ -16,13 +14,17 @@ export async function apiGet<T>(
     }
   });
 
-  const url = `${envVars.baseUrl}${endpoint}?${query.toString()}`;
+  const url = `${envVars.baseUrl}${endpoint}${
+    query.toString() ? `?${query.toString()}` : ''
+  }`;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    ...fetchOptions,
+  });
 
   if (!res.ok) {
     throw new Error(`Failed to fetch ${endpoint}: ${res.status}`);
   }
 
-  return await res.json();
-}
+  return res.json() as Promise<T>;
+};

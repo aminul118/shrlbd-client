@@ -1,12 +1,19 @@
-interface GradientTitle {
+import { cn } from '@/lib/utils';
+
+interface GradientTitleProps {
   title?: string;
   description?: string;
+  className?: string; // match React convention
 }
 
-const GradientTitle = ({ title, description }: GradientTitle) => {
+const GradientTitle = ({
+  title,
+  description,
+  className,
+}: GradientTitleProps) => {
   return (
     <section>
-      <div className="mx-auto max-w-lg py-24 text-center">
+      <div className={cn('mx-auto max-w-lg text-center', className)}>
         <h1 className="mb-5 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 bg-clip-text text-3xl font-bold text-transparent">
           {title}
         </h1>

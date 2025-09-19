@@ -2,16 +2,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import { Skeleton } from '@/components/ui/skeleton';
 
-type Props = { count?: number };
-
-const TeamMembersCardSkeleton = ({ count = 8 }: Props) => {
+const TeamLoadingPage = () => {
   return (
     <Container
       className="grid grid-cols-1 gap-8 lg:grid-cols-2 2xl:grid-cols-3"
       aria-busy="true"
       aria-label="Loading team members"
     >
-      {Array.from({ length: count }).map((_, i) => (
+      {Array.from({ length: 6 }).map((_, i) => (
         <Card
           key={i}
           className="relative mt-12 h-[400px] w-full rounded-2xl border-0 bg-gradient-to-b from-cyan-50 to-blue-200 shadow-lg dark:from-slate-950 dark:to-slate-900"
@@ -46,4 +44,4 @@ const TeamMembersCardSkeleton = ({ count = 8 }: Props) => {
   );
 };
 
-export default TeamMembersCardSkeleton;
+export default TeamLoadingPage;

@@ -1,22 +1,27 @@
 export type { MetaProps, Routes } from './meta.types';
+
+export interface IMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPage: number;
+}
 export interface ApiResponse<T> {
   message: string;
   statusCode: number;
   success: boolean;
   data: T;
-  meta?: {
-    page: number;
-    limit: number;
-    total: number;
-    totalPage: number;
-  };
+  meta?: IMeta;
 }
 
 export type {
   DivProps,
+  IApiParams,
   IChildren,
+  IFetchOptions,
   IGlobalError,
   IParams,
+  ISearchParams,
   SectionProps,
 } from './react.types';
 

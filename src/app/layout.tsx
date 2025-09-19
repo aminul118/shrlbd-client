@@ -23,9 +23,13 @@ export const metadata: Metadata = generateMetaTags({
 
 const RootLayout = ({ children }: IChildren) => {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn(fonts.montserrat.className)}
+    >
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-      <body className={cn(fonts.montserrat.className)}>
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

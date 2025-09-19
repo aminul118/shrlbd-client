@@ -1,9 +1,8 @@
 import TeamList from '@/components/modules/Team/TeamList';
-import TeamMembersCardSkeleton from '@/components/modules/Team/TeamMembersCardSkeleton';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/Seo/generateMetaTags';
+import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
@@ -17,12 +16,14 @@ export const metadata: Metadata = generateMetaTags({
 });
 // ---> SEO END
 
-const TeamMemberPage = async () => {
+// app/team/page.tsx
+
+const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedParams = await searchParams;
+
   return (
     <Container className="py-12">
-      <Suspense fallback={<TeamMembersCardSkeleton count={6} />}>
-        <TeamList />
-      </Suspense>
+      <TeamList searchParams={resolvedParams} />
     </Container>
   );
 };

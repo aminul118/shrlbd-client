@@ -125,3 +125,19 @@ html {
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
+
+/* Reusable card layout */
+.card {
+  @apply flex flex-col items-center justify-center py-20 text-center;
+  @apply bg-card text-card-foreground rounded-xl p-8 shadow-md; /* optional styling */
+}
+
+/* Center content vertically & horizontally */
+.center-container {
+  @apply grid h-screen place-items-center;
+}
+
+/* Grid layout for multiple cards */
+.card-grid {
+  @apply grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3;
+}

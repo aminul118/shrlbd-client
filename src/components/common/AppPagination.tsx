@@ -31,7 +31,7 @@ const AppPagination = ({ meta, className }: IPaginationProps) => {
   if (totalPage <= 1) return null;
 
   return (
-    <Pagination className={cn(className)}>
+    <Pagination className={cn('py-6 md:py-8 lg:py-12', className)}>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

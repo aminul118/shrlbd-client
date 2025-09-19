@@ -20,7 +20,7 @@ export const metadata: Metadata = generateMetaTags({
 
 const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
   const resolve = await searchParams;
-  console.log(resolve);
+
   return (
     <Container className="py-12">
       <TeamList params={resolve} />

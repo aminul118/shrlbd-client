@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <>
       <HeroBanner />
-      <KeyServices />
+      <KeyServices className="pt-12" />
       <FoundingTeam />
       <Commitment />
       <Faq />

@@ -2,6 +2,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import Container from '@/components/ui/Container';
 import {
   Form,
   FormControl,
@@ -97,7 +98,7 @@ const JoinTeamForm = () => {
   const submitting = form.formState.isSubmitting;
 
   return (
-    <div data-aos="fade-left">
+    <Container data-aos="fade-left" id="apply">
       <GrediantHeading heading="Join the SHRL Team" />
       <Form {...form}>
         <form
@@ -289,7 +290,7 @@ const JoinTeamForm = () => {
           </div>
         </form>
       </Form>
-    </div>
+    </Container>
   );
 };
 

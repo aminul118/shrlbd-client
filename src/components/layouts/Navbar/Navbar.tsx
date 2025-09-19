@@ -84,7 +84,7 @@ const navigationLinks: NavItem[] = [
 /* ------------------------------ Component -------------------------------- */
 const Navbar = () => {
   return (
-    <header className="fixed top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
+    <header className="sticky top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">

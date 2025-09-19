@@ -8,9 +8,9 @@ type TContainer = IChildren &
   };
 
 const Container = ({
-  children,
-  className,
   background,
+  className,
+  children,
   ...props
 }: TContainer) => {
   return (

@@ -16,9 +16,7 @@ export interface ApiResponse<T> {
 
 export type {
   DivProps,
-  IApiParams,
   IChildren,
-  IFetchOptions,
   IGlobalError,
   IParams,
   ISearchParams,

@@ -1,10 +1,7 @@
 import { ApiResponse, ITeamMember } from '@/types';
-import { apiGet } from '../apiClient';
-export interface IApiGetParams {
-  params?: Record<string, string | number>;
-}
+import { apiGet, IApiParams } from '../apiClient';
 
-export const getTeamMembers = async (params?: Record<string, string>) => {
+export const getTeamMembers = async (params?: IApiParams) => {
   return await apiGet<ApiResponse<ITeamMember[]>>('/team/get-all', params, {
     cache: 'force-cache',
     next: {

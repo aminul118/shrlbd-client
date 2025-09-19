@@ -19,18 +19,6 @@ export type ElementProps<T extends React.ElementType> =
 export type DivProps = ElementProps<'div'>;
 export type SectionProps = ElementProps<'section'>;
 
-export interface IApiParams {
-  [key: string]: string | number | undefined;
-}
-
-export interface IFetchOptions {
-  cache?: RequestCache; // 'force-cache' | 'no-store' | 'reload' | 'only-if-cached'
-  next?: {
-    revalidate?: number | false;
-    tags?: string[];
-  };
-}
-
 export interface ISearchParams {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }

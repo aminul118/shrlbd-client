@@ -1,5 +1,15 @@
 import envVars from '@/config/env.config';
-import { IApiParams, IFetchOptions } from '@/types';
+export interface IApiParams {
+  [key: string]: string | number | undefined;
+}
+
+export interface IFetchOptions {
+  cache?: RequestCache; // 'force-cache' | 'no-store' | 'reload' | 'only-if-cached'
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
+}
 
 export const apiGet = async <T>(
   endpoint: string,
@@ -15,8 +25,10 @@ export const apiGet = async <T>(
     }
   });
 
+  const convertQuery = query.toString();
+
   const url = `${envVars.baseUrl}${endpoint}${
-    query.toString() ? `?${query.toString()}` : ''
+    convertQuery ? `?${convertQuery}` : ''
   }`;
 
   const res = await fetch(url, {

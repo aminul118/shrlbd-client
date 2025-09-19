@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import AppPagination from '@/components/common/AppPagination';
 import NotFound from '@/components/common/NotFound';
 import api from '@/lib/api';
 import TeamMembersCard from './TeamMembersCard';
 
-const TeamList = async () => {
-  const { data } = await api.team.getTeamMembers();
+const TeamList = async ({ params }: { params: Record<string, any> }) => {
+  console.log(params);
+  const { data, meta } = await api.team.getTeamMembers({ ...params, limit: 4 });
 
   if (!data || data.length === 0) {
     return <NotFound title="Team Members Not Found" />;
@@ -16,6 +19,7 @@ const TeamList = async () => {
           <TeamMembersCard key={member._id} member={member} />
         ))}
       </div>
+      {meta && <AppPagination meta={meta} />}
     </div>
   );
 };

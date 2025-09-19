@@ -1,30 +1,9 @@
-import AppPagination from '@/components/common/AppPagination';
 import NotFound from '@/components/common/NotFound';
 import api from '@/lib/api';
 import TeamMembersCard from './TeamMembersCard';
 
-interface TeamListProps {
-  searchParams?: {
-    page?: string;
-    search?: string;
-    field?: string;
-  };
-}
-
-const TeamList = async ({ searchParams }: TeamListProps) => {
-  const page = Number(searchParams?.page || '1');
-  const search = searchParams?.search || '';
-  const limit = 9;
-
-  const params = {
-    params: {
-      page,
-      limit,
-      search,
-    },
-  };
-
-  const { data, meta } = await api.team.getTeamMembers(params);
+const TeamList = async () => {
+  const { data, meta } = await api.team.getTeamMembers();
   console.log(data, meta);
 
   if (!data || data.length === 0) {
@@ -38,8 +17,6 @@ const TeamList = async ({ searchParams }: TeamListProps) => {
           <TeamMembersCard key={member._id} member={member} />
         ))}
       </div>
-
-      {meta && <AppPagination meta={meta} className="py-12" />}
     </div>
   );
 };

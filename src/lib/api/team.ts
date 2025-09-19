@@ -4,7 +4,7 @@ export interface IApiGetParams {
   params?: Record<string, string | number>;
 }
 
-export const getTeamMembers = async ({ params }: IApiGetParams) => {
+export const getTeamMembers = async (params?: Record<string, string>) => {
   return await apiGet<ApiResponse<ITeamMember[]>>('/team/get-all', params, {
     cache: 'force-cache',
     next: {

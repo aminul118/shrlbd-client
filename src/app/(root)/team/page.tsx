@@ -1,7 +1,6 @@
 import TeamList from '@/components/modules/Team/TeamList';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/Seo/generateMetaTags';
-import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
 // ---> SEO Starts
@@ -18,12 +17,10 @@ export const metadata: Metadata = generateMetaTags({
 
 // app/team/page.tsx
 
-const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
-  const resolvedParams = await searchParams;
-
+const TeamMemberPage = async () => {
   return (
     <Container className="py-12">
-      <TeamList searchParams={resolvedParams} />
+      <TeamList />
     </Container>
   );
 };

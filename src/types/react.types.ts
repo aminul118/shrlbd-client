@@ -20,5 +20,5 @@ export type DivProps = ElementProps<'div'>;
 export type SectionProps = ElementProps<'section'>;
 
 export interface ISearchParams {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }

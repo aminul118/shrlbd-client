@@ -17,17 +17,10 @@ export const metadata: Metadata = generateMetaTags({
 });
 // ---> SEO END
 
-const TeamMemberPage = async ({
-  searchParams,
-}: {
-  params: Record<string, string>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
-}) => {
-  const resolve = await searchParams;
-  console.log(resolve);
+const TeamMemberPage = () => {
   return (
     <Container className="py-12">
-      <TeamList searchParams={resolve} />
+      <TeamList />
     </Container>
   );
 };

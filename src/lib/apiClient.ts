@@ -13,9 +13,10 @@ export interface IFetchOptions {
 
 export const apiGet = async <T>(
   endpoint: string,
-
   params: IApiParams = {},
-  fetchOptions: IFetchOptions = {},
+  fetchOptions: IFetchOptions = {
+    cache: 'no-store',
+  },
 ): Promise<T> => {
   const query = new URLSearchParams();
 

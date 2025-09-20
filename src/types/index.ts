@@ -21,7 +21,7 @@ export type {
   IParams,
   ISearchParams,
   SectionProps,
-} from './react.types';
+} from './next.types';
 
 export type {
   IEvent,

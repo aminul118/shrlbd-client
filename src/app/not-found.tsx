@@ -4,8 +4,10 @@ import { Card } from '@/components/ui/card';
 import images from '@/constants/images';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const NotFound = () => {
+  const path = usePathname();
   return (
     <div className="flex min-h-screen flex-col items-center justify-center text-center">
       <Card className="w-full max-w-lg rounded-lg border p-10 shadow-2xl">
@@ -18,7 +20,7 @@ const NotFound = () => {
           sizes="100vw"
           className="mx-auto h-64 w-64"
         />
-
+        <p>Route: {path}</p>
         <h2 className="text-4xl font-semibold">Page Not Found</h2>
         <p>Sorry, we couldn’t find the page you’re looking for.</p>
 

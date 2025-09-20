@@ -1,8 +1,9 @@
+import { DivProps } from '@/types';
 import Image from 'next/image';
 
-const Logo = () => {
+const Logo = ({ ...props }: DivProps) => {
   return (
-    <div>
+    <div {...props}>
       <Image
         src="/logo.png"
         alt="Smart Healthcare and Research Limited logo"

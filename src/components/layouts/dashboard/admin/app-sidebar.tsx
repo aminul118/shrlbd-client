@@ -1,5 +1,15 @@
 'use client';
 
+import CollapsibleMenu from '@/components/layouts/dashboard/admin/collapsible-menu';
+import { NavUser } from '@/components/layouts/dashboard/admin/nav-user';
+import SingleMenu from '@/components/layouts/dashboard/admin/single-menu';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from '@/components/ui/sidebar';
 import {
   AudioWaveform,
   BookOpen,
@@ -12,19 +22,9 @@ import {
   Settings2,
   SquareTerminal,
 } from 'lucide-react';
+import Link from 'next/link';
 import * as React from 'react';
-
-import { NavMain } from '@/components/layouts/dashboard/admin/nav-main';
-import { NavProjects } from '@/components/layouts/dashboard/admin/nav-projects';
-import { NavUser } from '@/components/layouts/dashboard/admin/nav-user';
-import { TeamSwitcher } from '@/components/layouts/dashboard/admin/team-switcher';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarRail,
-} from '@/components/ui/sidebar';
+import Logo from '../../Logo';
 
 // This is sample data.
 const data = {
@@ -156,15 +156,17 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <Link href="/">
+          <Logo className="mx-auto" />
+        </Link>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <CollapsibleMenu menuName="Menu" items={data.navMain} />
+        <SingleMenu projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
@@ -172,4 +174,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
     </Sidebar>
   );
-}
+};
+
+export default AppSidebar;

@@ -18,9 +18,11 @@ import {
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
 
-export function NavMain({
+const CollapsibleMenu = ({
+  menuName,
   items,
 }: {
+  menuName?: string;
   items: {
     title: string;
     url: string;
@@ -31,10 +33,10 @@ export function NavMain({
       url: string;
     }[];
   }[];
-}) {
+}) => {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroup className="my-0 py-0">
+      {menuName && <SidebarGroupLabel>{menuName}</SidebarGroupLabel>}
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -70,4 +72,6 @@ export function NavMain({
       </SidebarMenu>
     </SidebarGroup>
   );
-}
+};
+
+export default CollapsibleMenu;

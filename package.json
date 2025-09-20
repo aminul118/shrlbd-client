@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
+    "prod": "npm run build && vercel --prod",
     "lint": "next lint",
     "prepare": "husky",
     "prettier:check": "npx prettier . --check",

@@ -1,5 +1,6 @@
 import NotFound from '@/components/common/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
+import Container from '@/components/ui/Container';
 import api from '@/lib/api';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
@@ -9,7 +10,7 @@ const UpcomingEvents = async () => {
   const { data } = await api.upcomingEvent.getUpcomingEvents();
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <Container className="mx-auto max-w-6xl px-4 py-12">
       {data.length === 0 ? (
         <>
           <NotFound title="Upcoming Events Not Found" />
@@ -56,7 +57,7 @@ const UpcomingEvents = async () => {
           </div>
         </>
       )}
-    </div>
+    </Container>
   );
 };
 

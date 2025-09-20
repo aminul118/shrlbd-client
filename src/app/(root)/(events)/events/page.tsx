@@ -1,9 +1,11 @@
+import AppPagination from '@/components/common/AppPagination';
 import NotFound from '@/components/common/NotFound';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';
 import api from '@/lib/api';
 import generateMetaTags from '@/Seo/generateMetaTags';
+import { ISearchParams } from '@/types';
 import DateFormat from '@/utils/dateFormat';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -21,8 +23,9 @@ export const metadata: Metadata = generateMetaTags({
 });
 // --> SEO End
 
-const EventPage = async () => {
-  const { data } = await api.event.getEvents();
+const EventPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedSearchparams = await searchParams;
+  const { data, meta } = await api.event.getEvents({ ...resolvedSearchparams });
 
   return (
     <Container>
@@ -34,31 +37,34 @@ const EventPage = async () => {
         <>
           <GrediantHeading heading="Events" />
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {data?.map((event) => (
-              <Link key={event._id} href={`/events/${event?.slug}`}>
-                <Card className="overflow-hidden pt-0">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      src={event?.photos[0]}
-                      width={400}
-                      height={200}
-                      alt={event.title}
-                      className="h-48 w-full object-cover transition-transform duration-500 ease-in-out hover:scale-110 xl:h-70"
-                    />
-                  </div>
+            {data?.map((event) => {
+              return (
+                <Link key={event._id} href={`/events/${event?.slug}`}>
+                  <Card className="overflow-hidden pt-0">
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src={event?.photos[0]}
+                        width={400}
+                        height={200}
+                        alt={event.title}
+                        className="h-48 w-full object-cover transition-transform duration-500 ease-in-out hover:scale-110 xl:h-70"
+                      />
+                    </div>
 
-                  <CardContent className="">
-                    <CardTitle className="mb-1 text-lg font-semibold">
-                      {event.title}
-                    </CardTitle>
-                    <p className="mb-2 text-xs text-gray-500">
-                      Post Date: <DateFormat date={event.createdAt} />
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                    <CardContent className="">
+                      <CardTitle className="mb-1 text-lg font-semibold">
+                        {event.title}
+                      </CardTitle>
+                      <p className="mb-2 text-xs text-gray-500">
+                        Post Date: <DateFormat date={event.createdAt} />
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
+          {meta && <AppPagination meta={meta} />}
         </>
       )}
     </Container>

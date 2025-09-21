@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import images from '@/constants/images';
+import images from '@/config/images';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

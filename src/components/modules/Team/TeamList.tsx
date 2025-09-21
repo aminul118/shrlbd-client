@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import api from '@/api';
 import NotFound from '@/components/common/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
-import api from '@/lib/api';
 import TeamMembersCard from './TeamMembersCard';
 
 const TeamList = async ({ props }: { props: Record<string, any> }) => {

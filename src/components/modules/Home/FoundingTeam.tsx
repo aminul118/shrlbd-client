@@ -1,4 +1,4 @@
-import images from '@/constants/images';
+import images from '@/config/images';
 import Image from 'next/image';
 import { Card, CardContent } from '../../ui/card';
 import Container from '../../ui/Container';

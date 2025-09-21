@@ -1,9 +1,9 @@
+import api from '@/api';
 import NotFound from '@/components/common/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';
-import api from '@/lib/api';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { ISearchParams } from '@/types';
 import DateFormat from '@/utils/dateFormat';

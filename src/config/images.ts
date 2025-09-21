@@ -1,3 +1,5 @@
+import auth from '@/assets/images/auth.jpg';
+import faq from '@/assets/images/faq.png';
 import fatema from '@/assets/images/fatema.png';
 import furkan from '@/assets/images/furkan.png';
 import moomtahina from '@/assets/images/moomtahina.png';
@@ -26,6 +28,8 @@ const images = {
     research,
   },
   notFound,
+  faq,
+  auth,
 };
 
 export default images;

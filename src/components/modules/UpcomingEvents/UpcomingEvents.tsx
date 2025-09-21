@@ -1,7 +1,7 @@
+import api from '@/api';
 import NotFound from '@/components/common/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
-import api from '@/lib/api';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 import Image from 'next/image';

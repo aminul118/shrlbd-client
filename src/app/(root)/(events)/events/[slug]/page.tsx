@@ -1,7 +1,7 @@
+import api from '@/api';
 import EventImageSlider from '@/components/modules/events/EventImageSlider';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
-import api from '@/lib/api';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { IParams } from '@/types';
 import DateFormat from '@/utils/dateFormat';

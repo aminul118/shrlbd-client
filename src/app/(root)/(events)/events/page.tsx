@@ -1,5 +1,5 @@
-import AppPagination from '@/components/common/AppPagination';
 import NotFound from '@/components/common/NotFound';
+import AppPagination from '@/components/common/pagination/AppPagination';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';

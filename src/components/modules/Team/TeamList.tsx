@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import AppPagination from '@/components/common/AppPagination';
 import NotFound from '@/components/common/NotFound';
+import AppPagination from '@/components/common/pagination/AppPagination';
 import api from '@/lib/api';
 import TeamMembersCard from './TeamMembersCard';
 

@@ -17,17 +17,17 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
+import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { authValidation } from './auth.validation';
 
 const VerifyOTPForm = () => {
   const [counter, setCounter] = useState(60); // 1 min timer
 
-  const form = useForm<z.infer<typeof authValidation.otpValidation>>({
-    resolver: zodResolver(authValidation.otpValidation),
+  const form = useForm<z.infer<typeof validation.auth.otpValidation>>({
+    resolver: zodResolver(validation.auth.otpValidation),
     defaultValues: {
       otp: '',
     },
@@ -41,7 +41,7 @@ const VerifyOTPForm = () => {
     }
   }, [counter]);
 
-  const onSubmit = (values: z.infer<typeof authValidation.otpValidation>) => {
+  const onSubmit = (values: z.infer<typeof validation.auth.otpValidation>) => {
     console.log('OTP Submitted:', values);
     // 🔑 Call verify OTP API here
   };

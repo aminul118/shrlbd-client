@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 // Registration
-const registrationFormValidation = z
+export const registrationFormValidation = z
   .object({
     firstName: z.string().min(2, { message: 'First name is required' }),
     lastName: z.string().min(2, { message: 'Last name is required' }),
@@ -20,18 +20,18 @@ const registrationFormValidation = z
   });
 
 // Login
-const loginFormValidation = z.object({
+export const loginFormValidation = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
   password: z
     .string()
     .min(6, { message: 'Password must be at least 6 characters' }),
 });
 
-const forgotPasswordValidation = z.object({
+export const forgotPasswordValidation = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
 });
 
-const otpValidation = z.object({
+export const otpValidation = z.object({
   otp: z
     .string()
     .min(6, 'OTP must be 6 digits')
@@ -39,9 +39,9 @@ const otpValidation = z.object({
     .regex(/^\d+$/, 'OTP must only contain numbers'),
 });
 
-export const authValidation = {
-  registrationFormValidation,
-  loginFormValidation,
-  forgotPasswordValidation,
-  otpValidation,
-};
+// export const authValidation = {
+//   registrationFormValidation,
+//   loginFormValidation,
+//   forgotPasswordValidation,
+//   otpValidation,
+// };

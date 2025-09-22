@@ -1,5 +1,5 @@
+import { apiGet, IApiParams } from '@/lib/apiClient';
 import { ApiResponse, ITeamMember } from '@/types';
-import { apiGet, IApiParams } from '../apiClient';
 
 export const getTeamMembers = async (params?: IApiParams) => {
   return await apiGet<ApiResponse<ITeamMember[]>>('/team/get-all', params, {

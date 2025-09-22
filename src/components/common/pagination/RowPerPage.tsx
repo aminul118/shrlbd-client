@@ -14,13 +14,17 @@ import { useRouter, useSearchParams } from 'next/navigation';
 interface RowPerPage {
   label?: string;
   totalPage: number;
+  pageNumbers?: number[];
 }
 
-const RowPerPage = ({ label = 'Show :', totalPage }: RowPerPage) => {
+const RowPerPage = ({
+  label = 'Show per page :',
+  totalPage,
+  pageNumbers = [1, 2, 3, 4, 10, 15, 20, 25, 30],
+}: RowPerPage) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const limit = searchParams.get('limit');
-  const pageArr = [1, 2, 3, 4, 10, 15, 20, 25, 30];
 
   const handlePageLimitChange = (newLimit: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -42,7 +46,7 @@ const RowPerPage = ({ label = 'Show :', totalPage }: RowPerPage) => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {pageArr.map((page) => (
+            {pageNumbers.map((page) => (
               <SelectItem key={page} value={page.toString()}>
                 {page}
               </SelectItem>

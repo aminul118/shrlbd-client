@@ -13,27 +13,27 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { authValidation } from './auth.validation';
 
 const ForgotPasswordForm = ({
   className,
   ...props
 }: React.ComponentProps<'div'>) => {
-  const form = useForm<z.infer<typeof authValidation.forgotPasswordValidation>>(
-    {
-      resolver: zodResolver(authValidation.forgotPasswordValidation),
-      defaultValues: {
-        email: '',
-      },
+  const form = useForm<
+    z.infer<typeof validation.auth.forgotPasswordValidation>
+  >({
+    resolver: zodResolver(validation.auth.forgotPasswordValidation),
+    defaultValues: {
+      email: '',
     },
-  );
+  });
 
   const onSubmit = async (
-    values: z.infer<typeof authValidation.forgotPasswordValidation>,
+    values: z.infer<typeof validation.auth.forgotPasswordValidation>,
   ) => {
     console.log('Forgot password values:', values);
     // 🔑 Call forgot password API here

@@ -9,26 +9,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-interface RowPerPage {
+interface PageLimitProps {
   label?: string;
   totalPage: number;
   pageNumbers?: number[];
+  className?: string;
 }
 
-const RowPerPage = ({
-  label = 'Show per page :',
+const PageLimit = ({
+  label = 'Show :',
   totalPage,
-  pageNumbers = [1, 2, 3, 4, 10, 15, 20, 25, 30],
-}: RowPerPage) => {
+  className,
+  pageNumbers = [1, 2, 10, 15, 20, 30, 40, 50],
+}: PageLimitProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const limit = searchParams.get('limit');
+
+  // read current limit or default to "10"
+  const limit = searchParams.get('limit') ?? '10';
 
   const handlePageLimitChange = (newLimit: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.set('limit', newLimit);
+    params.set('limit', newLimit); // always set limit
     router.push(`?${params.toString()}`);
   };
 
@@ -37,11 +42,8 @@ const RowPerPage = ({
   return (
     <div className="flex items-center gap-2">
       <Label className="whitespace-nowrap">{label}</Label>
-      <Select
-        onValueChange={handlePageLimitChange}
-        defaultValue={limit ? limit : '10'}
-      >
-        <SelectTrigger className="w-[100px]">
+      <Select onValueChange={handlePageLimitChange} value={limit}>
+        <SelectTrigger className={cn('w-20', className)}>
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
@@ -58,4 +60,4 @@ const RowPerPage = ({
   );
 };
 
-export default RowPerPage;
+export default PageLimit;

@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { Search, X } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface SearchingProps {
   placeholder?: string;
@@ -18,26 +18,29 @@ const AppSearching = ({
 }: SearchingProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search') || ''; // read current URL
+  const searchQuery = searchParams.get('search') || '';
 
-  const [query, setQuery] = useState(searchQuery); // local state for input
+  const [query, setQuery] = useState(searchQuery);
+
+  // 🔑 sync input value with query params
+  useEffect(() => {
+    setQuery(searchQuery);
+  }, [searchQuery]);
 
   const handleSearch = () => {
     const params = new URLSearchParams(searchParams.toString());
-
     if (query) {
       params.set('search', query);
     } else {
       params.delete('search');
     }
-
     router.push(`?${params.toString()}`);
   };
 
   const handleClearSearch = () => {
     const params = new URLSearchParams(searchParams.toString());
     params.delete('search');
-    setQuery(''); // clear input field
+    setQuery('');
     router.push(`?${params.toString()}`);
   };
 
@@ -52,11 +55,14 @@ const AppSearching = ({
       />
       <div className="flex space-x-2">
         <Button onClick={handleSearch}>
-          <Search /> Search
+          <Search size={16} /> Search
         </Button>
         {searchQuery && (
-          <Button className="bg-red-500 text-white" onClick={handleClearSearch}>
-            <X />
+          <Button
+            className="bg-red-500 text-white hover:bg-red-500"
+            onClick={handleClearSearch}
+          >
+            <X size={16} />
           </Button>
         )}
       </div>

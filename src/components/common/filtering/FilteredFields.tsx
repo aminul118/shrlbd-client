@@ -13,13 +13,13 @@ import { Columns3 } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-interface ViewsProps {
+interface FilteredFieldsProps {
   className?: string;
   defaultColumns: Record<string, boolean>; // e.g. { name: true, email: true, status: false }
   onChange?: (columns: Record<string, boolean>) => void; // for API calls
 }
 
-const FieldViews = ({ defaultColumns, onChange }: ViewsProps) => {
+const FilteredFields = ({ defaultColumns, onChange }: FilteredFieldsProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -86,4 +86,4 @@ const FieldViews = ({ defaultColumns, onChange }: ViewsProps) => {
   );
 };
 
-export default FieldViews;
+export default FilteredFields;

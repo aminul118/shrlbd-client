@@ -1,3 +1,4 @@
+import * as auth from './auth';
 import * as event from './event';
 import * as scrollingText from './scrolling-text';
 import * as team from './team';
@@ -8,6 +9,7 @@ const api = {
   event,
   scrollingText,
   upcomingEvent,
+  auth,
 };
 
 export default api;

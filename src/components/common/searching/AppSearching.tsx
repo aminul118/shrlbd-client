@@ -15,7 +15,6 @@ interface SearchingProps {
 const AppSearching = ({
   placeholder = 'Searching ...',
   className,
-  ...props
 }: SearchingProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -43,7 +42,7 @@ const AppSearching = ({
   };
 
   return (
-    <div className="flex items-center justify-center gap-2" {...props}>
+    <div className="flex items-center justify-center gap-2">
       <Input
         type="text"
         placeholder={placeholder}

@@ -38,10 +38,3 @@ export const otpValidation = z.object({
     .max(6, 'OTP must be 6 digits')
     .regex(/^\d+$/, 'OTP must only contain numbers'),
 });
-
-// export const authValidation = {
-//   registrationFormValidation,
-//   loginFormValidation,
-//   forgotPasswordValidation,
-//   otpValidation,
-// };

@@ -3,20 +3,32 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 interface GoToPageProps {
   totalPage: number;
   label?: string;
+  className?: string;
 }
 
-const GoToPage = ({ totalPage, label = 'Page :' }: GoToPageProps) => {
+const GoToPage = ({
+  totalPage,
+  label = 'Page :',
+  className,
+}: GoToPageProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const currentPage = Number(searchParams.get('page')) || 1;
 
   const [value, setValue] = useState(String(currentPage));
   const [error, setError] = useState('');
+
+  //  Keep input in sync with URL page
+  useEffect(() => {
+    setValue(String(currentPage));
+  }, [currentPage]);
 
   const handlePageChange = (e: string) => {
     setValue(e);
@@ -43,7 +55,7 @@ const GoToPage = ({ totalPage, label = 'Page :' }: GoToPageProps) => {
   if (totalPage <= 1) return null;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className={cn('flex items-center gap-3', className)}>
       <Label className="whitespace-nowrap">{label}</Label>
       <Input
         type="number"

@@ -3,6 +3,7 @@ import { ApiResponse, ITeamMember } from '@/types';
 
 export const getTeamMembers = async (params?: IApiParams) => {
   return await apiGet<ApiResponse<ITeamMember[]>>('/team/get-all', params, {
+    cache: 'no-store',
     next: {
       tags: ['team-members'],
     },

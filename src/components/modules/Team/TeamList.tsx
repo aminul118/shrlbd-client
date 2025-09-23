@@ -2,6 +2,8 @@
 import api from '@/api';
 import NotFound from '@/components/common/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
+import GoToPage from '@/components/common/pagination/GoToPage';
+import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import TeamMembersCard from './TeamMembersCard';
 
 const TeamList = async ({ props }: { props: Record<string, any> }) => {
@@ -23,7 +25,15 @@ const TeamList = async ({ props }: { props: Record<string, any> }) => {
         ))}
       </div>
 
-      {meta && <AppPagination meta={meta} />}
+      {meta && (
+        <div className="flex items-center justify-between">
+          <PaginationStatus meta={meta} />
+          <div className="flex gap-4">
+            <GoToPage totalPage={meta.totalPage} />
+            <AppPagination className="justify-end" meta={meta} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

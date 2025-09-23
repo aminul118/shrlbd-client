@@ -1,6 +1,6 @@
 import images from '@/config/images';
 
-const services = [
+export const services = [
   {
     id: 1,
     photo: images.services.doctor_patient,
@@ -81,5 +81,3 @@ const services = [
     ],
   },
 ];
-
-export default services;

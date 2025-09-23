@@ -26,10 +26,10 @@ const TeamList = async ({ props }: { props: Record<string, any> }) => {
       </div>
 
       {meta && (
-        <div className="flex items-center justify-between">
-          <PaginationStatus meta={meta} />
-          <div className="flex gap-4">
-            <GoToPage totalPage={meta.totalPage} />
+        <div className="flex items-center justify-center lg:justify-between">
+          <GoToPage totalPage={meta.totalPage} />
+          <div className="flex items-center gap-4">
+            <PaginationStatus meta={meta} />
             <AppPagination className="justify-end" meta={meta} />
           </div>
         </div>

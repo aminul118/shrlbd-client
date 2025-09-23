@@ -55,7 +55,7 @@ const GoToPage = ({
   if (totalPage <= 1) return null;
 
   return (
-    <div className={cn('flex items-center gap-3', className)}>
+    <div className={cn('hidden items-center gap-3 lg:flex', className)}>
       <Label className="whitespace-nowrap">{label}</Label>
       <Input
         type="number"

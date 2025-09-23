@@ -20,8 +20,10 @@ const PaginationStatus = ({ meta, className }: PaginationStatusProps) => {
   const start = (page - 1) * limit + 1;
   const end = Math.min(page * limit, meta.total);
 
+  if (meta.totalPage <= 1) return null;
+
   return (
-    <p className={cn('text-sm whitespace-nowrap', className)}>
+    <p className={cn('hidden text-sm whitespace-nowrap lg:block', className)}>
       Showing <span className="font-medium">{start}</span> – <span>{end}</span>{' '}
       of <span>{meta.total}</span> results ( Page <span>{meta.page}</span> of
       <span> {meta.totalPage} </span>)

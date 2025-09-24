@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import AosProvider from '@/providers/AosProvider';
 import ReduxProvider from '@/providers/ReduxProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { IChildren } from '@/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';

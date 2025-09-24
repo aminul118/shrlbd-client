@@ -1,4 +1,5 @@
 import baseApi from '@/redux/baseApi';
+import { ApiResponse, IScrollingText } from '@/types';
 
 const scrollingTextApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -32,10 +33,11 @@ const scrollingTextApi = baseApi.injectEndpoints({
     }),
 
     // Get all scrolling texts
-    getScrollingText: builder.query({
-      query: () => ({
+    getScrollingText: builder.query<ApiResponse<IScrollingText[]>, unknown>({
+      query: (params) => ({
         url: '/scrolling-text/get-all',
         method: 'GET',
+        params,
       }),
       providesTags: ['SCROLLING-TEXT'],
     }),

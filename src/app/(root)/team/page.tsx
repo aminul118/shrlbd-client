@@ -1,5 +1,5 @@
 import TeamList from '@/components/modules/Team/TeamList';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { ISearchParams } from '@/types';
 
 import { Metadata } from 'next';

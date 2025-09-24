@@ -1,6 +1,6 @@
 import ChatForm from '@/components/modules/AI/ChatForm';
 import Container from '@/components/ui/Container';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 // SEO Starts
 export const metadata: Metadata = generateMetaTags({

@@ -1,7 +1,7 @@
 import api from '@/api';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { IParams } from '@/types';
 import Image from 'next/image';
 

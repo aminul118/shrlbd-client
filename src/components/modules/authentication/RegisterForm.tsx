@@ -47,8 +47,7 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   ) => {
     const { firstName, lastName, email, phone, password } = data;
     const payload = {
-      firstName,
-      lastName,
+      name: firstName + lastName,
       email,
       phone,
       password,

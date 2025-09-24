@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // SEO Starts

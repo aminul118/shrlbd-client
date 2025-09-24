@@ -15,14 +15,20 @@ import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
 import images from '@/config/images';
 import { cn } from '@/lib/utils';
+import { useLoginMutation } from '@/redux/features/auth/auth.api';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+  const [login] = useLoginMutation();
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof validation.auth.loginFormValidation>>({
     resolver: zodResolver(validation.auth.loginFormValidation),
     defaultValues: {
@@ -32,9 +38,18 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   });
 
   const onSubmit = async (
-    values: z.infer<typeof validation.auth.loginFormValidation>,
+    data: z.infer<typeof validation.auth.loginFormValidation>,
   ) => {
-    console.log(values);
+    console.log(data);
+    try {
+      const res = await login(data).unwrap();
+      toast.success(res.message || 'User login successfully');
+      if (res?.data?.user?.role === 'ADMIN') {
+        router.push('/admin');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

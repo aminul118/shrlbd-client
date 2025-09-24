@@ -1,7 +1,7 @@
 import ScrollingText from '@/components/modules/UpcomingEvents/ScrollingText';
 import TypeWriterHeading from '@/components/modules/UpcomingEvents/TypeWritterHeading';
 import UpcomingEvents from '@/components/modules/UpcomingEvents/UpcomingEvents';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // --> SEO Starts

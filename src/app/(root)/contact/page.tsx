@@ -1,5 +1,5 @@
 import Contact from '@/components/modules/Contact/Contact';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // --> SEO Starts

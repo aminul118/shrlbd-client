@@ -1,10 +1,10 @@
 import ForgotPasswordForm from '@/components/modules/authentication/ForgotPasswordForm';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Forgot Password',
+  title: 'Forgot Password | SHRL',
   description: 'Description for Forgot Password Page',
   keywords: 'keyword',
 });

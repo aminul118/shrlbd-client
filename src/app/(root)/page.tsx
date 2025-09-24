@@ -4,7 +4,7 @@ import Faq from '@/components/modules/Home/Faq';
 import FoundingTeam from '@/components/modules/Home/FoundingTeam';
 import HeroBanner from '@/components/modules/Home/HeroBanner';
 import KeyServices from '@/components/modules/KeyServices/KeyServices';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // --> SEO Starts

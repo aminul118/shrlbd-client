@@ -1,6 +1,6 @@
 import JoinTeamForm from '@/components/modules/JoinTeam/JoinTeamForm';
 import JoinTeamIntro from '@/components/modules/JoinTeam/JoinTeamIntro';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // ---> SEO Starts

@@ -46,4 +46,9 @@ export const staticRoutes: Routes[] = [
     changeFrequency: 'monthly',
     priority: 1.0,
   },
+  {
+    url: 'login',
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
 ];

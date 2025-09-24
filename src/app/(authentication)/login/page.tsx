@@ -1,10 +1,10 @@
 import LoginForm from '@/components/modules/authentication/LoginForm';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Login',
+  title: 'Login | SHRL',
   description: 'Write Description',
   keywords: 'write keyword not more than 60 words',
   image: '/seo/shrl-hero-ss.png',

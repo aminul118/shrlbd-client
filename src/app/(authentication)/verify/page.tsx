@@ -1,10 +1,10 @@
 import VerifyOTPForm from '@/components/modules/authentication/VerifyOTPForm';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Verify otp',
+  title: 'Verify otp | SHRL',
   description: 'Write Description',
   keywords: 'write keyword not more than 60 words',
 });

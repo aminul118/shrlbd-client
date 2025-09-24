@@ -1,6 +1,6 @@
 import Commitments from '@/components/modules/Home/Commitment';
 import KeyServices from '@/components/modules/KeyServices/KeyServices';
-import generateMetaTags from '@/Seo/generateMetaTags';
+import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 // ---> SEO Starts

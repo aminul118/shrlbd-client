@@ -14,23 +14,19 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import config from '@/config/env.config';
+import { useCreateContactMutation } from '@/redux/features/contact/contact.api';
+import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-const formSchema = z.object({
-  name: z.string().min(2, 'Name is too short').max(50, 'Name is too long'),
-  email: z.string().email('Enter a valid email'),
-  subject: z.string().min(1, 'Subject is required'),
-  message: z.string().min(1, 'Message is required'),
-});
-
 const ContactForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [contact] = useCreateContactMutation();
+  const form = useForm<
+    z.infer<typeof validation.contact.contactFormValidation>
+  >({
+    resolver: zodResolver(validation.contact.contactFormValidation),
     defaultValues: {
       name: '',
       email: '',
@@ -39,15 +35,17 @@ const ContactForm = () => {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (
+    data: z.infer<typeof validation.contact.contactFormValidation>,
+  ) => {
     console.log(data);
     const toastId = toast.loading('Message Sending');
     try {
-      const res = await axios.post(`${config.baseUrl}/contact/create`, data, {
-        withCredentials: true,
-      });
+      const res = await contact(data).unwrap();
       console.log(res);
-      toast.success('Message sent', { id: toastId });
+      if (res.statusCode === 200) {
+        toast.success(res.message || 'Message sent', { id: toastId });
+      }
       form.reset();
     } catch (error: any) {
       toast.error('Message not sent!');

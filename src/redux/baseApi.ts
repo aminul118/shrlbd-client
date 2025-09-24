@@ -15,6 +15,7 @@ export const baseApi = createApi({
     'JOIN-TEAM',
     'TEAM',
     'AI',
+    'CONTACT',
   ],
 });
 

@@ -1,3 +1,4 @@
+import spinner from '@/assets/gif/loading-spinner.gif';
 import auth from '@/assets/images/auth.jpg';
 import heroBanner from '@/assets/images/banner/hero-banner.png';
 import faq from '@/assets/images/faq.png';
@@ -34,6 +35,9 @@ const images = {
   notFound,
   faq,
   auth,
+  gif: {
+    spinner,
+  },
 };
 
 export default images;

@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
-  title: 'Contact - SHRL',
+  title: 'Contact | SHRL',
   description:
     "Get in touch with Smart Healthcare and Research Ltd. (SHRL) for expert consultation, healthcare partnerships, training inquiries, or research collaboration. We're here to support maternal and child health initiatives through innovative digital solutions.",
   keywords:

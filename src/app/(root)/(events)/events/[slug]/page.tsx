@@ -1,10 +1,10 @@
 import api from '@/api';
+import DateFormat from '@/components/common/DateFormat';
 import EventImageSlider from '@/components/modules/events/EventImageSlider';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { IParams } from '@/types';
-import DateFormat from '@/utils/dateFormat';
 
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {

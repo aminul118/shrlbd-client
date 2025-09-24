@@ -1,4 +1,3 @@
-'use client';
 import { format } from 'date-fns';
 
 const DateFormat = ({ date }: { date: string }) => {

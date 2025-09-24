@@ -6,6 +6,7 @@ import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import NotFound from '@/components/common/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GoToPage from '@/components/common/pagination/GoToPage';
+import PageLimit from '@/components/common/pagination/PageLimit';
 import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import AppSearching from '@/components/common/searching/AppSearching';
 import Sorting from '@/components/common/sorting/Sorting';
@@ -53,6 +54,7 @@ const Events = ({ props }: { props: Record<string, any> }) => {
           <div className="flex justify-between">
             <AppSearching />
             <div className="hidden justify-between gap-3 lg:flex">
+              <PageLimit />
               <Sorting sortOptions={sortOptions} />
               <ClearAllFilter />
             </div>

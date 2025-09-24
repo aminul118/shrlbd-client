@@ -14,16 +14,14 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 interface PageLimitProps {
   label?: string;
-  totalPage: number;
   pageNumbers?: number[];
   className?: string;
 }
 
 const PageLimit = ({
   label = 'Show :',
-  totalPage,
   className,
-  pageNumbers = [1, 2, 10, 15, 20, 30, 40, 50],
+  pageNumbers = [10, 20, 30, 40, 50],
 }: PageLimitProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -36,8 +34,6 @@ const PageLimit = ({
     params.set('limit', newLimit); // always set limit
     router.push(`?${params.toString()}`);
   };
-
-  if (totalPage <= 1) return null;
 
   return (
     <div className="flex items-center gap-2">

@@ -49,13 +49,13 @@ const AppSearching = ({
       <Input
         type="text"
         placeholder={placeholder}
-        className={cn('w-56', className)}
+        className={cn('lg:w-xs', className)}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       <div className="flex space-x-2">
         <Button onClick={handleSearch}>
-          <Search size={16} /> Search
+          <Search size={16} /> <span className="hidden lg:block">Search</span>
         </Button>
         {searchQuery && (
           <Button

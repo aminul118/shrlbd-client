@@ -1,5 +1,6 @@
 'use client';
 
+import images from '@/config/images';
 import Image from 'next/image';
 import { Typewriter } from 'react-simple-typewriter';
 
@@ -48,7 +49,7 @@ const HeroBanner = () => {
         {/* Right: Image */}
         <div className="w-full">
           <Image
-            src="/images/banner/hero-img-shrl-2.png"
+            src={images.banner.heroBanner}
             width={800}
             height={600}
             alt="Smart Healthcare and Research Ltd."

@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Register',
+  title: 'Register | SHRL',
   description: 'Write Description',
   keywords: 'write keyword not more than 60 words',
 });

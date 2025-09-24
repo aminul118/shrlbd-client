@@ -1,5 +1,4 @@
 import TeamList from '@/components/modules/Team/TeamList';
-import Container from '@/components/ui/Container';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { ISearchParams } from '@/types';
 
@@ -19,10 +18,6 @@ export const metadata: Metadata = generateMetaTags({
 const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
   const resolvedSearchParams = await searchParams;
 
-  return (
-    <Container className="py-12">
-      <TeamList props={resolvedSearchParams} />
-    </Container>
-  );
+  return <TeamList props={resolvedSearchParams} />;
 };
 export default TeamMemberPage;

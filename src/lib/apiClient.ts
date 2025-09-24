@@ -15,7 +15,7 @@ export const apiGet = async <T>(
   endpoint: string,
   params: IApiParams = {},
   fetchOptions: IFetchOptions = {
-    cache: 'no-store',
+    cache: 'force-cache',
   },
 ): Promise<T> => {
   const query = new URLSearchParams();

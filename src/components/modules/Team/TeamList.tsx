@@ -1,29 +1,44 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import api from '@/api';
+'use client';
+
+import TeamLoadingPage from '@/app/(root)/team/loading';
 import NotFound from '@/components/common/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GoToPage from '@/components/common/pagination/GoToPage';
 import PaginationStatus from '@/components/common/pagination/PaginationStatus';
+import Container from '@/components/ui/Container';
+import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
 import TeamMembersCard from './TeamMembersCard';
 
-const TeamList = async ({ props }: { props: Record<string, any> }) => {
+const TeamList = ({ props }: { props: Record<string, any> }) => {
   const params = {
     ...props,
   };
 
-  const { data, meta } = await api.team.getTeamMembers(params);
+  const { data, isLoading, isFetching } = useGetAllTeamMembersQuery(params);
 
-  if (!data || data.length === 0) {
-    return <NotFound title="Team Members Not Found" />;
+  const members = data?.data;
+  const meta = data?.meta;
+
+  if (isLoading || isFetching) {
+    return <TeamLoadingPage />;
   }
 
   return (
-    <div>
-      <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
-        {data.map((member) => (
-          <TeamMembersCard key={member._id} member={member} />
-        ))}
-      </div>
+    <Container className="py-12">
+      {members?.length === 0 ? (
+        <>
+          <NotFound title="Team Member Not Found" />
+        </>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
+            {members?.map((member) => (
+              <TeamMembersCard key={member._id} member={member} />
+            ))}
+          </div>
+        </>
+      )}
 
       {meta && (
         <div className="flex items-center justify-center lg:justify-between">
@@ -34,7 +49,7 @@ const TeamList = async ({ props }: { props: Record<string, any> }) => {
           </div>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 

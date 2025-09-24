@@ -1,4 +1,5 @@
 import auth from '@/assets/images/auth.jpg';
+import heroBanner from '@/assets/images/banner/hero-banner.png';
 import faq from '@/assets/images/faq.png';
 import fatema from '@/assets/images/fatema.png';
 import furkan from '@/assets/images/furkan.png';
@@ -26,6 +27,9 @@ const images = {
     patient_education,
     community,
     research,
+  },
+  banner: {
+    heroBanner,
   },
   notFound,
   faq,

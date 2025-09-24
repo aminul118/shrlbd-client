@@ -58,10 +58,10 @@ const Sorting = ({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={cn('flex items-center gap-2', className)}>
       {!labelInSelect && <Label className="whitespace-nowrap">{label}</Label>}
       <Select onValueChange={handleSortChange} value={currentSorting}>
-        <SelectTrigger className={cn('w-full', className)}>
+        <SelectTrigger className={cn('w-full')}>
           {labelInSelect ? (
             <span className="flex items-center gap-1">
               <ArrowDownUp /> {label}

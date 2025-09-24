@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -16,14 +17,17 @@ import Logo from '@/components/layouts/Logo';
 import Password from '@/components/ui/password';
 import images from '@/config/images';
 import { cn } from '@/lib/utils';
+import { useRegisterMutation } from '@/redux/features/auth/auth.api';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+  const [register] = useRegisterMutation();
   const form = useForm<
     z.infer<typeof validation.auth.registrationFormValidation>
   >({
@@ -39,9 +43,25 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   });
 
   const onSubmit = async (
-    values: z.infer<typeof validation.auth.registrationFormValidation>,
+    data: z.infer<typeof validation.auth.registrationFormValidation>,
   ) => {
-    console.log(values);
+    const { firstName, lastName, email, phone, password } = data;
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      password,
+    };
+    console.log(payload);
+    try {
+      const res = await register(payload).unwrap();
+      console.log(res);
+      toast.success(res.message);
+    } catch (error: any) {
+      toast.error('Failed to create user');
+      console.log(error);
+    }
   };
 
   return (

@@ -1,6 +1,7 @@
 import fonts from '@/config/fonts.config';
 import { cn } from '@/lib/utils';
 import AosProvider from '@/providers/AosProvider';
+import ReduxProvider from '@/providers/ReduxProvider';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import generateMetaTags from '@/Seo/generateMetaTags';
 import { IChildren } from '@/types';
@@ -32,7 +33,9 @@ const RootLayout = ({ children }: IChildren) => {
           enableSystem
           disableTransitionOnChange
         >
-          <AosProvider>{children}</AosProvider>
+          <ReduxProvider>
+            <AosProvider>{children}</AosProvider>
+          </ReduxProvider>
           <Toaster position="top-right" richColors theme="system" />
         </ThemeProvider>
       </body>

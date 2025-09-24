@@ -37,7 +37,7 @@ const Menu = ({ menuData }: MenuProps) => {
                 return (
                   <SidebarMenuItem key={i}>
                     <SidebarMenuButton asChild>
-                      <Link href={menu.url} className="flex items-center gap-2">
+                      <Link href={menu.url}>
                         {menu.icon && <menu.icon />}
                         <span>{menu.name}</span>
                       </Link>
@@ -51,11 +51,8 @@ const Menu = ({ menuData }: MenuProps) => {
                 <Collapsible key={i} className="group/collapsible">
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                      <SidebarMenuButton
-                        asChild
-                        className="flex items-center gap-2"
-                      >
-                        <div className="flex w-full items-center gap-2">
+                      <SidebarMenuButton asChild>
+                        <div>
                           {menu.icon && <menu.icon />}
                           <span>{menu.name}</span>
                           <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />

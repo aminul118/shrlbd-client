@@ -5,7 +5,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar';
-import { adminSidebarmenu } from '@/constants/menu-types';
+import { adminSidebarmenu } from '@/constants/admin-menu';
 import Link from 'next/link';
 import Logo from '../../Logo';
 import Menu from './Menu';

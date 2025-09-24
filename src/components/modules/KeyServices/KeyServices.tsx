@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
-import constant from '@/constants';
+import { services } from '@/constants/services';
 import { SectionProps } from '@/types';
 import Image from 'next/image';
 
@@ -17,7 +17,7 @@ const KeyServices = ({ ...props }: SectionProps) => {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
-          {constant.services.services?.map((service) => {
+          {services?.map((service) => {
             const { id, photo, service_name, description, features } = service;
 
             return (

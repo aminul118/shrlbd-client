@@ -42,7 +42,7 @@ const ContactForm = () => {
     const toastId = toast.loading('Message Sending');
     try {
       const res = await contact(data).unwrap();
-      console.log(res);
+
       if (res.statusCode === 200) {
         toast.success(res.message || 'Message sent', { id: toastId });
       }

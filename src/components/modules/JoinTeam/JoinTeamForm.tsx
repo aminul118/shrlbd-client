@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -21,45 +20,19 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { useSendTeamJoinRequestMutation } from '@/redux/features/joinTeam/joinTeam.api';
+import { teamJoinValidation } from '@/validations/team';
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-interface JoinTeamResponse {
-  statusCode: number;
-  success: boolean;
-  message: string;
-}
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-  phone: z.string().min(4, { message: 'Phone must be at least 4 digits.' }),
-  gender: z.string().min(1, { message: 'Please select a gender.' }),
-  occupation: z
-    .string()
-    .min(2, { message: 'Occupation must be at least 2 characters.' }),
-  organization: z
-    .string()
-    .min(2, { message: 'Organization must be at least 2 characters.' }),
-  field_of_interest: z
-    .string()
-    .min(2, { message: 'Field of interest must be at least 2 characters.' }),
-  Why_join_team: z
-    .string()
-    .min(10, { message: 'Please write at least 10 characters.' }),
-  time_commitment: z
-    .string()
-    .min(1, { message: 'Please select a time commitment.' }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof teamJoinValidation>;
 
 const JoinTeamForm = () => {
+  const [joinTeam, { isLoading }] = useSendTeamJoinRequestMutation();
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(teamJoinValidation),
     defaultValues: {
       name: '',
       email: '',
@@ -74,28 +47,19 @@ const JoinTeamForm = () => {
     mode: 'onTouched',
   });
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (payload: FormValues) => {
     const toastId = toast.loading('Application sending…');
     try {
-      const res = await axios.post<Partial<JoinTeamResponse>>(
-        'https://server.shrlbd.com/api/v1/join-team/create',
-        values,
-      );
-
-      if (res.data?.success) {
-        toast.success(res.data.message || 'Application sent', { id: toastId });
+      const res = await joinTeam(payload).unwrap();
+      console.log(res);
+      if (res.statusCode === 201) {
+        toast.success(res.message || 'From submitted', { id: toastId });
         form.reset();
-        return;
       }
-      toast.error(res.data?.message || 'Application not sent', { id: toastId });
-    } catch (err: any) {
-      const msg =
-        err.response?.data?.message || err.message || 'Application not sent';
-      toast.error(msg, { id: toastId });
+    } catch {
+      toast.error('Message not sent!');
     }
   };
-
-  const submitting = form.formState.isSubmitting;
 
   return (
     <Container data-aos="fade-left" id="apply">
@@ -284,8 +248,8 @@ const JoinTeamForm = () => {
           />
 
           <div className="flex items-center gap-3">
-            <Button type="submit" disabled={submitting}>
-              {submitting ? 'Submitting…' : 'Submit'}
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? 'Submitting…' : 'Submit'}
             </Button>
           </div>
         </form>

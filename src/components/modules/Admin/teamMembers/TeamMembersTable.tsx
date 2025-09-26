@@ -104,6 +104,7 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
                   member;
                 return (
                   <TableRow key={_id}>
+                    <TableCell>{i + 1}</TableCell>
                     {columns.photo && (
                       <TableCell>
                         {photo ? (

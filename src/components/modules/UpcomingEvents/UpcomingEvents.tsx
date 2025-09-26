@@ -1,5 +1,5 @@
 import api from '@/api';
-import NotFound from '@/components/common/NotFound';
+import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import { format } from 'date-fns';

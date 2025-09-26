@@ -1,5 +1,5 @@
-import FetchError from '@/components/common/FetchError';
-import NotFound from '@/components/common/NotFound';
+import FetchError from '@/components/common/error/FetchError';
+import NotFound from '@/components/common/error/NotFound';
 import Container from '@/components/ui/Container';
 import GradientTitle from '@/components/ui/gradientTitle';
 import {

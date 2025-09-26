@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Frown } from 'lucide-react';
 import Link from 'next/link';
-import Container from '../ui/Container';
+import Container from '../../ui/Container';
 
 interface NotFoundProps {
   title?: string;

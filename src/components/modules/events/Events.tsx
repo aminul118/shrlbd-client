@@ -2,8 +2,8 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import EventPageLoading from '@/app/(root)/(events)/events/loading';
+import NotFound from '@/components/common/error/NotFound';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
-import NotFound from '@/components/common/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GoToPage from '@/components/common/pagination/GoToPage';
 import PageLimit from '@/components/common/pagination/PageLimit';

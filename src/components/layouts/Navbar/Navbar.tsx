@@ -18,6 +18,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import Logo from '../Logo';
 
+import SearchTeamMember from '@/components/common/searching/SearchTeamMember';
 import { BookOpenIcon, InfoIcon, LifeBuoyIcon, Users } from 'lucide-react';
 
 /* ---------- Types to make `href` never undefined on simple links ---------- */
@@ -311,6 +312,9 @@ const Navbar = () => {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
+          <div className="hidden md:block">
+            <SearchTeamMember />
+          </div>
           <Button variant="destructive" size="sm" className="text-sm">
             <Users /> <Link href="/join-team">Join Team</Link>
           </Button>

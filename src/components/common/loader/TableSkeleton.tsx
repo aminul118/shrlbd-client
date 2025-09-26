@@ -1,3 +1,4 @@
+import Container from '@/components/ui/Container';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
@@ -10,9 +11,9 @@ import {
 
 const TableSkeleton = () => {
   return (
-    <div className="container mx-auto overflow-x-auto">
+    <Container className="overflow-x-hidden">
       <Table>
-        <TableHeader className="bg-primary text-white">
+        <TableHeader className="bg-muted text-white">
           <TableRow>
             <TableHead>
               <Skeleton className="h-4 w-6" />
@@ -71,7 +72,7 @@ const TableSkeleton = () => {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </Container>
   );
 };
 

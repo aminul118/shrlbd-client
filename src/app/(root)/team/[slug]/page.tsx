@@ -1,14 +1,14 @@
-import api from '@/api';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
+import { getSingleTeamMember } from '@/services/team';
 import { IParams } from '@/types';
 import Image from 'next/image';
 
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {
   const { slug } = await params;
-  const { data: team } = await api.team.getSingleTeamMember(slug);
+  const { data: team } = await getSingleTeamMember(slug);
 
   return generateMetaTags({
     title: `${team.name} | ${team.shrlDesignation}`,
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: IParams) {
 
 const TeamDetails = async ({ params }: IParams) => {
   const { slug } = await params;
-  const { data: team } = await api.team.getSingleTeamMember(slug);
+  const { data: team } = await getSingleTeamMember(slug);
 
   return (
     <Container>

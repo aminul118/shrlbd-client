@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react';
 interface FilteredViewsProps {
   className?: string;
   defaultColumns: Record<string, boolean>; // e.g. { name: true, email: true, status: false }
-  onChange?: (columns: Record<string, boolean>) => void; // for API calls
+  onChange?: (columns: Record<string, boolean>) => void;
 }
 
 const FilteredViews = ({ defaultColumns, onChange }: FilteredViewsProps) => {
@@ -26,7 +26,7 @@ const FilteredViews = ({ defaultColumns, onChange }: FilteredViewsProps) => {
   const [columns, setColumns] =
     useState<Record<string, boolean>>(defaultColumns);
 
-  //  Initialize from URL fields
+  // ✅ Initialize from URL fields safely
   useEffect(() => {
     const fields = searchParams.get('fields');
     if (fields) {
@@ -37,19 +37,24 @@ const FilteredViews = ({ defaultColumns, onChange }: FilteredViewsProps) => {
           activeFields.includes(key),
         ]),
       );
-      setColumns(updated);
-      onChange?.(updated);
-    }
-  }, [searchParams, defaultColumns, onChange]);
 
-  //  Update state + URL
+      // ✅ prevent infinite re-render loop
+      const isDifferent = JSON.stringify(updated) !== JSON.stringify(columns);
+      if (isDifferent) {
+        setColumns(updated);
+        onChange?.(updated);
+      }
+    }
+  }, [searchParams, defaultColumns, columns, onChange]);
+
+  // ✅ Toggle column & update URL
   const toggleColumn = (key: string) => {
     const updated = { ...columns, [key]: !columns[key] };
     setColumns(updated);
 
-    // Build new fields param
     const activeFields = Object.keys(updated).filter((k) => updated[k]);
     const params = new URLSearchParams(searchParams.toString());
+
     if (activeFields.length > 0) {
       params.set('fields', activeFields.join(','));
     } else {

@@ -1,0 +1,68 @@
+'use client';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
+import { Button } from '../ui/button';
+
+interface IDeleteResponse {
+  success: boolean;
+  message?: string;
+}
+
+interface IDeleteConfirmation {
+  onConfirm: () => Promise<IDeleteResponse>;
+  children?: React.ReactNode;
+}
+
+const DeleteConfirmation = ({ children, onConfirm }: IDeleteConfirmation) => {
+  const handleDelete = async () => {
+    const toastId = toast.loading('Removing...');
+    try {
+      const res = await onConfirm();
+
+      // console.log('RES-->', res);
+      if (res.success) {
+        toast.success(res.message ?? 'Removed Successfully', { id: toastId });
+      }
+    } catch {
+      toast.error('Failed to delete. Please try again.', { id: toastId });
+    }
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        {children ?? (
+          <Button variant="destructive" size="sm">
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        )}
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete and
+            remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDelete}>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+};
+
+export default DeleteConfirmation;

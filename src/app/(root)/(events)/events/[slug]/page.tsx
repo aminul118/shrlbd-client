@@ -1,15 +1,15 @@
-import api from '@/api';
 import DateFormat from '@/components/common/DateFormat';
 import EventImageSlider from '@/components/modules/events/EventImageSlider';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
+import { getSingleEvent } from '@/services/event';
 import { IParams } from '@/types';
 
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {
   const { slug } = await params;
-  const { data: event } = await api.event.getSingleEvent(slug);
+  const { data: event } = await getSingleEvent(slug);
 
   return generateMetaTags({
     title: `${event.title}`,
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: IParams) {
 
 const EventDetailsPage = async ({ params }: IParams) => {
   const { slug } = await params;
-  const { data: event } = await api.event.getSingleEvent(slug);
+  const { data: event } = await getSingleEvent(slug);
 
   const photos = event.photos || [];
 

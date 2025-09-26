@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import envVars from '@/config/env.config';
+import axios from 'axios';
+import { revalidateTag } from 'next/cache';
 export interface IApiParams {
   [key: string]: string | number | undefined;
 }
@@ -41,4 +44,54 @@ export const apiGet = async <T>(
   }
 
   return res.json() as Promise<T>;
+};
+
+export const apiDelete = async <T>({
+  endpoint,
+  tag,
+}: {
+  endpoint: string;
+  tag?: string;
+}): Promise<T> => {
+  try {
+    const res = await axios.delete<T>(`${envVars.baseUrl}${endpoint}`);
+
+    // revalidate cache for fresh UI
+    if (tag) {
+      revalidateTag(tag);
+    }
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(
+      `DELETE /${endpoint} failed ==> ${error.response?.status || error.message}`,
+    );
+  }
+};
+
+interface ApiPostParams<T> {
+  endpoint: string;
+  data: T;
+  tag?: string;
+}
+
+export const apiPost = async <T, R>({
+  endpoint,
+  data,
+  tag,
+}: ApiPostParams<T>): Promise<R> => {
+  try {
+    const res = await axios.post<R>(`${envVars.baseUrl}${endpoint}`, data);
+
+    //  Revalidate cache if tag is provided
+    if (tag) {
+      revalidateTag(tag);
+    }
+
+    return res.data;
+  } catch (error: any) {
+    throw new Error(
+      `POST ${endpoint} failed ==> ${error.response?.status || error.message}`,
+    );
+  }
 };

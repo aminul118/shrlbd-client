@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { useFileUpload } from '@/hooks/use-file-upload';
 import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect } from 'react';
 
 interface ImageDropProps {
@@ -65,8 +66,10 @@ export default function ImageDrop({ onChange }: ImageDropProps) {
           />
           {previewUrl ? (
             <div className="absolute inset-0 flex items-center justify-center p-4">
-              <img
+              <Image
                 src={previewUrl}
+                width={400}
+                height={400}
                 alt={files[0]?.file?.name || 'Uploaded image'}
                 className="mx-auto max-h-full rounded object-contain"
               />

@@ -16,7 +16,7 @@ import AddScrollingTextModal from './AddScrollingTextModal';
 import DeleteScrollingText from './DeleteScrollingText';
 import ViewScrollingTextModal from './ViewScrollingTextModal';
 
-const ScrollingText = async () => {
+const ScrollingTextTable = async () => {
   const { data, statusCode } = await getScrollingText();
 
   if (!data || statusCode !== 200) {
@@ -85,4 +85,4 @@ const ScrollingText = async () => {
   );
 };
 
-export default ScrollingText;
+export default ScrollingTextTable;

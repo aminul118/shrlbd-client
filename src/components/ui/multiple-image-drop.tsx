@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { useFileUpload } from '@/hooks/use-file-upload';
 import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect } from 'react';
 
 // // Create some dummy initial files
@@ -118,9 +119,11 @@ export default function MultipleImageDrop({ onChange }: ImageDropProps) {
                   key={file.id}
                   className="bg-accent relative aspect-square rounded-md"
                 >
-                  <img
-                    src={file.preview}
+                  <Image
+                    src={file.preview as string}
                     alt={file.file.name}
+                    width={400}
+                    height={400}
                     className="size-full rounded-[inherit] object-cover"
                   />
                   <Button

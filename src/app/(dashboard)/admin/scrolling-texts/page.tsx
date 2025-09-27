@@ -1,4 +1,4 @@
-import ScrollingText from '@/components/modules/scrollingText/ScrollingText';
+import ScrollingTextTable from '@/components/modules/scrollingText/ScrollingTextTable';
 import { Metadata } from 'next';
 
 // >> SEO Start
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 // >> SEO End
 
 const ScrollingTextPage = () => {
-  return <ScrollingText />;
+  return <ScrollingTextTable />;
 };
 
 export default ScrollingTextPage;

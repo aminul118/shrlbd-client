@@ -1,5 +1,11 @@
+import Home from '@/components/modules/Admin/Home';
+
 const AdminHomePage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Home />
+    </div>
+  );
 };
 
 export default AdminHomePage;

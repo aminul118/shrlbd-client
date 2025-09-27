@@ -25,7 +25,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
+const LoginForm = ({ className }: { className?: string }) => {
   const [login] = useLoginMutation();
   const router = useRouter();
   const searchParams = useSearchParams(); // ✅ read query params
@@ -64,7 +64,6 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   return (
     <div
       className={cn('flex items-center justify-center', className)}
-      {...props}
       data-aos="fade-left"
     >
       <Card className="w-full max-w-5xl overflow-hidden p-0">
@@ -77,7 +76,9 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
                 className="flex flex-col gap-6"
               >
                 <div className="grid place-items-center">
-                  <Logo />
+                  <Link href={'/'}>
+                    <Logo />
+                  </Link>
                   <p className="text-muted-foreground mt-4">
                     Login to your Tab Startup portal
                   </p>

@@ -3,6 +3,7 @@ import {
   Bot,
   CalendarDays,
   GalleryHorizontal,
+  Home,
   UserCog,
   Users,
 } from 'lucide-react';
@@ -46,6 +47,11 @@ export const adminSidebarmenu: MenuGroup[] = [
         name: 'AI Trainings',
         url: '/admin/ai-trainings',
         icon: Bot,
+      },
+      {
+        name: 'Go Home',
+        url: '/',
+        icon: Home,
       },
     ],
   },

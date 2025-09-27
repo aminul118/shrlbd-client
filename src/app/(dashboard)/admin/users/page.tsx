@@ -1,3 +1,5 @@
+import UsersTable from '@/components/modules/registedUser/UsersTable';
+import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
 // >> SEO Start
@@ -6,8 +8,9 @@ export const metadata: Metadata = {
 };
 // >> SEO End
 
-const UsersPage = () => {
-  return <div></div>;
+const UsersPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedSearchparams = await searchParams;
+  return <UsersTable props={resolvedSearchparams} />;
 };
 
 export default UsersPage;

@@ -1,7 +1,6 @@
 import LoginForm from '@/components/modules/authentication/LoginForm';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
@@ -16,9 +15,7 @@ const LoginPage = () => {
   return (
     <div className="bg-muted flex min-h-screen flex-col items-center justify-center overflow-x-hidden p-2 md:p-10 lg:p-6">
       <div className="w-full max-w-sm md:max-w-4xl">
-        <Suspense fallback={<></>}>
-          <LoginForm />
-        </Suspense>
+        <LoginForm />
       </div>
     </div>
   );

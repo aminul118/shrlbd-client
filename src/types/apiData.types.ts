@@ -66,6 +66,7 @@ export interface IUser {
   name: string;
   email: string;
   role: string;
+  picture: string;
   isDeleted: boolean;
   isActive: string;
   isVerified: boolean;

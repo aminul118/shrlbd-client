@@ -22,12 +22,14 @@ import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
 const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const [register] = useRegisterMutation();
+  const router = useRouter();
   const form = useForm<
     z.infer<typeof validation.auth.registrationFormValidation>
   >({
@@ -57,6 +59,9 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
       const res = await register(payload).unwrap();
       console.log(res);
       toast.success(res.message);
+      if (res.statusCode === 201) {
+        router.push(`/verify?email=${email}`);
+      }
     } catch (error: any) {
       toast.error('Failed to create user');
       console.log(error);
@@ -85,7 +90,9 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
           {/* Right side form */}
           <div className="p-8">
             <div className="flex flex-col items-center gap-6 text-center">
-              <Logo />
+              <Link href={'/'}>
+                <Logo />
+              </Link>
               <p className="text-muted-foreground text-balance">
                 Register to Tab Startup portal
               </p>

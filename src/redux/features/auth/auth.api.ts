@@ -1,4 +1,6 @@
 import { baseApi } from '@/redux/baseApi';
+import { ApiResponse } from '@/types';
+import { IUser } from '@/types/apiData.types';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -58,7 +60,7 @@ export const authApi = baseApi.injectEndpoints({
       providesTags: ['USER'],
     }),
     // User Info
-    allUsersInfo: builder.query({
+    allUsersInfo: builder.query<ApiResponse<IUser[]>, unknown>({
       query: () => ({
         url: '/user/all-users',
         method: 'GET',

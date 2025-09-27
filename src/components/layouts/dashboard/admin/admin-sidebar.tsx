@@ -16,7 +16,7 @@ const AdminSidebar = () => {
     <Sidebar collapsible="icon">
       {/* Header */}
       <SidebarHeader>
-        <Link href="/">
+        <Link href="/admin">
           <Logo className="flex justify-center" />
         </Link>
       </SidebarHeader>

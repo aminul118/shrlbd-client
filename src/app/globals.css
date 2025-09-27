@@ -136,3 +136,14 @@
 .card-grid {
   @apply grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3;
 }
+
+/* Scrollbar configure */
+/* thin scrollbar (10px) */
+.scrollbar-thin {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 transparent; /* Firefox */
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px; /* Chrome, Edge, Safari */
+}

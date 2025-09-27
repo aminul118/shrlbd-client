@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
+import Tooltip from '../common/Tooltip';
 import { Button } from '../ui/button';
 
 interface IDeleteResponse {
@@ -41,13 +42,16 @@ const DeleteConfirmation = ({ children, onConfirm }: IDeleteConfirmation) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        {children ?? (
-          <Button variant="destructive" size="sm">
-            <Trash2 className="h-4 w-4" />
-          </Button>
-        )}
-      </AlertDialogTrigger>
+      {/* Remove Tooltip or replace with a fragment if Tooltip does not accept children */}
+      <Tooltip content="Delete">
+        <AlertDialogTrigger asChild>
+          {children ?? (
+            <Button variant="destructive" size="sm">
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          )}
+        </AlertDialogTrigger>
+      </Tooltip>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

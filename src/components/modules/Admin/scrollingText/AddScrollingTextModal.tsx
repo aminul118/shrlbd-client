@@ -1,8 +1,7 @@
 'use client';
 
-import { createScrollingText } from '@/actions/scrolling-text';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
+import { createScrollingText } from '@/actions/scrolling-text';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -95,7 +94,9 @@ const AddScrollingTextModal = () => {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit">Submit</Button>
+              <Button disabled={!form.formState.isValid} type="submit">
+                Submit
+              </Button>
             </DialogFooter>
           </form>
         </Form>

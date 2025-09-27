@@ -37,3 +37,19 @@ export interface IUpcomingEvent {
   photo: string;
   details: string;
 }
+
+export interface ITeamJoinRequest {
+  name: string;
+  email: string;
+  phone: string;
+  gender: string;
+  occupation: string;
+  organization: string;
+  field_of_interest: string;
+  Why_join_team: string;
+  time_commitment: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  slug: string;
+}

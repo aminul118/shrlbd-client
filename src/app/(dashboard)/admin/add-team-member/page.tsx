@@ -1,3 +1,4 @@
+import AddTeamMember from '@/components/modules/Admin/teamMembers/AddTeamMember';
 import { Metadata } from 'next';
 
 // >> SEO Start
@@ -7,7 +8,11 @@ export const metadata: Metadata = {
 // >> SEO End
 
 const AddTeamMemberPage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <AddTeamMember />
+    </div>
+  );
 };
 
 export default AddTeamMemberPage;

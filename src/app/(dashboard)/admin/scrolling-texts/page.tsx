@@ -8,11 +8,7 @@ export const metadata: Metadata = {
 // >> SEO End
 
 const ScrollingTextPage = () => {
-  return (
-    <div>
-      <ScrollingText />
-    </div>
-  );
+  return <ScrollingText />;
 };
 
 export default ScrollingTextPage;

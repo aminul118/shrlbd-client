@@ -5,7 +5,11 @@ interface IHtml {
 
 const HtmlContent = ({ content, className }: IHtml) => {
   return (
-    <div className={className} dangerouslySetInnerHTML={{ __html: content }} />
+    <div
+      suppressHydrationWarning
+      className={className}
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
   );
 };
 

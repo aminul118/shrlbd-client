@@ -1,3 +1,5 @@
+import TeamJoinRequest from '@/components/modules/Admin/TeamJoinReguest/TeamJoinRequestTable';
+import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
 // >> SEO Start
@@ -6,8 +8,13 @@ export const metadata: Metadata = {
 };
 // >> SEO End
 
-const TeamJoinRequestPage = () => {
-  return <div></div>;
+const TeamJoinRequestPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedSearchparams = await searchParams;
+  return (
+    <div>
+      <TeamJoinRequest props={resolvedSearchparams} />
+    </div>
+  );
 };
 
 export default TeamJoinRequestPage;

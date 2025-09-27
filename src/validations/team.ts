@@ -21,3 +21,17 @@ export const teamJoinValidation = z.object({
     .string()
     .min(1, { message: 'Please select a time commitment.' }),
 });
+
+export const addTeamMemberValidation = z.object({
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
+  content: z
+    .string()
+    .min(2, { message: 'Content must be at least 2 characters.' }),
+  designation: z.array(z.string().min(1, 'Designation is required')).min(1),
+  shrlDesignation: z
+    .string()
+    .min(2, { message: 'SHRL Designation must be at least 2 characters.' }),
+  email: z.string().email(),
+  phone: z.string().min(5, { message: 'Phone number is required.' }),
+  photo: z.instanceof(File).optional().or(z.null()),
+});

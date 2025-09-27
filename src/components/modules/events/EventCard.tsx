@@ -1,6 +1,6 @@
+import DateFormat from '@/components/common/DateFormat';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { IEvent } from '@/types';
-import dateFormat from '@/utils/dateFormat';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,7 +24,7 @@ const EventCard = ({ event }: { event: IEvent }) => {
               {event.title}
             </CardTitle>
             <p className="mb-2 text-xs text-gray-500">
-              Post Date: {dateFormat(event.createdAt)}
+              Post Date: <DateFormat date={event.createdAt} />
             </p>
           </CardContent>
         </Card>

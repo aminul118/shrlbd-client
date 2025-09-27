@@ -1,10 +1,10 @@
+import DateFormat from '@/components/common/DateFormat';
 import EventImageSlider from '@/components/modules/events/EventImageSlider';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleEvent } from '@/services/event';
 import { IParams } from '@/types';
-import dateFormat from '@/utils/dateFormat';
 
 // ---> SEO Starts
 export async function generateMetadata({ params }: IParams) {
@@ -38,7 +38,7 @@ const EventDetailsPage = async ({ params }: IParams) => {
           <div className="mt-4">
             <h1 className="text-3xl font-bold">{title}</h1>
             <p className="text-xs text-gray-500">
-              Post Date: {dateFormat(createdAt)}
+              Post Date: <DateFormat date={createdAt} />
             </p>
           </div>
 

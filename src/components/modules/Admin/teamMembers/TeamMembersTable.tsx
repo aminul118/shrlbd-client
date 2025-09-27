@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import DateFormat from '@/components/common/DateFormat';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import FilteredViews from '@/components/common/filtering/FilteredViews';
 import TableSkeleton from '@/components/common/loader/TableSkeleton';
@@ -22,10 +23,11 @@ import {
 } from '@/components/ui/table';
 import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
 import { ITeamMember } from '@/types';
-import dateFormat from '@/utils/dateFormat';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import DeleteTeamMember from './DeleteTeamMember';
+import ViewTeamMemberModal from './ViewTeamMemberModal';
 
 const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -126,13 +128,14 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
                     )}
                     {columns.phone && <TableCell>{phone}</TableCell>}
                     {columns.createdAt && (
-                      <TableCell>{dateFormat(createdAt)}</TableCell>
+                      <TableCell>
+                        <DateFormat date={createdAt} />
+                      </TableCell>
                     )}
                     {columns.actions && (
-                      <TableCell>
-                        <button className="text-blue-500 hover:underline">
-                          View
-                        </button>
+                      <TableCell className="flex items-center justify-center gap-2">
+                        <DeleteTeamMember id={'dummy'} />
+                        <ViewTeamMemberModal member={member} />
                       </TableCell>
                     )}
                   </TableRow>

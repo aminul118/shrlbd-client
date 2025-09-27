@@ -1,3 +1,4 @@
+import DateFormat from '@/components/common/DateFormat';
 import FetchError from '@/components/common/error/FetchError';
 import NotFound from '@/components/common/error/NotFound';
 import Container from '@/components/ui/Container';
@@ -11,7 +12,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { getScrollingText } from '@/services/scrolling-text';
-import dateFormat from '@/utils/dateFormat';
 import AddScrollingTextModal from './AddScrollingTextModal';
 import DeleteScrollingText from './DeleteScrollingText';
 import ViewScrollingTextModal from './ViewScrollingTextModal';
@@ -67,7 +67,7 @@ const ScrollingText = async () => {
                       : text.text}
                   </TableCell>
                   <TableCell className="text-left">
-                    {dateFormat(text.createdAt)}
+                    <DateFormat date={text.createdAt} />
                   </TableCell>
                   <TableCell className="text-center">
                     <div className="flex items-center gap-2">

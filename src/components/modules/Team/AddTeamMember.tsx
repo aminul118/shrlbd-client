@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
@@ -14,16 +15,23 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
+import { useAddTeamMemberMutation } from '@/redux/features/team/team.api';
 import { addTeamMemberValidation } from '@/validations/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { FieldArrayPath, useFieldArray, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import z from 'zod';
 
 const AddTeamMember = () => {
-  const form = useForm<z.infer<typeof addTeamMemberValidation>>({
+  type FormValues = z.infer<typeof addTeamMemberValidation>;
+  const router = useRouter();
+  const [addTeamMember] = useAddTeamMemberMutation();
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(addTeamMemberValidation),
     defaultValues: {
       name: '',
@@ -35,18 +43,13 @@ const AddTeamMember = () => {
       photo: null,
     },
   });
-  const { fields, append, remove } = useFieldArray<
-    z.infer<typeof addTeamMemberValidation>
-  >({
+  const { fields, append, remove } = useFieldArray<FormValues>({
     control: form.control,
-    name: 'designation' as FieldArrayPath<
-      z.infer<typeof addTeamMemberValidation>
-    >,
+    name: 'designation' as FieldArrayPath<FormValues>,
   });
 
-  const onSubmit = async (data: z.infer<typeof addTeamMemberValidation>) => {
+  const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
-    console.log(data);
 
     // Exclude the raw File from the JSON blob
     const { photo, ...rest } = data;
@@ -56,7 +59,10 @@ const AddTeamMember = () => {
       formData.append('file', photo);
     }
 
+    const toastId = toast.loading('Adding team member…');
     try {
+      const res = await addTeamMember(formData).unwrap();
+      toast.success(res?.message || 'Team member added', { id: toastId });
       form.reset({
         name: '',
         content: '',
@@ -66,11 +72,14 @@ const AddTeamMember = () => {
         phone: '',
         photo: null,
       });
-    } catch (error) {
-      console.log(error);
+
+      router.push('/admin/team-members');
+    } catch (error: any) {
+      toast.error(error?.message || 'Failed to add team member', {
+        id: toastId,
+      });
     }
   };
-
   return (
     <Container>
       <div className="mb-4 flex items-center justify-between">

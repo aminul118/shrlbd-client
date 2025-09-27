@@ -31,7 +31,7 @@ const DeleteConfirmation = ({ children, onConfirm }: IDeleteConfirmation) => {
     try {
       const res = await onConfirm();
 
-      // console.log('RES-->', res);
+      console.log('RES-->', res);
       if (res.success) {
         toast.success(res.message ?? 'Removed Successfully', { id: toastId });
       }

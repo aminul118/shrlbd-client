@@ -6,5 +6,10 @@ export const getUpcomingEvents = async (params?: Record<string, any>) => {
   return await apiGet<ApiResponse<IUpcomingEvent[]>>(
     `/upcoming-event/get-all`,
     params,
+    {
+      next: {
+        tags: ['upcoming-events'],
+      },
+    },
   );
 };

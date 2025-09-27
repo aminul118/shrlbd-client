@@ -1,3 +1,5 @@
+import UpcomingEventsTable from '@/components/modules/UpcomingEvents/UpcomingEventsTable';
+import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
 // >> SEO Start
@@ -6,8 +8,9 @@ export const metadata: Metadata = {
 };
 // >> SEO End
 
-const UpcomingEventPage = () => {
-  return <div></div>;
+const UpcomingEventPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedSearchparams = await searchParams;
+  return <UpcomingEventsTable props={resolvedSearchparams} />;
 };
 
 export default UpcomingEventPage;

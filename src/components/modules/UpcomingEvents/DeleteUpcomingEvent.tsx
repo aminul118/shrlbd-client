@@ -1,10 +1,10 @@
 'use client';
 
 import DeleteConfirmation from '@/components/actions/DeleteConfirmation';
-import { useDeleteTeamMemberMutation } from '@/redux/features/team/team.api';
+import { useDeleteUpcomingEventMutation } from '@/redux/features/event/event.api';
 
-const DeleteTeamMember = ({ id }: { id: string }) => {
-  const [deleteTeamMember] = useDeleteTeamMemberMutation();
+const DeleteUpcomingEvent = ({ id }: { id: string }) => {
+  const [deleteTeamMember] = useDeleteUpcomingEventMutation();
   const handleDelete = async (id: string) => {
     const res = await deleteTeamMember(id).unwrap();
     console.log(res);
@@ -15,4 +15,4 @@ const DeleteTeamMember = ({ id }: { id: string }) => {
   );
 };
 
-export default DeleteTeamMember;
+export default DeleteUpcomingEvent;

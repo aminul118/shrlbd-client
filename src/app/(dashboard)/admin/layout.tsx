@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/sidebar';
 import { IChildren } from '@/types';
 
-const AdminLayout = ({ children }: IChildren) => {
+const AdminLayout = async ({ children }: IChildren) => {
   return (
     <SidebarProvider>
       {/* Sidebar */}

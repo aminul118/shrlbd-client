@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/table';
 import { getAllTeamJoinRequest } from '@/services/team';
 import { ShowRequestModal } from './ShowRequestModal';
+import TeamJoinSendMessage from './TeamJoinSendMessage';
 
 const TeamJoinRequest = async ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -75,7 +76,7 @@ const TeamJoinRequest = async ({ props }: { props: Record<string, any> }) => {
               {/* Table Actions */}
               <TableCell className="flex items-center gap-2">
                 <ShowRequestModal payload={req} />
-                {/* <TeamJoinSendMessage email={req.email} /> */}
+                <TeamJoinSendMessage email={req.email} />
               </TableCell>
             </TableRow>
           ))}

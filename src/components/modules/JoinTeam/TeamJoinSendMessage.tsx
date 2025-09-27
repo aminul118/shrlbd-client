@@ -1,4 +1,6 @@
+'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,8 +22,9 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useSendParticipantEmailMutation } from '@/redux/features/joinTeam/joinTeam.api';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Send } from 'lucide-react';
+import { Send, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -40,8 +43,9 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export function TeamJoinSendMessage({ email }: { email: string }) {
+const TeamJoinSendMessage = ({ email }: { email: string }) => {
   const [open, setOpen] = useState(false);
+  const [sendEmail, { isLoading }] = useSendParticipantEmailMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -69,6 +73,8 @@ export function TeamJoinSendMessage({ email }: { email: string }) {
     const toastId = toast.loading('Sending message…');
 
     try {
+      const res = await sendEmail(payload).unwrap();
+      toast.success(res?.message || 'Message sent', { id: toastId });
       setOpen(false);
       form.reset();
     } catch (err: any) {
@@ -147,11 +153,17 @@ export function TeamJoinSendMessage({ email }: { email: string }) {
             <DialogFooter className="flex justify-end space-x-2">
               <DialogClose asChild>
                 <Button type="button" variant="outline">
-                  Cancel
+                  <X /> Cancel
                 </Button>
               </DialogClose>
               <Button type="submit" disabled={!form.formState.isValid}>
-                <Send className="mr-2 h-4 w-4" />
+                {isLoading ? (
+                  <ButtonSpinner />
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" /> Send
+                  </>
+                )}
               </Button>
             </DialogFooter>
           </form>
@@ -159,4 +171,6 @@ export function TeamJoinSendMessage({ email }: { email: string }) {
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default TeamJoinSendMessage;

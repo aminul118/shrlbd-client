@@ -1,5 +1,5 @@
 import baseApi from '@/redux/baseApi';
-import { ApiResponse, IEvent } from '@/types';
+import { ApiResponse, IEvent, IUpcomingEvent } from '@/types';
 
 const eventApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -53,7 +53,10 @@ const eventApi = baseApi.injectEndpoints({
     }),
 
     // GET - Get All Upcoming Events
-    getUpcomingEvents: builder.query({
+    getUpcomingEvents: builder.query<
+      ApiResponse<IUpcomingEvent[]>,
+      Record<string, string>
+    >({
       query: (params) => ({
         url: '/upcoming-event/get-all',
         method: 'GET',

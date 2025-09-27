@@ -1,13 +1,14 @@
-import api from '@/api';
 import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
+import { getUpcomingEvents } from '@/services/upcoming-event';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 import Image from 'next/image';
 
 const UpcomingEvents = async () => {
-  const { data } = await api.upcomingEvent.getUpcomingEvents();
+  const { data } = await getUpcomingEvents();
+  console.log(data);
 
   return (
     <Container className="mx-auto max-w-6xl px-4 py-12">

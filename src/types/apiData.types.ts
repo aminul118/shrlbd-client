@@ -60,3 +60,33 @@ export interface IAiTraining {
   answer: string;
   createdAt: string;
 }
+
+export interface IUser {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  isDeleted: boolean;
+  isActive: string;
+  isVerified: boolean;
+  auths: Auth[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Auth {
+  provider: string;
+  providerId: string;
+}
+
+export interface IUpcomingEvent {
+  _id: string;
+  title: string;
+  date: string;
+  time: string;
+  venue: string;
+  photo: string;
+  details: string;
+  createdAt: string;
+  updatedAt: string;
+}

@@ -20,7 +20,7 @@ import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -28,6 +28,8 @@ import { z } from 'zod';
 const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const [login] = useLoginMutation();
   const router = useRouter();
+  const searchParams = useSearchParams(); // ✅ read query params
+  const callbackUrl = searchParams.get('callbackUrl') || '/admin'; // fallback if none
 
   const form = useForm<z.infer<typeof validation.auth.loginFormValidation>>({
     resolver: zodResolver(validation.auth.loginFormValidation),
@@ -40,15 +42,22 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   const onSubmit = async (
     data: z.infer<typeof validation.auth.loginFormValidation>,
   ) => {
-    console.log(data);
     try {
       const res = await login(data).unwrap();
       toast.success(res.message || 'User login successfully');
+      console.log(res);
+
       if (res?.data?.user?.role === 'ADMIN') {
-        router.push('/admin');
+        router.push(callbackUrl); //  redirect back to intended route
+      } else {
+        router.push('/'); // fallback for non-admin users
       }
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.log(error);
+      if (error.status === 401) {
+        toast.error('Email or password Incorrect');
+      }
     }
   };
 
@@ -115,7 +124,6 @@ const LoginForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
                     </FormItem>
                   )}
                 />
-
                 <Button type="submit" className="w-full">
                   Login
                 </Button>

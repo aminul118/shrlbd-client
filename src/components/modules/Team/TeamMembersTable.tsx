@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import DateFormat from '@/components/common/DateFormat';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import FilteredViews from '@/components/common/filtering/FilteredViews';
@@ -23,7 +22,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
-import { ITeamMember } from '@/types';
 import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -55,7 +53,7 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
     return <TableSkeleton />;
   }
 
-  const members: ITeamMember[] = data?.data ?? [];
+  const members = data?.data ?? [];
   const meta = data?.meta;
 
   return (
@@ -113,8 +111,15 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
           ) : (
             <>
               {members.map((member, i) => {
-                const { _id, createdAt, name, phone, photo, shrlDesignation } =
-                  member;
+                const {
+                  _id,
+                  createdAt,
+                  name,
+                  phone,
+                  photo,
+                  shrlDesignation,
+                  slug,
+                } = member;
                 return (
                   <TableRow key={_id}>
                     <TableCell>{i + 1}</TableCell>
@@ -145,7 +150,7 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
                     )}
                     {columns.actions && (
                       <TableCell className="flex items-center justify-center gap-2">
-                        <DeleteTeamMember id={'dummy'} />
+                        <DeleteTeamMember id={slug} />
                         <ViewTeamMemberModal member={member} />
                       </TableCell>
                     )}

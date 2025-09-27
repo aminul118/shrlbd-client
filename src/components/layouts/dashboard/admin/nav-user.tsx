@@ -25,13 +25,32 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { authApi, useLogoutMutation } from '@/redux/features/auth/auth.api';
+import { useAppDispatch } from '@/redux/hook';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const NavUser = () => {
   const { isMobile } = useSidebar();
+  const dispatch = useAppDispatch();
+  const [logout] = useLogoutMutation();
+  const router = useRouter();
   const user = {
     name: 'shadcn',
     email: 'm@example.com',
     avatar: '/avatars/shadcn.jpg',
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await logout(undefined).unwrap();
+      dispatch(authApi.util.resetApiState());
+      toast.success(res.message);
+      router.push('/login');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast.error('Log out failed..');
+    }
   };
 
   return (
@@ -95,7 +114,7 @@ const NavUser = () => {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>

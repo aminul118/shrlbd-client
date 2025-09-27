@@ -6,6 +6,7 @@ import GoToPage from '@/components/common/pagination/GoToPage';
 import PageLimit from '@/components/common/pagination/PageLimit';
 import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import AppSearching from '@/components/common/searching/AppSearching';
+import Sorting from '@/components/common/sorting/Sorting';
 import Container from '@/components/ui/Container';
 import GradientTitle from '@/components/ui/gradientTitle';
 import {
@@ -30,14 +31,22 @@ const TeamJoinRequest = async ({ props }: { props: Record<string, any> }) => {
   return (
     <Container>
       <div>
-        <div className="flex justify-start">
+        <div className="mb-4 flex justify-start">
           <GradientTitle title="Team Join Requests" />
         </div>
         <div className="pb-8">
-          <div className="flex items-center justify-end gap-2">
+          <div className="flex items-center justify-between gap-2">
             <AppSearching />
-            <PageLimit pageNumbers={[10, 20, 30, 40]} />
-            <ClearAllFilter />
+            <div className="flex items-center justify-center gap-2">
+              <PageLimit pageNumbers={[10, 20, 30, 40]} />
+              <Sorting
+                sortOptions={[
+                  { name: 'Ascending', value: '-createdAt' },
+                  { name: 'Descending', value: 'createdAt' },
+                ]}
+              />
+              <ClearAllFilter />
+            </div>
           </div>
         </div>
       </div>

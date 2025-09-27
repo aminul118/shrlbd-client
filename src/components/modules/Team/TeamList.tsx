@@ -13,6 +13,7 @@ import TeamMembersCard from './TeamMembersCard';
 const TeamList = ({ props }: { props: Record<string, any> }) => {
   const params = {
     ...props,
+    sort: 'createdAt',
   };
 
   const { data, isLoading, isFetching } = useGetAllTeamMembersQuery(params);

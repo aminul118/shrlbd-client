@@ -10,6 +10,7 @@ import GoToPage from '@/components/common/pagination/GoToPage';
 import PageLimit from '@/components/common/pagination/PageLimit';
 import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import AppSearching from '@/components/common/searching/AppSearching';
+import Sorting from '@/components/common/sorting/Sorting';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
 import GradientTitle from '@/components/ui/gradientTitle';
@@ -67,6 +68,12 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
           <AppSearching />
           <div className="flex items-center justify-between gap-2">
             <PageLimit pageNumbers={[10, 20, 30, 40]} />
+            <Sorting
+              sortOptions={[
+                { name: 'Ascending', value: '-createdAt' },
+                { name: 'Descending', value: 'createdAt' },
+              ]}
+            />
             <FilteredViews
               defaultColumns={columns}
               onChange={(updated) => setColumns(updated)}

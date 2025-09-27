@@ -10,11 +10,7 @@ export const metadata: Metadata = {
 
 const AiTrainingsPage = async ({ searchParams }: ISearchParams) => {
   const resolvedSearchparams = await searchParams;
-  return (
-    <div>
-      <AiTrainingsTable props={resolvedSearchparams} />
-    </div>
-  );
+  return <AiTrainingsTable props={resolvedSearchparams} />;
 };
 
 export default AiTrainingsPage;

@@ -1,4 +1,6 @@
 import { baseApi } from '@/redux/baseApi';
+import { ApiResponse } from '@/types';
+import { IAiTraining } from '@/types/apiData.types';
 
 export const aiApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -11,7 +13,10 @@ export const aiApi = baseApi.injectEndpoints({
       invalidatesTags: ['AI'],
     }),
 
-    getAiTrainings: builder.query({
+    getAiTrainings: builder.query<
+      ApiResponse<IAiTraining[]>,
+      Record<string, string>
+    >({
       query: (params) => ({
         url: '/ai/get-all',
         method: 'GET',

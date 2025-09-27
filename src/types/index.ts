@@ -25,6 +25,7 @@ export type {
 } from './next.types';
 
 export type {
+  IAiTraining,
   IEvent,
   IScrollingText,
   ITeamMember,

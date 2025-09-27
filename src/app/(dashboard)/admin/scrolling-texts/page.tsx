@@ -1,4 +1,4 @@
-import ScrollingText from '@/components/modules/Admin/scrollingText/ScrollingText';
+import ScrollingText from '@/components/modules/scrollingText/ScrollingText';
 import { Metadata } from 'next';
 
 // >> SEO Start

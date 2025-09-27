@@ -53,3 +53,10 @@ export interface ITeamJoinRequest {
   updatedAt: string;
   slug: string;
 }
+
+export interface IAiTraining {
+  _id: string;
+  question: string;
+  answer: string;
+  createdAt: string;
+}

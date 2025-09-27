@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/table';
 import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
 import { ITeamMember } from '@/types';
+import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -80,7 +81,10 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
             />
             <ClearAllFilter />
             <Button asChild>
-              <Link href="/admin/add-team-member">Add Team Member</Link>
+              <Link href="/admin/add-team-member">
+                <Plus />
+                Add Team Member
+              </Link>
             </Button>
           </div>
         </div>

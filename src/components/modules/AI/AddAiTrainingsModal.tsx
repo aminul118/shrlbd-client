@@ -1,7 +1,4 @@
-'use client';
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createScrollingText } from '@/actions/scrolling-text';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,36 +17,45 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useAiTrainingsMutation } from '@/redux/features/ai/ai.api';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
 const formSchema = z.object({
-  text: z.string().min(10, {
-    message: 'Scrolling text must be at least 10 characters.',
+  question: z.string().min(5, {
+    message: 'Question text must be at least 10 characters.',
+  }),
+  answer: z.string().min(5, {
+    message: 'Answer text must be at least 10 characters.',
   }),
 });
 
-const AddScrollingTextModal = () => {
+const AddAiTrainingsModal = () => {
   const [open, setOpen] = useState(false);
+
+  const [aiTraining] = useAiTrainingsMutation();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      text: '',
+      question: '',
+      answer: '',
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const toastId = toast.loading('Adding scrolling text...');
-      const res = await createScrollingText(values);
+      const res = await aiTraining(values).unwrap();
       toast.success(res.message || 'Scrolling text added', { id: toastId });
       form.reset();
-      setOpen(false); // ✅ close modal shadcn way
+      setOpen(false);
     } catch (error: any) {
       toast.error(error.message || 'Failed to add scrolling text');
     }
@@ -58,14 +64,16 @@ const AddScrollingTextModal = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add Scrolling Text</Button>
+        <Button>
+          <Plus /> Add AI Training data
+        </Button>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px] lg:max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Add Scrolling Text</DialogTitle>
+          <DialogTitle>Add AI Trainings data</DialogTitle>
           <DialogDescription>
-            This text will show at the top of the event page.
+            This text will use as a ai search on SHRL website
           </DialogDescription>
         </DialogHeader>
 
@@ -73,12 +81,24 @@ const AddScrollingTextModal = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="text"
+              name="question"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Write your question..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="answer"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <Textarea
-                      placeholder="Write your scrolling text..."
+                      placeholder="Write your answer..."
                       {...field}
                       className="h-36"
                     />
@@ -94,7 +114,7 @@ const AddScrollingTextModal = () => {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button disabled={!form.formState.isValid} type="submit">
+              <Button type="submit" disabled={!form.formState.isValid}>
                 Submit
               </Button>
             </DialogFooter>
@@ -105,4 +125,4 @@ const AddScrollingTextModal = () => {
   );
 };
 
-export default AddScrollingTextModal;
+export default AddAiTrainingsModal;

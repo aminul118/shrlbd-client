@@ -1,4 +1,4 @@
-import AddTeamMember from '@/components/modules/Admin/teamMembers/AddTeamMember';
+import AddTeamMember from '@/components/modules/Team/AddTeamMember';
 import { Metadata } from 'next';
 
 // >> SEO Start

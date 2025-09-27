@@ -150,7 +150,7 @@ export function TeamJoinSendMessage({ email }: { email: string }) {
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit">
+              <Button type="submit" disabled={!form.formState.isValid}>
                 <Send className="mr-2 h-4 w-4" />
               </Button>
             </DialogFooter>

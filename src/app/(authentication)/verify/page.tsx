@@ -1,6 +1,7 @@
 import VerifyOTPForm from '@/components/modules/authentication/VerifyOTPForm';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
@@ -13,7 +14,9 @@ export const metadata: Metadata = generateMetaTags({
 const VerifyOTPPage = () => {
   return (
     <div className="bg-muted grid h-screen overflow-x-hidden">
-      <VerifyOTPForm />
+      <Suspense fallback={<div>Loading.....</div>}>
+        <VerifyOTPForm />
+      </Suspense>
     </div>
   );
 };

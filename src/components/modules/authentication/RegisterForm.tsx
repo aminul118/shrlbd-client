@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import Logo from '@/components/layouts/Logo';
 import Password from '@/components/ui/password';
 import images from '@/config/images';
@@ -27,8 +28,8 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
-  const [register] = useRegisterMutation();
+const RegisterForm = ({ className }: { className?: string }) => {
+  const [register, { isLoading }] = useRegisterMutation();
   const router = useRouter();
   const form = useForm<
     z.infer<typeof validation.auth.registrationFormValidation>
@@ -49,31 +50,34 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
   ) => {
     const { firstName, lastName, email, phone, password } = data;
     const payload = {
-      name: firstName + lastName,
+      firstName,
+      lastName,
       email,
       phone,
       password,
     };
-    console.log(payload);
+
     try {
       const res = await register(payload).unwrap();
-      console.log(res);
-      toast.success(res.message);
+      console.log('RES==>', res);
+      if (res.success) {
+        toast.success(res.message);
+      }
+
       if (res.statusCode === 201) {
         router.push(`/verify?email=${email}`);
       }
     } catch (error: any) {
-      toast.error('Failed to create user');
-      console.log(error);
+      if (error?.status === 400) {
+        toast.error(error.data?.message || 'User already exists');
+      } else {
+        toast.error('Failed to create user');
+      }
     }
   };
 
   return (
-    <div
-      className={cn('flex flex-col gap-6', className)}
-      {...props}
-      data-aos="fade-right"
-    >
+    <div className={cn('flex flex-col gap-6', className)}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           {/* Left side image */}
@@ -206,8 +210,12 @@ const RegisterForm = ({ className, ...props }: React.ComponentProps<'div'>) => {
                   )}
                 />
 
-                <Button type="submit" className="w-full">
-                  Register
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isLoading || !form.formState.isValid}
+                >
+                  {isLoading ? <ButtonSpinner /> : ' Register'}
                 </Button>
               </form>
             </Form>

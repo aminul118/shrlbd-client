@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,16 +15,22 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { useForgotPasswordMutation } from '@/redux/features/auth/auth.api';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const ForgotPasswordForm = ({
   className,
   ...props
 }: React.ComponentProps<'div'>) => {
+  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
+  const router = useRouter();
+
   const form = useForm<
     z.infer<typeof validation.auth.forgotPasswordValidation>
   >({
@@ -37,6 +45,18 @@ const ForgotPasswordForm = ({
   ) => {
     console.log('Forgot password values:', values);
     // 🔑 Call forgot password API here
+
+    try {
+      const res = await forgotPassword({ email: values.email }).unwrap();
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message || 'Check Your email');
+      }
+      form.reset();
+      router.push('/login');
+    } catch (error: any) {
+      toast.error(error.message || 'Something went wrong');
+    }
   };
 
   return (
@@ -77,8 +97,8 @@ const ForgotPasswordForm = ({
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                Send Reset Email
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? <ButtonSpinner /> : 'Send Reset Email'}
               </Button>
             </form>
           </Form>

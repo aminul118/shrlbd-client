@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ import { z } from 'zod';
 const VerifyOTPForm = () => {
   const [counter, setCounter] = useState(60); // 1 min timer
   const [sendOTP] = useSendOtpMutation();
-  const [verifyOTP] = useVerifyOtpMutation();
+  const [verifyOTP, { isLoading }] = useVerifyOtpMutation();
   const searchParams = useSearchParams();
   const router = useRouter();
   const email = searchParams.get('email');
@@ -135,8 +136,8 @@ const VerifyOTPForm = () => {
                 )}
               />
 
-              <Button type="submit" className="w-64">
-                Verify OTP
+              <Button type="submit" className="w-64" disabled={isLoading}>
+                {isLoading ? <ButtonSpinner /> : 'Verify OTP'}
               </Button>
             </form>
           </Form>

@@ -1,9 +1,10 @@
 import images from '@/config/images';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ className }: { className?: string }) => {
   return (
-    <div className="grid min-h-96 place-items-center">
+    <div className={cn('grid place-items-center', className)}>
       <Image
         src={images.gif.spinner}
         width={100}

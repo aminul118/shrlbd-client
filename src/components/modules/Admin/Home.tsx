@@ -15,9 +15,11 @@ const Home = () => {
     return <HomePageSkeleton />;
   }
 
+  const user = userData?.data;
+
   return (
     <section className="container mx-auto">
-      <GradientTitle title={`Welcome ${userData?.data?.name}`} />
+      <GradientTitle title={`Welcome ${user?.fullName}`} />
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {data?.data?.map((stats: any, idx: number) => {
           return (

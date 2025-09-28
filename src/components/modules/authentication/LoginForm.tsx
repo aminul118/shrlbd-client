@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,7 +27,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 const LoginForm = ({ className }: { className?: string }) => {
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
   const searchParams = useSearchParams(); // ✅ read query params
   const callbackUrl = searchParams.get('callbackUrl') || '/admin'; // fallback if none
@@ -45,7 +46,7 @@ const LoginForm = ({ className }: { className?: string }) => {
     try {
       const res = await login(data).unwrap();
       toast.success(res.message || 'User login successfully');
-      console.log(res);
+      console.log('RES==>', res);
 
       if (res?.data?.user?.role === 'ADMIN') {
         router.push(callbackUrl); //  redirect back to intended route
@@ -54,18 +55,22 @@ const LoginForm = ({ className }: { className?: string }) => {
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.log(error);
+      console.log('ERR=>', error);
       if (error.status === 401) {
         toast.error('Email or password Incorrect');
+      }
+      if (error.status === 400) {
+        toast.error('Email or password Incorrect');
+      }
+      if (error.status === 900) {
+        router.push(`/verify?email=${data.email}`);
+        toast.error('You are not verified User. ');
       }
     }
   };
 
   return (
-    <div
-      className={cn('flex items-center justify-center', className)}
-      data-aos="fade-left"
-    >
+    <div className={cn('flex items-center justify-center', className)}>
       <Card className="w-full max-w-5xl overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           {/* Form Section */}
@@ -125,8 +130,14 @@ const LoginForm = ({ className }: { className?: string }) => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full">
-                  Login
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <>
+                      <ButtonSpinner />
+                    </>
+                  ) : (
+                    <>Login</>
+                  )}
                 </Button>
               </form>
 

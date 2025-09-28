@@ -8,8 +8,8 @@ import {
 import { adminSidebarmenu } from '@/constants/admin-menu';
 import Link from 'next/link';
 import Logo from '../../Logo';
+import Logout from './Logout';
 import Menu from './Menu';
-import NavUser from './nav-user';
 
 const AdminSidebar = () => {
   return (
@@ -26,7 +26,7 @@ const AdminSidebar = () => {
       </SidebarContent>
       {/* Footer */}
       <SidebarFooter>
-        <NavUser />
+        <Logout />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

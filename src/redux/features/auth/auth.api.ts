@@ -33,6 +33,16 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ['USER'],
     }),
 
+    // Forgot Password
+    forgotPassword: builder.mutation({
+      query: (payload) => ({
+        url: '/auth/forgot-password',
+        method: 'POST',
+        data: payload,
+      }),
+      invalidatesTags: ['USER'],
+    }),
+
     // Send OTP
     sendOtp: builder.mutation({
       query: (userInfo) => ({
@@ -71,8 +81,9 @@ export const authApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useRegisterMutation,
   useLoginMutation,
+  useRegisterMutation,
+  useForgotPasswordMutation,
   useSendOtpMutation,
   useVerifyOtpMutation,
   useUserInfoQuery,

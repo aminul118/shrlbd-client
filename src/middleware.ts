@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { getUserFromCookie } from './lib/auth';
+import { Role } from './types';
 
 export const middleware = async (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl;
@@ -13,12 +14,12 @@ export const middleware = async (req: NextRequest) => {
   }
 
   // If USER is trying to access /admin routes → deny
-  if (pathname.startsWith('/admin') && user.role !== 'ADMIN') {
+  if (pathname.startsWith('/admin') && user.role !== Role.ADMIN) {
     return NextResponse.redirect(new URL('/dashboard', origin));
   }
 
   // If ADMIN is trying to access /user routes → deny
-  if (pathname.startsWith('/user') && user.role !== 'USER') {
+  if (pathname.startsWith('/user') && user.role !== Role.USER) {
     return NextResponse.redirect(new URL('/admin', origin));
   }
 

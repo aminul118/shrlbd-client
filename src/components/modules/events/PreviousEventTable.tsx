@@ -45,7 +45,7 @@ const PreviousEventTable = ({ props }: { props: Record<string, any> }) => {
     <Container>
       {/* 🔹 Header + Filters */}
       <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="Previous Events" />
+        <GradientTitle title="All Previous Events" />
       </div>
       <div className="pb-8">
         <div className="flex items-center justify-between gap-2">

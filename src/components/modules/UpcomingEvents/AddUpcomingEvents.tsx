@@ -70,7 +70,7 @@ const AddUpcomingEvent = () => {
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <GradientTitle title="Add Upcoming Event" />
+        <GradientTitle title="Create New Upcoming Event" />
         <Button asChild>
           <Link href="/admin/upcoming-events">Show All Upcoming Events</Link>
         </Button>

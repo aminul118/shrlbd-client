@@ -44,7 +44,7 @@ const UpcomingEventsTable = ({ props }: { props: Record<string, any> }) => {
     <Container>
       {/* 🔹 Header + Filters */}
       <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="Upcoming Events" />
+        <GradientTitle title="All Upcoming Events" />
       </div>
       <div className="pb-8">
         <div className="flex items-center justify-between gap-2">

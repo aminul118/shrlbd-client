@@ -93,7 +93,7 @@ const AddScrollingTextModal = () => {
 
             <DialogFooter>
               <DialogClose asChild>
-                <Button variant="outline" type="button">
+                <Button variant="destructive" type="button">
                   Cancel
                 </Button>
               </DialogClose>

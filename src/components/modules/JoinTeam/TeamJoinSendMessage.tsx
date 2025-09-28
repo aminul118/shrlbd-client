@@ -152,11 +152,14 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
 
             <DialogFooter className="flex justify-end space-x-2">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="destructive">
                   <X /> Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit" disabled={!form.formState.isValid}>
+              <Button
+                type="submit"
+                disabled={!form.formState.isValid || isLoading}
+              >
                 {isLoading ? (
                   <ButtonSpinner />
                 ) : (

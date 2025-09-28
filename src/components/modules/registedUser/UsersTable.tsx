@@ -26,6 +26,7 @@ import {
 import { useAllUsersInfoQuery } from '@/redux/features/auth/auth.api';
 
 import { BadgeCheck, Trash } from 'lucide-react';
+import NewUserModal from './NewUserModal';
 
 const UsersTable = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -42,7 +43,7 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
     <Container>
       {/* 🔹 Header + Filters */}
       <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="Registered Users" />
+        <GradientTitle title="All Registered Users" />
       </div>
       <div className="pb-8">
         <div className="flex items-center justify-between gap-2">
@@ -56,6 +57,7 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
               ]}
             />
             <ClearAllFilter />
+            <NewUserModal />
           </div>
         </div>
       </div>

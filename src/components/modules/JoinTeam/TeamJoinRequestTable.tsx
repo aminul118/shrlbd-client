@@ -1,6 +1,8 @@
+'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import DateFormat from '@/components/common/DateFormat';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
+import TableSkeleton from '@/components/common/loader/TableSkeleton';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GoToPage from '@/components/common/pagination/GoToPage';
 import PageLimit from '@/components/common/pagination/PageLimit';
@@ -17,18 +19,23 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getAllTeamJoinRequest } from '@/services/team';
+import { useTeamJoinRequestQuery } from '@/redux/features/joinTeam/joinTeam.api';
+import DeleteJoinTeamRequest from './DeleteJoinTeamRequest';
 import { ShowRequestModal } from './ShowRequestModal';
 import TeamJoinSendMessage from './TeamJoinSendMessage';
 
-const TeamJoinRequest = async ({ props }: { props: Record<string, any> }) => {
+const TeamJoinRequest = ({ props }: { props: Record<string, any> }) => {
   const params = {
     ...props,
   };
 
-  const { data: requests, meta } = await getAllTeamJoinRequest(params);
-  console.log(meta);
+  const { data, isLoading } = useTeamJoinRequestQuery(params);
+  const requests = data?.data;
+  const meta = data?.meta;
 
+  if (isLoading) {
+    <TableSkeleton />;
+  }
   return (
     <Container>
       <div>
@@ -77,6 +84,7 @@ const TeamJoinRequest = async ({ props }: { props: Record<string, any> }) => {
               <TableCell className="flex items-center gap-2">
                 <ShowRequestModal payload={req} />
                 <TeamJoinSendMessage email={req.email} />
+                <DeleteJoinTeamRequest id={req._id} />
               </TableCell>
             </TableRow>
           ))}

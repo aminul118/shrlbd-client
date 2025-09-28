@@ -63,7 +63,7 @@ const AddPreviousEvent = () => {
   return (
     <Container>
       <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="Add Events" />
+        <GradientTitle title="Create New Event" />
         <Button asChild>
           <Link href={'/admin/previous-events'}>Show All Events</Link>
         </Button>

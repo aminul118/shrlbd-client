@@ -1,11 +1,7 @@
 import AddUpcomingEvent from '@/components/modules/UpcomingEvents/AddUpcomingEvents';
 
 const AddUpcomingEventPage = () => {
-  return (
-    <div>
-      <AddUpcomingEvent />
-    </div>
-  );
+  return <AddUpcomingEvent />;
 };
 
 export default AddUpcomingEventPage;

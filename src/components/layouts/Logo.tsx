@@ -1,14 +1,19 @@
 import { DivProps } from '@/types';
 import Image from 'next/image';
 
-const Logo = ({ ...props }: DivProps) => {
+interface Props extends DivProps {
+  LogoWidth?: number;
+  LogoHeight?: number;
+}
+
+const Logo = ({ LogoWidth = 70, LogoHeight = 70, ...props }: Props) => {
   return (
     <div {...props}>
       <Image
         src="/logo.png"
         alt="Smart Healthcare and Research Limited logo"
-        width={70}
-        height={70}
+        width={LogoWidth}
+        height={LogoHeight}
         className="object-contain"
       />
     </div>

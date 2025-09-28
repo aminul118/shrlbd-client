@@ -31,3 +31,9 @@ export type {
   ITeamMember,
   IUpcomingEvent,
 } from './apiData.types';
+
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  SUPER_ADMIN = 'SUPER_ADMIN',
+}

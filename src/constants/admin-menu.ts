@@ -3,7 +3,8 @@ import {
   Bot,
   CalendarDays,
   GalleryHorizontal,
-  Home,
+  Gauge,
+  Globe,
   UserCog,
   Users,
 } from 'lucide-react';
@@ -12,6 +13,11 @@ export const adminSidebarmenu: MenuGroup[] = [
   {
     title: 'Menu',
     menu: [
+      {
+        name: 'Dashboard',
+        url: '/admin',
+        icon: Gauge,
+      },
       {
         name: 'Events',
         url: '#',
@@ -27,10 +33,7 @@ export const adminSidebarmenu: MenuGroup[] = [
         icon: UserCog,
         subMenu: [
           { name: 'Team Members', url: '/admin/team-members' },
-          {
-            name: 'Join Requests',
-            url: '/admin/team-join-request',
-          },
+          { name: 'Join Requests', url: '/admin/team-join-request' },
         ],
       },
       {
@@ -49,9 +52,9 @@ export const adminSidebarmenu: MenuGroup[] = [
         icon: Bot,
       },
       {
-        name: 'Go Home',
+        name: 'Website',
         url: '/',
-        icon: Home,
+        icon: Globe,
       },
     ],
   },

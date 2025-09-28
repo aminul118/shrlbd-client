@@ -1,24 +1,26 @@
 import baseApi from '@/redux/baseApi';
+import { ApiResponse } from '@/types';
+import { ITeamJoinRequest } from '@/types/apiData.types';
 
 const joinTeamApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // POST
     sendTeamJoinRequest: builder.mutation({
       query: (payload) => ({
         url: '/join-team/create',
         method: 'POST',
         data: payload,
       }),
+      invalidatesTags: ['JOIN-TEAM'],
     }),
-    // GET - All
-    teamJoinRequest: builder.query({
-      query: () => ({
-        url: `/join-team`,
+    teamJoinRequest: builder.query<ApiResponse<ITeamJoinRequest[]>, unknown>({
+      query: (params) => ({
+        url: '/join-team',
         method: 'GET',
+        params,
       }),
       providesTags: ['JOIN-TEAM'],
     }),
-    // GET - SIngle one
+    // Single Team Request
     singleTeamJoinRequest: builder.query({
       query: (slug) => ({
         url: `/join-team/${slug}`,
@@ -26,8 +28,7 @@ const joinTeamApi = baseApi.injectEndpoints({
       }),
       providesTags: ['JOIN-TEAM'],
     }),
-
-    // POST
+    // Email Send
     sendParticipantEmail: builder.mutation({
       query: (emailData) => ({
         url: '/join-team/admin-message',
@@ -36,7 +37,6 @@ const joinTeamApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // DELETE - Single Delete
     deleteJoinRequest: builder.mutation({
       query: (id) => ({
         url: `/join-team/${id}`,

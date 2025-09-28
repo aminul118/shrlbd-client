@@ -60,7 +60,7 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
     <Container className="overflow-x-auto">
       {/* 🔹 Header + Filters */}
       <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="Team Members" />
+        <GradientTitle title="All Team Members" />
       </div>
       <div className="pb-8">
         <div className="flex items-center justify-between gap-2">

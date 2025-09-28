@@ -17,6 +17,7 @@ import Password from '@/components/ui/password';
 import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useLoginMutation } from '@/redux/features/auth/auth.api';
+import { Role } from '@/types';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
@@ -30,7 +31,7 @@ const LoginForm = ({ className }: { className?: string }) => {
   const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
   const searchParams = useSearchParams(); // ✅ read query params
-  const callbackUrl = searchParams.get('callbackUrl') || '/admin'; // fallback if none
+  const callbackUrl = searchParams.get('callbackUrl');
 
   const form = useForm<z.infer<typeof validation.auth.loginFormValidation>>({
     resolver: zodResolver(validation.auth.loginFormValidation),
@@ -48,10 +49,12 @@ const LoginForm = ({ className }: { className?: string }) => {
       toast.success(res.message || 'User login successfully');
       console.log('RES==>', res);
 
-      if (res?.data?.user?.role === 'ADMIN') {
-        router.push(callbackUrl); //  redirect back to intended route
+      if (res?.data?.user?.role === Role.ADMIN) {
+        router.push(callbackUrl || '/admin');
+      } else if (res?.data?.user?.role === Role.USER) {
+        router.push(callbackUrl || '/user');
       } else {
-        router.push('/'); // fallback for non-admin users
+        router.push('/');
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

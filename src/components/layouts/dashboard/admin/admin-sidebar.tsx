@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
   SidebarContent,
@@ -16,10 +17,15 @@ const AdminSidebar = () => {
     <Sidebar collapsible="icon">
       {/* Header */}
       <SidebarHeader>
-        <Link href="/admin">
-          <Logo className="flex justify-center" />
+        <Link href="/admin" className="py-4">
+          <Logo
+            LogoHeight={80}
+            LogoWidth={80}
+            className="flex justify-center"
+          />
         </Link>
       </SidebarHeader>
+      <Separator />
       <SidebarContent>
         {/* Sidebar Menu */}
         <Menu menuData={adminSidebarmenu} />

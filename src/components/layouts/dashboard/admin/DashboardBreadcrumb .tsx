@@ -35,7 +35,7 @@ const DashboardBreadcrumb = () => {
     '/admin/' + realPaths.slice(0, index + 1).join('/');
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className="hidden lg:block">
       <BreadcrumbList>
         {/* Always start with Admin */}
 

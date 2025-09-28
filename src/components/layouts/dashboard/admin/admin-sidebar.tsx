@@ -31,7 +31,8 @@ const AdminSidebar = () => {
         <Menu menuData={adminSidebarmenu} />
       </SidebarContent>
       {/* Footer */}
-      <SidebarFooter>
+      <SidebarFooter className="py-6">
+        <Separator className="mb-2" />
         <Logout />
       </SidebarFooter>
       <SidebarRail />

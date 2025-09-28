@@ -139,7 +139,7 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
                       key={linkIdx}
                       className="hover:text-primary font-medium"
                     >
-                      <a href={link.href}>{link.name}</a>
+                      <Link href={link.href}>{link.name}</Link>
                     </li>
                   ))}
                 </ul>

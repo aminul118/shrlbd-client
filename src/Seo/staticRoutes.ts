@@ -12,17 +12,7 @@ export const staticRoutes: Routes[] = [
     priority: 1.0,
   },
   {
-    url: 'about',
-    changeFrequency: 'monthly',
-    priority: 1.0,
-  },
-  {
     url: 'team',
-    changeFrequency: 'monthly',
-    priority: 1.0,
-  },
-  {
-    url: 'join-team',
     changeFrequency: 'monthly',
     priority: 1.0,
   },
@@ -47,8 +37,48 @@ export const staticRoutes: Routes[] = [
     priority: 1.0,
   },
   {
+    url: 'about',
+    changeFrequency: 'monthly',
+    priority: 1.0,
+  },
+  {
+    url: 'join-team',
+    changeFrequency: 'monthly',
+    priority: 1.0,
+  },
+  {
+    url: 'careers',
+    changeFrequency: 'monthly',
+    priority: 7.0,
+  },
+  {
     url: 'login',
     changeFrequency: 'monthly',
     priority: 0.8,
+  },
+  {
+    url: 'register',
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    url: 'register',
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    url: 'terms-conditions',
+    changeFrequency: 'monthly',
+    priority: 0.3,
+  },
+  {
+    url: 'return-refund-policy',
+    changeFrequency: 'monthly',
+    priority: 0.4,
+  },
+  {
+    url: 'privacy-policy',
+    changeFrequency: 'monthly',
+    priority: 0.4,
   },
 ];

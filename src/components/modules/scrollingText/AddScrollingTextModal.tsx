@@ -2,17 +2,17 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createScrollingText } from '@/actions/scrolling-text';
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -57,20 +57,20 @@ const AddScrollingTextModal = () => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogTrigger asChild>
         <Button>
           <Plus /> Add Scrolling Text
         </Button>
-      </DialogTrigger>
+      </AlertDialogTrigger>
 
-      <DialogContent className="sm:max-w-[500px] lg:max-w-2xl">
-        <DialogHeader>
-          <DialogTitle>Add Scrolling Text</DialogTitle>
-          <DialogDescription>
+      <AlertDialogContent className="sm:max-w-[500px] lg:max-w-2xl">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Add Scrolling Text</AlertDialogTitle>
+          <AlertDialogDescription>
             This text will show at the top of the event page.
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -91,20 +91,20 @@ const AddScrollingTextModal = () => {
               )}
             />
 
-            <DialogFooter>
-              <DialogClose asChild>
+            <AlertDialogFooter>
+              <AlertDialogCancel asChild>
                 <Button variant="destructive" type="button">
                   Cancel
                 </Button>
-              </DialogClose>
+              </AlertDialogCancel>
               <Button disabled={!form.formState.isValid} type="submit">
                 Submit
               </Button>
-            </DialogFooter>
+            </AlertDialogFooter>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 

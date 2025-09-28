@@ -1,16 +1,16 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -51,20 +51,20 @@ const NewUserModal = () => {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
         <Button size="sm">
           <Plus className="mr-2 h-4 w-4" /> Add User
         </Button>
-      </DialogTrigger>
+      </AlertDialogTrigger>
 
-      <DialogContent className="scrollbar-thin max-h-[80vh] w-full overflow-y-auto sm:max-w-xl">
-        <DialogHeader>
-          <DialogTitle>Add User</DialogTitle>
-          <DialogDescription>
+      <AlertDialogContent className="scrollbar-thin max-h-[80vh] w-full overflow-y-auto sm:max-w-xl">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Add User</AlertDialogTitle>
+          <AlertDialogDescription>
             Fill in the form below to create a new user.
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
 
         <div className="flex flex-col gap-6">
           <div className="mx-auto w-full max-w-2xl p-8">
@@ -177,23 +177,22 @@ const NewUserModal = () => {
                   )}
                 />
 
-                <DialogFooter>
-                  <DialogClose asChild>
+                <AlertDialogFooter>
+                  <AlertDialogCancel asChild>
                     <Button variant="destructive" type="button">
                       Cancel
                     </Button>
-                  </DialogClose>
+                  </AlertDialogCancel>
                   <Button disabled={!form.formState.isValid} type="submit">
                     Create
                   </Button>
-                </DialogFooter>
+                </AlertDialogFooter>
               </form>
             </Form>
           </div>
         </div>
-      </DialogContent>
-      <DialogFooter></DialogFooter>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 

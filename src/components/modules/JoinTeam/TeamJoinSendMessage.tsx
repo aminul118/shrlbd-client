@@ -2,17 +2,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -89,8 +89,8 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogTrigger asChild>
         <Button
           size="sm"
           variant="outline"
@@ -98,15 +98,15 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
         >
           <Send />
         </Button>
-      </DialogTrigger>
+      </AlertDialogTrigger>
 
-      <DialogContent className="sm:max-w-3xl">
-        <DialogHeader>
-          <DialogTitle>Send a Message</DialogTitle>
-          <DialogDescription>
+      <AlertDialogContent className="sm:max-w-3xl">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Send a Message</AlertDialogTitle>
+          <AlertDialogDescription>
             Write your subject and message, then click send.
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -150,12 +150,12 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
               )}
             />
 
-            <DialogFooter className="flex justify-end space-x-2">
-              <DialogClose asChild>
+            <AlertDialogFooter className="flex justify-end space-x-2">
+              <AlertDialogCancel asChild>
                 <Button type="button" variant="destructive">
                   <X /> Cancel
                 </Button>
-              </DialogClose>
+              </AlertDialogCancel>
               <Button
                 type="submit"
                 disabled={!form.formState.isValid || isLoading}
@@ -168,11 +168,11 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
                   </>
                 )}
               </Button>
-            </DialogFooter>
+            </AlertDialogFooter>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 

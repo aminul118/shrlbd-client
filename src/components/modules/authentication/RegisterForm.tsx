@@ -77,7 +77,7 @@ const RegisterForm = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className={cn('flex flex-col gap-6', className)}>
+    <div className={cn('flex flex-col gap-6', className)} data-aos="fade-left">
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           {/* Left side image */}
@@ -210,11 +210,7 @@ const RegisterForm = ({ className }: { className?: string }) => {
                   )}
                 />
 
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={isLoading || !form.formState.isValid}
-                >
+                <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? <ButtonSpinner /> : ' Register'}
                 </Button>
               </form>

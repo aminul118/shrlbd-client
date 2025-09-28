@@ -70,7 +70,10 @@ const LoginForm = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className={cn('flex items-center justify-center', className)}>
+    <div
+      className={cn('flex items-center justify-center', className)}
+      data-aos="fade-right"
+    >
       <Card className="w-full max-w-5xl overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           {/* Form Section */}

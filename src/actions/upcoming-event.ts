@@ -8,6 +8,7 @@ export const createUpcomingEvent = async (body: Partial<IUpcomingEvent>) => {
     tag: 'upcoming-events',
   });
 };
+
 export const deleteUpcomingEvent = async (body: Partial<IUpcomingEvent>) => {
   return apiPost<Partial<IUpcomingEvent>, ApiResponse<IUpcomingEvent>>({
     endpoint: '/upcoming-event/create',

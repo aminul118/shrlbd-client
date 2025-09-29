@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-
-import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { setPasswordAction } from '@/actions/auth';
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,64 +12,50 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import Password from '@/components/ui/password';
 import { cn } from '@/lib/utils';
-import { useForgotPasswordMutation } from '@/redux/features/auth/auth.api';
-import validation from '@/validations';
+import { resetPasswordValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Send } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-const ForgotPasswordForm = ({
-  className,
-  ...props
-}: React.ComponentProps<'div'>) => {
-  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
+const ResetPassword = ({ props }: { props: Record<string, any> }) => {
   const router = useRouter();
 
-  const form = useForm<
-    z.infer<typeof validation.auth.forgotPasswordValidation>
-  >({
-    resolver: zodResolver(validation.auth.forgotPasswordValidation),
+  const form = useForm<z.infer<typeof resetPasswordValidation>>({
+    resolver: zodResolver(resetPasswordValidation),
     defaultValues: {
-      email: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
-  const onSubmit = async (
-    values: z.infer<typeof validation.auth.forgotPasswordValidation>,
-  ) => {
+  const onSubmit = async (values: z.infer<typeof resetPasswordValidation>) => {
     console.log('Forgot password values:', values);
-    // 🔑 Call forgot password API here
 
-    try {
-      const res = await forgotPassword({ email: values.email }).unwrap();
-      console.log(res);
-      if (res.success) {
-        toast.success(res.message || 'Check Your email');
-      }
-      form.reset();
+    const payload = {
+      plainPassword: values.password,
+      token: props.token,
+    };
+
+    const res = await setPasswordAction(payload);
+    if (res.statusCode === 200) {
+      toast.success(res.message);
       router.push('/login');
-    } catch (error: any) {
-      toast.error(error.message || 'Something went wrong');
     }
   };
 
   return (
-    <div data-aos="fade-right" className={cn('w-full', className)} {...props}>
+    <div data-aos="fade-right" className={cn('w-full')}>
       <Card className="mx-auto w-full max-w-md rounded-2xl shadow-xl">
         <CardHeader className="flex flex-col items-center space-y-2 pb-2">
           <Logo />
           <CardTitle className="text-center text-xl font-semibold">
-            Forgot Password?
+            Reset Your Password
           </CardTitle>
-          <p className="text-muted-foreground text-center text-sm">
-            Enter your email address to reset your password
-          </p>
         </CardHeader>
 
         <CardContent className="space-y-6">
@@ -79,17 +64,17 @@ const ForgotPasswordForm = ({
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-6"
             >
-              {/* Email */}
+              {/* Password */}
               <FormField
                 control={form.control}
-                name="email"
+                name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="sr-only">Email</FormLabel>
+                    <FormLabel>New Password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="you@example.com"
-                        type="email"
+                      <Password
+                        type="password"
+                        placeholder="********"
                         {...field}
                       />
                     </FormControl>
@@ -98,16 +83,27 @@ const ForgotPasswordForm = ({
                 )}
               />
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <ButtonSpinner /> Send Reset Email
-                  </>
-                ) : (
-                  <>
-                    <Send /> Send Reset Email
-                  </>
+              {/* Confirm Password */}
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <Password
+                        type="password"
+                        placeholder="********"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
+              />
+
+              <Button type="submit" className="w-full">
+                Set Your Password
               </Button>
             </form>
           </Form>
@@ -126,4 +122,4 @@ const ForgotPasswordForm = ({
   );
 };
 
-export default ForgotPasswordForm;
+export default ResetPassword;

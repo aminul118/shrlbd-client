@@ -137,7 +137,13 @@ const VerifyOTPForm = () => {
               />
 
               <Button type="submit" className="w-64" disabled={isLoading}>
-                {isLoading ? <ButtonSpinner /> : 'Verify OTP'}
+                {isLoading ? (
+                  <>
+                    Verify OTP <ButtonSpinner />
+                  </>
+                ) : (
+                  'Verify OTP'
+                )}
               </Button>
             </form>
           </Form>

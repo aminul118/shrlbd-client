@@ -139,7 +139,7 @@ const LoginForm = ({ className }: { className?: string }) => {
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? (
                     <>
-                      <ButtonSpinner />
+                      Login <ButtonSpinner />
                     </>
                   ) : (
                     <>Login</>

@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import DateFormat from '@/components/common/date-format';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';

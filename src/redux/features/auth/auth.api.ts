@@ -43,6 +43,26 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ['USER'],
     }),
 
+    // Reset Password
+    resetPassword: builder.mutation({
+      query: (payload) => ({
+        url: '/auth/reset-password',
+        method: 'POST',
+        data: payload,
+      }),
+      invalidatesTags: ['USER'],
+    }),
+
+    // set Password
+    setPassword: builder.mutation({
+      query: (payload) => ({
+        url: '/auth/set-password',
+        method: 'POST',
+        data: payload,
+      }),
+      invalidatesTags: ['USER'],
+    }),
+
     // Send OTP
     sendOtp: builder.mutation({
       query: (userInfo) => ({
@@ -84,6 +104,8 @@ export const authApi = baseApi.injectEndpoints({
 export const {
   useLoginMutation,
   useRegisterMutation,
+  useResetPasswordMutation,
+  useSetPasswordMutation,
   useForgotPasswordMutation,
   useSendOtpMutation,
   useVerifyOtpMutation,

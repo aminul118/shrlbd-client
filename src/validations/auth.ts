@@ -38,3 +38,17 @@ export const otpValidation = z.object({
     .max(6, 'OTP must be 6 digits')
     .regex(/^\d+$/, 'OTP must only contain numbers'),
 });
+
+export const resetPasswordValidation = z
+  .object({
+    password: z
+      .string()
+      .min(6, { message: 'Password must be at least 6 characters' }),
+    confirmPassword: z
+      .string()
+      .min(6, { message: 'Confirm password is required' }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });

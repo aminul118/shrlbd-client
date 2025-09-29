@@ -1,5 +1,4 @@
 import fonts from '@/config/fonts.config';
-import { cn } from '@/lib/utils';
 import AosProvider from '@/providers/AosProvider';
 import { AppDataProvider } from '@/providers/AppData';
 import ReduxProvider from '@/providers/ReduxProvider';
@@ -9,7 +8,7 @@ import { IChildren } from '@/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 import { Toaster } from 'sonner';
-import './globals.css';
+import '../styles/globals.css';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
@@ -27,7 +26,7 @@ const RootLayout = ({ children }: IChildren) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-      <body className={cn(fonts.montserrat.className)} suppressHydrationWarning>
+      <body className={fonts.montserrat.className} suppressHydrationWarning>
         <ReduxProvider>
           <ThemeProvider
             attribute="class"

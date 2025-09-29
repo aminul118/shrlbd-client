@@ -210,8 +210,18 @@ const RegisterForm = ({ className }: { className?: string }) => {
                   )}
                 />
 
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? <ButtonSpinner /> : ' Register'}
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={isLoading || !form.formState.isValid}
+                >
+                  {isLoading ? (
+                    <>
+                      Register <ButtonSpinner />
+                    </>
+                  ) : (
+                    ' Register'
+                  )}
                 </Button>
               </form>
             </Form>

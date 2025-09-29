@@ -14,7 +14,7 @@ export const middleware = async (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl;
   const user = await getUserFromCookie();
 
-  //  If logged in → block access to auth pages
+  // 1️⃣ If logged in → block access to auth pages
   if (user && authRoutes.includes(pathname)) {
     if (user.role === Role.ADMIN || user.role === Role.SUPER_ADMIN) {
       return NextResponse.redirect(new URL('/admin', origin));
@@ -24,7 +24,7 @@ export const middleware = async (req: NextRequest) => {
     }
   }
 
-  //  If not logged in → protect /admin and /user routes
+  // 2️⃣ If not logged in → protect /admin and /user routes
   if (
     !user &&
     (pathname.startsWith('/admin') || pathname.startsWith('/user'))
@@ -34,16 +34,22 @@ export const middleware = async (req: NextRequest) => {
     return NextResponse.redirect(loginUrl);
   }
 
-  //  Role-based protection
-  if (pathname.startsWith('/admin') && user?.role !== Role.ADMIN) {
+  // 3️⃣ Role-based protection
+  // Allow ADMIN and SUPER_ADMIN to access /admin
+  if (
+    pathname.startsWith('/admin') &&
+    user?.role !== Role.ADMIN &&
+    user?.role !== Role.SUPER_ADMIN
+  ) {
     return NextResponse.redirect(new URL('/dashboard', origin));
   }
 
+  // Only USER can access /user
   if (pathname.startsWith('/user') && user?.role !== Role.USER) {
     return NextResponse.redirect(new URL('/admin', origin));
   }
 
-  //  Otherwise → allow
+  // 4️⃣ Otherwise → allow
   return NextResponse.next();
 };
 

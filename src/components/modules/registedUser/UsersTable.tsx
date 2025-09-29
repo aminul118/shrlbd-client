@@ -12,7 +12,6 @@ import AppSearching from '@/components/common/searching/AppSearching';
 import Sorting from '@/components/common/sorting/Sorting';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
 import GradientTitle from '@/components/ui/gradientTitle';
 import {
@@ -24,8 +23,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useAllUsersInfoQuery } from '@/redux/features/auth/auth.api';
-import { BadgeCheck, Trash } from 'lucide-react';
+import { BadgeCheck } from 'lucide-react';
 import NewUserModal from './NewUserModal';
+import UserActions from './user-actions';
 
 const UsersTable = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -103,9 +103,10 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
                 <DateFormat date={user.createdAt} />
               </TableCell>
               <TableCell className="text-center">
-                <Button variant="destructive" size="icon">
-                  <Trash />
-                </Button>
+                <UserActions
+                  role={user.role as 'USER' | 'ADMIN'}
+                  userId={user._id}
+                />
               </TableCell>
             </TableRow>
           ))}

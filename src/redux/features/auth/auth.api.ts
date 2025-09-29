@@ -108,6 +108,21 @@ export const authApi = baseApi.injectEndpoints({
       }),
       providesTags: ['USER'],
     }),
+
+    updateRole: builder.mutation({
+      query: ({
+        userInfo,
+        id,
+      }: {
+        userInfo: { role: string };
+        id: string;
+      }) => ({
+        url: `/user/update-role/${id}`,
+        method: 'PATCH',
+        data: userInfo,
+      }),
+      invalidatesTags: ['USER'],
+    }),
   }),
 });
 
@@ -123,4 +138,5 @@ export const {
   useUserInfoQuery,
   useLogoutMutation,
   useAllUsersInfoQuery,
+  useUpdateRoleMutation,
 } = authApi;

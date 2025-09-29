@@ -71,9 +71,10 @@ export const authApi = baseApi.injectEndpoints({
     }),
     // User Info
     allUsersInfo: builder.query<ApiResponse<IUser[]>, unknown>({
-      query: () => ({
+      query: (params) => ({
         url: '/user/all-users',
         method: 'GET',
+        params,
       }),
       providesTags: ['USER'],
     }),

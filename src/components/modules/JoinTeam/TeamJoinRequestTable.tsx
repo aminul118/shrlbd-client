@@ -1,6 +1,6 @@
 'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import TableSkeleton from '@/components/common/loader/TableSkeleton';
 import AppPagination from '@/components/common/pagination/AppPagination';

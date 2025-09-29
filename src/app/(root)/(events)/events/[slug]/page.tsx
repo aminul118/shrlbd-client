@@ -1,4 +1,4 @@
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import EventImageSlider from '@/components/modules/events/EventImageSlider';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';

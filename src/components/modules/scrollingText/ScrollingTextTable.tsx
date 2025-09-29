@@ -1,4 +1,4 @@
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import FetchError from '@/components/common/error/FetchError';
 import NotFound from '@/components/common/error/NotFound';
 import Container from '@/components/ui/Container';

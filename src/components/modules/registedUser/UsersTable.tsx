@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import TableSkeleton from '@/components/common/loader/TableSkeleton';
 import AppPagination from '@/components/common/pagination/AppPagination';
@@ -33,12 +33,13 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
     ...props,
   };
   const { data, isLoading } = useAllUsersInfoQuery(params);
-  const users = data?.data;
-  const meta = data?.meta;
 
   if (isLoading) {
     return <TableSkeleton />;
   }
+  const users = data?.data;
+  const meta = data?.meta;
+
   return (
     <Container>
       {/* 🔹 Header + Filters */}
@@ -81,13 +82,13 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
               <TableCell>{index + 1}</TableCell>
               <TableCell>
                 <Avatar className="h-10 w-10">
-                  <AvatarImage src={user.picture} alt={user.name} />
+                  <AvatarImage src={user.picture} alt={user.fullName} />
                   <AvatarFallback>
-                    {user.name?.charAt(0).toUpperCase()}
+                    {user.fullName?.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
               </TableCell>
-              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.fullName}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell className="font-medium">{user.role}</TableCell>
               <TableCell>

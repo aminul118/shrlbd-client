@@ -6,6 +6,7 @@ import fatema from '@/assets/images/fatema.png';
 import furkan from '@/assets/images/furkan.png';
 import moomtahina from '@/assets/images/moomtahina.png';
 import notFound from '@/assets/images/not-found.svg';
+import profile from '@/assets/images/placeholder/profile.jpg';
 import community from '@/assets/images/services/community.png';
 import doctor_patient from '@/assets/images/services/doctor-patient.png';
 import medical_research from '@/assets/images/services/medical-research.png';
@@ -31,6 +32,9 @@ const images = {
   },
   banner: {
     heroBanner,
+  },
+  placeholder: {
+    profile,
   },
   notFound,
   faq,

@@ -10,6 +10,7 @@ const robots = (): MetadataRoute.Robots => {
       },
       {
         userAgent: ['Applebot', 'Bingbot'],
+        allow: ['/'],
         disallow: ['/user', '/admin'],
       },
     ],

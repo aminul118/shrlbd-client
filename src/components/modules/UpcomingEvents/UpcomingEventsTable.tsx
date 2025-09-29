@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/table';
 import { useGetUpcomingEventsQuery } from '@/redux/features/event/event.api';
 
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import TableSkeleton from '@/components/common/loader/TableSkeleton';

@@ -1,6 +1,6 @@
 'use client';
 
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

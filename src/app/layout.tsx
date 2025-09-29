@@ -1,8 +1,9 @@
 import fonts from '@/config/fonts.config';
 import { cn } from '@/lib/utils';
 import AosProvider from '@/providers/AosProvider';
+import { AppDataProvider } from '@/providers/AppData';
 import ReduxProvider from '@/providers/ReduxProvider';
-import { ThemeProvider } from '@/providers/ThemeProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { IChildren } from '@/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -27,17 +28,20 @@ const RootLayout = ({ children }: IChildren) => {
     <html lang="en" suppressHydrationWarning>
       <GoogleAnalytics gaId="G-L76ZPJFQS4" />
       <body className={cn(fonts.montserrat.className)} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ReduxProvider>
-            <AosProvider>{children}</AosProvider>
-          </ReduxProvider>
-          <Toaster position="top-right" richColors theme="system" />
-        </ThemeProvider>
+        <ReduxProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AppDataProvider>
+              <AosProvider>{children}</AosProvider>
+            </AppDataProvider>
+
+            <Toaster position="top-right" richColors theme="system" />
+          </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

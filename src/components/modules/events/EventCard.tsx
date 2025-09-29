@@ -1,4 +1,4 @@
-import DateFormat from '@/components/common/DateFormat';
+import DateFormat from '@/components/common/date-format';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { IEvent } from '@/types';
 import Image from 'next/image';

@@ -63,10 +63,12 @@ export interface IAiTraining {
 
 export interface IUser {
   _id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  fullName: string;
   email: string;
   role: string;
-  picture: string;
+  picture?: string;
   isDeleted: boolean;
   isActive: string;
   isVerified: boolean;

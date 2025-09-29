@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const ResetPasswordPage = async ({ searchParams }: ISearchParams) => {
   const resolvedSearchParams = await searchParams;
   return (
-    <div className="bg-muted flex h-screen flex-col justify-center overflow-x-hidden">
+    <div className="center">
       <ResetPassword props={resolvedSearchParams} />;
     </div>
   );

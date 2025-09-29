@@ -12,11 +12,9 @@ export const metadata: Metadata = generateMetaTags({
 
 const RegisterPage = () => {
   return (
-    <div className="bg-muted flex min-h-svh flex-col items-center justify-center overflow-x-hidden p-2 md:p-10 lg:p-6">
-      <div className="w-full max-w-sm md:max-w-5xl">
-        <RegisterForm />
-      </div>
-    </div>
+    <section className="center">
+      <RegisterForm className="w-full max-w-sm md:max-w-5xl" />
+    </section>
   );
 };
 

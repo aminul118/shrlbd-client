@@ -4,11 +4,11 @@ import { AppDataProvider } from '@/providers/AppData';
 import ReduxProvider from '@/providers/ReduxProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import generateMetaTags from '@/seo/generateMetaTags';
+import '@/styles/globals.css';
 import { IChildren } from '@/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 import { Toaster } from 'sonner';
-import '../styles/globals.css';
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({

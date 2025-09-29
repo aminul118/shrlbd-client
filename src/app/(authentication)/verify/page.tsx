@@ -13,11 +13,11 @@ export const metadata: Metadata = generateMetaTags({
 // >> SEO End
 const VerifyOTPPage = () => {
   return (
-    <div className="bg-muted grid h-screen overflow-x-hidden">
+    <section className="center">
       <Suspense fallback={<div>Loading.....</div>}>
         <VerifyOTPForm />
       </Suspense>
-    </div>
+    </section>
   );
 };
 

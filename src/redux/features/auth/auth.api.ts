@@ -33,6 +33,16 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ['USER'],
     }),
 
+    // Registration
+    registerForAdmin: builder.mutation({
+      query: (userInfo) => ({
+        url: '/user/admin/register',
+        method: 'POST',
+        data: userInfo,
+      }),
+      invalidatesTags: ['USER'],
+    }),
+
     // Forgot Password
     forgotPassword: builder.mutation({
       query: (payload) => ({
@@ -104,6 +114,7 @@ export const authApi = baseApi.injectEndpoints({
 export const {
   useLoginMutation,
   useRegisterMutation,
+  useRegisterForAdminMutation,
   useResetPasswordMutation,
   useSetPasswordMutation,
   useForgotPasswordMutation,

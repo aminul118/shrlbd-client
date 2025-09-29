@@ -24,7 +24,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useAllUsersInfoQuery } from '@/redux/features/auth/auth.api';
-
 import { BadgeCheck, Trash } from 'lucide-react';
 import NewUserModal from './NewUserModal';
 

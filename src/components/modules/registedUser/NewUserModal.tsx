@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import {
@@ -21,17 +22,20 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
-import validation from '@/validations';
+import { useRegisterForAdminMutation } from '@/redux/features/auth/auth.api';
+import { registrationFormValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const NewUserModal = () => {
-  const form = useForm<
-    z.infer<typeof validation.auth.registrationFormValidation>
-  >({
-    resolver: zodResolver(validation.auth.registrationFormValidation),
+  const [open, setOpen] = useState(false);
+  const [registration, { isLoading }] = useRegisterForAdminMutation();
+  const form = useForm<z.infer<typeof registrationFormValidation>>({
+    resolver: zodResolver(registrationFormValidation),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -42,16 +46,24 @@ const NewUserModal = () => {
     },
   });
 
-  const onSubmit = async (
-    data: z.infer<typeof validation.auth.registrationFormValidation>,
-  ) => {
+  const onSubmit = async (data: z.infer<typeof registrationFormValidation>) => {
     const { firstName, lastName, email, phone, password } = data;
     const payload = { firstName, lastName, email, phone, password };
-    console.log(payload);
+
+    try {
+      const res = await registration(payload).unwrap();
+      if (res.statusCode === 201) {
+        toast.success(res.message);
+        form.reset();
+        setOpen(false);
+      }
+    } catch (error: any) {
+      toast.error(error.message || 'Something Went Wrong');
+    }
   };
 
   return (
-    <AlertDialog>
+    <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
         <Button size="sm">
           <Plus className="mr-2 h-4 w-4" /> Add User
@@ -183,7 +195,10 @@ const NewUserModal = () => {
                       Cancel
                     </Button>
                   </AlertDialogCancel>
-                  <Button disabled={!form.formState.isValid} type="submit">
+                  <Button
+                    disabled={!form.formState.isValid || isLoading}
+                    type="submit"
+                  >
                     Create
                   </Button>
                 </AlertDialogFooter>

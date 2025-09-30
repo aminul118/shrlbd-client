@@ -2,14 +2,30 @@ import baseApi from '@/redux/baseApi';
 
 const statsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // GET - Get All Events
-    getAdminStats: builder.query({
+    // GET - Get User Stats
+    getUserStats: builder.query({
       query: () => ({
-        url: '/admin/stats',
+        url: '/stats/user',
+        method: 'GET',
+      }),
+    }),
+    getTeamStats: builder.query({
+      query: () => ({
+        url: '/stats/team',
+        method: 'GET',
+      }),
+    }),
+    getEventStats: builder.query({
+      query: () => ({
+        url: '/stats/event',
         method: 'GET',
       }),
     }),
   }),
 });
 
-export const { useGetAdminStatsQuery } = statsApi;
+export const {
+  useGetUserStatsQuery,
+  useGetTeamStatsQuery,
+  useGetEventStatsQuery,
+} = statsApi;

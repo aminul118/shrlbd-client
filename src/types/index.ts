@@ -37,3 +37,8 @@ export enum Role {
   USER = 'USER',
   SUPER_ADMIN = 'SUPER_ADMIN',
 }
+
+export interface IModal {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}

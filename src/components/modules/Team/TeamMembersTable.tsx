@@ -26,8 +26,7 @@ import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import DeleteTeamMember from './DeleteTeamMember';
-import ViewTeamMemberModal from './ViewTeamMemberModal';
+import TeamMemberActions from './TeamMemberActions';
 
 const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -111,15 +110,8 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
           ) : (
             <>
               {members.map((member, i) => {
-                const {
-                  _id,
-                  createdAt,
-                  name,
-                  phone,
-                  photo,
-                  shrlDesignation,
-                  slug,
-                } = member;
+                const { _id, createdAt, name, phone, photo, shrlDesignation } =
+                  member;
                 return (
                   <TableRow key={_id}>
                     <TableCell>{i + 1}</TableCell>
@@ -150,8 +142,8 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
                     )}
                     {columns.actions && (
                       <TableCell className="flex items-center justify-center gap-2">
-                        <DeleteTeamMember id={slug} />
-                        <ViewTeamMemberModal member={member} />
+                        <TeamMemberActions member={member} />
+                        {/* <DeleteTeamMember id={member._id} /> */}
                       </TableCell>
                     )}
                   </TableRow>

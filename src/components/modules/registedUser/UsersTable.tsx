@@ -103,10 +103,7 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
                 <DateFormat date={user.createdAt} />
               </TableCell>
               <TableCell className="text-center">
-                <UserActions
-                  role={user.role as 'USER' | 'ADMIN'}
-                  userId={user._id}
-                />
+                <UserActions user={user} />
               </TableCell>
             </TableRow>
           ))}

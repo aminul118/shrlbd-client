@@ -21,14 +21,15 @@ const teamApi = baseApi.injectEndpoints({
       }),
       providesTags: ['TEAM'],
     }),
-    // POST - Add Regular Event
+    // Update - Team
     updateTeamMember: builder.mutation({
-      query: (eventInfo) => ({
-        url: '/event/create',
-        method: 'POST',
-        data: eventInfo,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      query: ({ member, id }: { member: any; id: string }) => ({
+        url: `/team/${id}`,
+        method: 'PUT',
+        data: member,
       }),
-      invalidatesTags: ['EVENT'],
+      invalidatesTags: ['TEAM'],
     }),
 
     // DELETE - Delete Upcoming Event
@@ -44,6 +45,7 @@ const teamApi = baseApi.injectEndpoints({
 
 export const {
   useAddTeamMemberMutation,
+  useUpdateTeamMemberMutation,
   useGetAllTeamMembersQuery,
   useDeleteTeamMemberMutation,
 } = teamApi;

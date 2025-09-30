@@ -35,3 +35,22 @@ export const addTeamMemberValidation = z.object({
   phone: z.string().min(5, { message: 'Phone number is required.' }),
   photo: z.instanceof(File).optional().or(z.null()),
 });
+
+export const updateTeamMemberValidation = z.object({
+  name: z
+    .string()
+    .min(2, { message: 'Name must be at least 2 characters.' })
+    .optional(),
+  content: z
+    .string()
+    .min(2, { message: 'Content must be at least 2 characters.' })
+    .optional(),
+  designation: z.array(z.string().min(1, 'Designation is required')).optional(),
+  shrlDesignation: z
+    .string()
+    .min(2, { message: 'SHRL Designation must be at least 2 characters.' })
+    .optional(),
+  email: z.string().email({ message: 'Invalid email address' }).optional(),
+  phone: z.string().min(5, { message: 'Phone number is required.' }).optional(),
+  photo: z.instanceof(File).optional().or(z.null()),
+});

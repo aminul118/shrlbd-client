@@ -20,9 +20,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useTeamJoinRequestQuery } from '@/redux/features/joinTeam/joinTeam.api';
-import DeleteJoinTeamRequest from './DeleteJoinTeamRequest';
-import { ShowRequestModal } from './ShowRequestModal';
-import TeamJoinSendMessage from './TeamJoinSendMessage';
+import JoinTeamActions from './JoinTeamActions';
 
 const TeamJoinRequest = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -82,9 +80,7 @@ const TeamJoinRequest = ({ props }: { props: Record<string, any> }) => {
               <TableCell>{<DateFormat date={req.createdAt} />}</TableCell>
               {/* Table Actions */}
               <TableCell className="flex items-center gap-2">
-                <ShowRequestModal payload={req} />
-                <TeamJoinSendMessage email={req.email} />
-                <DeleteJoinTeamRequest id={req._id} />
+                <JoinTeamActions team={req} />
               </TableCell>
             </TableRow>
           ))}

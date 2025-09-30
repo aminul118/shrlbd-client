@@ -1,18 +1,21 @@
 'use client';
 
 import DateFormat from '@/components/common/date-format';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
+import { IModal } from '@/types';
 import { ITeamJoinRequest } from '@/types/apiData.types';
-import { Eye } from 'lucide-react';
 
-export function ShowRequestModal({ payload }: { payload: ITeamJoinRequest }) {
+interface Props extends IModal {
+  request: ITeamJoinRequest;
+}
+
+export function ShowRequestModal({ request, setOpen, open }: Props) {
   const {
     name,
     email,
@@ -23,7 +26,7 @@ export function ShowRequestModal({ payload }: { payload: ITeamJoinRequest }) {
     time_commitment,
     Why_join_team,
     createdAt,
-  } = payload;
+  } = request;
 
   // Fields to display
   const fieldsToShow = {
@@ -38,21 +41,16 @@ export function ShowRequestModal({ payload }: { payload: ITeamJoinRequest }) {
   };
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <Eye />
-        </Button>
-      </DialogTrigger>
-
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="scrollbar-thin max-h-[80vh] w-full overflow-y-auto sm:max-w-3xl">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold">
             Request Details
           </DialogTitle>
-          <div className="text-xs">
+          <DialogDescription>
+            Review the request information submitted by {name} | Date -
             <DateFormat date={createdAt} />
-          </div>
+          </DialogDescription>
         </DialogHeader>
         <div className="rounded-lg p-4">
           <dl className="grid grid-cols-1 gap-y-4">

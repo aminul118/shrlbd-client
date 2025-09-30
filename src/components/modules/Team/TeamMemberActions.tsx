@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useDeleteTeamMemberMutation } from '@/redux/features/team/team.api';
 import { ITeamMember } from '@/types';
-import { EllipsisIcon } from 'lucide-react';
+import { EllipsisIcon, EyeIcon, PencilIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import DeleteFromTableDropDown from '../../actions/DeleteFromTableDropDown';
 import EditTeamMember from './EditTeamMember';
@@ -24,7 +24,6 @@ const TeamMemberActions = ({ member }: { member: ITeamMember }) => {
 
   const handleDelete = async (slug: string) => {
     const res = await deleteTeamMember(slug).unwrap();
-    console.log(res);
     return res;
   };
 
@@ -37,7 +36,7 @@ const TeamMemberActions = ({ member }: { member: ITeamMember }) => {
               size="icon"
               variant="ghost"
               className="shadow-none"
-              aria-label="Edit item"
+              aria-label="Actions"
             >
               <EllipsisIcon size={16} aria-hidden="true" />
             </Button>
@@ -47,15 +46,21 @@ const TeamMemberActions = ({ member }: { member: ITeamMember }) => {
         <DropdownMenuContent align="end" className="min-w-48">
           {/* Trigger modal */}
           <DropdownMenuItem onClick={() => setTeamMemberModalOpen(true)}>
-            View Details
+            <EyeIcon className="mr-2 h-4 w-4" />
+            <span>View Details</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => setEditModalOpen(true)}>
-            Edit Profile
+            <PencilIcon className="mr-2 h-4 w-4" />
+            <span>Edit Profile</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => setDeleteModalOpen(true)}>
-            Delete
+          <DropdownMenuItem
+            className="text-destructive focus:text-destructive"
+            onClick={() => setDeleteModalOpen(true)}
+          >
+            <Trash2Icon className="mr-2 h-4 w-4" />
+            <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -20,8 +20,7 @@ import {
 } from '@/components/ui/table';
 import { useGetAiTrainingsQuery } from '@/redux/features/ai/ai.api';
 import AddAiTrainingsModal from './AddAiTrainingsModal';
-import DeleteAiTrainings from './DeleteAiTrainings';
-import ShowTrainingsModal from './ShowTrainingsModal';
+import AiTrainingActions from './AiTrainingActions';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AiTrainingsTable = ({ props }: { props: Record<string, any> }) => {
@@ -90,8 +89,7 @@ const AiTrainingsTable = ({ props }: { props: Record<string, any> }) => {
                     <DateFormat date={item.createdAt} />
                   </TableCell>
                   <TableCell className="flex justify-center gap-2">
-                    <ShowTrainingsModal payload={item} />
-                    <DeleteAiTrainings id={item._id} />
+                    <AiTrainingActions payload={item} />
                   </TableCell>
                 </TableRow>
               ))}

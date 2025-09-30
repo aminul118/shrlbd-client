@@ -10,7 +10,6 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import {
@@ -23,9 +22,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useSendParticipantEmailMutation } from '@/redux/features/joinTeam/joinTeam.api';
+import { IModal } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Send, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -43,8 +42,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const TeamJoinSendMessage = ({ email }: { email: string }) => {
-  const [open, setOpen] = useState(false);
+interface Props extends IModal {
+  email: string;
+}
+
+const TeamJoinSendMessage = ({ email, open, setOpen }: Props) => {
   const [sendEmail, { isLoading }] = useSendParticipantEmailMutation();
 
   const form = useForm<FormValues>({
@@ -52,11 +54,6 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
     defaultValues: { subject: '', message: '' },
     mode: 'onSubmit',
   });
-
-  // Reset the form whenever the dialog closes
-  useEffect(() => {
-    if (!open) form.reset();
-  }, [open, form]);
 
   const onSubmit = async (values: FormValues) => {
     if (!email) {
@@ -90,16 +87,6 @@ const TeamJoinSendMessage = ({ email }: { email: string }) => {
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTrigger asChild>
-        <Button
-          size="sm"
-          variant="outline"
-          aria-label="Open send message dialog"
-        >
-          <Send />
-        </Button>
-      </AlertDialogTrigger>
-
       <AlertDialogContent className="sm:max-w-3xl">
         <AlertDialogHeader>
           <AlertDialogTitle>Send a Message</AlertDialogTitle>

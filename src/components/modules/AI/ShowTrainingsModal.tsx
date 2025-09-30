@@ -1,34 +1,25 @@
 'use client';
 
 import DateFormat from '@/components/common/date-format';
-import Tooltip from '@/components/common/Tooltip';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
-import { IAiTraining } from '@/types';
-import { Eye } from 'lucide-react';
+import { IAiTraining, IModal } from '@/types';
 
-const ShowTrainingsModal = ({ payload }: { payload: IAiTraining }) => {
+interface Props extends IModal {
+  payload: IAiTraining;
+}
+
+const ShowTrainingsModal = ({ payload, setOpen, open }: Props) => {
   const { question, answer, createdAt } = payload;
 
   return (
-    <Dialog>
-      {/* Trigger Button */}
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <Tooltip content="View Details">
-            <Eye />
-          </Tooltip>
-        </Button>
-      </DialogTrigger>
-
+    <Dialog open={open} onOpenChange={setOpen}>
       {/* Modal Content */}
       <DialogContent
         aria-describedby={undefined} // prevent auto-description linking

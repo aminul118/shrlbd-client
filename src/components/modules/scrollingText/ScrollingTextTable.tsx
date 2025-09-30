@@ -13,8 +13,7 @@ import {
 } from '@/components/ui/table';
 import { getScrollingText } from '@/services/scrolling-text';
 import AddScrollingTextModal from './AddScrollingTextModal';
-import DeleteScrollingText from './DeleteScrollingText';
-import ViewScrollingTextModal from './ViewScrollingTextModal';
+import ScrollingTextActions from './ScrollingTextActions';
 
 const ScrollingTextTable = async () => {
   const { data, statusCode } = await getScrollingText();
@@ -70,10 +69,7 @@ const ScrollingTextTable = async () => {
                     <DateFormat date={text.createdAt} />
                   </TableCell>
                   <TableCell className="text-center">
-                    <div className="flex items-center gap-2">
-                      <DeleteScrollingText id={text._id} />
-                      <ViewScrollingTextModal text={text} />
-                    </div>
+                    <ScrollingTextActions text={text} />
                   </TableCell>
                 </TableRow>
               ))}

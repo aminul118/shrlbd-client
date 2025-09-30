@@ -1,38 +1,25 @@
-import Tooltip from '@/components/common/Tooltip';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 
-import { IScrollingText } from '@/types';
-import { Eye } from 'lucide-react';
+import { IModal, IScrollingText } from '@/types';
 
-interface Props {
+interface Props extends IModal {
   text: IScrollingText;
 }
 
-const ViewScrollingTextModal = ({ text }: Props) => {
-  const { text: fullText } = text;
-
+const ViewScrollingTextModal = ({ text, open, setOpen }: Props) => {
   return (
-    <Dialog>
-      <Tooltip content="View Details">
-        <DialogTrigger asChild>
-          <Button variant="outline">
-            <Eye />
-          </Button>
-        </DialogTrigger>
-      </Tooltip>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>Scrolling Text</DialogTitle>
         </DialogHeader>
-        <DialogDescription className="space-y-2">{fullText}</DialogDescription>
+        <DialogDescription className="space-y-2">{text.text}</DialogDescription>
       </DialogContent>
     </Dialog>
   );

@@ -24,8 +24,7 @@ import { useGetEventQuery } from '@/redux/features/event/event.api';
 import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import DeletePreviousEvent from './DeletePreviousEvent';
-import ShowPreviousEventModal from './ShowPreviousEventModal';
+import EventActions from './EventActions';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PreviousEventTable = ({ props }: { props: Record<string, any> }) => {
@@ -109,9 +108,8 @@ const PreviousEventTable = ({ props }: { props: Record<string, any> }) => {
                   <TableCell>
                     <DateFormat date={event.createdAt} />
                   </TableCell>
-                  <TableCell className="flex gap-2 text-center">
-                    <ShowPreviousEventModal event={event} />
-                    <DeletePreviousEvent id={event._id} />
+                  <TableCell>
+                    <EventActions event={event} />
                   </TableCell>
                 </TableRow>
               ))}

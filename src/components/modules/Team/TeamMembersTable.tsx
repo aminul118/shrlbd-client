@@ -141,9 +141,8 @@ const TeamMembersTable = ({ props }: { props: Record<string, any> }) => {
                       </TableCell>
                     )}
                     {columns.actions && (
-                      <TableCell className="flex items-center justify-center gap-2">
+                      <TableCell>
                         <TeamMemberActions member={member} />
-                        {/* <DeleteTeamMember id={member._id} /> */}
                       </TableCell>
                     )}
                   </TableRow>

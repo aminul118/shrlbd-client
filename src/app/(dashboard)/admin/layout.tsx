@@ -24,7 +24,7 @@ const AdminLayout = async ({ children }: IChildren) => {
             <DashboardBreadcrumb />
           </div>
         </header>
-        <div className="container mx-auto px-2">{children}</div>
+        <>{children}</>
       </SidebarInset>
     </SidebarProvider>
   );

@@ -79,7 +79,7 @@ const TeamJoinRequest = ({ props }: { props: Record<string, any> }) => {
               <TableCell>{req.occupation}</TableCell>
               <TableCell>{<DateFormat date={req.createdAt} />}</TableCell>
               {/* Table Actions */}
-              <TableCell className="flex items-center gap-2">
+              <TableCell>
                 <JoinTeamActions team={req} />
               </TableCell>
             </TableRow>

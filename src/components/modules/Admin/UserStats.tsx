@@ -2,6 +2,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useGetUserStatsQuery } from '@/redux/features/stats/stats.api';
 import {
   Bar,
@@ -22,111 +23,140 @@ const UserStats = () => {
   const { data, isLoading } = useGetUserStatsQuery(undefined);
   const stats = data?.data;
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!stats) return <p>No data found</p>;
+  // Skeleton for cards and charts
+  const CardSkeleton = ({ height = 52 }: { height?: number }) => (
+    <Card>
+      <CardHeader>
+        <Skeleton className="mb-2 h-5 w-32" />
+      </CardHeader>
+      <CardContent className={`flex flex-col h-${height}`}>
+        <Skeleton className="mb-2 h-10 w-20" />
+        <Skeleton className="mt-auto h-4 w-full" />
+      </CardContent>
+    </Card>
+  );
 
-  const roleData = stats.userByRole.map((role: any) => ({
-    name: role._id,
-    value: role.count,
-  }));
+  // Prepare chart data if loaded
+  const roleData =
+    stats?.userByRole.map((role: any) => ({
+      name: role._id,
+      value: role.count,
+    })) || [];
 
-  const totalUsersData = [
-    { name: 'Active', value: stats.totalActiveUsers },
-    { name: 'Inactive', value: stats.totalInactiveUsers },
-    { name: 'Blocked', value: stats.totalBlockedUsers },
-  ];
+  const totalUsersData = stats
+    ? [
+        { name: 'Active', value: stats.totalActiveUsers },
+        { name: 'Inactive', value: stats.totalInactiveUsers },
+        { name: 'Blocked', value: stats.totalBlockedUsers },
+      ]
+    : [];
 
   return (
     <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
       {/* Total Users Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Total Users</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-3xl font-bold">{stats.totalUsers}</p>
-          <p>
-            Today: {stats.totalNewUserToday} | Last 7 days:{' '}
-            {stats.totalNewUser7Days} | Last 30 days: {stats.totalNewUser30Days}
-          </p>
-        </CardContent>
-      </Card>
+      {isLoading ? (
+        <CardSkeleton />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Total Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">{stats.totalUsers}</p>
+            <p>
+              Today: {stats.totalNewUserToday} | Last 7 days:{' '}
+              {stats.totalNewUser7Days} | Last 30 days:{' '}
+              {stats.totalNewUser30Days}
+            </p>
+          </CardContent>
+        </Card>
+      )}
 
       {/* User Status Bar Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle>User Status</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={totalUsersData}>
-              <XAxis dataKey="name" />
-              <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Bar dataKey="value" fill="#4f46e5" />
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
+      {isLoading ? (
+        <CardSkeleton height={64} />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>User Status</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart data={totalUsersData}>
+                <XAxis dataKey="name" />
+                <YAxis allowDecimals={false} />
+                <Tooltip />
+                <Bar dataKey="value" fill="#4f46e5" />
+              </BarChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      )}
 
       {/* User Role Pie Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle>User Roles</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={roleData}
-                dataKey="value"
-                nameKey="name"
-                outerRadius={80}
-                fill="#8884d8"
-                label
-              >
-                {roleData.map((entry: any, index: number) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
+      {isLoading ? (
+        <CardSkeleton height={64} />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>User Roles</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={250}>
+              <PieChart>
+                <Pie
+                  data={roleData}
+                  dataKey="value"
+                  nameKey="name"
+                  outerRadius={80}
+                  label
+                >
+                  {roleData.map((entry: any, index: number) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      )}
 
-      {/* Verified vs Unverified Card */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Verification Status</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={[
-                  { name: 'Verified', value: stats.totalVerifiedUsers },
-                  { name: 'Unverified', value: stats.totalUnverifiedUsers },
-                ]}
-                dataKey="value"
-                nameKey="name"
-                outerRadius={80}
-                fill="#82ca9d"
-                label
-              >
-                <Cell fill="#22c55e" />
-                <Cell fill="#ef4444" />
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
+      {/* Verified vs Unverified Pie Chart */}
+      {isLoading ? (
+        <CardSkeleton height={64} />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>Verification Status</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ResponsiveContainer width="100%" height={250}>
+              <PieChart>
+                <Pie
+                  data={[
+                    { name: 'Verified', value: stats.totalVerifiedUsers },
+                    { name: 'Unverified', value: stats.totalUnverifiedUsers },
+                  ]}
+                  dataKey="value"
+                  nameKey="name"
+                  outerRadius={80}
+                  label
+                >
+                  <Cell fill="#22c55e" />
+                  <Cell fill="#ef4444" />
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };

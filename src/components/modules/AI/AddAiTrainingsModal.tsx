@@ -20,6 +20,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useAiTrainingsMutation } from '@/redux/features/ai/ai.api';
+import { aiValidation } from '@/validations/ai';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
@@ -27,29 +28,19 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-const formSchema = z.object({
-  question: z.string().min(5, {
-    message: 'Question text must be at least 10 characters.',
-  }),
-  answer: z.string().min(5, {
-    message: 'Answer text must be at least 10 characters.',
-  }),
-});
-
 const AddAiTrainingsModal = () => {
+  const [aiTraining] = useAiTrainingsMutation();
   const [open, setOpen] = useState(false);
 
-  const [aiTraining] = useAiTrainingsMutation();
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof aiValidation>>({
+    resolver: zodResolver(aiValidation),
     defaultValues: {
       question: '',
       answer: '',
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof aiValidation>) => {
     try {
       const toastId = toast.loading('Adding scrolling text...');
       const res = await aiTraining(values).unwrap();

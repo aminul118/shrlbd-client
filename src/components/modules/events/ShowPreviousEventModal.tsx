@@ -1,30 +1,22 @@
 import DateFormat from '@/components/common/date-format';
-import Tooltip from '@/components/common/Tooltip';
-import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import HtmlContent from '@/components/ui/HtmlContent';
-import { IEvent } from '@/types';
-import { Eye } from 'lucide-react';
+import { IEvent, IModal } from '@/types';
 import Image from 'next/image';
 
-const ShowPreviousEventModal = ({ event }: { event: IEvent }) => {
+interface Props extends IModal {
+  event: IEvent;
+}
+
+const ShowPreviousEventModal = ({ event, open, setOpen }: Props) => {
   const { content, createdAt, photos, title } = event;
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <Tooltip content="View Details">
-            <Eye />
-          </Tooltip>
-        </Button>
-      </DialogTrigger>
-
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent
         aria-describedby={undefined}
         className="scrollbar-thin max-h-[80vh] w-full overflow-y-auto sm:max-w-3xl"

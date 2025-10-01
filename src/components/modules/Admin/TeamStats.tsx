@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useGetTeamStatsQuery } from '@/redux/features/stats/stats.api';
 import {
   Bar,
@@ -15,8 +16,43 @@ const TeamStats = () => {
   const { data, isLoading, isError } = useGetTeamStatsQuery(undefined);
   const stats = data?.data;
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError || !stats) return <p>Unable to load stats.</p>;
+  // Skeleton for Total Members Card
+  const TotalMembersSkeleton = () => (
+    <Card>
+      <CardHeader>
+        <Skeleton className="h-5 w-32" />
+      </CardHeader>
+      <CardContent className="flex h-40 flex-col">
+        <Skeleton className="mb-4 h-10 w-20" />
+        <Skeleton className="mt-auto h-4 w-40" />
+      </CardContent>
+    </Card>
+  );
+
+  // Skeleton for New Members Bar Chart
+  const BarChartSkeleton = () => (
+    <Card>
+      <CardHeader>
+        <Skeleton className="h-5 w-32" />
+      </CardHeader>
+      <CardContent className="h-64">
+        <Skeleton className="h-full w-full" />
+      </CardContent>
+    </Card>
+  );
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <TotalMembersSkeleton />
+        <BarChartSkeleton />
+      </div>
+    );
+  }
+
+  if (isError || !stats) {
+    return <p>Unable to load stats.</p>;
+  }
 
   // Bar chart data: New members over time
   const newMembersData = [

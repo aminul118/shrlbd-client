@@ -88,7 +88,7 @@ const AiTrainingsTable = ({ props }: { props: Record<string, any> }) => {
                   <TableCell>
                     <DateFormat date={item.createdAt} />
                   </TableCell>
-                  <TableCell className="flex justify-center gap-2">
+                  <TableCell>
                     <AiTrainingActions payload={item} />
                   </TableCell>
                 </TableRow>

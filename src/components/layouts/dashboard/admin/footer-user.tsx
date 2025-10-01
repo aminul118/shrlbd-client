@@ -21,11 +21,12 @@ import {
 import { AppDataContext } from '@/context/auth-context';
 import { authApi, useLogoutMutation } from '@/redux/features/auth/auth.api';
 import { useAppDispatch } from '@/redux/hook';
-import { LogOut } from 'lucide-react';
+import { Gauge, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { toast } from 'sonner';
+import DashboardThemeToggle from './dashboard-theme-toggle';
 
 export function FooterUser() {
   const { isMobile } = useSidebar();
@@ -104,9 +105,12 @@ export function FooterUser() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="mt-3" />
+            <DashboardThemeToggle />
+            <DropdownMenuSeparator />
+
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link href="/admin">Dashboard</Link>
+                <Gauge /> <Link href="/admin">Dashboard</Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

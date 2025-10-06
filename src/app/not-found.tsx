@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 const NotFound = () => {
   const path = usePathname();
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center text-center">
+    <div className="center text-center">
       <Card className="w-full max-w-lg rounded-lg border p-10 shadow-2xl">
         {/* Next.js 15 Image Fix */}
         <Image

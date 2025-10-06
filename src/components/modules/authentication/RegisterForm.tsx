@@ -16,12 +16,11 @@ import { Input } from '@/components/ui/input';
 import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import Logo from '@/components/layouts/Logo';
 import Password from '@/components/ui/password';
-import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useRegisterMutation } from '@/redux/features/auth/auth.api';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -80,16 +79,13 @@ const RegisterForm = ({ className }: { className?: string }) => {
     <div className={cn('flex flex-col gap-6', className)} data-aos="fade-left">
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
-          {/* Left side image */}
-          <div className="bg-muted relative hidden md:block">
-            <Image
-              src={images.auth}
-              height={400}
-              width={400}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-            />
-          </div>
+          {/* Lottie */}
+          <DotLottieReact
+            className="hidden bg-slate-950 lg:block"
+            src="login-register.json"
+            loop
+            autoplay
+          />
 
           {/* Right side form */}
           <div className="p-8">
@@ -98,7 +94,7 @@ const RegisterForm = ({ className }: { className?: string }) => {
                 <Logo />
               </Link>
               <p className="text-muted-foreground text-balance">
-                Register to Tab Startup portal
+                Register to Smart Healthcare & Research Ltd.
               </p>
             </div>
             <Form {...form}>

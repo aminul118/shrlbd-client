@@ -14,13 +14,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
-import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useLoginMutation } from '@/redux/features/auth/auth.api';
 import { Role } from '@/types';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Image from 'next/image';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -90,8 +89,8 @@ const LoginForm = ({ className }: { className?: string }) => {
                   <Link href={'/'}>
                     <Logo />
                   </Link>
-                  <p className="text-muted-foreground mt-4">
-                    Login to your Tab Startup portal
+                  <p className="text-muted-foreground mt-4 text-center">
+                    Login to your Smart Healthcare & Research Ltd. portal
                   </p>
                 </div>
 
@@ -159,15 +158,12 @@ const LoginForm = ({ className }: { className?: string }) => {
           </div>
 
           {/* Image Section */}
-          <div className="relative hidden h-full w-full md:block">
-            <Image
-              src={images.auth}
-              height={400}
-              width={400}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-            />
-          </div>
+          <DotLottieReact
+            className="hidden bg-slate-950 lg:block"
+            src="login-register.json"
+            loop
+            autoplay
+          />
         </CardContent>
       </Card>
     </div>

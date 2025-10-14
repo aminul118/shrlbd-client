@@ -62,11 +62,6 @@ export const staticRoutes: Routes[] = [
     priority: 0.8,
   },
   {
-    url: 'register',
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  },
-  {
     url: 'terms-conditions',
     changeFrequency: 'monthly',
     priority: 0.3,

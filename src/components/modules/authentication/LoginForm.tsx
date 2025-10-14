@@ -73,7 +73,7 @@ const LoginForm = ({ className }: { className?: string }) => {
 
   return (
     <div
-      className={cn('flex items-center justify-center', className)}
+      className={cn('flex items-center justify-center shadow-lg', className)}
       data-aos="fade-right"
     >
       <Card className="w-full max-w-5xl overflow-hidden p-0">

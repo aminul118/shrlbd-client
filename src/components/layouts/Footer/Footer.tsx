@@ -150,7 +150,15 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
         <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
           <p className="order-2 lg:order-1">
             &copy; {new Date().getFullYear()} Smart Healthcare and Research Ltd
-            . All rights reserved.
+            . All rights reserved. Developed by{' '}
+            <Link
+              href="https://www.aminuldev.site"
+              target="_blank"
+              referrerPolicy="no-referrer"
+              className="font-semibold text-blue-500"
+            >
+              Aminul Islam
+            </Link>
           </p>
 
           <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">

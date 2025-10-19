@@ -3,6 +3,17 @@ import KeyServices from '@/components/modules/KeyServices/KeyServices';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
+const ServicePage = () => {
+  return (
+    <>
+      <KeyServices />
+      <Commitments />
+    </>
+  );
+};
+
+export default ServicePage;
+
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: 'Services - BAN-GDM Maternal & Child Healthcare',
@@ -14,14 +25,3 @@ export const metadata: Metadata = generateMetaTags({
   websitePath: '/services',
 });
 // ---> SEO End
-
-const ServicePage = () => {
-  return (
-    <>
-      <KeyServices />
-      <Commitments />
-    </>
-  );
-};
-
-export default ServicePage;

@@ -3,6 +3,14 @@ import generateMetaTags from '@/seo/generateMetaTags';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
+const EventPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedSearchparams = await searchParams;
+
+  return <Events props={resolvedSearchparams} />;
+};
+
+export default EventPage;
+
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: 'Events | Smart Healthcare and Research Ltd. (SHRL)',
@@ -14,11 +22,3 @@ export const metadata: Metadata = generateMetaTags({
   websitePath: 'upcoming-events',
 });
 // --> SEO End
-
-const EventPage = async ({ searchParams }: ISearchParams) => {
-  const resolvedSearchparams = await searchParams;
-
-  return <Events props={resolvedSearchparams} />;
-};
-
-export default EventPage;

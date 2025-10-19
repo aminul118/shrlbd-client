@@ -2,14 +2,6 @@ import RegisterForm from '@/components/modules/authentication/RegisterForm';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
-// >> SEO Start
-export const metadata: Metadata = generateMetaTags({
-  title: 'Register | SHRL',
-  description: 'Write Description',
-  keywords: 'write keyword not more than 60 words',
-});
-// >> SEO End
-
 const RegisterPage = () => {
   return (
     <section className="center">
@@ -19,3 +11,11 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+// >> SEO Start
+export const metadata: Metadata = generateMetaTags({
+  title: 'Register | SHRL',
+  description: 'Write Description',
+  keywords: 'write keyword not more than 60 words',
+});
+// >> SEO End

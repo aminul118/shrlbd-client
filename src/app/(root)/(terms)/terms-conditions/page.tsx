@@ -3,18 +3,6 @@ import { termsData } from '@/constants/terms';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
-// SEO Starts
-export const metadata: Metadata = generateMetaTags({
-  title: 'Terms and Conditions - SHRL',
-  description:
-    "Review the Terms and Conditions for using Smart Healthcare and Research Ltd.'s online consultation services, payment policies, and user responsibilities.",
-  keywords:
-    'Smart Healthcare, SHRL, Terms and Conditions, SHRL policies, Healthcare services, Refund policy, Consultation rules, Online medical consultation, Bangladesh healthcare, SHRLBD',
-  image: '/seo/shrl-hero-ss.png',
-  websitePath: '/terms-conditions',
-});
-// SEO End
-
 const TermsPage = () => {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12">
@@ -55,3 +43,15 @@ const TermsPage = () => {
 };
 
 export default TermsPage;
+
+// SEO Starts
+export const metadata: Metadata = generateMetaTags({
+  title: 'Terms and Conditions - SHRL',
+  description:
+    "Review the Terms and Conditions for using Smart Healthcare and Research Ltd.'s online consultation services, payment policies, and user responsibilities.",
+  keywords:
+    'Smart Healthcare, SHRL, Terms and Conditions, SHRL policies, Healthcare services, Refund policy, Consultation rules, Online medical consultation, Bangladesh healthcare, SHRLBD',
+  image: '/seo/shrl-hero-ss.png',
+  websitePath: '/terms-conditions',
+});
+// SEO End

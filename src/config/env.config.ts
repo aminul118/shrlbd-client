@@ -1,9 +1,8 @@
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-const googleAnalytics = process.env.GoogleAnalytics;
+import getEnv from '@/helpers/getEnv';
 
 const envVars = {
-  baseUrl,
-  googleAnalytics,
+  baseUrl: getEnv('NEXT_PUBLIC_BASE_URL'),
+  googleAnalytics: getEnv('GoogleAnalytics'),
 };
 
 export default envVars;

@@ -5,21 +5,6 @@ import { getSingleTeamMember } from '@/services/team';
 import { IParams } from '@/types';
 import Image from 'next/image';
 
-// ---> SEO Starts
-export async function generateMetadata({ params }: IParams) {
-  const { slug } = await params;
-  const { data: team } = await getSingleTeamMember(slug);
-
-  return generateMetaTags({
-    title: `${team.name} | ${team.shrlDesignation}`,
-    description: team.content?.replace(/<[^>]*>/g, '').slice(0, 160),
-    keywords: `${team.name}, ${team.shrlDesignation}, SHRL team`,
-    image: team.photo,
-    websitePath: `/team/${slug}`,
-  });
-}
-// ---> SEO END
-
 const TeamDetails = async ({ params }: IParams) => {
   const { slug } = await params;
   const { data: team } = await getSingleTeamMember(slug);
@@ -63,3 +48,18 @@ const TeamDetails = async ({ params }: IParams) => {
 };
 
 export default TeamDetails;
+
+// ---> SEO Starts
+export async function generateMetadata({ params }: IParams) {
+  const { slug } = await params;
+  const { data: team } = await getSingleTeamMember(slug);
+
+  return generateMetaTags({
+    title: `${team.name} | ${team.shrlDesignation}`,
+    description: team.content?.replace(/<[^>]*>/g, '').slice(0, 160),
+    keywords: `${team.name}, ${team.shrlDesignation}, SHRL team`,
+    image: team.photo,
+    websitePath: `/team/${slug}`,
+  });
+}
+// ---> SEO END

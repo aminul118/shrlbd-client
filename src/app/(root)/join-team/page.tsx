@@ -3,6 +3,17 @@ import JoinTeamIntro from '@/components/modules/JoinTeam/JoinTeamIntro';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
+const JoinTeamPage = () => {
+  return (
+    <div className="mx-auto max-w-3xl overflow-x-hidden">
+      <JoinTeamIntro />
+      <JoinTeamForm />
+    </div>
+  );
+};
+
+export default JoinTeamPage;
+
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: 'Join Our Team | Smart Healthcare and Research Ltd (SHRL)',
@@ -14,14 +25,3 @@ export const metadata: Metadata = generateMetaTags({
   websitePath: '/join-team',
 });
 // ---> SEO End
-
-const JoinTeamPage = () => {
-  return (
-    <div className="mx-auto max-w-3xl overflow-x-hidden">
-      <JoinTeamIntro />
-      <JoinTeamForm />
-    </div>
-  );
-};
-
-export default JoinTeamPage;

@@ -4,19 +4,6 @@ import { privacySections } from '@/constants/terms';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
-// SEO Starts
-export const metadata: Metadata = generateMetaTags({
-  title: 'Privacy Policy | SHRL',
-  description:
-    "Review the Privacy Policy for Smart Healthcare and Research Ltd.'s online consultation services, including data collection practices, security, cookies, and user rights.",
-  keywords:
-    'Smart Healthcare, SHRL, Privacy Policy, Data collection, Cookies, User rights, Online consultation, Healthcare services, SHRLBD, Data protection',
-  image: '/seo/shrl-hero-ss.png',
-  websitePath: 'privacy-policy',
-});
-
-// SEO End
-
 const PrivacyPolicyPage = () => {
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 font-sans text-gray-800">
@@ -66,3 +53,16 @@ const PrivacyPolicyPage = () => {
 };
 
 export default PrivacyPolicyPage;
+
+// SEO Starts
+export const metadata: Metadata = generateMetaTags({
+  title: 'Privacy Policy | SHRL',
+  description:
+    "Review the Privacy Policy for Smart Healthcare and Research Ltd.'s online consultation services, including data collection practices, security, cookies, and user rights.",
+  keywords:
+    'Smart Healthcare, SHRL, Privacy Policy, Data collection, Cookies, User rights, Online consultation, Healthcare services, SHRLBD, Data protection',
+  image: '/seo/shrl-hero-ss.png',
+  websitePath: 'privacy-policy',
+});
+
+// SEO End

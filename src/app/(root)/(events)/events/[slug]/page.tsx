@@ -6,27 +6,10 @@ import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleEvent } from '@/services/event';
 import { IParams } from '@/types';
 
-// ---> SEO Starts
-export async function generateMetadata({ params }: IParams) {
-  const { slug } = await params;
-  const { data: event } = await getSingleEvent(slug);
-
-  return generateMetaTags({
-    title: `${event.title}`,
-    description: event.content?.replace(/<[^>]*>/g, '').slice(0, 160) || '',
-    keywords: `${event.title}, Event`,
-    image: event.photos?.[0] || '',
-    websitePath: `/event/${slug}`,
-  });
-}
-// ---> SEO END
-
 const EventDetailsPage = async ({ params }: IParams) => {
   const { slug } = await params;
   const { data: event } = await getSingleEvent(slug);
-
   const photos = event.photos || [];
-
   const { title, content, createdAt } = event;
 
   return (
@@ -52,3 +35,18 @@ const EventDetailsPage = async ({ params }: IParams) => {
 };
 
 export default EventDetailsPage;
+
+// ---> SEO Starts
+export async function generateMetadata({ params }: IParams) {
+  const { slug } = await params;
+  const { data: event } = await getSingleEvent(slug);
+
+  return generateMetaTags({
+    title: `${event.title}`,
+    description: event.content?.replace(/<[^>]*>/g, '').slice(0, 160) || '',
+    keywords: `${event.title}, Event`,
+    image: event.photos?.[0] || '',
+    websitePath: `/event/${slug}`,
+  });
+}
+// ---> SEO END

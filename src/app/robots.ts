@@ -1,3 +1,4 @@
+import metaConfig from '@/config/seo.config';
 import type { MetadataRoute } from 'next';
 
 const robots = (): MetadataRoute.Robots => {
@@ -6,15 +7,15 @@ const robots = (): MetadataRoute.Robots => {
       {
         userAgent: 'Googlebot',
         allow: ['/'],
-        disallow: ['/user', '/admin'],
+        disallow: metaConfig.protectedCrawlRoutes,
       },
       {
         userAgent: ['Applebot', 'Bingbot'],
         allow: ['/'],
-        disallow: ['/user', '/admin'],
+        disallow: metaConfig.protectedCrawlRoutes,
       },
     ],
-    sitemap: ['https://www.shrlbd.com/sitemap.xml'],
+    sitemap: [`${metaConfig.baseUrl}/sitemap.xml`],
   };
 };
 

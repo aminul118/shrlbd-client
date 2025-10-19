@@ -2,18 +2,6 @@ import { policySections } from '@/constants/terms';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
-// SEO stats
-export const metadata: Metadata = generateMetaTags({
-  title: 'Return and Refund Policy - SHRL',
-  description:
-    "Review the Return and Refund Policy for Smart Healthcare and Research Ltd.'s online consultation services, including valid refund reasons, terms, and conditions.",
-  keywords:
-    'Smart Healthcare, SHRL, Return Policy, Refund Policy, Healthcare services, Online consultation, Medical services, SHRLBD',
-  image: '/seo/shrl-hero-ss.png',
-  websitePath: 'return-refund-policy',
-});
-// SEO End
-
 const ReturnRefundPolicyPage = () => {
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 font-sans text-gray-800 dark:text-white/90">
@@ -46,3 +34,15 @@ const ReturnRefundPolicyPage = () => {
 };
 
 export default ReturnRefundPolicyPage;
+
+// SEO stats
+export const metadata: Metadata = generateMetaTags({
+  title: 'Return and Refund Policy - SHRL',
+  description:
+    "Review the Return and Refund Policy for Smart Healthcare and Research Ltd.'s online consultation services, including valid refund reasons, terms, and conditions.",
+  keywords:
+    'Smart Healthcare, SHRL, Return Policy, Refund Policy, Healthcare services, Online consultation, Medical services, SHRLBD',
+  image: '/seo/shrl-hero-ss.png',
+  websitePath: 'return-refund-policy',
+});
+// SEO End

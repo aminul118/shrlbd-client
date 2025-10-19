@@ -2,12 +2,6 @@ import ResetPassword from '@/components/modules/authentication/ResetPassword';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
-// >> SEO Start
-export const metadata: Metadata = {
-  title: 'Reset Password | SHRL',
-};
-// >> SEO End
-
 const ResetPasswordPage = async ({ searchParams }: ISearchParams) => {
   const resolvedSearchParams = await searchParams;
   return (
@@ -18,3 +12,9 @@ const ResetPasswordPage = async ({ searchParams }: ISearchParams) => {
 };
 
 export default ResetPasswordPage;
+
+// >> SEO Start
+export const metadata: Metadata = {
+  title: 'Reset Password | SHRL',
+};
+// >> SEO End

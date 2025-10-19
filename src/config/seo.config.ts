@@ -8,6 +8,7 @@ const metaConfig = {
   authors_name: 'Dr Fatema Ashraf',
   authorPortfolio: 'https://www.shrlbd.com/team/professor-dr-fatema-ashraf',
   twitter_site: '@shrl',
+  protectedCrawlRoutes: ['/user', '/admin'],
 };
 
 export default metaConfig;

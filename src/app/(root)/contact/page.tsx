@@ -2,6 +2,12 @@ import Contact from '@/components/modules/Contact/Contact';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
+const ContactPage = () => {
+  return <Contact data-aos="fade-up" />;
+};
+
+export default ContactPage;
+
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: 'Contact | SHRL',
@@ -13,9 +19,3 @@ export const metadata: Metadata = generateMetaTags({
   websitePath: 'contact',
 });
 // --> SEO End
-
-const ContactPage = () => {
-  return <Contact data-aos="fade-up" />;
-};
-
-export default ContactPage;

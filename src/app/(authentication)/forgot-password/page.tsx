@@ -2,14 +2,6 @@ import ForgotPasswordForm from '@/components/modules/authentication/ForgotPasswo
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
-// >> SEO Start
-export const metadata: Metadata = generateMetaTags({
-  title: 'Forgot Password | SHRL',
-  description: 'Description for Forgot Password Page',
-  keywords: 'keyword',
-});
-// >> SEO End
-
 const ForgotPasswordPage = () => {
   return (
     <div className="center">
@@ -19,3 +11,11 @@ const ForgotPasswordPage = () => {
 };
 
 export default ForgotPasswordPage;
+
+// >> SEO Start
+export const metadata: Metadata = generateMetaTags({
+  title: 'Forgot Password | SHRL',
+  description: 'Description for Forgot Password Page',
+  keywords: 'keyword',
+});
+// >> SEO End

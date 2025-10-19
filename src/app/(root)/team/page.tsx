@@ -4,6 +4,13 @@ import { ISearchParams } from '@/types';
 
 import { Metadata } from 'next';
 
+const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
+  const resolvedSearchParams = await searchParams;
+
+  return <TeamList props={resolvedSearchParams} />;
+};
+export default TeamMemberPage;
+
 // ---> SEO Starts
 export const metadata: Metadata = generateMetaTags({
   title: 'Team Members - SHRL',
@@ -14,10 +21,3 @@ export const metadata: Metadata = generateMetaTags({
   websitePath: 'team',
 });
 // ---> SEO END
-
-const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
-  const resolvedSearchParams = await searchParams;
-
-  return <TeamList props={resolvedSearchParams} />;
-};
-export default TeamMemberPage;

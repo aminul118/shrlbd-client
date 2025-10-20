@@ -1,5 +1,7 @@
 'use client';
 
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
+import ReactQuil from '@/components/common/rich-text/ReactQuil';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Button } from '@/components/ui/button';
@@ -16,7 +18,6 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { useAddUpcomingEventMutation } from '@/redux/features/event/event.api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -30,7 +31,7 @@ const formSchema = z.object({
   title: z.string().min(6, { message: 'Title must be at least 6 characters.' }),
   date: z.date(),
   time: z.string().min(1, { message: 'Time is required' }),
-  venue: z.string().min(4, { message: 'Venue must be at least 4 characters.' }),
+  venue: z.string().min(2, { message: 'Venue must be at least 2 characters.' }),
   photo: z.instanceof(File, { message: 'Must upload an image file' }),
   details: z
     .string()
@@ -39,7 +40,7 @@ const formSchema = z.object({
 
 const AddUpcomingEvent = () => {
   const router = useRouter();
-  const [addUpcomingEvent] = useAddUpcomingEventMutation();
+  const [addUpcomingEvent, { isLoading }] = useAddUpcomingEventMutation();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,7 +62,7 @@ const AddUpcomingEvent = () => {
       const res = await addUpcomingEvent(formData).unwrap();
       toast.success(res.message || 'Event added successfully!');
       form.reset();
-      router.push('/admin/upcoming-event');
+      router.push('/admin/upcoming-events');
     } catch (error: any) {
       toast.error(error?.data?.message || 'Something went wrong');
     }
@@ -162,7 +163,11 @@ const AddUpcomingEvent = () => {
               <FormItem>
                 <FormLabel>Details</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Details" {...field} className="h-72" />
+                  <ReactQuil
+                    value={field.value}
+                    onChange={field.onChange}
+                    height={400}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -170,7 +175,13 @@ const AddUpcomingEvent = () => {
           />
 
           <Button type="submit" disabled={!form.formState.isValid}>
-            Submit
+            {isLoading ? (
+              <>
+                <ButtonSpinner /> Add Event
+              </>
+            ) : (
+              'Add Event'
+            )}
           </Button>
         </form>
       </Form>

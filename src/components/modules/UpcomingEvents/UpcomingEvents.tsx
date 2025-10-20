@@ -1,6 +1,7 @@
 import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
+import HtmlContent from '@/components/ui/HtmlContent';
 import { getUpcomingEvents } from '@/services/upcoming-event';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
@@ -11,7 +12,7 @@ const UpcomingEvents = async () => {
   console.log(data);
 
   return (
-    <Container className="mx-auto max-w-6xl px-4 py-12">
+    <Container className="mx-auto px-4 py-12">
       {data.length === 0 ? (
         <>
           <NotFound title="Upcoming Events Not Found" />
@@ -25,20 +26,19 @@ const UpcomingEvents = async () => {
               return (
                 <Card
                   key={event._id}
-                  className="overflow-hidden rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-2xl"
+                  className="overflow-hidden rounded-xl py-0 shadow-lg transition-shadow duration-300 hover:shadow-2xl"
                 >
-                  <div className="relative h-64 w-full md:h-48">
+                  <div>
                     <Image
                       src={event.photo}
                       alt={event.title}
-                      fill
-                      className="object-cover"
+                      height={400}
+                      width={400}
+                      className="w-full object-cover"
                     />
                   </div>
-                  <CardContent className="bg-white p-6">
-                    <h2 className="mb-3 text-2xl font-semibold text-gray-900">
-                      {event.title}
-                    </h2>
+                  <CardContent className="p-6">
+                    <h2 className="mb-3 text-2xl font-bold">{event.title}</h2>
                     <div className="mb-4 flex flex-col gap-2 text-gray-600">
                       <p className="flex items-center gap-2">
                         <Calendar size={18} /> {formattedDate}
@@ -50,7 +50,7 @@ const UpcomingEvents = async () => {
                         <MapPinCheck size={18} /> {event.venue}
                       </p>
                     </div>
-                    <p className="text-gray-700">{event.details}</p>
+                    <HtmlContent content={event.details} />
                   </CardContent>
                 </Card>
               );

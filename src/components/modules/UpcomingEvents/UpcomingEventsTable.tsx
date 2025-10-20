@@ -26,7 +26,7 @@ import Sorting from '@/components/common/sorting/Sorting';
 import Container from '@/components/ui/Container';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import DeleteUpcomingEvent from './DeleteUpcomingEvent';
+import UpcomingEventActions from './UpcomingEventActions';
 
 const UpcomingEventsTable = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -105,7 +105,7 @@ const UpcomingEventsTable = ({ props }: { props: Record<string, any> }) => {
                   </TableCell>
                   <TableCell>{event.time}</TableCell>
                   <TableCell className="space-x-2">
-                    <DeleteUpcomingEvent id={event._id} />
+                    <UpcomingEventActions event={event} />
                   </TableCell>
                 </TableRow>
               ))}

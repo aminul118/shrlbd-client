@@ -1,4 +1,5 @@
 'use client';
+import UpcomingEventLoadingPage from '@/app/(root)/(events)/upcoming-events/loading';
 import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
@@ -7,20 +8,25 @@ import { useGetUpcomingEventsQuery } from '@/redux/features/event/event.api';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 import Image from 'next/image';
+import TypeWriterHeading from './TypeWritterHeading';
 
 const UpcomingEvents = () => {
-  const { data } = useGetUpcomingEventsQuery({});
+  const { data, isLoading } = useGetUpcomingEventsQuery({});
   const events = data?.data || [];
+  if (isLoading) {
+    return <UpcomingEventLoadingPage />;
+  }
 
   return (
-    <Container className="mx-auto px-4 py-12">
+    <Container>
       {events.length === 0 ? (
         <>
           <NotFound title="Upcoming Events Not Found" />
         </>
       ) : (
-        <>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div>
+          <TypeWriterHeading />
+          <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2">
             {events?.map((event) => {
               const formattedDate = format(new Date(event.date), 'dd MMM yyyy');
 
@@ -57,7 +63,7 @@ const UpcomingEvents = () => {
               );
             })}
           </div>
-        </>
+        </div>
       )}
     </Container>
   );

@@ -58,7 +58,7 @@ export const apiDelete = async <T>({
 
     // revalidate cache for fresh UI
     if (tag) {
-      revalidateTag(tag);
+      (revalidateTag as any)(tag);
     }
 
     return res.data;
@@ -85,7 +85,7 @@ export const apiPost = async <T, R>({
 
     //  Revalidate cache if tag is provided
     if (tag) {
-      revalidateTag(tag);
+      (revalidateTag as any)(tag);
     }
 
     return res.data;

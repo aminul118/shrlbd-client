@@ -19,7 +19,10 @@ import Link from 'next/link';
 import Logo from '../Logo';
 
 import SearchTeamMember from '@/components/common/searching/SearchTeamMember';
+import { AppDataContext } from '@/context/auth-context';
 import { BookOpenIcon, InfoIcon, LifeBuoyIcon, Users } from 'lucide-react';
+import { useContext } from 'react';
+import NavProfile from './NavProfile';
 
 /* ---------- Types to make `href` never undefined on simple links ---------- */
 type SimpleLink = {
@@ -84,6 +87,9 @@ const navigationLinks: NavItem[] = [
 
 /* ------------------------------ Component -------------------------------- */
 const Navbar = () => {
+  const context = useContext(AppDataContext);
+  const user = context?.userData;
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
@@ -318,6 +324,18 @@ const Navbar = () => {
           <Button variant="destructive" size="sm" className="text-sm">
             <Users /> <Link href="/join-team">Join Team</Link>
           </Button>
+
+          {user ? (
+            <>
+              <NavProfile />
+            </>
+          ) : (
+            <>
+              <Button variant="destructive" size="sm" className="text-sm">
+                <Link href="/login">Portal</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

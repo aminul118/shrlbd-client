@@ -51,7 +51,7 @@ const LoginForm = ({ className }: { className?: string }) => {
       if (res?.data?.user?.role === Role.ADMIN) {
         router.push(callbackUrl || '/admin');
       } else if (res?.data?.user?.role === Role.USER) {
-        router.push(callbackUrl || '/user');
+        router.push(callbackUrl || '/dashboard');
       } else {
         router.push('/');
       }

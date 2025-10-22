@@ -2,7 +2,6 @@
 
 import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,7 +45,7 @@ export function FooterUser() {
       const res = await logout(undefined).unwrap();
       dispatch(authApi.util.resetApiState());
       toast.success(res.message);
-      router.push('/login');
+      router.push('/');
     } catch {
       toast.error('Log out failed..');
     }
@@ -101,7 +100,6 @@ export function FooterUser() {
                     {userData?.email}
                   </span>
                 </div>
-                <Button>View Profile</Button>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="mt-3" />

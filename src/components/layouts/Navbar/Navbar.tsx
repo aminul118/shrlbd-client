@@ -325,17 +325,7 @@ const Navbar = () => {
             <Users /> <Link href="/join-team">Join Team</Link>
           </Button>
 
-          {user ? (
-            <>
-              <NavProfile />
-            </>
-          ) : (
-            <>
-              <Button variant="destructive" size="sm" className="text-sm">
-                <Link href="/login">Portal</Link>
-              </Button>
-            </>
-          )}
+          <NavProfile />
         </div>
       </div>
     </header>

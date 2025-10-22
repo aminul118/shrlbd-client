@@ -24,6 +24,7 @@ const NavProfile = () => {
   const [logout, { isLoading }] = useLogoutMutation();
   const dispatch = useAppDispatch();
   const user = context?.userData;
+  const userLoading = context?.userLoading;
 
   //   User Log out Handler
   const handleLogout = async () => {
@@ -37,66 +38,69 @@ const NavProfile = () => {
   };
 
   return (
-    <div>
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Avatar className="h-8 w-8 rounded-lg bg-slate-800">
-            <AvatarImage
-              src={user?.picture ? user?.picture : '/profile.jpg'}
-              alt={user?.fullName}
-            />
-            <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-          </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="mt-5 w-56 text-center" align="center">
-          <DropdownMenuLabel className="p-0 font-normal">
-            <div className="flex flex-col items-center justify-center gap-2 px-1 py-1.5 text-center text-sm">
-              <Avatar className="h-20 w-20 rounded-full bg-slate-800">
-                <AvatarImage
-                  src={user?.picture ? user?.picture : '/profile.jpg'}
-                  alt={user?.fullName}
-                />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-sm leading-tight">
-                <span className="truncate font-medium">{user?.fullName}</span>
-                <span className="text-muted-foreground truncate text-xs">
-                  {user?.email}
-                </span>
-                <Button className="mt-2">
-                  <Link href={'/profile'}>Profile</Link>
-                </Button>
+    <>
+      {userLoading ? (
+        <ButtonSpinner size={32} />
+      ) : user ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar className="h-8 w-8 rounded-lg bg-slate-800">
+              <AvatarImage
+                src={user?.picture ? user?.picture : '/profile.jpg'}
+                alt={user?.fullName}
+              />
+              <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="mt-5 w-56 text-center" align="center">
+            <DropdownMenuLabel className="p-0 font-normal">
+              <div className="flex flex-col items-center justify-center gap-2 px-1 py-1.5 text-center text-sm">
+                <Avatar className="h-20 w-20 rounded-full bg-slate-800">
+                  <AvatarImage
+                    src={user?.picture ? user?.picture : '/profile.jpg'}
+                    alt={user?.fullName}
+                  />
+                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                </Avatar>
+                <div className="grid flex-1 text-sm leading-tight">
+                  <span className="truncate font-medium">{user?.fullName}</span>
+                  <span className="text-muted-foreground truncate text-xs">
+                    {user?.email}
+                  </span>
+                  <Button className="mt-2">
+                    <Link href={'/profile'}>Profile</Link>
+                  </Button>
+                </div>
               </div>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            {user?.role === Role.ADMIN ? (
-              <>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              {user?.role === Role.ADMIN ? (
                 <Link href={'/admin'}>Dashboard</Link>
-              </>
-            ) : (
-              <>
+              ) : (
                 <Link href={'/dashboard'}>Dashboard</Link>
-              </>
-            )}
-          </DropdownMenuItem>
-
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout} disabled={isLoading}>
-            {isLoading ? (
-              <>
-                <ButtonSpinner /> Log out
-              </>
-            ) : (
-              <>
-                <LogOut /> Log out
-              </>
-            )}
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={handleLogout} disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <ButtonSpinner /> Log out
+                </>
+              ) : (
+                <>
+                  <LogOut /> Log out
+                </>
+              )}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <Button variant="destructive" size="sm" className="text-sm">
+          <Link href="/login">Portal</Link>
+        </Button>
+      )}
+    </>
   );
 };
 

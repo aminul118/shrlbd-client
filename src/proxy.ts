@@ -10,7 +10,7 @@ const authRoutes = [
   '/verify',
 ];
 
-export const middleware = async (req: NextRequest) => {
+export const proxy = async (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl;
   const user = await getUserFromCookie();
 

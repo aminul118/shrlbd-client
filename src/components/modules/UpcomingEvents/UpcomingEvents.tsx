@@ -1,26 +1,27 @@
+'use client';
 import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
-import { getUpcomingEvents } from '@/services/upcoming-event';
+import { useGetUpcomingEventsQuery } from '@/redux/features/event/event.api';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 import Image from 'next/image';
 
-const UpcomingEvents = async () => {
-  const { data } = await getUpcomingEvents();
-  console.log(data);
+const UpcomingEvents = () => {
+  const { data } = useGetUpcomingEventsQuery({});
+  const events = data?.data || [];
 
   return (
     <Container className="mx-auto px-4 py-12">
-      {data.length === 0 ? (
+      {events.length === 0 ? (
         <>
           <NotFound title="Upcoming Events Not Found" />
         </>
       ) : (
         <>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {data?.map((event) => {
+            {events?.map((event) => {
               const formattedDate = format(new Date(event.date), 'dd MMM yyyy');
 
               return (

@@ -74,7 +74,7 @@ export default function MultipleImageDrop({ onChange }: ImageDropProps) {
     } else {
       onChange(null);
     }
-  }, [files, onChange]);
+  }, [files, onChange, photos]);
 
   return (
     <div className="flex flex-col gap-2">

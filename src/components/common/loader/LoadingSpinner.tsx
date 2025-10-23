@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const LoadingSpinner = ({ className }: { className?: string }) => {
   return (
-    <div className={cn('grid place-items-center', className)}>
+    <div className={cn('height-adjust grid place-items-center', className)}>
       <Image
         src={images.gif.spinner}
         width={100}

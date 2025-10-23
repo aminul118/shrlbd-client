@@ -1,6 +1,7 @@
 'use client';
 
 import DateFormat from '@/components/common/date-format';
+import LoadingSpinner from '@/components/common/loader/LoadingSpinner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -26,11 +27,7 @@ const Profile = () => {
   };
 
   if (!user) {
-    return (
-      <div className="flex min-h-screen items-center justify-center text-gray-500">
-        Loading profile...
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (

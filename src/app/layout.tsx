@@ -4,6 +4,7 @@ import { AppDataProvider } from '@/providers/AppData';
 import ReduxProvider from '@/providers/ReduxProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import generateMetaTags from '@/seo/generateMetaTags';
+import '@/styles/custom.css';
 import '@/styles/globals.css';
 import { IChildren } from '@/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -12,25 +13,27 @@ import { Toaster } from 'sonner';
 
 const RootLayout = ({ children }: IChildren) => {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-      <body className={fonts.montserrat.className} suppressHydrationWarning>
-        <ReduxProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <AppDataProvider>
-              <AosProvider>{children}</AosProvider>
-            </AppDataProvider>
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <GoogleAnalytics gaId="G-L76ZPJFQS4" />
+        <body className={fonts.montserrat.className} suppressHydrationWarning>
+          <ReduxProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <AppDataProvider>
+                <AosProvider>{children}</AosProvider>
+              </AppDataProvider>
 
-            <Toaster position="top-right" richColors theme="light" />
-          </ThemeProvider>
-        </ReduxProvider>
-      </body>
-    </html>
+              <Toaster position="top-right" richColors theme="light" />
+            </ThemeProvider>
+          </ReduxProvider>
+        </body>
+      </html>
+    </>
   );
 };
 

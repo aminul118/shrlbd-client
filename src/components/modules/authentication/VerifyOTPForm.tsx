@@ -86,7 +86,7 @@ const VerifyOTPForm = () => {
 
   return (
     <div data-aos="fade-left" className="flex items-center justify-center">
-      <Card className="w-full max-w-md rounded-2xl shadow-xl">
+      <Card className="w-lg">
         <CardHeader className="flex flex-col items-center space-y-2 pb-2">
           <Link href={'/'}>
             <Logo />
@@ -103,7 +103,7 @@ const VerifyOTPForm = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex max-w-sm flex-col items-center justify-center gap-6"
+              className="flex flex-col items-center justify-center gap-6"
             >
               {/* OTP Field */}
               <FormField

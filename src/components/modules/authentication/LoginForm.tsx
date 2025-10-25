@@ -14,12 +14,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
+import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useLoginMutation } from '@/redux/features/auth/auth.api';
 import { Role } from '@/types';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -46,8 +47,6 @@ const LoginForm = ({ className }: { className?: string }) => {
     try {
       const res = await login(data).unwrap();
       toast.success(res.message || 'User login successfully');
-      console.log('RES==>', res);
-
       if (res?.data?.user?.role === Role.ADMIN) {
         router.push(callbackUrl || '/admin');
       } else if (res?.data?.user?.role === Role.USER) {
@@ -158,12 +157,15 @@ const LoginForm = ({ className }: { className?: string }) => {
           </div>
 
           {/* Image Section */}
-          <DotLottieReact
-            className="hidden bg-slate-950 lg:block"
-            src="login-register.json"
-            loop
-            autoplay
-          />
+          <div className="bg-muted relative hidden md:block">
+            <Image
+              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              src={images.auth}
+              height={400}
+              width={400}
+              alt="Login Image"
+            />
+          </div>
         </CardContent>
       </Card>
     </div>

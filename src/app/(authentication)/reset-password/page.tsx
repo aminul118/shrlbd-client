@@ -6,7 +6,7 @@ const ResetPasswordPage = async ({ searchParams }: ISearchParams) => {
   const resolvedSearchParams = await searchParams;
   return (
     <div className="center">
-      <ResetPassword props={resolvedSearchParams} />;
+      <ResetPassword props={resolvedSearchParams} />
     </div>
   );
 };

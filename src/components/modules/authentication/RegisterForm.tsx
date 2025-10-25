@@ -16,11 +16,12 @@ import { Input } from '@/components/ui/input';
 import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import Logo from '@/components/layouts/Logo';
 import Password from '@/components/ui/password';
+import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useRegisterMutation } from '@/redux/features/auth/auth.api';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -83,12 +84,16 @@ const RegisterForm = ({ className }: { className?: string }) => {
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0 md:grid-cols-2">
           {/* Lottie */}
-          <DotLottieReact
-            className="hidden bg-slate-950 lg:block"
-            src="login-register.json"
-            loop
-            autoplay
-          />
+          {/* Image Section */}
+          <div className="bg-muted relative hidden md:block">
+            <Image
+              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              src={images.auth}
+              height={400}
+              width={400}
+              alt="Login Image"
+            />
+          </div>
 
           {/* Right side form */}
           <div className="p-8">

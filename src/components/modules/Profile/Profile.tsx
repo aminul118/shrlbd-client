@@ -31,8 +31,8 @@ const Profile = () => {
   }
 
   return (
-    <div className="flex items-center justify-center">
-      <Card className="mt-8 w-full max-w-md shadow-xl">
+    <div className="height-adjust flex items-center justify-center">
+      <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="flex flex-col items-center">
           <img
             src={user.picture || '/profile.jpg'}

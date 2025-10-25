@@ -5,10 +5,16 @@ import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleEvent } from '@/services/event';
 import { IParams } from '@/types';
+import { notFound } from 'next/navigation';
 
 const EventDetailsPage = async ({ params }: IParams) => {
   const { slug } = await params;
   const { data: event } = await getSingleEvent(slug);
+
+  if (!event) {
+    notFound();
+  }
+
   const photos = event.photos || [];
   const { title, content, createdAt } = event;
 

@@ -4,10 +4,15 @@ import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleTeamMember } from '@/services/team';
 import { IParams } from '@/types';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 
 const TeamDetails = async ({ params }: IParams) => {
   const { slug } = await params;
   const { data: team } = await getSingleTeamMember(slug);
+
+  if (!team) {
+    notFound();
+  }
 
   return (
     <Container>

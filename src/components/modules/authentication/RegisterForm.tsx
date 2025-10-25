@@ -87,7 +87,7 @@ const RegisterForm = ({ className }: { className?: string }) => {
           {/* Image Section */}
           <div className="bg-muted relative hidden md:block">
             <Image
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              className="absolute inset-0 h-full w-full object-cover brightness-[0.5] grayscale dark:brightness-[0.2]"
               src={images.auth}
               height={400}
               width={400}

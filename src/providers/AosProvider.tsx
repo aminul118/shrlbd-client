@@ -13,8 +13,6 @@ const AosProvider = ({ children }: IChildren) => {
     AOS.init({
       duration: 1000,
       once: true,
-      offset: 50,
-      easing: 'ease-out-sine',
     });
   }, []);
 

@@ -59,6 +59,9 @@ export const authApi = baseApi.injectEndpoints({
         url: '/auth/reset-password',
         method: 'POST',
         data: payload,
+        headers: {
+          Authorization: `${payload.token}`,
+        },
       }),
       invalidatesTags: ['USER'],
     }),

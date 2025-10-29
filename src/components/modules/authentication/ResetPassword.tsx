@@ -1,6 +1,5 @@
 'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { setPasswordAction } from '@/actions/auth';
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -14,6 +13,7 @@ import {
 } from '@/components/ui/form';
 import Password from '@/components/ui/password';
 import { cn } from '@/lib/utils';
+import { useResetPasswordMutation } from '@/redux/features/auth/auth.api';
 import { resetPasswordValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -24,6 +24,8 @@ import { z } from 'zod';
 
 const ResetPassword = ({ props }: { props: Record<string, any> }) => {
   const router = useRouter();
+  const [resetPassword] = useResetPasswordMutation();
+  console.log(props);
 
   const form = useForm<z.infer<typeof resetPasswordValidation>>({
     resolver: zodResolver(resetPasswordValidation),
@@ -34,14 +36,14 @@ const ResetPassword = ({ props }: { props: Record<string, any> }) => {
   });
 
   const onSubmit = async (values: z.infer<typeof resetPasswordValidation>) => {
-    console.log('Forgot password values:', values);
-
     const payload = {
-      plainPassword: values.password,
+      newPassword: values.password,
+      id: props.id,
       token: props.token,
     };
 
-    const res = await setPasswordAction(payload);
+    const res = await resetPassword(payload).unwrap();
+
     if (res.statusCode === 200) {
       toast.success(res.message);
       router.push('/login');

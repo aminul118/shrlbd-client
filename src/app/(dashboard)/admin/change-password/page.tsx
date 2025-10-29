@@ -1,4 +1,4 @@
-import ChangePasswordForm from '@/components/modules/password/ChangePasswordForm';
+import ChangePasswordForm from '@/components/modules/authentication/ChangePasswordForm';
 import { Metadata } from 'next';
 
 const ChangePasswordPage = () => {

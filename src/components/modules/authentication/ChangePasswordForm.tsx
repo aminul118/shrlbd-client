@@ -40,7 +40,6 @@ const ChangePasswordForm = () => {
 
     try {
       const res = await changePassword(payload).unwrap();
-      console.log(res);
       if (res.statusCode === 200) {
         toast.success('Password changed successfully.');
         form.reset();

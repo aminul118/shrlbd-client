@@ -20,7 +20,7 @@ import {
 import { AppDataContext } from '@/context/auth-context';
 import { authApi, useLogoutMutation } from '@/redux/features/auth/auth.api';
 import { useAppDispatch } from '@/redux/hook';
-import { Gauge, LogOut } from 'lucide-react';
+import { Globe, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
@@ -108,7 +108,7 @@ export function FooterUser() {
 
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Gauge /> <Link href="/admin">Dashboard</Link>
+                <Globe /> <Link href="/">Website</Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

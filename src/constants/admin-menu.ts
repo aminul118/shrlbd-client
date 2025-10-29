@@ -4,7 +4,7 @@ import {
   CalendarDays,
   GalleryHorizontal,
   Gauge,
-  Globe,
+  Lock,
   UserCog,
   Users,
 } from 'lucide-react';
@@ -52,9 +52,9 @@ export const adminSidebarmenu: MenuGroup[] = [
         icon: Bot,
       },
       {
-        name: 'Website',
-        url: '/',
-        icon: Globe,
+        name: 'Change Password',
+        url: '/admin/change-password',
+        icon: Lock,
       },
     ],
   },

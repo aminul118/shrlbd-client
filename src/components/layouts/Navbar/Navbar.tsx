@@ -91,7 +91,7 @@ const Navbar = () => {
   const user = context?.userData;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
+    <header className="sticky top-0 z-50 w-full border-b px-4 py-2 backdrop-blur-3xl md:px-6">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
         {/* Left side */}
         <div className="flex items-center gap-2">

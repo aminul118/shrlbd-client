@@ -93,3 +93,13 @@ export interface IUpcomingEvent {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IBlog {
+  _id?: string;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  slug: string;
+  content: string;
+  thumbnail: string;
+}

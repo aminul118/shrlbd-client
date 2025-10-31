@@ -81,6 +81,7 @@ const navigationLinks: NavItem[] = [
       },
     ],
   },
+  { href: '/blogs', label: 'Blogs' },
   { href: '/ai', label: 'AI' },
   { href: '/contact', label: 'Contact' },
 ];

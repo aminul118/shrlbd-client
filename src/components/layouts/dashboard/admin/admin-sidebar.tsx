@@ -1,3 +1,4 @@
+import { adminSidebarmenu } from '@/components/layouts/dashboard/admin/admin-menu';
 import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
@@ -6,7 +7,6 @@ import {
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar';
-import { adminSidebarmenu } from '@/constants/admin-menu';
 import Link from 'next/link';
 import Logo from '../../Logo';
 import Menu from './Menu';

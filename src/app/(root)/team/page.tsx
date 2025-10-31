@@ -1,4 +1,4 @@
-import TeamList from '@/components/modules/Team/TeamList';
+import TeamList from '@/components/modules/Team/TeamMembers';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { ISearchParams } from '@/types';
 

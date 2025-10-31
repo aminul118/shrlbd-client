@@ -26,6 +26,7 @@ export type {
 
 export type {
   IAiTraining,
+  IBlog,
   IEvent,
   IScrollingText,
   ITeamMember,

@@ -16,6 +16,7 @@ export const baseApi = createApi({
     'TEAM',
     'AI',
     'CONTACT',
+    'BLOG',
   ],
 });
 

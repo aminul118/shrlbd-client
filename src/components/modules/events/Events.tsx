@@ -2,6 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import EventPageLoading from '@/app/(root)/(events)/events/loading';
+import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import AppPagination from '@/components/common/pagination/AppPagination';
@@ -10,10 +11,13 @@ import PageLimit from '@/components/common/pagination/PageLimit';
 import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import AppSearching from '@/components/common/searching/AppSearching';
 import Sorting from '@/components/common/sorting/Sorting';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';
 import { useGetEventQuery } from '@/redux/features/event/event.api';
-import EventCard from './EventCard';
+import { IEvent } from '@/types';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Events = ({ props }: { props: Record<string, any> }) => {
   const params = {
@@ -61,7 +65,7 @@ const Events = ({ props }: { props: Record<string, any> }) => {
           </div>
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events?.map((event) => {
-              return <EventCard key={event._id} event={event} />;
+              return <Event key={event._id} {...event} />;
             })}
           </div>
           {meta && (
@@ -76,6 +80,35 @@ const Events = ({ props }: { props: Record<string, any> }) => {
         </>
       )}
     </Container>
+  );
+};
+
+const Event = ({ _id, createdAt, photos, slug, title }: IEvent) => {
+  return (
+    <>
+      <Link key={_id} href={`/events/${slug}`}>
+        <Card className="overflow-hidden pt-0">
+          <div className="relative overflow-hidden">
+            <Image
+              src={photos[0]}
+              width={400}
+              height={200}
+              alt={title}
+              className="h-48 w-full object-cover transition-transform duration-500 ease-in-out hover:scale-110 xl:h-70"
+            />
+          </div>
+
+          <CardContent>
+            <CardTitle className="mb-1 text-lg font-semibold">
+              {title}
+            </CardTitle>
+            <p className="mb-2 text-xs text-gray-500">
+              Post Date: <DateFormat date={createdAt} />
+            </p>
+          </CardContent>
+        </Card>
+      </Link>
+    </>
   );
 };
 

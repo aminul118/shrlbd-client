@@ -1,5 +1,6 @@
 import { MenuGroup } from '@/types';
 import {
+  Book,
   Bot,
   CalendarDays,
   GalleryHorizontal,
@@ -26,6 +27,11 @@ export const adminSidebarmenu: MenuGroup[] = [
           { name: 'Upcoming Events', url: '/admin/upcoming-events' },
           { name: 'Previous Event', url: '/admin/previous-events' },
         ],
+      },
+      {
+        name: 'Blogs',
+        url: '/admin/blogs',
+        icon: Book,
       },
       {
         name: 'Team',

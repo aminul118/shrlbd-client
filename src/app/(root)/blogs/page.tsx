@@ -6,9 +6,9 @@ import { Metadata } from 'next';
 const BlogsPage = async ({ searchParams }: ISearchParams) => {
   const resolvedSearchparams = await searchParams;
   return (
-    <div>
+    <>
       <Blogs props={resolvedSearchparams} />
-    </div>
+    </>
   );
 };
 
@@ -16,12 +16,12 @@ export default BlogsPage;
 
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
-  title: 'Blogs | Smart Healthcare and Research Ltd. (SHRL)',
+  title: 'Blogs | Smart Healthcare and Research Ltd',
   description:
-    'Stay updated with the latest upcoming events organized by Smart Healthcare and Research Ltd. (SHRL), including workshops, seminars, and public health campaigns aimed at improving healthcare in Bangladesh.',
+    'Explore the latest blogs from Smart Healthcare and Research Ltd. (SHRL) covering healthcare innovations, medical research, digital health trends, and community health insights from Bangladesh and beyond.',
   keywords:
-    'SHRL upcoming events, healthcare workshops Bangladesh, SHRL seminars, public health events, medical events Bangladesh, maternal health programs, child health awareness, SHRL community events, healthcare innovation events, SHRL training sessions, digital health campaigns',
+    'SHRL blogs, healthcare articles Bangladesh, medical research, SHRL news, public health insights, digital health Bangladesh, healthcare innovation, SHRL research updates, medical technology blogs, community health awareness',
   image: '/seo/shrl-hero-ss.png',
-  websitePath: 'upcoming-events',
+  websitePath: 'blogs',
 });
 // --> SEO End

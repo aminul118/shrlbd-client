@@ -1,4 +1,4 @@
-import AddPreviousEvent from '@/components/modules/events/AddPreviousEvent';
+import AddPreviousEvent from '@/components/modules/Events/AddPreviousEvent';
 import { Metadata } from 'next';
 
 const AddPreviousEventPage = () => {

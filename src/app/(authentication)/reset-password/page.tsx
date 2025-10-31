@@ -1,4 +1,4 @@
-import ResetPassword from '@/components/modules/authentication/ResetPassword';
+import ResetPassword from '@/components/modules/Authentication/ResetPassword';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

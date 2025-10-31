@@ -1,4 +1,4 @@
-import PreviousEventTable from '@/components/modules/events/PreviousEventTable';
+import PreviousEventTable from '@/components/modules/Events/PreviousEventTable';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

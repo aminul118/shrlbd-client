@@ -1,5 +1,5 @@
 import DateFormat from '@/components/common/date-format';
-import EventImageSlider from '@/components/modules/events/EventImageSlider';
+import EventImageSlider from '@/components/modules/Events/EventImageSlider';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';

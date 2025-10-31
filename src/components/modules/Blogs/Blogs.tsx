@@ -1,5 +1,6 @@
 'use client';
 
+import BlogPageLoading from '@/app/(root)/blogs/loading';
 import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
@@ -12,13 +13,12 @@ const Blogs = ({ props }: { props: Record<string, any> }) => {
   const params = { ...props };
   const { data, isLoading } = useGetAllBlogsQuery(params);
 
+  if (isLoading) return <BlogPageLoading />;
   const blogs = data?.data || [];
-
-  if (isLoading) return <p>Loading blogs...</p>;
+  if (blogs.length === 0) return <NotFound title="Blogs Not Found" />;
 
   return (
     <Container>
-      {blogs.length === 0 && <NotFound />}
       <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
           <Blog key={blog._id} {...blog} />

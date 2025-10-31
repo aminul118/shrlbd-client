@@ -1,4 +1,4 @@
-import Events from '@/components/modules/events/Events';
+import Events from '@/components/modules/Events/Events';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';

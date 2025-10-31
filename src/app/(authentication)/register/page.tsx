@@ -1,4 +1,4 @@
-import RegisterForm from '@/components/modules/authentication/RegisterForm';
+import RegisterForm from '@/components/modules/Authentication/RegisterForm';
 import { Button } from '@/components/ui/button';
 import { P } from '@/components/ui/typography';
 import generateMetaTags from '@/seo/generateMetaTags';

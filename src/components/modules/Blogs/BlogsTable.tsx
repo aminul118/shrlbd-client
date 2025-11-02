@@ -23,9 +23,10 @@ import {
 } from '@/components/ui/table';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blog.api';
 import { IBlog, IMeta } from '@/types';
-import { Edit, Plus, Trash2 } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import BlogActions from './BlogActions';
 
 const BlogsTable = ({ props }: { props: Record<string, any> }) => {
   const params = { ...props };
@@ -101,16 +102,7 @@ const TableCreate = ({ blogs }: { blogs: IBlog[] }) => {
 
               {/* Actions */}
               <TableCell className="text-center">
-                <div className="flex justify-center gap-2">
-                  <Button variant="outline" size="icon" asChild>
-                    <Link href={`/admin/edit-blog/${blog._id}`}>
-                      <Edit className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button variant="destructive" size="icon">
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
+                <BlogActions blog={blog} />
               </TableCell>
             </TableRow>
           ))

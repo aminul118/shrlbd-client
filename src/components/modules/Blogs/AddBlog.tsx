@@ -15,6 +15,7 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import SingleImageUploader from '@/components/ui/single-image-uploader';
+import { useAddBlogMutation } from '@/redux/features/blog/blog.api';
 import { addBlogSchema } from '@/validations/blog';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -24,9 +25,11 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof addBlogSchema>;
+
 const AddBlog = () => {
   const router = useRouter();
-  type FormValues = z.infer<typeof addBlogSchema>;
+  const [addBlog, { isLoading }] = useAddBlogMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(addBlogSchema),
@@ -38,11 +41,22 @@ const AddBlog = () => {
   });
 
   //  Submit handler
-  const onSubmit = async (values: FormValues) => {
-    try {
-      console.log('Submitted data:', values);
+  const onSubmit = async (data: FormValues) => {
+    const formData = new FormData();
 
-      toast.success('Blog added successfully!');
+    // Exclude the raw File from the JSON blob
+    const { thumbnail, ...rest } = data;
+    formData.append('data', JSON.stringify(rest));
+
+    if (thumbnail instanceof File) {
+      formData.append('file', thumbnail);
+    }
+    const toastId = toast.loading('Adding blog…');
+    try {
+      console.log('Submitted data:', data);
+      const res = await addBlog(formData).unwrap();
+      toast.success(res?.message || 'Blog added', { id: toastId });
+      form.reset();
       router.push('/admin/blogs');
     } catch (error) {
       toast.error('Failed to add blog!');

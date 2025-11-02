@@ -5,6 +5,7 @@ import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
+import HtmlContent from '@/components/ui/HtmlContent';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blog.api';
 import { IBlog } from '@/types';
 import Image from 'next/image';
@@ -45,9 +46,8 @@ const Blog = ({ title, content, thumbnail, createdAt }: IBlog) => {
         <p className="text-xs text-gray-500">
           Post Date: <DateFormat date={createdAt} />
         </p>
-        <p className="mt-2 text-sm dark:text-gray-200">
-          {content.slice(0, 100)}...
-        </p>
+
+        <HtmlContent content={content} />
       </CardContent>
     </Card>
   );

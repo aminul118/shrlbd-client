@@ -9,7 +9,7 @@ import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
-import { ITeamMember } from '@/types';
+import { IMeta, ITeamMember } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -18,15 +18,11 @@ const TeamMembers = ({ props }: { props: Record<string, any> }) => {
     ...props,
     sort: 'createdAt',
   };
-
   const { data, isLoading, isFetching } = useGetAllTeamMembersQuery(params);
-
   const members = data?.data;
   const meta = data?.meta;
 
-  if (isLoading || isFetching) {
-    return <TeamLoadingPage />;
-  }
+  if (isLoading || isFetching) return <TeamLoadingPage />;
 
   return (
     <Container className="py-12">
@@ -43,20 +39,12 @@ const TeamMembers = ({ props }: { props: Record<string, any> }) => {
           </div>
         </>
       )}
-
-      {meta && (
-        <div className="flex items-center justify-center lg:justify-between">
-          <GoToPage totalPage={meta.totalPage} />
-          <div className="flex items-center gap-4">
-            <PaginationStatus meta={meta} />
-            <AppPagination className="justify-end" meta={meta} />
-          </div>
-        </div>
-      )}
+      <TeamMembersPagination meta={meta} />
     </Container>
   );
 };
 
+// Single Member card
 const TeamMember = ({
   photo,
   name,
@@ -105,6 +93,24 @@ const TeamMember = ({
           </div>
         </CardContent>
       </Card>
+    </div>
+  );
+};
+
+// Team Member pagination
+const TeamMembersPagination = ({ meta }: { meta?: IMeta }) => {
+  if (!meta) return null;
+  return (
+    <div>
+      {meta && (
+        <div className="flex items-center justify-center lg:justify-between">
+          <GoToPage totalPage={meta.totalPage} />
+          <div className="flex items-center gap-4">
+            <PaginationStatus meta={meta} />
+            <AppPagination className="justify-end" meta={meta} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

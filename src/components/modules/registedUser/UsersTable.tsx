@@ -23,6 +23,8 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useAllUsersInfoQuery } from '@/redux/features/auth/auth.api';
+import { IMeta } from '@/types';
+import { IUser } from '@/types/apiData.types';
 import { BadgeCheck } from 'lucide-react';
 import NewUserModal from './NewUserModal';
 import UserActions from './user-actions';
@@ -36,7 +38,7 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
   if (isLoading) {
     return <TableSkeleton />;
   }
-  const users = data?.data;
+  const users = data?.data || [];
   const meta = data?.meta;
 
   return (
@@ -45,81 +47,102 @@ const UsersTable = ({ props }: { props: Record<string, any> }) => {
       <div className="mb-4 flex items-center justify-between">
         <GradientTitle title="All Registered Users" />
       </div>
-      <div className="pb-8">
+
+      <UsersFilters />
+      {/* Main Content */}
+      <TableCreate users={users} />
+      <UsersPagination meta={meta} />
+    </Container>
+  );
+};
+
+const TableCreate = ({ users }: { users: IUser[] }) => {
+  return (
+    <Table>
+      <TableHeader className="bg-muted">
+        <TableRow>
+          <TableHead>SI</TableHead>
+          <TableHead>Picture</TableHead>
+          <TableHead>Name</TableHead>
+          <TableHead>Email</TableHead>
+          <TableHead>Role</TableHead>
+          <TableHead>Verify</TableHead>
+          <TableHead>Created</TableHead>
+          <TableHead>Actions</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {users?.map((user, index: number) => (
+          <TableRow key={user._id} className="hover:bg-primary/10">
+            <TableCell>{index + 1}</TableCell>
+            <TableCell>
+              <Avatar className="h-10 w-10">
+                <AvatarImage src={user.picture} alt={user.fullName} />
+                <AvatarFallback>
+                  {user.fullName?.charAt(0).toUpperCase()}
+                </AvatarFallback>
+              </Avatar>
+            </TableCell>
+            <TableCell>{user.fullName}</TableCell>
+            <TableCell>{user.email}</TableCell>
+            <TableCell className="font-medium">{user.role}</TableCell>
+            <TableCell>
+              {user.isVerified ? (
+                <Badge className="bg-green-800 text-white">
+                  <BadgeCheck /> Verified
+                </Badge>
+              ) : (
+                <Badge variant="secondary">Unverified</Badge>
+              )}
+            </TableCell>
+            <TableCell>
+              <DateFormat date={user.createdAt} />
+            </TableCell>
+            <TableCell className="text-center">
+              <UserActions user={user} />
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+
+// Users Filter
+const UsersFilters = () => {
+  return (
+    <div className="pb-8">
+      <div className="flex items-center justify-between gap-2">
+        <AppSearching />
         <div className="flex items-center justify-between gap-2">
-          <AppSearching />
-          <div className="flex items-center justify-between gap-2">
-            <PageLimit pageNumbers={[10, 20, 30, 40]} />
-            <Sorting
-              sortOptions={[
-                { name: 'Ascending', value: '-createdAt' },
-                { name: 'Descending', value: 'createdAt' },
-              ]}
-            />
-            <ClearAllFilter />
-            <NewUserModal />
-          </div>
+          <PageLimit pageNumbers={[10, 20, 30, 40]} />
+          <Sorting
+            sortOptions={[
+              { name: 'Ascending', value: '-createdAt' },
+              { name: 'Descending', value: 'createdAt' },
+            ]}
+          />
+          <ClearAllFilter />
+          <NewUserModal />
         </div>
       </div>
+    </div>
+  );
+};
 
-      <Table>
-        <TableHeader className="bg-muted">
-          <TableRow>
-            <TableHead>SI</TableHead>
-            <TableHead>Picture</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Role</TableHead>
-            <TableHead>Verify</TableHead>
-            <TableHead>Created</TableHead>
-            <TableHead>Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {users?.map((user, index: number) => (
-            <TableRow key={user._id} className="hover:bg-primary/10">
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src={user.picture} alt={user.fullName} />
-                  <AvatarFallback>
-                    {user.fullName?.charAt(0).toUpperCase()}
-                  </AvatarFallback>
-                </Avatar>
-              </TableCell>
-              <TableCell>{user.fullName}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell className="font-medium">{user.role}</TableCell>
-              <TableCell>
-                {user.isVerified ? (
-                  <Badge className="bg-green-800 text-white">
-                    <BadgeCheck /> Verified
-                  </Badge>
-                ) : (
-                  <Badge variant="secondary">Unverified</Badge>
-                )}
-              </TableCell>
-              <TableCell>
-                <DateFormat date={user.createdAt} />
-              </TableCell>
-              <TableCell className="text-center">
-                <UserActions user={user} />
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      {/* 🔹 Pagination */}
-      {meta && (
-        <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
-          <GoToPage totalPage={meta.totalPage} />
-          <div className="flex items-center gap-4">
-            <PaginationStatus meta={meta} />
-            <AppPagination className="justify-end" meta={meta} />
-          </div>
-        </div>
-      )}
-    </Container>
+// Users Pagination
+
+const UsersPagination = ({ meta }: { meta?: IMeta }) => {
+  if (!meta) return null;
+
+  return (
+    <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
+      <GoToPage totalPage={meta.totalPage} />
+      <div className="flex items-center gap-4">
+        <PaginationStatus meta={meta} />
+        <AppPagination className="justify-end" meta={meta} />
+      </div>
+    </div>
   );
 };
 

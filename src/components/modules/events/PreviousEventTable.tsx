@@ -21,6 +21,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useGetEventQuery } from '@/redux/features/event/event.api';
+import { IEvent, IMeta } from '@/types';
 import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -32,41 +33,27 @@ const PreviousEventTable = ({ props }: { props: Record<string, any> }) => {
     ...props,
   };
   const { data, isLoading, isFetching } = useGetEventQuery(params);
-  const events = data?.data;
+  const events = data?.data || [];
   const meta = data?.meta;
 
-  if (isLoading || isFetching) {
-    return <TableSkeleton />;
-  }
-  console.log(data);
+  if (isLoading || isFetching) return <TableSkeleton />;
 
   return (
     <Container>
-      {/* 🔹 Header + Filters */}
       <div className="mb-4 flex items-center justify-between">
         <GradientTitle title="All Previous Events" />
       </div>
-      <div className="pb-8">
-        <div className="flex items-center justify-between gap-2">
-          <AppSearching />
-          <div className="flex items-center justify-between gap-2">
-            <PageLimit pageNumbers={[10, 20, 30, 40]} />
-            <Sorting
-              sortOptions={[
-                { name: 'Ascending', value: '-createdAt' },
-                { name: 'Descending', value: 'createdAt' },
-              ]}
-            />
-            <ClearAllFilter />
-            <Button asChild>
-              <Link href="/admin/add-previous-event">
-                <Plus /> Add Event
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+      <EventFilter />
+      {/* Main Content */}
+      <EventTable events={events} />
+      <EventsPagination meta={meta} />
+    </Container>
+  );
+};
 
+const EventTable = ({ events }: { events: IEvent[] }) => {
+  return (
+    <div>
       <Table>
         <TableHeader className="bg-muted">
           <TableRow>
@@ -117,17 +104,50 @@ const PreviousEventTable = ({ props }: { props: Record<string, any> }) => {
           )}
         </TableBody>
       </Table>
-      {/* 🔹 Pagination */}
-      {meta && (
-        <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
-          <GoToPage totalPage={meta.totalPage} />
-          <div className="flex items-center gap-4">
-            <PaginationStatus meta={meta} />
-            <AppPagination className="justify-end" meta={meta} />
-          </div>
+    </div>
+  );
+};
+
+// Event Filter
+
+const EventFilter = () => {
+  return (
+    <div className="pb-8">
+      <div className="flex items-center justify-between gap-2">
+        <AppSearching />
+        <div className="flex items-center justify-between gap-2">
+          <PageLimit pageNumbers={[10, 20, 30, 40]} />
+          <Sorting
+            sortOptions={[
+              { name: 'Ascending', value: '-createdAt' },
+              { name: 'Descending', value: 'createdAt' },
+            ]}
+          />
+          <ClearAllFilter />
+          <Button asChild>
+            <Link href="/admin/add-previous-event">
+              <Plus /> Add Event
+            </Link>
+          </Button>
         </div>
-      )}
-    </Container>
+      </div>
+    </div>
+  );
+};
+
+// Events Pagination
+
+const EventsPagination = ({ meta }: { meta?: IMeta }) => {
+  if (!meta) return null;
+
+  return (
+    <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
+      <GoToPage totalPage={meta.totalPage} />
+      <div className="flex items-center gap-4">
+        <PaginationStatus meta={meta} />
+        <AppPagination className="justify-end" meta={meta} />
+      </div>
+    </div>
   );
 };
 

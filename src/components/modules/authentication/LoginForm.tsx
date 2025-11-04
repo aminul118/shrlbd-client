@@ -18,7 +18,7 @@ import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useLoginMutation } from '@/redux/features/auth/auth.api';
 import { Role } from '@/types';
-import validation from '@/validations';
+import { loginFormValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,23 +27,23 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof loginFormValidation>;
+
 const LoginForm = ({ className }: { className?: string }) => {
   const [login, { isLoading }] = useLoginMutation();
   const router = useRouter();
   const searchParams = useSearchParams(); // ✅ read query params
   const callbackUrl = searchParams.get('callbackUrl');
 
-  const form = useForm<z.infer<typeof validation.auth.loginFormValidation>>({
-    resolver: zodResolver(validation.auth.loginFormValidation),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(loginFormValidation),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = async (
-    data: z.infer<typeof validation.auth.loginFormValidation>,
-  ) => {
+  const onSubmit = async (data: FormValues) => {
     try {
       const res = await login(data).unwrap();
       toast.success(res.message || 'User login successfully');
@@ -72,7 +72,10 @@ const LoginForm = ({ className }: { className?: string }) => {
 
   return (
     <div
-      className={cn('flex items-center justify-center shadow-lg', className)}
+      className={cn(
+        'flex items-center justify-center rounded-lg shadow-lg',
+        className,
+      )}
       data-aos="fade-right"
     >
       <Card className="w-full max-w-5xl overflow-hidden p-0">

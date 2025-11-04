@@ -1,6 +1,4 @@
 import { baseApi } from '@/redux/baseApi';
-import { ApiResponse } from '@/types';
-import { IUser } from '@/types/apiData.types';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -23,7 +21,7 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ['USER'],
     }),
 
-    // Registration
+    // Registration using register form
     register: builder.mutation({
       query: (userInfo) => ({
         url: '/user/register',
@@ -33,7 +31,7 @@ export const authApi = baseApi.injectEndpoints({
       invalidatesTags: ['USER'],
     }),
 
-    // Registration
+    // Registration form admin portal
     registerForAdmin: builder.mutation({
       query: (userInfo) => ({
         url: '/user/admin/register',
@@ -84,57 +82,6 @@ export const authApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['USER'],
     }),
-
-    // Send OTP
-    sendOtp: builder.mutation({
-      query: (userInfo) => ({
-        url: '/otp/send',
-        method: 'POST',
-        data: userInfo,
-      }),
-    }),
-
-    // Verify OTP
-    verifyOtp: builder.mutation({
-      query: (userInfo) => ({
-        url: '/otp/verify',
-        method: 'POST',
-        data: userInfo,
-      }),
-    }),
-
-    // User Info
-    userInfo: builder.query({
-      query: () => ({
-        url: '/user/me',
-        method: 'GET',
-      }),
-      providesTags: ['USER'],
-    }),
-    // User Info
-    allUsersInfo: builder.query<ApiResponse<IUser[]>, unknown>({
-      query: (params) => ({
-        url: '/user/all-users',
-        method: 'GET',
-        params,
-      }),
-      providesTags: ['USER'],
-    }),
-
-    updateRole: builder.mutation({
-      query: ({
-        userInfo,
-        id,
-      }: {
-        userInfo: { role: string };
-        id: string;
-      }) => ({
-        url: `/user/update-role/${id}`,
-        method: 'PATCH',
-        data: userInfo,
-      }),
-      invalidatesTags: ['USER'],
-    }),
   }),
 });
 
@@ -145,11 +92,6 @@ export const {
   useResetPasswordMutation,
   useSetPasswordMutation,
   useForgotPasswordMutation,
-  useSendOtpMutation,
-  useVerifyOtpMutation,
-  useUserInfoQuery,
   useLogoutMutation,
-  useAllUsersInfoQuery,
-  useUpdateRoleMutation,
   useChangePasswordMutation,
 } = authApi;

@@ -22,7 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useAllUsersInfoQuery } from '@/redux/features/auth/auth.api';
+import { useAllUsersInfoQuery } from '@/redux/features/user/user.api';
 import { IMeta } from '@/types';
 import { IUser } from '@/types/apiData.types';
 import { BadgeCheck } from 'lucide-react';

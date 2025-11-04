@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useForgotPasswordMutation } from '@/redux/features/auth/auth.api';
 import validation from '@/validations';
+import { forgotPasswordValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Send } from 'lucide-react';
 import Link from 'next/link';
@@ -25,6 +26,8 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof forgotPasswordValidation>;
+
 const ForgotPasswordForm = ({
   className,
   ...props
@@ -32,18 +35,14 @@ const ForgotPasswordForm = ({
   const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
   const router = useRouter();
 
-  const form = useForm<
-    z.infer<typeof validation.auth.forgotPasswordValidation>
-  >({
+  const form = useForm<FormValues>({
     resolver: zodResolver(validation.auth.forgotPasswordValidation),
     defaultValues: {
       email: '',
     },
   });
 
-  const onSubmit = async (
-    values: z.infer<typeof validation.auth.forgotPasswordValidation>,
-  ) => {
+  const onSubmit = async (values: FormValues) => {
     console.log('Forgot password values:', values);
     // 🔑 Call forgot password API here
 

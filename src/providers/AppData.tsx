@@ -1,7 +1,7 @@
 'use client';
 
 import { AppDataContext } from '@/context/auth-context';
-import { useUserInfoQuery } from '@/redux/features/auth/auth.api';
+import { useUserInfoQuery } from '@/redux/features/user/user.api';
 import { IChildren } from '@/types';
 
 export const AppDataProvider = ({ children }: IChildren) => {

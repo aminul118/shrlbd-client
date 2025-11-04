@@ -1,7 +1,7 @@
 'use client';
 
-import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,7 +22,7 @@ import {
 import {
   useSendOtpMutation,
   useVerifyOtpMutation,
-} from '@/redux/features/auth/auth.api';
+} from '@/redux/features/otp/otp.api';
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';

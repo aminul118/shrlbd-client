@@ -78,7 +78,7 @@ const RegisterForm = ({ className }: { className?: string }) => {
 
   return (
     <div
-      className={cn('flex flex-col gap-6 shadow-lg', className)}
+      className={cn('flex flex-col gap-6 rounded-lg shadow-lg', className)}
       data-aos="fade-left"
     >
       <Card className="overflow-hidden p-0">

@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useUpdateRoleMutation } from '@/redux/features/auth/auth.api';
+import { useUpdateRoleMutation } from '@/redux/features/user/user.api';
 import { IUser } from '@/types/apiData.types';
 import { EllipsisIcon } from 'lucide-react';
 import { useState } from 'react';

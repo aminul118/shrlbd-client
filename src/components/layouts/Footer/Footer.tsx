@@ -11,54 +11,28 @@ const sections = [
   {
     title: 'Quick Links',
     links: [
-      {
-        name: 'Home',
-        href: '/',
-      },
-      {
-        name: 'Services',
-        href: '/services',
-      },
+      { name: 'Home', href: '/' },
+      { name: 'Services', href: '/services' },
 
-      {
-        name: 'Contact',
-        href: '/contact',
-      },
+      { name: 'Contact', href: '/contact' },
     ],
   },
   {
     title: 'Company',
     links: [
-      {
-        name: 'About',
-        href: '/about',
-      },
-      {
-        name: 'Team',
-        href: '/team',
-      },
+      { name: 'About', href: '/about' },
+      { name: 'Team', href: '/team' },
 
-      {
-        name: 'Careers',
-        href: '/careers',
-      },
+      { name: 'Careers', href: '/careers' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      {
-        name: 'AI',
-        href: '/ai',
-      },
-      {
-        name: 'Upcoming Events',
-        href: '/upcoming-events',
-      },
-      {
-        name: 'Events',
-        href: '/events',
-      },
+      { name: 'AI', href: '/ai' },
+      { name: 'Upcoming Events', href: '/upcoming-events' },
+      { name: 'Events', href: '/events' },
+      { name: 'Blogs', href: '/blogs' },
     ],
   },
 ];
@@ -72,18 +46,9 @@ const socialLinks = [
 ];
 
 const legalLinks = [
-  {
-    name: 'Terms and Conditions',
-    href: '/terms-conditions',
-  },
-  {
-    name: 'Return Refund Policy',
-    href: '/return-refund-policy',
-  },
-  {
-    name: 'Privacy Policy',
-    href: '/privacy-policy',
-  },
+  { name: 'Terms and Conditions', href: '/terms-conditions' },
+  { name: 'Return Refund Policy', href: '/return-refund-policy' },
+  { name: 'Privacy Policy', href: '/privacy-policy' },
 ];
 
 const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
@@ -147,33 +112,39 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
             ))}
           </div>
         </div>
-        <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
-          <p className="order-2 lg:order-1">
-            &copy; {new Date().getFullYear()} Smart Healthcare and Research Ltd
-            . All rights reserved. Developed by{' '}
-            <Link
-              href="https://www.aminuldev.site"
-              target="_blank"
-              referrerPolicy="no-referrer"
-              className="font-semibold text-blue-500"
-            >
-              Aminul Islam
-            </Link>
-          </p>
-
-          <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">
-            {legalLinks.map((link, idx) => (
-              <li key={idx} className="hover:text-primary">
-                <Link href={link.href}> {link.name}</Link>
-              </li>
-            ))}
-            <li>
-              <ModeToggle />
-            </li>
-          </ul>
-        </div>
+        <FooterCopyright />
       </div>
     </section>
+  );
+};
+
+const FooterCopyright = () => {
+  return (
+    <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
+      <p className="order-2 lg:order-1">
+        &copy; {new Date().getFullYear()} Smart Healthcare and Research Ltd .
+        All rights reserved. Developed by{' '}
+        <Link
+          href="https://www.aminuldev.site"
+          target="_blank"
+          referrerPolicy="no-referrer"
+          className="font-semibold text-blue-500"
+        >
+          Aminul Islam
+        </Link>
+      </p>
+
+      <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">
+        {legalLinks.map((link, idx) => (
+          <li key={idx} className="hover:text-primary">
+            <Link href={link.href}> {link.name}</Link>
+          </li>
+        ))}
+        <li>
+          <ModeToggle />
+        </li>
+      </ul>
+    </div>
   );
 };
 

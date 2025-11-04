@@ -26,7 +26,7 @@ const FilteredViews = ({ defaultColumns, onChange }: FilteredViewsProps) => {
   const [columns, setColumns] =
     useState<Record<string, boolean>>(defaultColumns);
 
-  // ✅ Initialize from URL fields safely
+  //  Initialize from URL fields safely
   useEffect(() => {
     const fields = searchParams.get('fields');
     if (fields) {
@@ -38,7 +38,7 @@ const FilteredViews = ({ defaultColumns, onChange }: FilteredViewsProps) => {
         ]),
       );
 
-      // ✅ prevent infinite re-render loop
+      //  prevent infinite re-render loop
       const isDifferent = JSON.stringify(updated) !== JSON.stringify(columns);
       if (isDifferent) {
         setColumns(updated);
@@ -47,7 +47,7 @@ const FilteredViews = ({ defaultColumns, onChange }: FilteredViewsProps) => {
     }
   }, [searchParams, defaultColumns, columns, onChange]);
 
-  // ✅ Toggle column & update URL
+  //  Toggle column & update URL
   const toggleColumn = (key: string) => {
     const updated = { ...columns, [key]: !columns[key] };
     setColumns(updated);

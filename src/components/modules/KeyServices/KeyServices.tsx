@@ -1,7 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { services } from '@/constants/services';
+import { IKeyServices, services } from '@/constants/services';
 import { SectionProps } from '@/types';
 import Image from 'next/image';
 
@@ -17,38 +17,9 @@ const KeyServices = ({ ...props }: SectionProps) => {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 2xl:grid-cols-3">
-          {services?.map((service) => {
-            const { id, photo, service_name, description, features } = service;
-
-            return (
-              <Card
-                data-aos="fade-up"
-                className="h-full space-y-3 rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 p-2 shadow-xl md:p-8 dark:from-slate-950 dark:to-slate-900"
-                key={id}
-              >
-                <CardContent className="space-y-3">
-                  <Image
-                    src={photo}
-                    alt={`${service_name} photo`}
-                    width={60}
-                    height={60}
-                    className="object-contain"
-                  />
-                  <h2 className="text-2xl font-bold">{service_name}</h2>
-                  <p>{description}</p>
-
-                  <div>
-                    <p className="mb-2 text-xl font-semibold">Features:</p>
-                    <ul className="list-disc space-y-1 pl-5">
-                      {features.map((feature, i) => (
-                        <li key={i}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {services?.map((service) => (
+            <KeyService key={service.id} {...service} />
+          ))}
         </div>
 
         <div>
@@ -56,6 +27,38 @@ const KeyServices = ({ ...props }: SectionProps) => {
         </div>
       </Container>
     </section>
+  );
+};
+
+const KeyService = ({ ...service }: IKeyServices) => {
+  const { id, photo, service_name, description, features } = service;
+  return (
+    <Card
+      data-aos="fade-up"
+      className="h-full space-y-3 rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 p-2 shadow-xl md:p-8 dark:from-slate-950 dark:to-slate-900"
+      key={id}
+    >
+      <CardContent className="space-y-3">
+        <Image
+          src={photo}
+          alt={`${service_name} photo`}
+          width={60}
+          height={60}
+          className="object-contain"
+        />
+        <h2 className="text-2xl font-bold">{service_name}</h2>
+        <p>{description}</p>
+
+        <div>
+          <p className="mb-2 text-xl font-semibold">Features:</p>
+          <ul className="list-disc space-y-1 pl-5">
+            {features.map((feature, i) => (
+              <li key={i}>{feature}</li>
+            ))}
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

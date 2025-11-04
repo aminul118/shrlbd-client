@@ -1,6 +1,16 @@
 import images from '@/config/images';
+import { StaticImageData } from 'next/image';
 
-export const services = [
+export interface IKeyServices {
+  id: number;
+  photo: StaticImageData;
+  service_name: string;
+  description: string;
+  features_name: string;
+  features: string[];
+}
+
+export const services: IKeyServices[] = [
   {
     id: 1,
     photo: images.services.doctor_patient,

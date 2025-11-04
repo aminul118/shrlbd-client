@@ -26,7 +26,7 @@ import {
 import validation from '@/validations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { forbidden, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -42,10 +42,8 @@ const VerifyOTPForm = () => {
 
   // Email no email received -> User can't visit this page
   useEffect(() => {
-    if (!email) {
-      router.push('/');
-    }
-  }, [email, router]);
+    if (!email) forbidden();
+  }, [email]);
 
   const form = useForm<z.infer<typeof validation.auth.otpValidation>>({
     resolver: zodResolver(validation.auth.otpValidation),

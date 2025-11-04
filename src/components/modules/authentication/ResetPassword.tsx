@@ -20,7 +20,7 @@ import { resetPasswordValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { forbidden, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -35,8 +35,8 @@ const ResetPassword = ({ props }: { props: Record<string, any> }) => {
 
   //  token & id -> Required for visit this page
   useEffect(() => {
-    if (!id && !token) router.push('/');
-  }, [router, id, token]);
+    if (!id && !token) forbidden();
+  }, [id, token]);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(resetPasswordValidation),

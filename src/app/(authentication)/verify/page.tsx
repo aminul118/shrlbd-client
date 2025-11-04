@@ -1,3 +1,4 @@
+import LoadingSpinner from '@/components/common/loader/LoadingSpinner';
 import VerifyOTPForm from '@/components/modules/Authentication/VerifyOTPForm';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
@@ -6,7 +7,7 @@ import { Suspense } from 'react';
 const VerifyOTPPage = () => {
   return (
     <section className="center">
-      <Suspense fallback={<div>Loading.....</div>}>
+      <Suspense fallback={<LoadingSpinner />}>
         <VerifyOTPForm />
       </Suspense>
     </section>

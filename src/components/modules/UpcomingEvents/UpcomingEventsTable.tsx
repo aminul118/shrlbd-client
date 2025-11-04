@@ -1,18 +1,5 @@
 'use client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import GradientTitle from '@/components/ui/gradientTitle';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { useGetUpcomingEventsQuery } from '@/redux/features/event/event.api';
-
 import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
@@ -23,7 +10,19 @@ import PageLimit from '@/components/common/pagination/PageLimit';
 import PaginationStatus from '@/components/common/pagination/PaginationStatus';
 import AppSearching from '@/components/common/searching/AppSearching';
 import Sorting from '@/components/common/sorting/Sorting';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
+import GradientTitle from '@/components/ui/gradientTitle';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { useGetUpcomingEventsQuery } from '@/redux/features/upcoming-event/upcomingEvent.api';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import UpcomingEventActions from './UpcomingEventActions';

@@ -4,7 +4,7 @@ import NotFound from '@/components/common/error/NotFound';
 import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
-import { useGetUpcomingEventsQuery } from '@/redux/features/event/event.api';
+import { useGetUpcomingEventsQuery } from '@/redux/features/upcoming-event/upcomingEvent.api';
 import { format } from 'date-fns';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 import Image from 'next/image';

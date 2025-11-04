@@ -7,7 +7,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import HtmlContent from '@/components/ui/HtmlContent';
-
 import { IModal, IUpcomingEvent } from '@/types';
 import Image from 'next/image';
 

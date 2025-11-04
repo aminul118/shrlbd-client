@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteUpcomingEventMutation } from '@/redux/features/event/event.api';
+import { useDeleteUpcomingEventMutation } from '@/redux/features/upcoming-event/upcomingEvent.api';
 import { IUpcomingEvent } from '@/types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';

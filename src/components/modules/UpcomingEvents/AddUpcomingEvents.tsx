@@ -1,9 +1,8 @@
 'use client';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
 import DatePicker from '@/components/ui/date-picker';
@@ -18,7 +17,9 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import { useAddUpcomingEventMutation } from '@/redux/features/event/event.api';
+import { useAddUpcomingEventMutation } from '@/redux/features/upcoming-event/upcomingEvent.api';
+import { upcomingEventValidation } from '@/validations/upcoming-event';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -26,24 +27,14 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-// ✅ Validation schema
-const formSchema = z.object({
-  title: z.string().min(6, { message: 'Title must be at least 6 characters.' }),
-  date: z.date(),
-  time: z.string().min(1, { message: 'Time is required' }),
-  venue: z.string().min(2, { message: 'Venue must be at least 2 characters.' }),
-  photo: z.instanceof(File, { message: 'Must upload an image file' }),
-  details: z
-    .string()
-    .min(10, { message: 'Details must be at least 10 characters.' }),
-});
+type FormValues = z.infer<typeof upcomingEventValidation>;
 
 const AddUpcomingEvent = () => {
   const router = useRouter();
   const [addUpcomingEvent, { isLoading }] = useAddUpcomingEventMutation();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(upcomingEventValidation),
     defaultValues: {
       title: '',
       date: new Date(),
@@ -53,7 +44,7 @@ const AddUpcomingEvent = () => {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
     formData.append('data', JSON.stringify(data));
     formData.append('file', data.photo);

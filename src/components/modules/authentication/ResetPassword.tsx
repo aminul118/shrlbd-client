@@ -21,15 +21,24 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof resetPasswordValidation>;
+
 const ResetPassword = ({ props }: { props: Record<string, any> }) => {
   const router = useRouter();
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
+  const { id, token } = props;
 
-  const form = useForm<z.infer<typeof resetPasswordValidation>>({
+  //  token & id -> Required for visit this page
+  useEffect(() => {
+    if (!id && !token) router.push('/');
+  }, [router, id, token]);
+
+  const form = useForm<FormValues>({
     resolver: zodResolver(resetPasswordValidation),
     defaultValues: {
       password: '',
@@ -37,12 +46,12 @@ const ResetPassword = ({ props }: { props: Record<string, any> }) => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof resetPasswordValidation>) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       const payload = {
         newPassword: values.password,
-        id: props.id,
-        token: props.token,
+        id,
+        token,
       };
 
       const res = await resetPassword(payload).unwrap();

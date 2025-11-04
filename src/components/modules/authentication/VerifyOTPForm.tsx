@@ -40,6 +40,13 @@ const VerifyOTPForm = () => {
   const router = useRouter();
   const email = searchParams.get('email');
 
+  // Email no email received -> User can't visit this page
+  useEffect(() => {
+    if (!email) {
+      router.push('/');
+    }
+  }, [email, router]);
+
   const form = useForm<z.infer<typeof validation.auth.otpValidation>>({
     resolver: zodResolver(validation.auth.otpValidation),
     defaultValues: {

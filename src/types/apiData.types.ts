@@ -103,3 +103,25 @@ export interface IBlog {
   content: string;
   thumbnail: string;
 }
+
+export interface IJobType {
+  jobType: string;
+  _id?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface IJob {
+  title: string;
+  department: string;
+  location: string;
+  jobTypeId: {
+    jobType: string;
+    _id: string;
+  };
+  short_description: string;
+  details: string;
+  _id?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}

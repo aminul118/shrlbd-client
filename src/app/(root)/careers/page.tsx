@@ -1,11 +1,15 @@
-import NotFound from '@/components/common/error/NotFound';
+import Career from '@/components/modules/Careers/CareerBanner';
+import CareerCTA from '@/components/modules/Careers/CareerCTA';
+import Jobs from '@/components/modules/Careers/Jobs';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 const CareersPage = () => {
   return (
     <div>
-      <NotFound title="No Job Posts Available" description="" />
+      <Career />
+      <Jobs />
+      <CareerCTA />
     </div>
   );
 };

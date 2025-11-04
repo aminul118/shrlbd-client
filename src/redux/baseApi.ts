@@ -17,6 +17,8 @@ export const baseApi = createApi({
     'AI',
     'CONTACT',
     'BLOG',
+    'JOB-TYPES',
+    'JOBS',
   ],
 });
 

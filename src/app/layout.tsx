@@ -20,7 +20,7 @@ const RootLayout = ({ children }: IChildren) => {
           <ReduxProvider>
             <ThemeProvider
               attribute="class"
-              defaultTheme="light"
+              defaultTheme="system"
               enableSystem
               disableTransitionOnChange
             >
@@ -28,7 +28,7 @@ const RootLayout = ({ children }: IChildren) => {
                 <AosProvider>{children}</AosProvider>
               </AppDataProvider>
 
-              <Toaster position="top-right" richColors theme="light" />
+              <Toaster position="top-right" richColors theme="system" />
             </ThemeProvider>
           </ReduxProvider>
         </body>

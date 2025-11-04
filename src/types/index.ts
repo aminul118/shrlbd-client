@@ -25,12 +25,17 @@ export type {
 } from './next.types';
 
 export type {
+  Auth,
   IAiTraining,
   IBlog,
   IEvent,
+  IJob,
+  IJobType,
   IScrollingText,
+  ITeamJoinRequest,
   ITeamMember,
   IUpcomingEvent,
+  IUser,
 } from './apiData.types';
 
 export enum Role {

@@ -2,6 +2,7 @@ import { MenuGroup } from '@/types';
 import {
   Book,
   Bot,
+  BriefcaseBusiness,
   CalendarDays,
   GalleryHorizontal,
   Gauge,
@@ -56,6 +57,11 @@ export const adminSidebarmenu: MenuGroup[] = [
         name: 'AI Trainings',
         url: '/admin/ai-trainings',
         icon: Bot,
+      },
+      {
+        name: 'Careers',
+        url: '/admin/careers',
+        icon: BriefcaseBusiness,
       },
       {
         name: 'Change Password',

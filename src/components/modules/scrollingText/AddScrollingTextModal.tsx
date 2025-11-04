@@ -50,7 +50,7 @@ const AddScrollingTextModal = () => {
       const res = await createScrollingText(values);
       toast.success(res.message || 'Scrolling text added', { id: toastId });
       form.reset();
-      setOpen(false); // ✅ close modal shadcn way
+      setOpen(false);
     } catch (error: any) {
       toast.error(error.message || 'Failed to add scrolling text');
     }

@@ -13,7 +13,6 @@ const sections = [
     links: [
       { name: 'Home', href: '/' },
       { name: 'Services', href: '/services' },
-
       { name: 'Contact', href: '/contact' },
     ],
   },
@@ -22,7 +21,6 @@ const sections = [
     links: [
       { name: 'About', href: '/about' },
       { name: 'Team', href: '/team' },
-
       { name: 'Careers', href: '/careers' },
     ],
   },
@@ -39,7 +37,9 @@ const sections = [
 
 const socialLinks = [
   {
-    icon: <FaFacebook className="size-5" />,
+    icon: (
+      <FaFacebook className="size-5 text-white transition hover:text-blue-400" />
+    ),
     href: 'https://www.facebook.com/smarthealthcareandresearchltd',
     label: 'Facebook',
   },
@@ -53,20 +53,21 @@ const legalLinks = [
 
 const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
   return (
-    <section className="border-t">
+    <footer className="bg-black text-white">
       <div className="container mx-auto px-4 pt-12">
-        <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
-          <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
+        <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start">
+          <div className="flex w-full flex-col justify-between gap-6">
             {/* Logo */}
-            <div className="flex items-center gap-2 lg:justify-start">
+            <div className="flex items-center gap-2">
               <Logo />
             </div>
-            <p className="text-muted-foreground max-w-[70%] text-sm">
-              {description}
-            </p>
-            <ul className="text-muted-foreground flex items-center space-x-6">
+
+            <p className="max-w-[70%] text-sm text-gray-300">{description}</p>
+
+            {/* Social & Playstore */}
+            <ul className="flex items-center space-x-6">
               {socialLinks.map((social, idx) => (
-                <li key={idx} className="hover:text-primary font-medium">
+                <li key={idx}>
                   <Link
                     href={social.href}
                     aria-label={social.label}
@@ -77,16 +78,18 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
                 </li>
               ))}
               <div className="mt-2 flex items-center space-x-4">
-                {/* BAN GDM APP download  */}
                 <Link
                   href="https://play.google.com/store/apps/details?id=co.logicaltriangle.mhealth"
                   target="_blank"
                   aria-label="BAN GDM app download link"
                 >
-                  <Button variant="ghost" className="h-12 border-[1px]">
-                    <IoLogoGooglePlaystore />
+                  <Button
+                    variant="ghost"
+                    className="dark h-12 border text-white transition hover:bg-white"
+                  >
+                    <IoLogoGooglePlaystore className="text-white" />
                     <div className="flex flex-col items-start">
-                      <span className="text-xs">BAN GDM</span>
+                      <span className="text-xs font-semibold">BAN GDM</span>
                       <span className="text-xs">Google Play</span>
                     </div>
                   </Button>
@@ -94,15 +97,17 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
               </div>
             </ul>
           </div>
+
+          {/* Footer Sections */}
           <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-20">
             {sections.map((section, sectionIdx) => (
               <div key={sectionIdx}>
                 <h3 className="mb-4 font-bold">{section.title}</h3>
-                <ul className="text-muted-foreground space-y-3 text-sm">
+                <ul className="space-y-3 text-sm text-gray-300">
                   {section.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="hover:text-primary font-medium"
+                      className="transition hover:text-blue-400"
                     >
                       <Link href={link.href}>{link.name}</Link>
                     </li>
@@ -112,23 +117,24 @@ const Footer = ({ description = 'Empowering Maternal & Child Health.' }) => {
             ))}
           </div>
         </div>
+
         <FooterCopyright />
       </div>
-    </section>
+    </footer>
   );
 };
 
 const FooterCopyright = () => {
   return (
-    <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
+    <div className="mt-8 flex flex-col justify-between gap-4 border-t border-gray-700 py-8 text-xs font-medium text-gray-400 md:flex-row md:items-center">
       <p className="order-2 lg:order-1">
-        &copy; {new Date().getFullYear()} Smart Healthcare and Research Ltd .
-        All rights reserved. Developed by{' '}
+        &copy; {new Date().getFullYear()} Smart Healthcare and Research Ltd. All
+        rights reserved. Developed by{' '}
         <Link
           href="https://www.aminuldev.site"
           target="_blank"
           referrerPolicy="no-referrer"
-          className="font-semibold text-blue-500"
+          className="font-semibold text-blue-400 hover:text-blue-300"
         >
           Aminul Islam
         </Link>
@@ -136,8 +142,8 @@ const FooterCopyright = () => {
 
       <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">
         {legalLinks.map((link, idx) => (
-          <li key={idx} className="hover:text-primary">
-            <Link href={link.href}> {link.name}</Link>
+          <li key={idx} className="transition hover:text-blue-400">
+            <Link href={link.href}>{link.name}</Link>
           </li>
         ))}
         <li>

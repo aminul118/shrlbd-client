@@ -13,6 +13,16 @@ export const jobApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ['JOB-TYPES'],
     }),
+
+    // Get All Job Types
+    getAllJobTypes: builder.query<ApiResponse<IJobType[]>, unknown>({
+      query: () => ({
+        url: '/job/types',
+        method: 'GET',
+      }),
+      providesTags: ['JOB-TYPES'],
+    }),
+
     // Add Job Type
     addJob: builder.mutation({
       query: (job) => ({
@@ -33,13 +43,13 @@ export const jobApi = baseApi.injectEndpoints({
       providesTags: ['JOBS'],
     }),
 
-    // Get All Job Types
-    getAllJobTypes: builder.query<ApiResponse<IJobType[]>, unknown>({
-      query: () => ({
-        url: '/job/types',
-        method: 'GET',
+    // Delete Job  text by Slug
+    deleteJob: builder.mutation({
+      query: (slug) => ({
+        url: `/job/${slug}`,
+        method: 'DELETE',
       }),
-      providesTags: ['JOB-TYPES'],
+      invalidatesTags: ['JOBS'],
     }),
   }),
 });
@@ -49,4 +59,5 @@ export const {
   useGetAllJobTypesQuery,
   useAddJobTypeMutation,
   useAddJobMutation,
+  useDeleteJobMutation,
 } = jobApi;

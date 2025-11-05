@@ -2,6 +2,7 @@
 
 import NotFound from '@/components/common/error/NotFound';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
+import TableSkeleton from '@/components/common/loader/TableSkeleton';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GoToPage from '@/components/common/pagination/GoToPage';
 import PageLimit from '@/components/common/pagination/PageLimit';
@@ -25,15 +26,19 @@ import {
 import { IJob, IMeta } from '@/types';
 import AddJobModal from './AddJobModal';
 import AddJobTypeModal from './AddJobTypeModal';
+import JobActions from './JobActions';
 
-const JobTable = () => {
-  const { data } = useGetAllJobsQuery({});
+const JobTable = ({ props }: { props: Record<string, any> }) => {
+  const params = { ...props };
+  const { data, isLoading } = useGetAllJobsQuery(params);
   const { data: allJobsTypes } = useGetAllJobTypesQuery({});
 
   const jobs = data?.data || [];
   const meta = data?.meta;
 
   const jobsTypes = allJobsTypes?.data || [];
+
+  if (isLoading) return <TableSkeleton />;
 
   return (
     <Container>
@@ -77,7 +82,7 @@ const TableCreate = ({ jobs }: { jobs: IJob[] }) => {
                 <TableCell>{job.title}</TableCell>
                 <TableCell></TableCell>
                 <TableCell className="text-center">
-                  {/* TODO: Actions (Edit/Delete) */}
+                  <JobActions job={job} />
                 </TableCell>
               </TableRow>
             ))

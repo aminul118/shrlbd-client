@@ -9,19 +9,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteBlogMutation } from '@/redux/features/blog/blog.api';
-import { IBlog } from '@/types/apiData.types';
+import { useDeleteJobMutation } from '@/redux/features/jobs/job.api';
+import { IJob } from '@/types/apiData.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
-import ShowBlogModal from './ShowBlogModal';
+import ShowJobModal from './ShowJobModal';
 
-const BlogActions = ({ blog }: { blog: IBlog }) => {
-  const [deleteBlog] = useDeleteBlogMutation();
+const JobActions = ({ job }: { job: IJob }) => {
+  const [deleteJob] = useDeleteJobMutation();
+
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [showDetailsOpen, setShowDetailsOpen] = useState(false);
 
-  const handleDelete = async (id: string) => {
-    const res = await deleteBlog(id).unwrap();
+  const handleDelete = async (slug: string) => {
+    const res = await deleteJob(slug).unwrap();
     return res;
   };
 
@@ -48,6 +49,7 @@ const BlogActions = ({ blog }: { blog: IBlog }) => {
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
+
           <DropdownMenuItem
             className="text-destructive focus:text-destructive"
             onClick={() => setDeleteOpen(true)}
@@ -58,16 +60,16 @@ const BlogActions = ({ blog }: { blog: IBlog }) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/* Modals */}
-
+      {/* Delete Confirmation Modal */}
       <DeleteFromTableDropDown
-        onConfirm={() => handleDelete(blog.slug)}
+        onConfirm={() => handleDelete(job.slug)}
         open={deleteOpen}
         setOpen={setDeleteOpen}
       />
 
-      <ShowBlogModal
-        blog={blog}
+      {/* Job Details Modal */}
+      <ShowJobModal
+        job={job}
         open={showDetailsOpen}
         setOpen={setShowDetailsOpen}
       />
@@ -75,4 +77,4 @@ const BlogActions = ({ blog }: { blog: IBlog }) => {
   );
 };
 
-export default BlogActions;
+export default JobActions;

@@ -60,9 +60,17 @@ export const adminSidebarmenu: MenuGroup[] = [
       },
       {
         name: 'Careers',
-        url: '/admin/careers',
+        url: '#',
         icon: BriefcaseBusiness,
+        subMenu: [
+          { name: 'Job Posts', url: '/admin/job-posts' },
+          {
+            name: 'Candidate Applications',
+            url: '/admin/candidate-applications',
+          },
+        ],
       },
+
       {
         name: 'Change Password',
         url: '/admin/change-password',

@@ -18,12 +18,12 @@ export default CareersPage;
 
 // --> SEO Starts
 export const metadata: Metadata = generateMetaTags({
-  title: 'Careers | SHRL',
+  title: 'Careers | Smart Healthcare and Research Ltd. (SHRL)',
   description:
-    "Get in touch with Smart Healthcare and Research Ltd. (SHRL) for expert consultation, healthcare partnerships, training inquiries, or research collaboration. We're here to support maternal and child health initiatives through innovative digital solutions.",
+    'Explore rewarding career opportunities at Smart Healthcare and Research Ltd. (SHRL). Join our mission to transform healthcare through innovation, research, and digital health solutions. Apply now and become part of a passionate team driving meaningful change in maternal and child health.',
   keywords:
-    'Smart Healthcare contact, SHRL contact, healthcare consultation Bangladesh, maternal health contact, child healthcare support, healthcare training Bangladesh, public health research contact, digital health services Bangladesh, partner with SHRL, SHRL Bangladesh location, SHRL email, SHRL phone number',
-  image: '/seo/shrl-hero-ss.png',
-  websitePath: 'contact',
+    'SHRL careers, Smart Healthcare and Research Ltd jobs, healthcare jobs Bangladesh, research careers Bangladesh, digital health careers, healthcare innovation jobs, public health careers, SHRL recruitment, medical research jobs Bangladesh, join SHRL team',
+  image: '/seo/career.jpg',
+  websitePath: '/careers',
 });
 // --> SEO End

@@ -86,7 +86,7 @@ export async function generateMetadata({ params }: IParams) {
     description:
       job.short_description?.replace(/<[^>]*>/g, '').slice(0, 160) || '',
     keywords: `${job.short_description}, Career`,
-    image: '',
+    image: '/seo/career.jpg',
     websitePath: `/careers/${slug}`,
   });
 }

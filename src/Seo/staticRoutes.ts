@@ -47,7 +47,7 @@ export const staticRoutes: Routes[] = [
     priority: 1.0,
   },
   {
-    url: 'join-team',
+    url: 'join-our-team',
     changeFrequency: 'monthly',
     priority: 1.0,
   },

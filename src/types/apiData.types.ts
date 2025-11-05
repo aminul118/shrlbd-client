@@ -121,7 +121,8 @@ export interface IJob {
   };
   short_description: string;
   details: string;
-  _id?: string;
-  createdAt?: string;
-  updatedAt?: string;
+  slug: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
 }

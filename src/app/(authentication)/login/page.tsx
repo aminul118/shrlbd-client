@@ -14,9 +14,12 @@ export default LoginPage;
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Login | SHRL',
-  description: 'Write Description',
-  keywords: 'write keyword not more than 60 words',
+  title: 'Login | Smart Healthcare and Research Limited',
+  description:
+    'Login to your Smart Healthcare and Research Limited account to access secure medical data, research tools, and personalized healthcare services.',
+  keywords:
+    'login, sign in, Smart Healthcare and Research Limited, SHRL, healthcare platform, medical research, secure access, patient portal, health data login',
   image: '/seo/shrl-hero-ss.png',
+  websitePath: '/login',
 });
 // >> SEO End

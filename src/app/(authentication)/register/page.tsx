@@ -27,8 +27,11 @@ export default RegisterPage;
 
 // >> SEO Start
 export const metadata: Metadata = generateMetaTags({
-  title: 'Register | SHRL',
-  description: 'Write Description',
-  keywords: 'write keyword not more than 60 words',
+  title: 'Register | Smart Healthcare and Research Limited',
+  description:
+    'Create your account at Smart Healthcare and Research Limited to access advanced medical research tools, healthcare services, and personalized support.',
+  keywords:
+    'register, create account, sign up, Smart Healthcare and Research Limited, medical research, healthcare innovation, SHRL registration, join healthcare platform, medical data access',
+  websitePath: '/register',
 });
 // >> SEO End

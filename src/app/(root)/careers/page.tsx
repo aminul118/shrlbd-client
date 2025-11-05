@@ -1,5 +1,4 @@
 import Career from '@/components/modules/Careers/CareerBanner';
-import CareerCTA from '@/components/modules/Careers/CareerCTA';
 import Jobs from '@/components/modules/Careers/Jobs';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
@@ -9,7 +8,7 @@ const CareersPage = () => {
     <div>
       <Career />
       <Jobs />
-      <CareerCTA />
+      {/* <CareerCTA /> */}
     </div>
   );
 };

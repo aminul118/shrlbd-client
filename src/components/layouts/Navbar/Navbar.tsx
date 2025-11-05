@@ -20,7 +20,7 @@ import Logo from '../Logo';
 
 import SearchTeamMember from '@/components/common/searching/SearchTeamMember';
 import { AppDataContext } from '@/context/auth-context';
-import { BookOpenIcon, InfoIcon, LifeBuoyIcon, Users } from 'lucide-react';
+import { BookOpenIcon, Briefcase, InfoIcon, LifeBuoyIcon } from 'lucide-react';
 import { useContext } from 'react';
 import NavProfile from './NavProfile';
 
@@ -323,7 +323,7 @@ const Navbar = () => {
             <SearchTeamMember />
           </div>
           <Button variant="destructive" size="sm" className="text-sm">
-            <Users /> <Link href="/join-team">Join Team</Link>
+            <Briefcase /> <Link href="/careers">Careers</Link>
           </Button>
 
           <NavProfile />

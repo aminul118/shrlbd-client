@@ -21,6 +21,7 @@ const sections = [
     links: [
       { name: 'About', href: '/about' },
       { name: 'Team', href: '/team' },
+      { name: 'Join Our Team', href: '/join-our-team' },
       { name: 'Careers', href: '/careers' },
     ],
   },

@@ -22,11 +22,11 @@ const Jobs = () => {
 
   if (isLoading) {
     return (
-      <div className="grid gap-8 md:grid-cols-2 2xl:grid-cols-3">
+      <Container className="grid gap-8 md:grid-cols-2 2xl:grid-cols-3">
         {Array.from({ length: 6 }).map((_, i) => (
           <JobSkeleton key={i} />
         ))}
-      </div>
+      </Container>
     );
   }
 
@@ -96,7 +96,7 @@ const JobCard = ({ job, index }: Job) => {
 
 const NotFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center py-32 text-center">
+    <Container className="flex flex-col items-center justify-center py-32 text-center">
       <Briefcase className="mb-4 h-12 w-12 text-gray-400" />
       <h3 className="mb-2 text-xl font-semibold text-gray-700">
         No Job Openings Found
@@ -105,7 +105,7 @@ const NotFound = () => {
         Currently, we don’t have any open positions. Please check back later for
         new opportunities.
       </p>
-    </div>
+    </Container>
   );
 };
 

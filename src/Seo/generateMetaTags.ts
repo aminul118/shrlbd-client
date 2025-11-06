@@ -68,6 +68,7 @@ const generateMetaTags = ({
     creator: authors_name,
     referrer: 'no-referrer',
     bookmarks,
+    abstract: description,
     authors: [
       {
         name: authors_name,

@@ -1,5 +1,5 @@
 export type { MenuGroup } from './admin-menu';
-export type { MetaProps, Routes } from './meta.types';
+export type { MetaConfig, MetaProps, Routes } from './meta.types';
 
 export interface IMeta {
   page: number;

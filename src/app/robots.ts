@@ -2,20 +2,21 @@ import metaConfig from '@/config/meta.config';
 import type { MetadataRoute } from 'next';
 
 const robots = (): MetadataRoute.Robots => {
+  const { preventCrawler, baseUrl } = metaConfig;
   return {
     rules: [
       {
         userAgent: 'Googlebot',
         allow: ['/'],
-        disallow: metaConfig.protectedCrawlRoutes,
+        disallow: preventCrawler,
       },
       {
         userAgent: ['Applebot', 'Bingbot'],
         allow: ['/'],
-        disallow: metaConfig.protectedCrawlRoutes,
+        disallow: preventCrawler,
       },
     ],
-    sitemap: [`${metaConfig.baseUrl}/sitemap.xml`],
+    sitemap: [`${baseUrl}/sitemap.xml`],
   };
 };
 

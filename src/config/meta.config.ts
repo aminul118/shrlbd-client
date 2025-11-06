@@ -1,4 +1,6 @@
-const metaConfig = {
+import { MetaConfig } from '@/types';
+
+const metaConfig: MetaConfig = {
   baseUrl: 'https://www.shrlbd.com',
   baseImage: '/seo/shrl-hero-ss.png',
   siteName: 'SHRL',
@@ -7,7 +9,6 @@ const metaConfig = {
   authors_name: 'Dr Fatema Ashraf',
   authorPortfolio: 'https://www.shrlbd.com/team/professor-dr-fatema-ashraf',
   twitter_site: '@shrl',
-  protectedCrawlRoutes: ['/dashboard', '/admin'],
   facebook_app_id: '580317868506376',
   bookmarks: 'https://www.shrlbd.com/logo.png',
   verification: {
@@ -15,6 +16,7 @@ const metaConfig = {
     microsoft_bing: 'EE37CB89A12B6DB168EE052A7D138295',
   },
   publisher: 'https://www.aminuldev.site',
+  preventCrawler: ['/dashboard', '/admin'],
 };
 
 export default metaConfig;

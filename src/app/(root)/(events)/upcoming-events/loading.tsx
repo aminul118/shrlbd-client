@@ -1,39 +1,30 @@
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 
-const UpcomingEventDetailsPageLoading = () => {
+const UpcomingEventPageLoading = () => {
   return (
     <Container>
-      {/* Title */}
-      <Skeleton className="mb-3 h-8 w-3/4" />
+      <Skeleton className="mx-auto mb-4 h-8 w-md" />
+      <Skeleton className="mx-auto mb-12 h-10" />
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-12">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Card key={i} className="animate-pulse overflow-hidden pt-0">
+            {/* Image Skeleton */}
+            <Skeleton className="h-96 w-full xl:h-70" />
 
-      {/* Event info (date, time, venue) */}
-      <div className="mb-4 flex flex-col gap-2 text-gray-600">
-        <div className="flex items-center gap-2">
-          <Calendar size={18} className="text-gray-400" />
-          <Skeleton className="h-4 w-32" />
-        </div>
-        <div className="flex items-center gap-2">
-          <Clock size={18} className="text-gray-400" />
-          <Skeleton className="h-4 w-24" />
-        </div>
-        <div className="flex items-center gap-2">
-          <MapPinCheck size={18} className="text-gray-400" />
-          <Skeleton className="h-4 w-48" />
-        </div>
-      </div>
-
-      {/* Event details (HTML content placeholder) */}
-      <div className="space-y-3">
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-11/12" />
-        <Skeleton className="h-4 w-10/12" />
-        <Skeleton className="h-4 w-9/12" />
-        <Skeleton className="h-4 w-8/12" />
+            {/* Card Content Skeleton */}
+            <CardContent>
+              <CardTitle>
+                <Skeleton className="mb-2 h-5 w-3/4" />
+              </CardTitle>
+              <Skeleton className="h-3 w-1/2" />
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </Container>
   );
 };
 
-export default UpcomingEventDetailsPageLoading;
+export default UpcomingEventPageLoading;

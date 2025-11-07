@@ -7,7 +7,7 @@ const UpcomingEventPageLoading = () => {
     <Container>
       <Skeleton className="mx-auto mb-4 h-8 w-md" />
       <Skeleton className="mx-auto mb-12 h-10" />
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 px-4 py-12">
+      <div className="mx-auto grid grid-cols-1 gap-6 px-4 py-12 lg:grid-cols-3">
         {Array.from({ length: 3 }).map((_, i) => (
           <Card key={i} className="animate-pulse overflow-hidden pt-0">
             {/* Image Skeleton */}

@@ -31,6 +31,7 @@ export interface IScrollingText {
 export interface IUpcomingEvent {
   _id: string;
   title: string;
+  slug: string;
   date: string;
   time: string;
   venue: string;

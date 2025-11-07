@@ -6,19 +6,9 @@ const upcomingEventApi = baseApi.injectEndpoints({
     // POST - Add Upcoming Event
     addUpcomingEvent: builder.mutation({
       query: (eventInfo) => ({
-        url: '/upcoming-event/create',
+        url: '/upcoming-event',
         method: 'POST',
         data: eventInfo,
-      }),
-      invalidatesTags: ['UPCOMING-EVENT'],
-    }),
-
-    // PATCH - Update Upcoming Event
-    updateUpcomingEvent: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/upcoming-event/${id}`,
-        method: 'PATCH', // or PUT depending on your backend
-        data,
       }),
       invalidatesTags: ['UPCOMING-EVENT'],
     }),
@@ -29,11 +19,21 @@ const upcomingEventApi = baseApi.injectEndpoints({
       Record<string, string>
     >({
       query: (params) => ({
-        url: '/upcoming-event/get-all',
+        url: '/upcoming-event',
         method: 'GET',
         params,
       }),
       providesTags: ['UPCOMING-EVENT'],
+    }),
+
+    // PATCH - Update Upcoming Event
+    updateUpcomingEvent: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/upcoming-event/${id}`,
+        method: 'PATCH', // or PUT depending on your backend
+        data,
+      }),
+      invalidatesTags: ['UPCOMING-EVENT'],
     }),
 
     // DELETE - Delete Upcoming Event

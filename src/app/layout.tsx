@@ -27,7 +27,6 @@ const RootLayout = ({ children }: IChildren) => {
               <AppDataProvider>
                 <AosProvider>{children}</AosProvider>
               </AppDataProvider>
-
               <Toaster position="top-right" richColors theme="system" />
             </ThemeProvider>
           </ReduxProvider>

@@ -6,11 +6,11 @@ import { Metadata } from 'next';
 
 const MainLayout = ({ children }: IChildren) => {
   return (
-    <div className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="flex-grow">{children}</main>
+      <div className="flex-grow">{children}</div>
       <Footer />
-    </div>
+    </main>
   );
 };
 

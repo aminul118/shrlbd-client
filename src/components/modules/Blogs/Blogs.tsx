@@ -8,10 +8,22 @@ import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blog.api';
 import { IBlog } from '@/types';
+import useSearchParamsValues from '@/utils/getSearchParams';
 import Image from 'next/image';
 
-const Blogs = ({ props }: { props: Record<string, any> }) => {
-  const params = { ...props };
+const Blogs = () => {
+  const { page, limit, search } = useSearchParamsValues([
+    'page',
+    'limit',
+    'search',
+  ]);
+
+  const params = {
+    page,
+    limit,
+    search,
+  };
+
   const { data, isLoading } = useGetAllBlogsQuery(params);
 
   if (isLoading) return <BlogPageLoading />;

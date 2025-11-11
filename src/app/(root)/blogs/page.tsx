@@ -1,13 +1,11 @@
 import Blogs from '@/components/modules/Blogs/Blogs';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const BlogsPage = async ({ searchParams }: ISearchParams) => {
-  const resolvedSearchparams = await searchParams;
+const BlogsPage = () => {
   return (
     <>
-      <Blogs props={resolvedSearchparams} />
+      <Blogs />
     </>
   );
 };

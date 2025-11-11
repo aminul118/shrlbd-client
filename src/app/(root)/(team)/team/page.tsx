@@ -1,13 +1,10 @@
 import TeamList from '@/components/modules/Team/TeamMembers';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { ISearchParams } from '@/types';
 
 import { Metadata } from 'next';
 
-const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
-  const resolvedSearchParams = await searchParams;
-
-  return <TeamList props={resolvedSearchParams} />;
+const TeamMemberPage = () => {
+  return <TeamList />;
 };
 export default TeamMemberPage;
 

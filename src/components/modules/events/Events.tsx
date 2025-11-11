@@ -16,13 +16,25 @@ import Container from '@/components/ui/Container';
 import GrediantHeading from '@/components/ui/GrediantHeading';
 import { useGetEventQuery } from '@/redux/features/event/event.api';
 import { IEvent } from '@/types';
+import useSearchParamsValues from '@/utils/getSearchParams';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Events = ({ props }: { props: Record<string, any> }) => {
+const Events = () => {
+  const { page, limit, search, sort } = useSearchParamsValues([
+    'page',
+    'limit',
+    'search',
+    'sort',
+  ]);
+
   const params = {
-    ...props,
+    search,
+    page,
+    limit,
+    sort,
   };
+
   const { data, isLoading, isFetching } = useGetEventQuery(params);
 
   if (isLoading || isFetching) {

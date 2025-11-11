@@ -14,9 +14,9 @@ const eventApi = baseApi.injectEndpoints({
     }),
 
     // GET - Get All Events
-    getEvent: builder.query<ApiResponse<IEvent[]>, Record<string, string>>({
+    getEvent: builder.query<ApiResponse<IEvent[]>, unknown>({
       query: (params) => ({
-        url: '/event/get-all',
+        url: '/event',
         method: 'GET',
         params,
       }),

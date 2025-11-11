@@ -10,14 +10,19 @@ import { Card, CardContent } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
 import { IMeta, ITeamMember } from '@/types';
+import useSearchParamsValues from '@/utils/getSearchParams';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const TeamMembers = ({ props }: { props: Record<string, any> }) => {
+const TeamMembers = () => {
+  const { page, limit } = useSearchParamsValues(['page', 'limit']);
+
   const params = {
-    ...props,
     sort: 'createdAt',
+    page,
+    limit,
   };
+
   const { data, isLoading, isFetching } = useGetAllTeamMembersQuery(params);
   const members = data?.data;
   const meta = data?.meta;

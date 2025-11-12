@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation';
 
-const useSearchParamsValues = <T extends string>(
+const getSearchParams = <T extends string>(
   keys: T[],
 ): Record<T, string | null> => {
   const searchParams = useSearchParams();
@@ -13,4 +13,4 @@ const useSearchParamsValues = <T extends string>(
   return values;
 };
 
-export default useSearchParamsValues;
+export default getSearchParams;

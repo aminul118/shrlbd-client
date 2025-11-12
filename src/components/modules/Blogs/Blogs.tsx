@@ -8,15 +8,12 @@ import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blog.api';
 import { IBlog } from '@/types';
-import useSearchParamsValues from '@/utils/getSearchParams';
+import getSearchParams from '@/utils/getSearchParams';
+
 import Image from 'next/image';
 
 const Blogs = () => {
-  const { page, limit, search } = useSearchParamsValues([
-    'page',
-    'limit',
-    'search',
-  ]);
+  const { page, limit, search } = getSearchParams(['page', 'limit', 'search']);
 
   const params = {
     page,

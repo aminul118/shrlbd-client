@@ -1,10 +1,11 @@
 'use client';
 
+import { IChildren } from '@/types';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-const AosProvider = ({ children }: { children: React.ReactNode }) => {
+const AosProvider = ({ children }: IChildren) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       AOS.init({ duration: 1000, once: true });

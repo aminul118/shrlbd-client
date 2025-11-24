@@ -14,9 +14,9 @@ const blogApi = baseApi.injectEndpoints({
     }),
 
     // GET - Get All Events
-    getAllBlogs: builder.query<ApiResponse<IBlog[]>, Record<string, string>>({
+    getAllBlogs: builder.query<ApiResponse<IBlog[]>, unknown>({
       query: (params) => ({
-        url: '/blog/get-all',
+        url: '/blog',
         method: 'GET',
         params,
       }),

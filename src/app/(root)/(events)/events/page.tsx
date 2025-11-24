@@ -1,12 +1,9 @@
 import Events from '@/components/modules/Events/Events';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const EventPage = async ({ searchParams }: ISearchParams) => {
-  const resolvedSearchparams = await searchParams;
-
-  return <Events props={resolvedSearchparams} />;
+const EventPage = () => {
+  return <Events />;
 };
 
 export default EventPage;

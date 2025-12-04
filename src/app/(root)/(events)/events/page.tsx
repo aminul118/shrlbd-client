@@ -1,4 +1,4 @@
-import Events from '@/components/modules/Events/Events';
+import Events from '@/components/modules/Root/events/Events';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

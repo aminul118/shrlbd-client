@@ -1,6 +1,6 @@
-import EventStats from '@/components/modules/Admin/EventStats';
-import TeamStats from '@/components/modules/Admin/TeamStats';
-import UserStats from '@/components/modules/Admin/UserStats';
+import EventStats from '@/components/modules/Admin/stats/EventStats';
+import TeamStats from '@/components/modules/Admin/stats/TeamStats';
+import UserStats from '@/components/modules/Admin/stats/UserStats';
 import GradientTitle from '@/components/ui/gradientTitle';
 
 const AdminHomePage = () => {

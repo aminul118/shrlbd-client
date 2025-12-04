@@ -1,4 +1,4 @@
-import ChatForm from '@/components/modules/AI/ChatForm';
+import ChatForm from '@/components/modules/Root/ai/ChatForm';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';

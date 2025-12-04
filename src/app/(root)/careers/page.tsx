@@ -1,6 +1,6 @@
-import Career from '@/components/modules/Careers/CareerBanner';
-import CareerCTA from '@/components/modules/Careers/CareerCTA';
-import Jobs from '@/components/modules/Careers/Jobs';
+import Career from '@/components/modules/Root/careers/CareerBanner';
+import CareerCTA from '@/components/modules/Root/careers/CareerCTA';
+import Jobs from '@/components/modules/Root/careers/Jobs';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

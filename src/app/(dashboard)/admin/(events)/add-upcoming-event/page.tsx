@@ -1,4 +1,4 @@
-import AddUpcomingEvent from '@/components/modules/UpcomingEvents/AddUpcomingEvents';
+import AddUpcomingEvent from '@/components/modules/Admin/upcoming-events/AddUpcomingEvents';
 import { Metadata } from 'next';
 
 const AddUpcomingEventPage = () => {

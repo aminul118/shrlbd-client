@@ -1,4 +1,4 @@
-import ScrollingTextTable from '@/components/modules/scrollingText/ScrollingTextTable';
+import ScrollingTextTable from '@/components/modules/Admin/scroling-text/ScrollingTextTable';
 import { Metadata } from 'next';
 
 const ScrollingTextPage = () => {

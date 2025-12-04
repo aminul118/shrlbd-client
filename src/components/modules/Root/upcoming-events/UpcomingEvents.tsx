@@ -1,6 +1,7 @@
 'use client';
-import UpcomingEventLoadingPage from '@/app/(root)/(events)/upcoming-events/loading';
+
 import NotFound from '@/components/common/error/NotFound';
+import CardSkeleton from '@/components/common/loader/CardSkeleton';
 import { Card } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import { useGetUpcomingEventsQuery } from '@/redux/features/upcoming-event/upcomingEvent.api';
@@ -13,7 +14,7 @@ const UpcomingEvents = () => {
   const { data, isLoading } = useGetUpcomingEventsQuery({});
   const events = data?.data || [];
   if (isLoading) {
-    return <UpcomingEventLoadingPage />;
+    return <CardSkeleton count={6} />;
   }
 
   return (

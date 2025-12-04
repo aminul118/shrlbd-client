@@ -1,11 +1,23 @@
-import ContactForm2 from '@/components/modules/Root/contact/ContactForm2';
+import ContactForm from '@/components/modules/Root/contact/ContactForm';
+import ContactInfo from '@/components/modules/Root/contact/ContactInfo';
+import Container from '@/components/ui/Container';
+import SectionHeading from '@/components/ui/SectionHeading';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 const ContactPage = () => {
   return (
     <>
-      <ContactForm2 />
+      <Container className="max-w-5xl space-y-12" data-aos="fade-up">
+        <SectionHeading
+          title="Get in Touch"
+          description="For any inquiries, please fill out the form below and a member of our team will get back to you shortly."
+        />
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+          <ContactInfo />
+          <ContactForm />
+        </div>
+      </Container>
     </>
   );
 };

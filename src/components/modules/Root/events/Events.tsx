@@ -1,7 +1,7 @@
 'use client';
 
+import EventPageLoading from '@/app/(public)/(events)/events/loading';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import EventPageLoading from '@/app/(root)/(events)/events/loading';
 import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';

@@ -2,8 +2,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils'; // optional helper if you have it
 import 'highlight.js/styles/github.css'; // or 'atom-one-dark.css'
 import 'katex/dist/katex.min.css';
+import { Bot, Copy, Link as LinkIcon, Loader2, Send, User } from 'lucide-react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
@@ -13,11 +17,6 @@ import rehypeSanitize from 'rehype-sanitize';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
-
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils'; // optional helper if you have it
-import { Bot, Copy, Link as LinkIcon, Loader2, Send, User } from 'lucide-react';
 
 // ---- Types ----
 export type ChatMessage = {

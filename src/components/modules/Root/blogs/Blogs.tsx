@@ -1,11 +1,10 @@
 'use client';
 
-import BlogPageLoading from '@/app/(root)/blogs/loading';
+import BlogPageLoading from '@/app/(public)/blogs/loading';
 import NotFound from '@/components/common/error/NotFound';
 import Container from '@/components/ui/Container';
 import useSearchParamsValues from '@/hooks/useSearchParamsValues';
 import { useGetAllBlogsQuery } from '@/redux/features/blog/blog.api';
-
 import BlogCard from './BlogCard';
 
 const Blogs = () => {

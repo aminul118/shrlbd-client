@@ -1,7 +1,7 @@
 'use client';
 
 import { deleteScrollingText } from '@/actions/scrolling-text';
-import DeleteFromTableDropDown from '@/components/actions/DeleteFromTableDropDown';
+import DeleteFromTableDropDown from '@/components/common/actions/DeleteFromTableDropDown';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,

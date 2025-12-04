@@ -1,5 +1,6 @@
 'use client';
 
+import DeleteFromTableDropDown from '@/components/common/actions/DeleteFromTableDropDown';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -12,8 +13,6 @@ import { useDeleteTeamMemberMutation } from '@/redux/features/team/team.api';
 import { ITeamMember } from '@/types';
 import { EllipsisIcon, EyeIcon, PencilIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
-
-import DeleteFromTableDropDown from '@/components/actions/DeleteFromTableDropDown';
 import EditTeamMember from './EditTeamMember';
 import TeamMemberModal from './TeamMemberModal';
 

@@ -1,4 +1,4 @@
-import Profile from '@/components/modules/Profile/Profile';
+import Profile from '@/components/modules/Root/profile/Profile';
 import { Metadata } from 'next';
 
 const ProfilePage = () => {

@@ -1,4 +1,4 @@
-import AddTeamMember from '@/components/modules/Team/AddTeamMember';
+import AddTeamMember from '@/components/modules/Admin/team/AddTeamMember';
 
 const AddTeamMemberPage = () => {
   return (

@@ -1,4 +1,4 @@
-import TeamJoinRequest from '@/components/modules/JoinTeam/TeamJoinRequestTable';
+import TeamJoinRequest from '@/components/modules/Admin/join-team/TeamJoinRequestTable';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

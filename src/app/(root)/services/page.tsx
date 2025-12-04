@@ -1,5 +1,5 @@
-import Commitments from '@/components/modules/Home/Commitment';
-import KeyServices from '@/components/modules/KeyServices/KeyServices';
+import Commitments from '@/components/modules/Root/home/Commitment';
+import KeyServices from '@/components/modules/Root/key-services/KeyServices';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

@@ -1,4 +1,4 @@
-import TeamMembersTable from '@/components/modules/Team/TeamMembersTable';
+import TeamMembersTable from '@/components/modules/Admin/team/TeamMembersTable';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

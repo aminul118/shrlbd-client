@@ -1,10 +1,14 @@
-import TeamList from '@/components/modules/Team/TeamMembers';
+import TeamMembers from '@/components/modules/Root/team/TeamMembers';
 import generateMetaTags from '@/seo/generateMetaTags';
 
 import { Metadata } from 'next';
 
 const TeamMemberPage = () => {
-  return <TeamList />;
+  return (
+    <>
+      <TeamMembers />;
+    </>
+  );
 };
 export default TeamMemberPage;
 

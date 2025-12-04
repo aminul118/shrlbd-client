@@ -1,4 +1,4 @@
-import AddBlog from '@/components/modules/Blogs/AddBlog';
+import AddBlog from '@/components/modules/Admin/blogs/AddBlog';
 import { Metadata } from 'next';
 
 const AddBlogPage = () => {

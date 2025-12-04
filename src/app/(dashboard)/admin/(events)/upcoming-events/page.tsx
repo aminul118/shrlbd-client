@@ -1,4 +1,4 @@
-import UpcomingEventsTable from '@/components/modules/UpcomingEvents/UpcomingEventsTable';
+import UpcomingEventsTable from '@/components/modules/Admin/upcoming-events/UpcomingEventsTable';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

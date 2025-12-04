@@ -1,0 +1,44 @@
+import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
+import FilteredViews from '@/components/common/filtering/FilteredViews';
+import PageLimit from '@/components/common/pagination/PageLimit';
+import SearchFilter from '@/components/common/searching/SearchFilter';
+import Sorting from '@/components/common/sorting/Sorting';
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+
+const TeamFilters = ({
+  columns,
+  setColumns,
+}: {
+  columns: Record<string, boolean>;
+  setColumns: (cols: Record<string, boolean>) => void;
+}) => (
+  <div className="pb-8">
+    <div className="flex flex-wrap items-center justify-between gap-2">
+      <SearchFilter />
+      <div className="flex flex-wrap items-center justify-end gap-2">
+        <PageLimit pageNumbers={[10, 20, 30, 40]} />
+        <Sorting
+          sortOptions={[
+            { name: 'Ascending', value: '-createdAt' },
+            { name: 'Descending', value: 'createdAt' },
+          ]}
+        />
+        <FilteredViews
+          defaultColumns={columns}
+          onChange={(updated) => setColumns(updated)}
+        />
+        <ClearAllFilter />
+        <Button asChild>
+          <Link href="/admin/add-team-member">
+            <Plus />
+            Add Team Member
+          </Link>
+        </Button>
+      </div>
+    </div>
+  </div>
+);
+
+export default TeamFilters;

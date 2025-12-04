@@ -1,9 +1,9 @@
-import Contact from '@/components/modules/Contact/Contact';
-import Commitment from '@/components/modules/Home/Commitment';
-import Faq from '@/components/modules/Home/Faq';
-import FoundingTeam from '@/components/modules/Home/FoundingTeam';
-import HeroBanner from '@/components/modules/Home/HeroBanner';
-import KeyServices from '@/components/modules/KeyServices/KeyServices';
+import Contact from '@/components/modules/Root/contact/Contact';
+import Commitments from '@/components/modules/Root/home/Commitment';
+import Faq from '@/components/modules/Root/home/Faq';
+import FoundingTeam from '@/components/modules/Root/home/FoundingTeam';
+import HeroBanner from '@/components/modules/Root/home/HeroBanner';
+import KeyServices from '@/components/modules/Root/key-services/KeyServices';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
@@ -13,7 +13,7 @@ const HomePage = () => {
       <HeroBanner />
       <KeyServices className="pt-12" />
       <FoundingTeam />
-      <Commitment />
+      <Commitments />
       <Faq />
       <Contact />
     </>

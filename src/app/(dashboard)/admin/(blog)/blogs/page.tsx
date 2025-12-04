@@ -1,4 +1,4 @@
-import BlogsTable from '@/components/modules/Blogs/BlogsTable';
+import BlogsTable from '@/components/modules/Admin/blogs/BlogsTable';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

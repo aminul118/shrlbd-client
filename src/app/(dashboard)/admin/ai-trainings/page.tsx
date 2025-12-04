@@ -1,4 +1,4 @@
-import AiTrainingsTable from '@/components/modules/AI/AiTrainingsTable';
+import AiTrainingsTable from '@/components/modules/Admin/ai/AiTrainingsTable';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 

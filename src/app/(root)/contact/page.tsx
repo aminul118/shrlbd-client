@@ -1,9 +1,13 @@
-import Contact from '@/components/modules/Contact/Contact';
+import ContactForm2 from '@/components/modules/Root/contact/ContactForm2';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 
 const ContactPage = () => {
-  return <Contact data-aos="fade-up" />;
+  return (
+    <>
+      <ContactForm2 />
+    </>
+  );
 };
 
 export default ContactPage;

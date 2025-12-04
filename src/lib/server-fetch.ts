@@ -1,5 +1,5 @@
-import buildUrl from '@/utils/buildUrl';
-import { getCookie } from '@/utils/jwt';
+import buildUrl from '@/lib/buildUrl';
+import { getCookie } from '@/lib/jwt';
 
 type FetchOptions = RequestInit & {
   query?: Record<string, any>;

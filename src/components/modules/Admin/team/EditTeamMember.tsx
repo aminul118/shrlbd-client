@@ -25,7 +25,7 @@ import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
 import { useUpdateTeamMemberMutation } from '@/redux/features/team/team.api';
 import { IModal, ITeamMember } from '@/types';
-import { updateTeamMemberValidation } from '@/validations/team';
+import { updateTeamMemberValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';

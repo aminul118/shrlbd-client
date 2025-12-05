@@ -19,7 +19,7 @@ import Password from '@/components/ui/password';
 import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useRegisterMutation } from '@/redux/features/auth/auth.api';
-import validation from '@/validations';
+import validation from '@/zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';

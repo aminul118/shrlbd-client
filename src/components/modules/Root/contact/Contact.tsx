@@ -1,7 +1,7 @@
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { SectionProps } from '@/types';
-import ContactForm2 from './ContactForm2';
+import ContactForm from './ContactForm';
 import ContactInfo from './ContactInfo';
 
 const Contact = ({ ...props }: SectionProps) => {
@@ -13,7 +13,7 @@ const Contact = ({ ...props }: SectionProps) => {
       />
       <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
         <ContactInfo />
-        <ContactForm2 />
+        <ContactForm />
       </div>
     </Container>
   );

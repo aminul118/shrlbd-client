@@ -1,7 +1,7 @@
 'use server';
 
 import envVars from '@/config/env.config';
-import { registrationFormValidation } from '@/validations/auth';
+import { registrationFormValidation } from '@/zod/auth';
 
 export async function registerUser(formData: FormData) {
   // Convert FormData -> object

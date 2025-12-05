@@ -1,66 +1,52 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { getUserFromCookie } from './lib/auth';
-import { Role } from './types';
-
-const authRoutes = [
-  '/login',
-  '/register',
-  '/forgot-password',
-  '/reset-password',
-  '/verify',
-];
+import {
+  getDefaultDashboardRoute,
+  getRouteOwner,
+  isAuthRoute,
+  isValidRedirectForRole,
+  UserRole,
+} from './lib/user-access';
+import getVerifiedUser from './lib/verified-user';
 
 export const proxy = async (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl;
-  const user = await getUserFromCookie();
+  const user = await getVerifiedUser(req); // <-- pass req here
+  const role = user?.role as UserRole | undefined;
 
-  // 1️⃣ If logged in → block access to auth pages
-  if (user && authRoutes.includes(pathname)) {
-    if (user.role === Role.ADMIN || user.role === Role.SUPER_ADMIN) {
-      return NextResponse.redirect(new URL('/admin', origin));
-    }
-    if (user.role === Role.USER) {
-      return NextResponse.redirect(new URL('/user', origin));
-    }
+  const isAuthPage = isAuthRoute(pathname);
+  const routeOwner = getRouteOwner(pathname);
+
+  // NOT logged in → allow auth pages
+  if (!user && isAuthPage) return NextResponse.next();
+
+  // Logged-in user → redirect away from auth pages
+  if (user && isAuthPage) {
+    const defaultRoute = getDefaultDashboardRoute(role!);
+    return NextResponse.redirect(new URL(defaultRoute, origin));
   }
 
-  // 2️⃣ If not logged in → protect /admin and /user routes
-
-  const routes = ['/admin', '/dashboard', '/profile'];
-  if (!user && routes.some((route) => pathname.startsWith(route))) {
+  // Not logged-in → protected route → redirect to login
+  if (!user && routeOwner !== null) {
     const loginUrl = new URL('/login', origin);
-    loginUrl.searchParams.set('callbackUrl', pathname);
-    return NextResponse.redirect(loginUrl);
+    loginUrl.searchParams.set('redirect', pathname);
+
+    // If you want to delete cookies when token invalid, build a response and clear cookies:
+    const res = NextResponse.redirect(loginUrl);
+    // res.cookies.set({ name: 'accessToken', value: '', expires: new Date(0) }); // example if desired
+    return res;
   }
 
-  // 3️⃣ Role-based protection
-  // Allow ADMIN and SUPER_ADMIN to access /admin
-  if (
-    pathname.startsWith('/admin') &&
-    user?.role !== Role.ADMIN &&
-    user?.role !== Role.SUPER_ADMIN
-  ) {
-    return NextResponse.redirect(new URL('/dashboard', origin));
+  // Logged-in → check role access
+  if (user && !isValidRedirectForRole(pathname, role!)) {
+    const defaultRoute = getDefaultDashboardRoute(role!);
+    return NextResponse.redirect(new URL(defaultRoute, origin));
   }
 
-  // Only USER can access /user
-  if (pathname.startsWith('/user') && user?.role !== Role.USER) {
-    return NextResponse.redirect(new URL('/admin', origin));
-  }
-
-  // 4️⃣ Otherwise → allow
   return NextResponse.next();
 };
 
 export const config = {
   matcher: [
-    '/admin/:path*',
-    '/user/:path*',
-    '/login',
-    '/register',
-    '/forgot-password',
-    '/reset-password',
-    '/verify',
-    '/profile',
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.well-known).*)',
   ],
 };

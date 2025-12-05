@@ -18,7 +18,7 @@ import images from '@/config/images';
 import { cn } from '@/lib/utils';
 import { useLoginMutation } from '@/redux/features/auth/auth.api';
 import { Role } from '@/types';
-import { loginFormValidation } from '@/validations/auth';
+import { loginFormValidation } from '@/zod/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Image from 'next/image';
 import Link from 'next/link';

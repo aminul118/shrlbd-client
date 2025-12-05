@@ -1,7 +1,7 @@
 const nodeEnv = process.env.NODE_ENV;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const googleAnalytics = process.env.GoogleAnalytics;
-const accessSecret = process.env.JWT_SECRET;
+const accessSecret = process.env.JWT_SECRET as string;
 
 const envVars = {
   nodeEnv,

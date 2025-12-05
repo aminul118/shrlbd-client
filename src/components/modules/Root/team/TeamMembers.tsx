@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import TeamLoadingPage from '@/app/(root)/(team)/team/loading';
+import TeamLoadingPage from '@/app/(public)/(team)/team/loading';
 import NotFound from '@/components/common/error/NotFound';
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GoToPage from '@/components/common/pagination/GoToPage';
@@ -10,7 +10,6 @@ import Container from '@/components/ui/Container';
 import useSearchParamsValues from '@/hooks/useSearchParamsValues';
 import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
 import { IMeta } from '@/types';
-
 import TeamMemberCard from './TeamMemberCard';
 
 const TeamMembers = () => {

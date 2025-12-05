@@ -16,8 +16,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { useForgotPasswordMutation } from '@/redux/features/auth/auth.api';
-import validation from '@/validations';
-import { forgotPasswordValidation } from '@/validations/auth';
+import validation from '@/zod';
+import { forgotPasswordValidation } from '@/zod/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Send } from 'lucide-react';
 import Link from 'next/link';

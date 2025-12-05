@@ -1,6 +1,4 @@
-// middleware.ts (or where proxy is)
 import { NextResponse, type NextRequest } from 'next/server';
-
 import {
   getDefaultDashboardRoute,
   getRouteOwner,
@@ -45,4 +43,10 @@ export const proxy = async (req: NextRequest) => {
   }
 
   return NextResponse.next();
+};
+
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.well-known).*)',
+  ],
 };

@@ -1,7 +1,8 @@
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { getSingleTeamMember } from '@/services/team';
+import { getSingleTeamMember } from '@/services/team/team-member';
+
 import { IParams } from '@/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';

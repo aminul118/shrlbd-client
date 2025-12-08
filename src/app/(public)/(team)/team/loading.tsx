@@ -12,7 +12,7 @@ const TeamLoadingPage = () => {
       {Array.from({ length: 6 }).map((_, i) => (
         <Card
           key={i}
-          className="relative mt-12 h-[400px] w-full rounded-2xl border-0 bg-gradient-to-b from-cyan-50 to-blue-200 shadow-lg dark:from-slate-950 dark:to-slate-900"
+          className="relative mt-12 h-[400px] w-full rounded-2xl border-0 from-cyan-50 to-blue-200 shadow-lg dark:from-slate-950 dark:to-slate-900"
         >
           {/* Floating avatar */}
           <div className="absolute inset-x-0 -top-12 z-50 flex justify-center">

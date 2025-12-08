@@ -1,13 +1,33 @@
-import TeamMembers from '@/components/modules/Root/team/TeamMembers';
+import AppPagination from '@/components/common/pagination/AppPagination';
+import TeamMemberCard from '@/components/modules/Root/team/TeamMemberCard';
+import Container from '@/components/ui/Container';
 import generateMetaTags from '@/seo/generateMetaTags';
-
+import { getTeamMembers } from '@/services/team/team-member';
+import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const TeamMemberPage = () => {
+const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
+  const resolveParams = await searchParams;
+
+  const params = {
+    sort: 'createdAt',
+    ...resolveParams,
+  };
+
+  const { data, meta } = await getTeamMembers(params);
+
   return (
-    <>
-      <TeamMembers />;
-    </>
+    <Container className="py-12">
+      {data && data.length > 0 && (
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
+          {data.map((member) => {
+            return <TeamMemberCard {...member} key={member._id} />;
+          })}
+        </div>
+      )}
+
+      {meta && <AppPagination meta={meta} />}
+    </Container>
   );
 };
 export default TeamMemberPage;

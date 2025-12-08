@@ -5,8 +5,8 @@ import {
   isAuthRoute,
   isValidRedirectForRole,
   UserRole,
-} from './lib/user-access';
-import getVerifiedUser from './lib/verified-user';
+} from './services/user/user-access';
+import getVerifiedUser from './services/user/verified-user';
 
 export const proxy = async (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl;

@@ -10,7 +10,6 @@ const TeamMemberCard = ({
   designation,
   slug,
 }: ITeamMember) => {
-  // console.log(member);
   return (
     <div className="flex">
       <Card className="flex h-full w-full flex-col items-center rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 p-4 shadow-lg dark:from-slate-950 dark:to-slate-900">

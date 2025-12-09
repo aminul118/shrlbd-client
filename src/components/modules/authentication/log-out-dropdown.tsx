@@ -2,7 +2,7 @@
 
 import Spinner from '@/components/common/loader/ButtonSpinner';
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
-import { logOut } from '@/services/user/auth';
+import { logOut } from '@/services/user/logout-user';
 import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';

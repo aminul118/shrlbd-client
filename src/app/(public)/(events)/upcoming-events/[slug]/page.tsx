@@ -2,7 +2,7 @@ import DateFormat from '@/components/common/date-format';
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { getSingleUpcomingEvent } from '@/services/upcoming-event';
+import { getSingleUpcomingEvent } from '@/services/event/upcoming-event';
 
 import { IParams } from '@/types';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';

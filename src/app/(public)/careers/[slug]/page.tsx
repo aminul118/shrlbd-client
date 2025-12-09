@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { getSingleJob } from '@/services/jobs';
+import { getSingleJob } from '@/services/career/jobs';
 import { IParams } from '@/types';
 import { Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';

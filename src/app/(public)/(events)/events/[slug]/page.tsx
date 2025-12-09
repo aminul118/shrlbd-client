@@ -3,7 +3,7 @@ import EventImageSlider from '@/components/modules/Root/events/EventImageSlider'
 import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { getSingleEvent } from '@/services/event';
+import { getSingleEvent } from '@/services/event/event';
 import { IParams } from '@/types';
 import { notFound } from 'next/navigation';
 

@@ -1,30 +1,26 @@
 import CardSkeleton from '@/components/common/loader/CardSkeleton';
 import Career from '@/components/modules/Public/careers/CareerBanner';
 import CareerCTA from '@/components/modules/Public/careers/CareerCTA';
-import JobCard from '@/components/modules/Public/careers/JobCard';
+import JobsList from '@/components/modules/Public/careers/JobList.';
+import Container from '@/components/ui/Container';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 
 import generateMetaTags from '@/seo/generateMetaTags';
-import { getJobs } from '@/services/career/jobs';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 const CareersPage = async ({ searchParams }: ISearchParams) => {
-  const params = await searchParams;
-  const { data: jobs } = await getJobs(params);
-  console.log(jobs);
+  const params = await cleanSearchParams(searchParams);
+
   return (
     <div>
       <Career />
-      {jobs.length > 0 ? (
-        <Suspense fallback={<CardSkeleton count={6} />}>
-          {jobs?.map((job) => (
-            <JobCard key={job._id} job={job} />
-          ))}
+      <Container>
+        <Suspense fallback={<CardSkeleton count={3} />}>
+          <JobsList params={params} />
         </Suspense>
-      ) : (
-        <p className="py-32 text-center">No Job Found</p>
-      )}
+      </Container>
       <CareerCTA />
     </div>
   );

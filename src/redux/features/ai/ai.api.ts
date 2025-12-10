@@ -1,6 +1,6 @@
 import { baseApi } from '@/redux/baseApi';
 import { ApiResponse } from '@/types';
-import { IAiTraining } from '@/types/apiData.types';
+import { IAiTraining } from '@/types/api.types';
 
 export const aiApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

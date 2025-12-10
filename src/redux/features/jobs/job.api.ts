@@ -1,6 +1,6 @@
 import { baseApi } from '@/redux/baseApi';
 import { ApiResponse } from '@/types';
-import { IJob, IJobType } from '@/types/apiData.types';
+import { IJob, IJobType } from '@/types/api.types';
 
 export const jobApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useDeleteJobMutation } from '@/redux/features/jobs/job.api';
-import { IJob } from '@/types/apiData.types';
+import { IJob } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowJobModal from './ShowJobModal';

@@ -1,6 +1,6 @@
 import baseApi from '@/redux/baseApi';
 import { ApiResponse } from '@/types';
-import { ITeamJoinRequest } from '@/types/apiData.types';
+import { ITeamJoinRequest } from '@/types/api.types';
 
 const joinTeamApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({

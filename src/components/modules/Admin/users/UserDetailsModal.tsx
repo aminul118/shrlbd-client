@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import { IModal } from '@/types';
-import { IUser } from '@/types/apiData.types';
+import { IUser } from '@/types/api.types';
 
 interface Props extends IModal {
   user: IUser;

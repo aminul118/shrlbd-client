@@ -7,7 +7,7 @@ type SpinnerProps = {
   variant?: 'default' | 'round';
 };
 
-const Spinner = ({
+const ButtonSpinner = ({
   className,
   size = 16,
   variant = 'default',
@@ -21,4 +21,4 @@ const Spinner = ({
   );
 };
 
-export default Spinner;
+export default ButtonSpinner;

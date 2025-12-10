@@ -1,9 +1,28 @@
-import Events from '@/components/modules/Root/events/Events';
+import AppPagination from '@/components/common/pagination/AppPagination';
+import EventCard from '@/components/modules/Public/events/EventCard';
+import Container from '@/components/ui/Container';
 import generateMetaTags from '@/seo/generateMetaTags';
+import { getEvents } from '@/services/event/event';
+import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const EventPage = () => {
-  return <Events />;
+const EventPage = async ({ searchParams }: ISearchParams) => {
+  const params = await searchParams;
+  const { data: events, meta } = await getEvents(params);
+
+  return (
+    <>
+      <Container>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {events?.map((event) => {
+            return <EventCard key={event._id} {...event} />;
+          })}
+        </div>
+
+        {meta && <AppPagination meta={meta} />}
+      </Container>
+    </>
+  );
 };
 
 export default EventPage;

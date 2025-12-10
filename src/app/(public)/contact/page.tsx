@@ -1,5 +1,5 @@
-import ContactForm from '@/components/modules/Root/contact/ContactForm';
-import ContactInfo from '@/components/modules/Root/contact/ContactInfo';
+import ContactForm from '@/components/modules/Public/contact/ContactForm';
+import ContactInfo from '@/components/modules/Public/contact/ContactInfo';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import generateMetaTags from '@/seo/generateMetaTags';

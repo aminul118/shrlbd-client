@@ -3,7 +3,7 @@
 import { format } from 'date-fns';
 
 interface DateFormatProps {
-  date: Date | string | number; // accepts Date object, ISO string, or timestamp
+  date: Date | string | number;
 }
 
 const DateFormat = ({ date }: DateFormatProps) => {

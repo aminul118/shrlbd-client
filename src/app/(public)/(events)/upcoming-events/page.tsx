@@ -1,5 +1,5 @@
-import ScrollingText from '@/components/modules/Root/upcoming-events/ScrollingText';
-import UpcomingEvents from '@/components/modules/Root/upcoming-events/UpcomingEvents';
+import ScrollingText from '@/components/modules/Public/upcoming-events/ScrollingText';
+import UpcomingEvents from '@/components/modules/Public/upcoming-events/UpcomingEvents';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

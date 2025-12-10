@@ -1,14 +1,30 @@
-import Career from '@/components/modules/Root/careers/CareerBanner';
-import CareerCTA from '@/components/modules/Root/careers/CareerCTA';
-import Jobs from '@/components/modules/Root/careers/Jobs';
-import generateMetaTags from '@/seo/generateMetaTags';
-import { Metadata } from 'next';
+import CardSkeleton from '@/components/common/loader/CardSkeleton';
+import Career from '@/components/modules/Public/careers/CareerBanner';
+import CareerCTA from '@/components/modules/Public/careers/CareerCTA';
+import JobCard from '@/components/modules/Public/careers/JobCard';
 
-const CareersPage = () => {
+import generateMetaTags from '@/seo/generateMetaTags';
+import { getJobs } from '@/services/career/jobs';
+import { ISearchParams } from '@/types';
+import { Metadata } from 'next';
+import { Suspense } from 'react';
+
+const CareersPage = async ({ searchParams }: ISearchParams) => {
+  const params = await searchParams;
+  const { data: jobs } = await getJobs(params);
+  console.log(jobs);
   return (
     <div>
       <Career />
-      <Jobs />
+      {jobs.length > 0 ? (
+        <Suspense fallback={<CardSkeleton count={6} />}>
+          {jobs?.map((job) => (
+            <JobCard key={job._id} job={job} />
+          ))}
+        </Suspense>
+      ) : (
+        <p className="py-32 text-center">No Job Found</p>
+      )}
       <CareerCTA />
     </div>
   );

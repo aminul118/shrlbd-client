@@ -1,4 +1,4 @@
-import Blogs from '@/components/modules/Root/blogs/Blogs';
+import Blogs from '@/components/modules/Public/blogs/Blogs';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

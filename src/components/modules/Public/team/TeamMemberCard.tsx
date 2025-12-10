@@ -12,7 +12,7 @@ const TeamMemberCard = ({
 }: ITeamMember) => {
   return (
     <div className="flex">
-      <Card className="flex h-full w-full flex-col items-center rounded-xl bg-gradient-to-b from-cyan-50 to-blue-200 p-4 shadow-lg dark:from-slate-950 dark:to-slate-900">
+      <Card className="flex h-full w-full flex-col items-center rounded-xl bg-linear-to-b from-cyan-50 to-blue-200 p-4 shadow-lg dark:from-slate-950 dark:to-slate-900">
         {/* Photo */}
         <div className="-mt-14 mb-4 flex justify-center">
           <div className="relative h-24 w-24 overflow-hidden rounded-full border-2 border-[#808BAF] bg-slate-100">
@@ -25,13 +25,13 @@ const TeamMemberCard = ({
           </div>
         </div>
 
-        <CardContent className="flex w-full flex-grow flex-col text-center">
+        <CardContent className="flex w-full grow flex-col text-center">
           {/* Name */}
           <h1 className="text-xl font-bold">{name}</h1>
           <p className="mt-1">{shrlDesignation}</p>
           {/* Designation */}
           {designation && (
-            <div className="mt-4 mb-6 flex flex-grow flex-col">
+            <div className="mt-4 mb-6 flex grow flex-col">
               {designation?.map((d, i) => (
                 <p key={i} className="text-sm text-gray-700 dark:text-gray-300">
                   {d}

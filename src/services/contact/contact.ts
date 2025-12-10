@@ -3,7 +3,7 @@
 import catchZodError from '@/helpers/catchZodError';
 import { contactSchemaZodValidation } from '@/zod/contact';
 
-export const contactAction = async (_: any, formData: FormData) => {
+const contactAction = async (_: any, formData: FormData) => {
   const rawData = {
     name: formData.get('name'),
     email: formData.get('email'),
@@ -22,3 +22,5 @@ export const contactAction = async (_: any, formData: FormData) => {
     message: 'Message sent successfully!',
   };
 };
+
+export { contactAction };

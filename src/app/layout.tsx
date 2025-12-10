@@ -1,4 +1,4 @@
-import fonts from '@/config/fonts.config';
+import { montserrat } from '@/config/google-fonts';
 import AosProvider from '@/providers/AosProvider';
 import { AppDataProvider } from '@/providers/AppData';
 import ReduxProvider from '@/providers/ReduxProvider';
@@ -16,7 +16,7 @@ const RootLayout = ({ children }: IChildren) => {
     <>
       <html lang="en" suppressHydrationWarning>
         <GoogleAnalytics gaId="G-L76ZPJFQS4" />
-        <body className={fonts.montserrat.className} suppressHydrationWarning>
+        <body className={montserrat.className} suppressHydrationWarning>
           <ReduxProvider>
             <ThemeProvider
               attribute="class"

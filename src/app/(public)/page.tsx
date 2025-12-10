@@ -1,9 +1,9 @@
-import Contact from '@/components/modules/Root/contact/Contact';
-import Commitments from '@/components/modules/Root/home/Commitment';
-import Faq from '@/components/modules/Root/home/Faq';
-import FoundingTeam from '@/components/modules/Root/home/FoundingTeam';
-import HeroBanner from '@/components/modules/Root/home/HeroBanner';
-import KeyServices from '@/components/modules/Root/key-services/KeyServices';
+import Contact from '@/components/modules/Public/contact/Contact';
+import Commitments from '@/components/modules/Public/home/Commitment';
+import Faq from '@/components/modules/Public/home/Faq';
+import FoundingTeam from '@/components/modules/Public/home/FoundingTeam';
+import HeroBanner from '@/components/modules/Public/home/HeroBanner';
+import KeyServices from '@/components/modules/Public/key-services/KeyServices';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

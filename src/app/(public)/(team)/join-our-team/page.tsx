@@ -1,5 +1,5 @@
-import JoinTeamForm from '@/components/modules/Root/join-team/JoinTeamForm';
-import JoinTeamIntro from '@/components/modules/Root/join-team/JoinTeamIntro';
+import JoinTeamForm from '@/components/modules/Public/join-team/JoinTeamForm';
+import JoinTeamIntro from '@/components/modules/Public/join-team/JoinTeamIntro';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
 

@@ -1,5 +1,5 @@
 import AppPagination from '@/components/common/pagination/AppPagination';
-import TeamMemberCard from '@/components/modules/Root/team/TeamMemberCard';
+import TeamMemberCard from '@/components/modules/Public/team/TeamMemberCard';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getTeamMembers } from '@/services/team/team-member';

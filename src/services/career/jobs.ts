@@ -1,10 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { apiGet } from '@/lib/apiClient';
+import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IJob } from '@/types';
 
-export const getSingleJob = async (
-  slug: string,
-  params?: Record<string, any>,
-) => {
-  return await apiGet<ApiResponse<IJob>>(`/job/${slug}`, params);
+const getJobs = async (query: Record<string, any>) => {
+  return await serverFetch.get<ApiResponse<IJob[]>>(`/job`, {
+    query,
+  });
 };
+const getSingleJob = async (slug: string) => {
+  return await serverFetch.get<ApiResponse<IJob>>(`/job/${slug}`);
+};
+
+export { getJobs, getSingleJob };

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { getScrollingText } from '@/services/scrolling-text';
+import { getScrollingText } from '@/services/scrolling-text/scrolling-text';
 import Marquee from 'react-fast-marquee';
 
 const ScrollingText = async () => {

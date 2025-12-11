@@ -1,13 +1,14 @@
 import AppPagination from '@/components/common/pagination/AppPagination';
 import TeamMemberCard from '@/components/modules/Public/team/TeamMemberCard';
 import Container from '@/components/ui/Container';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getTeamMembers } from '@/services/team/team-member';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
 const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
-  const resolveParams = await searchParams;
+  const resolveParams = await cleanSearchParams(searchParams);
 
   const params = {
     sort: 'createdAt',

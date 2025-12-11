@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createScrollingText } from '@/actions/scrolling-text';
+
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
+import { createScrollingText } from '@/services/scrolling-text/scrolling-text';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
@@ -48,6 +49,7 @@ const AddScrollingTextModal = () => {
     try {
       const toastId = toast.loading('Adding scrolling text...');
       const res = await createScrollingText(values);
+      console.log(res);
       toast.success(res.message || 'Scrolling text added', { id: toastId });
       form.reset();
       setOpen(false);

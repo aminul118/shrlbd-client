@@ -2,8 +2,9 @@
 
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, ITeamMember } from '@/types';
+import { revalidateTag } from 'next/cache';
 
-const getTeamMembers = async (query: Record<string, any>) => {
+const getTeamMembers = async (query: Record<string, string>) => {
   return await serverFetch.get<ApiResponse<ITeamMember[]>>('/team/get-all', {
     query,
     next: {
@@ -13,11 +14,18 @@ const getTeamMembers = async (query: Record<string, any>) => {
 };
 
 const getSingleTeamMember = async (slug: string) => {
-  return await serverFetch.get<ApiResponse<ITeamMember>>(`/team/${slug}`);
+  const res = await serverFetch.get<ApiResponse<ITeamMember>>(`/team/${slug}`);
+  return res;
 };
 
 const deleteSingleTeamMember = async (slug: string) => {
-  return await serverFetch.delete<ApiResponse<ITeamMember>>(`/team/${slug}`);
+  const res = await serverFetch.delete<ApiResponse<ITeamMember>>(
+    `/team/${slug}`,
+  );
+
+  revalidateTag('team-members', '');
+
+  return res;
 };
 
 export { deleteSingleTeamMember, getSingleTeamMember, getTeamMembers };

@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { getScrollingText } from '@/services/scrolling-text';
+import { getScrollingText } from '@/services/scrolling-text/scrolling-text';
 import AddScrollingTextModal from './AddScrollingTextModal';
 import ScrollingTextActions from './ScrollingTextActions';
 

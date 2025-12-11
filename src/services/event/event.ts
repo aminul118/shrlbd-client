@@ -1,15 +1,29 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+'use server';
+
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IEvent } from '@/types';
+import { revalidateTag } from 'next/cache';
 
-const getEvents = async (query: Record<string, any>) => {
-  return await serverFetch.get<ApiResponse<IEvent[]>>('/event', {
+const getEvents = async (query: Record<string, string>) => {
+  const res = await serverFetch.get<ApiResponse<IEvent[]>>('/event', {
     query,
+    next: {
+      tags: ['events'],
+    },
   });
+
+  return res;
 };
 
 const getSingleEvent = async (slug: string) => {
-  return await serverFetch.get<ApiResponse<IEvent>>(`/event/${slug}`);
+  const res = await serverFetch.get<ApiResponse<IEvent>>(`/event/${slug}`);
+  return res;
 };
 
-export { getEvents, getSingleEvent };
+const deleteSingleEvent = async (slug: string) => {
+  const res = await serverFetch.delete<ApiResponse<IEvent>>(`/event/${slug}`);
+  revalidateTag('events', '');
+  return res;
+};
+
+export { deleteSingleEvent, getEvents, getSingleEvent };

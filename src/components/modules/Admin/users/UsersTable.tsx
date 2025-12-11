@@ -16,7 +16,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useAllUsersInfoQuery } from '@/redux/features/user/user.api';
-import { IUser } from '@/types/apiData.types';
+import { IUser } from '@/types/api.types';
 import { BadgeCheck } from 'lucide-react';
 import UserActions from './user-actions';
 import UsersFilters from './UsersFiltes';

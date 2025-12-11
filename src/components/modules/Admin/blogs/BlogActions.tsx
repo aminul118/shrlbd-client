@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useDeleteBlogMutation } from '@/redux/features/blog/blog.api';
-import { IBlog } from '@/types/apiData.types';
+import { IBlog } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowBlogModal from './ShowBlogModal';

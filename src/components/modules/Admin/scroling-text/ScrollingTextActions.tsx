@@ -1,6 +1,5 @@
 'use client';
 
-import { deleteScrollingText } from '@/actions/scrolling-text';
 import DeleteFromTableDropDown from '@/components/common/actions/DeleteFromTableDropDown';
 import { Button } from '@/components/ui/button';
 import {
@@ -10,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { deleteScrollingText } from '@/services/scrolling-text/scrolling-text';
 import { IScrollingText } from '@/types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';

@@ -1,13 +1,14 @@
 import AppPagination from '@/components/common/pagination/AppPagination';
 import EventCard from '@/components/modules/Public/events/EventCard';
 import Container from '@/components/ui/Container';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getEvents } from '@/services/event/event';
 import { ISearchParams } from '@/types';
 import { Metadata } from 'next';
 
 const EventPage = async ({ searchParams }: ISearchParams) => {
-  const params = await searchParams;
+  const params = await cleanSearchParams(searchParams);
   const { data: events, meta } = await getEvents(params);
 
   return (

@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useDeleteJoinRequestMutation } from '@/redux/features/joinTeam/joinTeam.api';
-import { ITeamJoinRequest } from '@/types/apiData.types';
+import { ITeamJoinRequest } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, MailIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import { ShowRequestModal } from './ShowRequestModal';

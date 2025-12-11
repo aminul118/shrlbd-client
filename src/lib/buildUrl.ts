@@ -5,7 +5,13 @@ const buildUrl = (endpoint: string, query?: Record<string, any>) => {
 
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
+      if (
+        value !== undefined &&
+        value !== null &&
+        value !== '' &&
+        value !== 'undefined' &&
+        value !== 'null'
+      ) {
         url.searchParams.append(key, String(value));
       }
     });

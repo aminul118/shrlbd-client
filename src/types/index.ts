@@ -36,7 +36,7 @@ export type {
   ITeamMember,
   IUpcomingEvent,
   IUser,
-} from './apiData.types';
+} from './api.types';
 
 export enum Role {
   ADMIN = 'ADMIN',

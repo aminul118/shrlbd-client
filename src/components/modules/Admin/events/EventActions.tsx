@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useDeleteEventMutation } from '@/redux/features/event/event.api';
-import { IEvent } from '@/types/apiData.types';
+import { IEvent } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowPreviousEventModal from './ShowPreviousEventModal';

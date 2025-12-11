@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/table';
 import { useTeamJoinRequestQuery } from '@/redux/features/joinTeam/joinTeam.api';
 import { IMeta } from '@/types';
-import { ITeamJoinRequest } from '@/types/apiData.types';
+import { ITeamJoinRequest } from '@/types/api.types';
 import JoinTeamActions from './JoinTeamActions';
 
 const TeamJoinRequest = ({ props }: { props: Record<string, any> }) => {

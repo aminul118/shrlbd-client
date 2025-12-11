@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { IModal } from '@/types';
-import { ITeamJoinRequest } from '@/types/apiData.types';
+import { ITeamJoinRequest } from '@/types/api.types';
 
 interface Props extends IModal {
   request: ITeamJoinRequest;

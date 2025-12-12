@@ -1,10 +1,10 @@
 import UsersTable from '@/components/modules/Admin/users/UsersTable';
 import Container from '@/components/ui/Container';
 import GradientTitle from '@/components/ui/gradientTitle';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const UsersPage = async ({ searchParams }: ISearchParams) => {
+const UsersPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
   return (
     <>

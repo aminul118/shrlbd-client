@@ -1,9 +1,5 @@
 import React from 'react';
 
-export interface IChildren {
-  children: React.ReactNode;
-}
-
 export interface IGlobalError {
   error: Error & { digest?: string };
   reset: () => void;
@@ -15,9 +11,13 @@ export type ElementProps<T extends React.ElementType> =
 export type DivProps = ElementProps<'div'>;
 export type SectionProps = ElementProps<'section'>;
 
-export interface IParams {
+export interface Children {
+  children: React.ReactNode;
+}
+
+export interface Params {
   params: Promise<{ slug: string }>;
 }
-export interface ISearchParams {
+export interface SearchParams {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }

@@ -6,12 +6,12 @@ import ThemeProvider from '@/providers/ThemeProvider';
 import generateMetaTags from '@/seo/generateMetaTags';
 import '@/styles/custom.css';
 import '@/styles/globals.css';
-import { IChildren } from '@/types';
+import { Children } from '@/types';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Metadata } from 'next';
 import { Toaster } from 'sonner';
 
-const RootLayout = ({ children }: IChildren) => {
+const RootLayout = ({ children }: Children) => {
   return (
     <>
       <html lang="en" suppressHydrationWarning>

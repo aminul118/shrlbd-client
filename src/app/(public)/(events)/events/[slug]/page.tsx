@@ -4,10 +4,10 @@ import Container from '@/components/ui/Container';
 import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleEvent } from '@/services/event/event';
-import { IParams } from '@/types';
+import { Params } from '@/types';
 import { notFound } from 'next/navigation';
 
-const EventDetailsPage = async ({ params }: IParams) => {
+const EventDetailsPage = async ({ params }: Params) => {
   const { slug } = await params;
   const { data: event } = await getSingleEvent(slug);
 
@@ -43,7 +43,7 @@ const EventDetailsPage = async ({ params }: IParams) => {
 export default EventDetailsPage;
 
 // ---> SEO Starts
-export async function generateMetadata({ params }: IParams) {
+export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const { data: event } = await getSingleEvent(slug);
 

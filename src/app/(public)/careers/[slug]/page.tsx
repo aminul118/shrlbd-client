@@ -4,12 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Container from '@/components/ui/Container';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleJob } from '@/services/career/jobs';
-import { IParams } from '@/types';
+import { Params } from '@/types';
 import { Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-const CareerDetailsPage = async ({ params }: IParams) => {
+const CareerDetailsPage = async ({ params }: Params) => {
   const { slug } = await params;
   const { data: job } = await getSingleJob(slug);
 
@@ -77,7 +77,7 @@ const CareerDetailsPage = async ({ params }: IParams) => {
 export default CareerDetailsPage;
 
 // ---> SEO Starts
-export async function generateMetadata({ params }: IParams) {
+export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const { data: job } = await getSingleJob(slug);
 

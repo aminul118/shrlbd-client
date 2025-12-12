@@ -1,8 +1,8 @@
 import TeamJoinRequest from '@/components/modules/Admin/join-team/TeamJoinRequestTable';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const TeamJoinRequestPage = async ({ searchParams }: ISearchParams) => {
+const TeamJoinRequestPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
   return (
     <div>

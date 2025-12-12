@@ -1,10 +1,10 @@
 import Footer from '@/components/layouts/Footer/Footer';
 import Navbar from '@/components/layouts/Navbar/Navbar';
 import generateMetaTags from '@/seo/generateMetaTags';
-import { IChildren } from '@/types';
+import { Children } from '@/types';
 import { Metadata } from 'next';
 
-const MainLayout = ({ children }: IChildren) => {
+const MainLayout = ({ children }: Children) => {
   return (
     <main className="flex min-h-screen flex-col">
       <Navbar />

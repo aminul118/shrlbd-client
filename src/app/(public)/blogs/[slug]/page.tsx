@@ -1,6 +1,6 @@
-import { IParams } from '@/types';
+import { Params } from '@/types';
 
-const BlogDetailsPage = async ({ params }: IParams) => {
+const BlogDetailsPage = async ({ params }: Params) => {
   const { slug } = await params;
   console.log(slug);
   return <div></div>;

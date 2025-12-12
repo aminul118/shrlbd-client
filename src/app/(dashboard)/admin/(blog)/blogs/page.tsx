@@ -1,8 +1,8 @@
 import BlogsTable from '@/components/modules/Admin/blogs/BlogsTable';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const BlogPage = async ({ searchParams }: ISearchParams) => {
+const BlogPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
   return (
     <>

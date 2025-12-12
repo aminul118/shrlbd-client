@@ -1,8 +1,8 @@
 import UpcomingEventsTable from '@/components/modules/Admin/upcoming-events/UpcomingEventsTable';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const UpcomingEventPage = async ({ searchParams }: ISearchParams) => {
+const UpcomingEventPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
   return <UpcomingEventsTable props={resolvedSearchparams} />;
 };

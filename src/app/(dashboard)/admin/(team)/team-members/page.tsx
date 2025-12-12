@@ -1,8 +1,8 @@
 import TeamMembersTable from '@/components/modules/Admin/team/TeamMembersTable';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const TeamMembersPage = async ({ searchParams }: ISearchParams) => {
+const TeamMembersPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
 
   return <TeamMembersTable props={resolvedSearchparams} />;

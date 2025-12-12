@@ -1,6 +1,6 @@
 import envVars from '@/config/env.config';
 
-const buildUrl = (endpoint: string, query?: Record<string, any>) => {
+const buildUrl = (endpoint: string, query?: Record<string, string>) => {
   const url = new URL(`${envVars.baseUrl}${endpoint}`);
 
   if (query) {

@@ -1,8 +1,8 @@
 import PreviousEventTable from '@/components/modules/Admin/events/PreviousEventTable';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const PreviousEvents = async ({ searchParams }: ISearchParams) => {
+const PreviousEvents = async ({ searchParams }: SearchParams) => {
   const resolveParams = await searchParams;
   return <PreviousEventTable props={resolveParams} />;
 };

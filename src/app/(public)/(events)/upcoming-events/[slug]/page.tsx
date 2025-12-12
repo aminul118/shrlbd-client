@@ -4,11 +4,11 @@ import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleUpcomingEvent } from '@/services/event/upcoming-event';
 
-import { IParams } from '@/types';
+import { Params } from '@/types';
 import { Calendar, Clock, MapPinCheck } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
-const UpcomingEventDetails = async ({ params }: IParams) => {
+const UpcomingEventDetails = async ({ params }: Params) => {
   const { slug } = await params;
   const res = await getSingleUpcomingEvent(slug);
   const event = res.data;
@@ -41,7 +41,7 @@ const UpcomingEventDetails = async ({ params }: IParams) => {
 export default UpcomingEventDetails;
 
 // ---> SEO Starts
-export async function generateMetadata({ params }: IParams) {
+export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const { data: event } = await getSingleUpcomingEvent(slug);
   const { title, venue, time, details, photo, date } = event;

@@ -16,11 +16,11 @@ export interface ApiResponse<T> {
 }
 
 export type {
+  Children,
   DivProps,
-  IChildren,
   IGlobalError,
-  IParams,
-  ISearchParams,
+  Params,
+  SearchParams,
   SectionProps,
 } from './next.types';
 

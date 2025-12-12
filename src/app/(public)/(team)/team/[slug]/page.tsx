@@ -3,11 +3,11 @@ import HtmlContent from '@/components/ui/HtmlContent';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getSingleTeamMember } from '@/services/team/team-member';
 
-import { IParams } from '@/types';
+import { Params } from '@/types';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-export async function generateMetadata({ params }: IParams) {
+export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const { data: team } = await getSingleTeamMember(slug);
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: IParams) {
   });
 }
 
-const TeamDetails = async ({ params }: IParams) => {
+const TeamDetails = async ({ params }: Params) => {
   const { slug } = await params;
   const { data: team } = await getSingleTeamMember(slug);
 

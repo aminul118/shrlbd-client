@@ -4,10 +4,10 @@ import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getTeamMembers } from '@/services/team/team-member';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const TeamMemberPage = async ({ searchParams }: ISearchParams) => {
+const TeamMemberPage = async ({ searchParams }: SearchParams) => {
   const resolveParams = await cleanSearchParams(searchParams);
 
   const params = {

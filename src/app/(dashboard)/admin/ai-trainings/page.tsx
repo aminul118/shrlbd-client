@@ -1,8 +1,8 @@
 import AiTrainingsTable from '@/components/modules/Admin/ai/AiTrainingsTable';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const AiTrainingsPage = async ({ searchParams }: ISearchParams) => {
+const AiTrainingsPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
   return <AiTrainingsTable props={resolvedSearchparams} />;
 };

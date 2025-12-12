@@ -2,9 +2,9 @@ import JobFilters from '@/components/modules/Admin/Careers/JobFilter';
 import JobTable from '@/components/modules/Admin/Careers/JobTable';
 import Container from '@/components/ui/Container';
 import GradientTitle from '@/components/ui/gradientTitle';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 
-const CareerPage = async ({ searchParams }: ISearchParams) => {
+const CareerPage = async ({ searchParams }: SearchParams) => {
   const resolvedSearchparams = await searchParams;
   return (
     <Container>

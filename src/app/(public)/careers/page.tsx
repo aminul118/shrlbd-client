@@ -6,11 +6,11 @@ import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 
 import generateMetaTags from '@/seo/generateMetaTags';
-import { ISearchParams } from '@/types';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
-const CareersPage = async ({ searchParams }: ISearchParams) => {
+const CareersPage = async ({ searchParams }: SearchParams) => {
   const params = await cleanSearchParams(searchParams);
 
   return (

@@ -1,3 +1,4 @@
+import NotFound from '@/components/common/error/NotFound';
 import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
 import EventCard from '@/components/modules/Public/events/EventCard';
 import Container from '@/components/ui/Container';
@@ -15,11 +16,15 @@ const EventPage = async ({ searchParams }: SearchParams) => {
     <>
       <ClientWrapper meta={meta}>
         <Container>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {events?.map((event) => {
-              return <EventCard key={event._id} {...event} />;
-            })}
-          </div>
+          {events.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {events?.map((event) => {
+                return <EventCard key={event._id} {...event} />;
+              })}
+            </div>
+          ) : (
+            <NotFound />
+          )}
         </Container>
       </ClientWrapper>
     </>

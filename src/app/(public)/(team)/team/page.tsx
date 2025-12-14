@@ -1,3 +1,4 @@
+import NotFound from '@/components/common/error/NotFound';
 import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
 import TeamMemberCard from '@/components/modules/Public/team/TeamMemberCard';
 import Container from '@/components/ui/Container';
@@ -20,12 +21,14 @@ const TeamMemberPage = async ({ searchParams }: SearchParams) => {
   return (
     <ClientWrapper meta={meta}>
       <Container className="py-12">
-        {data?.length > 0 && (
+        {data?.length > 0 ? (
           <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
             {data.map((member) => (
               <TeamMemberCard key={member._id} {...member} />
             ))}
           </div>
+        ) : (
+          <NotFound />
         )}
       </Container>
     </ClientWrapper>

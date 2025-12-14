@@ -7,6 +7,7 @@ import { revalidateTag } from 'next/cache';
 const getEvents = async (query: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IEvent[]>>('/event', {
     query,
+    cache: 'force-cache',
     next: {
       tags: ['events'],
     },

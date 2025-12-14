@@ -3,11 +3,7 @@ import AppPagination from './AppPagination';
 import GoToPage from './GoToPage';
 import PaginationStatus from './PaginationStatus';
 
-interface ITablePaginationProps {
-  meta?: IMeta;
-}
-
-const TablePagination = ({ meta }: ITablePaginationProps) => {
+const TablePagination = ({ meta }: { meta?: IMeta }) => {
   if (!meta) return null;
 
   return (

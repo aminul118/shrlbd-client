@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteJoinRequestMutation } from '@/redux/features/joinTeam/joinTeam.api';
+import { deleteSingleJoinMember } from '@/services/team/team-join';
 import { ITeamJoinRequest } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, MailIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
@@ -17,13 +17,12 @@ import { ShowRequestModal } from './ShowRequestModal';
 import TeamJoinSendMessage from './TeamJoinSendMessage';
 
 const JoinTeamActions = ({ team }: { team: ITeamJoinRequest }) => {
-  const [deleteJoin] = useDeleteJoinRequestMutation();
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [sendMailOpen, setSendMailOpen] = useState(false);
   const [showRequestOpen, setShowRequestOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const res = await deleteJoin(id).unwrap();
+    const res = await deleteSingleJoinMember(id);
     return res;
   };
 

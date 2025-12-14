@@ -7,6 +7,7 @@ import { revalidateTag } from 'next/cache';
 const getTeamMembers = async (query: Record<string, string>) => {
   return await serverFetch.get<ApiResponse<ITeamMember[]>>('/team/get-all', {
     query,
+    cache: 'force-cache',
     next: {
       tags: ['team-members'],
     },

@@ -7,6 +7,7 @@ import { revalidateTag } from 'next/cache';
 const getBlogs = async (query: Record<string, string>) => {
   return await serverFetch.get<ApiResponse<IBlog[]>>('/blog', {
     query,
+    cache: 'force-cache',
     next: {
       tags: ['blog'],
     },

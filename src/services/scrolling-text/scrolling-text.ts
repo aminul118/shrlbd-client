@@ -9,6 +9,7 @@ const getScrollingText = async (query?: Record<string, string>) => {
     '/scrolling-text',
     {
       query,
+      cache: 'force-cache',
       next: {
         tags: ['scrolling-text'],
       },

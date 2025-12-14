@@ -3,7 +3,7 @@ import TableSkeleton from '@/components/common/loader/TableSkeleton';
 const PreviousEventLoading = () => {
   return (
     <div>
-      <TableSkeleton />
+      <TableSkeleton rows={10} hasFilter hasPagination />
     </div>
   );
 };

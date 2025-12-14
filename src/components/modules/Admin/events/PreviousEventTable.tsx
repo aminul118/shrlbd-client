@@ -1,15 +1,6 @@
-'use client';
 import DateFormat from '@/components/common/date-format';
 import NotFound from '@/components/common/error/NotFound';
-import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
-import TableSkeleton from '@/components/common/loader/TableSkeleton';
-import PageLimit from '@/components/common/pagination/PageLimit';
-import TablePagination from '@/components/common/pagination/TablePagination';
-import AppSearching from '@/components/common/searching/AppSearching';
-import Sorting from '@/components/common/sorting/Sorting';
-import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
-import GradientTitle from '@/components/ui/gradientTitle';
 import {
   Table,
   TableBody,
@@ -18,40 +9,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { useGetEventQuery } from '@/redux/features/event/event.api';
 import { IEvent } from '@/types';
-import { Plus } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import EventActions from './EventActions';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const PreviousEventTable = ({ props }: { props: Record<string, any> }) => {
-  const params = {
-    ...props,
-  };
-  const { data, isLoading, isFetching } = useGetEventQuery(params);
-  const events = data?.data || [];
-  const meta = data?.meta;
-
-  if (isLoading || isFetching) return <TableSkeleton />;
-
+const PreviousEventTable = ({ events }: { events: IEvent[] }) => {
   return (
     <Container>
-      <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="All Previous Events" />
-      </div>
-      <EventFilter />
-      {/* Main Content */}
-      <EventTable events={events} />
-      <TablePagination meta={meta} />
-    </Container>
-  );
-};
-
-const EventTable = ({ events }: { events: IEvent[] }) => {
-  return (
-    <div>
       <Table>
         <TableHeader className="bg-muted">
           <TableRow>
@@ -102,34 +66,7 @@ const EventTable = ({ events }: { events: IEvent[] }) => {
           )}
         </TableBody>
       </Table>
-    </div>
-  );
-};
-
-// Event Filter
-
-const EventFilter = () => {
-  return (
-    <div className="pb-8">
-      <div className="flex items-center justify-between gap-2">
-        <AppSearching />
-        <div className="flex items-center justify-between gap-2">
-          <PageLimit pageNumbers={[10, 20, 30, 40]} />
-          <Sorting
-            sortOptions={[
-              { name: 'Ascending', value: '-createdAt' },
-              { name: 'Descending', value: 'createdAt' },
-            ]}
-          />
-          <ClearAllFilter />
-          <Button asChild>
-            <Link href="/admin/add-previous-event">
-              <Plus /> Add Event
-            </Link>
-          </Button>
-        </div>
-      </div>
-    </div>
+    </Container>
   );
 };
 

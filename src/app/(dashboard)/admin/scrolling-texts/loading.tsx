@@ -1,7 +1,7 @@
 import TableSkeleton from '@/components/common/loader/TableSkeleton';
 
 const ScrollingTextLoading = () => {
-  return <TableSkeleton />;
+  return <TableSkeleton rows={2} />;
 };
 
 export default ScrollingTextLoading;

@@ -23,7 +23,7 @@ const deleteSingleTeamMember = async (slug: string) => {
     `/team/${slug}`,
   );
 
-  revalidateTag('team-members', '');
+  revalidateTag('team-members', { expire: 0 });
 
   return res;
 };

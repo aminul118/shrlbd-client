@@ -10,7 +10,7 @@ const getScrollingText = async (query?: Record<string, string>) => {
     {
       query,
       next: {
-        tags: ['scrolling-text'], // ensures caching
+        tags: ['scrolling-text'],
       },
     },
   );
@@ -32,7 +32,7 @@ const createScrollingText = async (payload: Partial<IScrollingText>) => {
     },
   );
 
-  revalidateTag('scrolling-text', '');
+  revalidateTag('scrolling-text', { expire: 0 });
 
   return res;
 };
@@ -48,7 +48,7 @@ const updateScrollingText = async (
     },
   );
 
-  revalidateTag('scrolling-text', '');
+  revalidateTag('scrolling-text', { expire: 0 });
 
   return res;
 };
@@ -58,7 +58,7 @@ const deleteScrollingText = async (slug: string) => {
     `/scrolling-text/${slug}`,
   );
 
-  revalidateTag('scrolling-text', '');
+  revalidateTag('scrolling-text', { expire: 0 });
 
   return res;
 };

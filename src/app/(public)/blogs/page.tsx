@@ -1,11 +1,33 @@
-import Blogs from '@/components/modules/Public/blogs/Blogs';
+import NotFound from '@/components/common/error/NotFound';
+import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
+import BlogCard from '@/components/modules/Public/blogs/BlogCard';
+import Container from '@/components/ui/Container';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
+import { getBlogs } from '@/services/blogs/blogs';
+import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
-const BlogsPage = () => {
+const BlogsPage = async ({ searchParams }: SearchParams) => {
+  const params = await cleanSearchParams(searchParams);
+  const { data: blogs, meta } = await getBlogs(params);
+  console.log(blogs);
+
   return (
     <>
-      <Blogs />
+      <ClientWrapper meta={meta}>
+        <Container className="py-12">
+          {blogs?.length > 0 ? (
+            <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
+              {blogs.map((blog) => {
+                return <BlogCard key={blog._id} {...blog} />;
+              })}
+            </div>
+          ) : (
+            <NotFound />
+          )}
+        </Container>
+      </ClientWrapper>
     </>
   );
 };

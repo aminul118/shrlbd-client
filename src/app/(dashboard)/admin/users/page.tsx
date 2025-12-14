@@ -1,18 +1,26 @@
+import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
+import UsersFilters from '@/components/modules/Admin/users/UsersFiltes';
 import UsersTable from '@/components/modules/Admin/users/UsersTable';
 import Container from '@/components/ui/Container';
-import GradientTitle from '@/components/ui/gradientTitle';
+import cleanSearchParams from '@/lib/cleanSearchParams';
+import { getUsers } from '@/services/user/user';
 import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
 const UsersPage = async ({ searchParams }: SearchParams) => {
-  const resolvedSearchparams = await searchParams;
+  const params = await cleanSearchParams(searchParams);
+  const { data, meta } = await getUsers(params);
+
   return (
     <>
       <Container>
-        <div className="mb-4 flex items-center justify-between">
-          <GradientTitle title="All Registered Users" />
-        </div>
-        <UsersTable props={resolvedSearchparams} />
+        <ClientTableWrapper
+          tableTitle="All Registered Users"
+          filters={<UsersFilters />}
+          meta={meta}
+        >
+          <UsersTable users={data} />
+        </ClientTableWrapper>
       </Container>
     </>
   );

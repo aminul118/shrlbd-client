@@ -7,6 +7,7 @@ import { revalidateTag } from 'next/cache';
 const getJobs = async (query: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IJob[]>>(`/job`, {
     query,
+    cache: 'force-cache',
     next: {
       tags: ['jobs'],
     },

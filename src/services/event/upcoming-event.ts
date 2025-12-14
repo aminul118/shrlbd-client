@@ -25,6 +25,7 @@ const getUpcomingEvents = async (query?: Record<string, string>) => {
     `/upcoming-event`,
     {
       query,
+      cache: 'force-cache',
       next: {
         tags: ['upcoming-events'],
       },

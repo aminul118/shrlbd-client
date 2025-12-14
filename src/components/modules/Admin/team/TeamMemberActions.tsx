@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteTeamMemberMutation } from '@/redux/features/team/team.api';
+import { deleteSingleTeamMember } from '@/services/team/team-member';
 import { ITeamMember } from '@/types';
 import { EllipsisIcon, EyeIcon, PencilIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
@@ -20,11 +20,9 @@ const TeamMemberActions = ({ member }: { member: ITeamMember }) => {
   const [teamMemberModalOpen, setTeamMemberModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [deleteTeamMember] = useDeleteTeamMemberMutation();
 
   const handleDelete = async (slug: string) => {
-    const res = await deleteTeamMember(slug).unwrap();
-    return res;
+    return await deleteSingleTeamMember(slug);
   };
 
   return (

@@ -18,6 +18,8 @@ interface ColumnConfig {
 interface TableSkeletonProps {
   columns?: ColumnConfig[];
   rows?: number;
+  hasFilter?: boolean;
+  hasPagination?: boolean;
 }
 
 const TableSkeleton = ({
@@ -32,9 +34,14 @@ const TableSkeleton = ({
     { width: '8', height: '8', rounded: 'rounded-md' },
   ],
   rows = 2,
+  hasFilter,
+  hasPagination,
 }: TableSkeletonProps) => {
   return (
     <Container className="overflow-x-hidden">
+      <Skeleton className="mb-8 h-10 w-96 rounded-md" />
+      {hasFilter && <FilterSkeleton />}
+
       <Table>
         {/* ---- HEADER ---- */}
         <TableHeader className="bg-muted text-white">
@@ -68,7 +75,50 @@ const TableSkeleton = ({
           ))}
         </TableBody>
       </Table>
+
+      {/* Pagination skeleton */}
+      {hasPagination && <PaginationSkeleton />}
     </Container>
+  );
+};
+
+const FilterSkeleton = () => {
+  return (
+    <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
+      {/* Search */}
+      <Skeleton className="h-10 w-64 rounded-md" />
+
+      {/* Right side actions */}
+      <div className="flex flex-wrap items-center gap-2">
+        <Skeleton className="h-10 w-24 rounded-md" />
+        <Skeleton className="h-10 w-32 rounded-md" />
+        <Skeleton className="h-10 w-28 rounded-md" />
+        <Skeleton className="h-10 w-44 rounded-md" />
+      </div>
+    </div>
+  );
+};
+
+const PaginationSkeleton = () => {
+  return (
+    <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
+      {/* GoToPage */}
+      <Skeleton className="h-10 w-40 rounded-md" />
+
+      {/* Status + Pagination */}
+      <div className="flex items-center gap-4">
+        {/* PaginationStatus */}
+        <Skeleton className="h-5 w-32 rounded-md" />
+
+        {/* AppPagination */}
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-9 w-9 rounded-md" />
+          <Skeleton className="h-9 w-9 rounded-md" />
+          <Skeleton className="h-9 w-9 rounded-md" />
+          <Skeleton className="h-9 w-9 rounded-md" />
+        </div>
+      </div>
+    </div>
   );
 };
 

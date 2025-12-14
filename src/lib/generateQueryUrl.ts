@@ -1,6 +1,6 @@
 import envVars from '@/config/env.config';
 
-const buildUrl = (endpoint: string, query?: Record<string, string>) => {
+const generateQueryUrl = (endpoint: string, query?: Record<string, string>) => {
   const url = new URL(`${envVars.baseUrl}${endpoint}`);
 
   if (query) {
@@ -20,4 +20,4 @@ const buildUrl = (endpoint: string, query?: Record<string, string>) => {
   return url.toString();
 };
 
-export default buildUrl;
+export default generateQueryUrl;

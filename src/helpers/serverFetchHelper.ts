@@ -1,4 +1,4 @@
-import buildUrl from '@/lib/buildUrl';
+import generateQueryUrl from '@/lib/generateQueryUrl';
 import { getCookie } from '@/lib/jwt';
 
 export type FetchOptions = RequestInit & {
@@ -10,7 +10,7 @@ const serverFetchHelper = async <T>(
   options: FetchOptions,
 ): Promise<T> => {
   const { headers, query, ...rest } = options;
-  const url = buildUrl(endpoint, query);
+  const url = generateQueryUrl(endpoint, query);
   const accessToken = await getCookie('accessToken');
 
   const res = await fetch(url, {

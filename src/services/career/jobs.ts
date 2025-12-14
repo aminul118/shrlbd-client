@@ -21,7 +21,7 @@ const getSingleJob = async (slug: string) => {
 
 const deleteSingleJob = async (slug: string) => {
   const res = await serverFetch.delete<ApiResponse<IJob>>(`/job/${slug}`);
-  revalidateTag('jobs', '');
+  revalidateTag('jobs', { expire: 0 });
   return res;
 };
 

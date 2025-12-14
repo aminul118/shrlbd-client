@@ -9,19 +9,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteBlogMutation } from '@/redux/features/blog/blog.api';
+import { deleteSingleBlog } from '@/services/blogs/blogs';
 import { IBlog } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowBlogModal from './ShowBlogModal';
 
 const BlogActions = ({ blog }: { blog: IBlog }) => {
-  const [deleteBlog] = useDeleteBlogMutation();
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [showDetailsOpen, setShowDetailsOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const res = await deleteBlog(id).unwrap();
+    const res = await deleteSingleBlog(id);
     return res;
   };
 

@@ -1,3 +1,5 @@
+'use server';
+
 import envVars from '@/config/env.config';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies';

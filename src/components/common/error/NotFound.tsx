@@ -21,7 +21,7 @@ const NotFound = ({
   };
 
   return (
-    <div className="height-adjust flex flex-col items-center justify-center px-4 text-center">
+    <div className="flex min-h-[calc(100vh-535px)] flex-col items-center justify-center px-4 text-center">
       <div className="grid place-items-center p-4">
         <Frown className="text-muted-foreground h-12 w-12 sm:h-16 sm:w-16" />
         <h1 className="mt-6 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">

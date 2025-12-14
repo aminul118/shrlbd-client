@@ -22,7 +22,7 @@ const getSingleEvent = async (slug: string) => {
 
 const deleteSingleEvent = async (slug: string) => {
   const res = await serverFetch.delete<ApiResponse<IEvent>>(`/event/${slug}`);
-  revalidateTag('events', '');
+  revalidateTag('events', { expire: 0 });
   return res;
 };
 

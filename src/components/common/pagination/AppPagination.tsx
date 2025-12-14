@@ -11,13 +11,19 @@ import {
 import { cn } from '@/lib/utils';
 import { IMeta } from '@/types';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { TransitionStartFunction } from 'react';
 
 interface IPaginationProps {
   meta: IMeta;
+  startTransition?: TransitionStartFunction;
   className?: string;
 }
 
-const AppPagination = ({ meta, className }: IPaginationProps) => {
+const AppPagination = ({
+  meta,
+  startTransition,
+  className,
+}: IPaginationProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { page, totalPage } = meta;
@@ -25,7 +31,14 @@ const AppPagination = ({ meta, className }: IPaginationProps) => {
   const handlePageChange = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', newPage.toString());
-    router.push(`?${params.toString()}`);
+
+    if (startTransition) {
+      startTransition(() => {
+        router.push(`?${params.toString()}`);
+      });
+    } else {
+      router.push(`?${params.toString()}`);
+    }
   };
 
   if (totalPage <= 1) return null;
@@ -33,6 +46,7 @@ const AppPagination = ({ meta, className }: IPaginationProps) => {
   return (
     <Pagination className={cn('py-6 md:py-8 lg:py-12', className)}>
       <PaginationContent>
+        {/* Previous */}
         <PaginationItem>
           <PaginationPrevious
             className={cn(page <= 1 && 'pointer-events-none opacity-50')}
@@ -41,6 +55,7 @@ const AppPagination = ({ meta, className }: IPaginationProps) => {
           />
         </PaginationItem>
 
+        {/* Pages */}
         {Array.from({ length: totalPage }).map((_, i) => {
           const pageIndex = i + 1;
           return (
@@ -55,6 +70,7 @@ const AppPagination = ({ meta, className }: IPaginationProps) => {
           );
         })}
 
+        {/* Next */}
         <PaginationItem>
           <PaginationNext
             className={cn(

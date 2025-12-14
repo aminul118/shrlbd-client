@@ -1,4 +1,4 @@
-import AppPagination from '@/components/common/pagination/AppPagination';
+import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
 import TeamMemberCard from '@/components/modules/Public/team/TeamMemberCard';
 import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
@@ -18,17 +18,17 @@ const TeamMemberPage = async ({ searchParams }: SearchParams) => {
   const { data, meta } = await getTeamMembers(params);
 
   return (
-    <Container className="py-12">
-      {data && data.length > 0 && (
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
-          {data.map((member) => {
-            return <TeamMemberCard {...member} key={member._id} />;
-          })}
-        </div>
-      )}
-
-      {meta && <AppPagination meta={meta} />}
-    </Container>
+    <ClientWrapper meta={meta}>
+      <Container className="py-12">
+        {data?.length > 0 && (
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 2xl:grid-cols-3">
+            {data.map((member) => (
+              <TeamMemberCard key={member._id} {...member} />
+            ))}
+          </div>
+        )}
+      </Container>
+    </ClientWrapper>
   );
 };
 export default TeamMemberPage;

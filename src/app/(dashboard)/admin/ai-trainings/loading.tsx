@@ -1,7 +1,7 @@
 import TableSkeleton from '@/components/common/loader/TableSkeleton';
 
 const AiTrainingsLoading = () => {
-  return <TableSkeleton />;
+  return <TableSkeleton rows={10} hasFilter hasPagination />;
 };
 
 export default AiTrainingsLoading;

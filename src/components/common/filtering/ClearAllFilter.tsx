@@ -8,7 +8,7 @@ import { usePathname, useRouter } from 'next/navigation';
 const ClearAllFilter = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const { startTransition } = useTransition();
+  const { isPending, startTransition } = useTransition();
 
   const handleClear = () => {
     startTransition(() => {
@@ -16,7 +16,11 @@ const ClearAllFilter = () => {
     });
   };
 
-  return <Button onClick={handleClear}>Clear Filter</Button>;
+  return (
+    <Button disabled={isPending} onClick={handleClear}>
+      Clear Filter
+    </Button>
+  );
 };
 
 export default ClearAllFilter;

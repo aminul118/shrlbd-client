@@ -13,6 +13,13 @@ const TeamMembersLoading = () => {
           { width: '16', height: '4' },
           { width: '6', height: '6', rounded: 'rounded-md' },
         ]}
+        filterColumns={[
+          { width: '20', height: '10' },
+          { width: '32', height: '10' },
+          { width: '20', height: '10' },
+          { width: '20', height: '10' },
+          { width: '32', height: '10' },
+        ]}
         rows={10}
         hasFilter
         hasPagination

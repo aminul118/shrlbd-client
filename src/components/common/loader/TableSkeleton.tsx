@@ -35,12 +35,12 @@ const TableSkeleton = ({
     { width: '8', height: '8', rounded: 'rounded-md' },
   ],
   filterColumns = [
-    { width: '28', height: '10', rounded: 'rounded-md' },
-    { width: '32', height: '10', rounded: 'rounded-md' },
-    { width: '32', height: '10', rounded: 'rounded-md' },
-    { width: '44', height: '10', rounded: 'rounded-md' },
+    { width: '20', height: '10' },
+    { width: '32', height: '10' },
+    { width: '20', height: '10' },
+    { width: '20', height: '10' },
   ],
-  rows = 2,
+  rows = 10,
   hasFilter = false,
   hasPagination = false,
 }: TableSkeletonProps) => {

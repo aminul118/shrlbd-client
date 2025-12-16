@@ -1,6 +1,6 @@
 import TableSkeleton from '@/components/common/loader/TableSkeleton';
 
-const ScrollingTextLoading = () => {
+const JobPostsLoading = () => {
   return (
     <TableSkeleton
       tableColumns={[
@@ -14,6 +14,7 @@ const ScrollingTextLoading = () => {
         { width: '20', height: '10' },
         { width: '32', height: '10' },
         { width: '20', height: '10' },
+        { width: '32', height: '10' },
         { width: '20', height: '10' },
         { width: '32', height: '10' },
       ]}
@@ -22,4 +23,4 @@ const ScrollingTextLoading = () => {
   );
 };
 
-export default ScrollingTextLoading;
+export default JobPostsLoading;

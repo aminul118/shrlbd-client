@@ -1,9 +1,9 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { useTransition } from '@/context/useTransition';
 import { RefreshCcw } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useTransition } from 'react';
 
 interface RefreshButtonProps {
   size?: 'sm' | 'default' | 'lg';
@@ -17,7 +17,7 @@ const RefreshButton = ({
   showLabel = true,
 }: RefreshButtonProps) => {
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const { startTransition, isPending } = useTransition();
 
   const handleRefresh = () => {
     startTransition(() => {

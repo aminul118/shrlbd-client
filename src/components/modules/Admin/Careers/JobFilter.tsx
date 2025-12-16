@@ -1,3 +1,4 @@
+import RefreshButton from '@/components/common/button/refresh-button';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import PageLimit from '@/components/common/pagination/PageLimit';
 import AppSearching from '@/components/common/searching/AppSearching';
@@ -19,6 +20,7 @@ const JobFilters = () => {
           ]}
         />
         <ClearAllFilter />
+        <RefreshButton />
         <AddJobModal />
         <AddJobTypeModal />
       </div>

@@ -9,20 +9,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteJobMutation } from '@/redux/features/jobs/job.api';
+import { deleteSingleJob } from '@/services/career/jobs';
 import { IJob } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowJobModal from './ShowJobModal';
 
 const JobActions = ({ job }: { job: IJob }) => {
-  const [deleteJob] = useDeleteJobMutation();
-
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [showDetailsOpen, setShowDetailsOpen] = useState(false);
 
   const handleDelete = async (slug: string) => {
-    const res = await deleteJob(slug).unwrap();
+    const res = await deleteSingleJob(slug);
     return res;
   };
 

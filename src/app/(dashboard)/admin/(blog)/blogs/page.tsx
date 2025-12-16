@@ -1,8 +1,7 @@
-import TablePagination from '@/components/common/pagination/TablePagination';
+import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import BlogsFilters from '@/components/modules/Admin/blogs/BlogFilter';
 import BlogsTable from '@/components/modules/Admin/blogs/BlogsTable';
 import Container from '@/components/ui/Container';
-import GradientTitle from '@/components/ui/gradientTitle';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getBlogs } from '@/services/blogs/blogs';
 import { SearchParams } from '@/types';
@@ -15,12 +14,13 @@ const BlogPage = async ({ searchParams }: SearchParams) => {
   return (
     <>
       <Container>
-        <div className="mb-4 flex items-center justify-between">
-          <GradientTitle title="All Blogs" />
-        </div>
-        <BlogsFilters />
-        <BlogsTable blogs={data} />
-        <TablePagination meta={meta} />
+        <ClientTableWrapper
+          tableTitle="All Blogs"
+          meta={meta}
+          filters={<BlogsFilters />}
+        >
+          <BlogsTable blogs={data} />
+        </ClientTableWrapper>
       </Container>
     </>
   );

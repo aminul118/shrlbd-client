@@ -1,10 +1,25 @@
+import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import AiTrainingsTable from '@/components/modules/Admin/ai/AiTrainingsTable';
+import AiTrainngsFilters from '@/components/modules/Admin/ai/AiTrainngsFilters';
+import Container from '@/components/ui/Container';
+import cleanSearchParams from '@/lib/cleanSearchParams';
+import { getAis } from '@/services/ai/ai';
 import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 
 const AiTrainingsPage = async ({ searchParams }: SearchParams) => {
-  const resolvedSearchparams = await searchParams;
-  return <AiTrainingsTable props={resolvedSearchparams} />;
+  const params = await cleanSearchParams(searchParams);
+  const { data } = await getAis(params);
+  return (
+    <Container>
+      <ClientTableWrapper
+        filters={<AiTrainngsFilters />}
+        tableTitle="AI Trainings"
+      >
+        <AiTrainingsTable ais={data} />
+      </ClientTableWrapper>
+    </Container>
+  );
 };
 
 export default AiTrainingsPage;

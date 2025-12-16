@@ -1,24 +1,22 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Undo } from 'lucide-react';
+import { useTransition } from '@/context/useTransition';
+
 import { usePathname, useRouter } from 'next/navigation';
 
 const ClearAllFilter = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const { startTransition } = useTransition();
 
   const handleClear = () => {
-    router.push(pathname); // navigate to same page without query
+    startTransition(() => {
+      router.push(pathname);
+    });
   };
 
-  return (
-    <div>
-      <Button onClick={handleClear}>
-        <Undo size={20} /> Clear Filter
-      </Button>
-    </div>
-  );
+  return <Button onClick={handleClear}>Clear Filter</Button>;
 };
 
 export default ClearAllFilter;

@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/accordion';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
+import images from '@/config/images';
 import { faqData } from '@/constants/faq';
 import Image from 'next/image';
 
@@ -18,7 +19,7 @@ const Faq = () => {
         {/* Left Image */}
         <div>
           <Image
-            src="/images/banner/faq.png"
+            src={images.faq}
             alt="FAQ"
             width={600}
             height={400}

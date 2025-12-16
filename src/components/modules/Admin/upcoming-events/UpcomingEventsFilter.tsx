@@ -1,4 +1,3 @@
-import RefreshButton from '@/components/common/button/refresh-button';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import PageLimit from '@/components/common/pagination/PageLimit';
 import AppSearching from '@/components/common/searching/AppSearching';
@@ -7,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
-const BlogsFilters = () => {
+const UpcomingEventsFilter = () => {
   return (
     <div className="pb-8">
       <div className="flex items-center justify-between gap-2">
@@ -20,11 +19,12 @@ const BlogsFilters = () => {
               { name: 'Descending', value: 'createdAt' },
             ]}
           />
+
           <ClearAllFilter />
-          <RefreshButton />
           <Button asChild>
-            <Link href="/admin/add-blog">
-              <Plus /> Add Blog
+            <Link href="/admin/add-upcoming-event">
+              <Plus />
+              Add Upcoming Event
             </Link>
           </Button>
         </div>
@@ -33,4 +33,4 @@ const BlogsFilters = () => {
   );
 };
 
-export default BlogsFilters;
+export default UpcomingEventsFilter;

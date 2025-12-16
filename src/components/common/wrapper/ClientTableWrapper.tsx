@@ -2,6 +2,7 @@
 
 import AppPagination from '@/components/common/pagination/AppPagination';
 import GradientTitle from '@/components/ui/gradientTitle';
+import { TransitionContext } from '@/context/useTransition';
 import { cn } from '@/lib/utils';
 import { IMeta } from '@/types';
 import { ReactNode, useTransition } from 'react';
@@ -19,38 +20,36 @@ const ClientTableWrapper = ({
   const [isPending, startTransition] = useTransition();
 
   return (
-    <section className="relative">
-      <div className="mb-4 flex justify-start">
-        <GradientTitle title={tableTitle} />
-      </div>
+    <TransitionContext.Provider value={{ startTransition, isPending }}>
+      <section className="relative">
+        <div className="mb-4 flex justify-start">
+          <GradientTitle title={tableTitle} />
+        </div>
 
-      <>{filters}</>
-      <div className="relative">
-        <div className={cn(isPending && 'opacity-20')}>{children}</div>
+        <>{filters}</>
+        <div className="relative">
+          <div className={cn(isPending && 'opacity-20')}>{children}</div>
 
-        {/* Centered Loader OVER content */}
-        {isPending && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center">
-            {loader}
+          {/* Centered Loader OVER content */}
+          {isPending && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center">
+              {loader}
+            </div>
+          )}
+        </div>
+
+        {/* Pagination */}
+        {meta && (
+          <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
+            <GoToPage totalPage={meta.totalPage} />
+            <div className="flex items-center gap-4">
+              <PaginationStatus meta={meta} />
+              <AppPagination className="justify-end" meta={meta} />
+            </div>
           </div>
         )}
-      </div>
-
-      {/* Pagination */}
-      {meta && (
-        <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
-          <GoToPage totalPage={meta.totalPage} />
-          <div className="flex items-center gap-4">
-            <PaginationStatus meta={meta} />
-            <AppPagination
-              className="justify-end"
-              meta={meta}
-              startTransition={startTransition}
-            />
-          </div>
-        </div>
-      )}
-    </section>
+      </section>
+    </TransitionContext.Provider>
   );
 };
 

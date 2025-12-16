@@ -2,7 +2,6 @@ import DateFormat from '@/components/common/date-format';
 import FetchError from '@/components/common/error/FetchError';
 import NotFound from '@/components/common/error/NotFound';
 import Container from '@/components/ui/Container';
-import GradientTitle from '@/components/ui/gradientTitle';
 import {
   Table,
   TableBody,
@@ -12,7 +11,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { getScrollingText } from '@/services/scrolling-text/scrolling-text';
-import AddScrollingTextModal from './AddScrollingTextModal';
 import ScrollingTextActions from './ScrollingTextActions';
 
 const ScrollingTextTable = async () => {
@@ -28,11 +26,6 @@ const ScrollingTextTable = async () => {
 
   return (
     <Container className="container mx-auto overflow-x-auto">
-      <div className="mb-4 flex items-center justify-between">
-        <GradientTitle title="Scrolling Texts" />
-        <AddScrollingTextModal />
-      </div>
-
       <Table>
         <TableHeader className="bg-muted">
           <TableRow>

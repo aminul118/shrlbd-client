@@ -1,13 +1,13 @@
+'use client';
+
 import RefreshButton from '@/components/common/button/refresh-button';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import PageLimit from '@/components/common/pagination/PageLimit';
 import AppSearching from '@/components/common/searching/AppSearching';
 import Sorting from '@/components/common/sorting/Sorting';
-import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
+import AddAiTrainingsModal from './AddAiTrainingsModal';
 
-const BlogsFilters = () => {
+const AiTrainngsFilters = () => {
   return (
     <div className="pb-8">
       <div className="flex items-center justify-between gap-2">
@@ -22,15 +22,11 @@ const BlogsFilters = () => {
           />
           <ClearAllFilter />
           <RefreshButton />
-          <Button asChild>
-            <Link href="/admin/add-blog">
-              <Plus /> Add Blog
-            </Link>
-          </Button>
+          <AddAiTrainingsModal />
         </div>
       </div>
     </div>
   );
 };
 
-export default BlogsFilters;
+export default AiTrainngsFilters;

@@ -38,7 +38,7 @@ const Sorting = ({
 }: SortByProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { startTransition, isPending } = useTransition();
+  const { isPending, startTransition } = useTransition();
 
   const currentSorting = searchParams.get('sort') || 'default';
 

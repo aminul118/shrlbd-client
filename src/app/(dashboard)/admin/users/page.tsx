@@ -3,7 +3,7 @@ import UsersFilters from '@/components/modules/Admin/users/UsersFiltes';
 import UsersTable from '@/components/modules/Admin/users/UsersTable';
 import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
-import { getUsers } from '@/services/user/user';
+import { getUsers } from '@/services/user/users';
 import { SearchParams } from '@/types';
 import { Metadata } from 'next';
 

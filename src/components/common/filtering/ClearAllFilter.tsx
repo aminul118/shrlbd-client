@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { useTransition } from '@/context/useTransition';
-
 import { usePathname, useRouter } from 'next/navigation';
 
 const ClearAllFilter = () => {

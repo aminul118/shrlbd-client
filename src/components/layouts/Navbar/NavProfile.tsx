@@ -20,6 +20,7 @@ import { useContext } from 'react';
 
 const NavProfile = () => {
   const context = useContext(AppDataContext);
+  console.log(context);
   const user = context?.userData;
   const userLoading = context?.userLoading;
 

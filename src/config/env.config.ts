@@ -1,7 +1,9 @@
 const nodeEnv = process.env.NODE_ENV;
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 const googleAnalytics = process.env.GoogleAnalytics;
-const accessSecret = process.env.JWT_SECRET as string;
+const accessSecret = process.env.JWT_ACCESS_SECRET as string;
+const accessTokenMaxAge = parseInt(process.env.JWT_ACCESS_EXPIRES as string);
+const refreshTokenMaxAge = parseInt(process.env.JWT_REFRESH_EXPIRES as string);
 const domain = process.env.NEXT_PUBLIC_COOKIE_DOMAIN as string;
 
 const envVars = {
@@ -11,6 +13,8 @@ const envVars = {
   domain,
   jwt: {
     accessSecret,
+    accessTokenMaxAge,
+    refreshTokenMaxAge,
   },
 };
 

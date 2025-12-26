@@ -1,7 +1,6 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import BlogsFilters from '@/components/modules/Admin/blogs/BlogFilter';
 import BlogsTable from '@/components/modules/Admin/blogs/BlogsTable';
-import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getBlogs } from '@/services/blogs/blogs';
 import { SearchParams } from '@/types';
@@ -13,15 +12,13 @@ const BlogPage = async ({ searchParams }: SearchParams) => {
 
   return (
     <>
-      <Container>
-        <ClientTableWrapper
-          tableTitle="All Blogs"
-          meta={meta}
-          filters={<BlogsFilters />}
-        >
-          <BlogsTable blogs={data} />
-        </ClientTableWrapper>
-      </Container>
+      <ClientTableWrapper
+        tableTitle="All Blogs"
+        meta={meta}
+        filters={<BlogsFilters />}
+      >
+        <BlogsTable blogs={data} />
+      </ClientTableWrapper>
     </>
   );
 };

@@ -1,3 +1,9 @@
+export interface ILogin {
+  accessToken: string;
+  refreshToken: string;
+  user: IUser;
+}
+
 export interface ITeamMember {
   _id: string;
   name: string;

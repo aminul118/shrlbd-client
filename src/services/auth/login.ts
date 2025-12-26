@@ -1,0 +1,63 @@
+'use server';
+
+import baseCookieOption from '@/config/cookie.config';
+import envVars from '@/config/env.config';
+import serverFetch from '@/lib/server-fetch';
+import { ApiResponse } from '@/types';
+import { ILogin } from '@/types/api.types';
+import { revalidateTag } from 'next/cache';
+import { cookies } from 'next/headers';
+
+const loginAction = async (formData: FormData) => {
+  try {
+    const payload = {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+    };
+
+    const res = await serverFetch.post<ApiResponse<ILogin>>('/auth/login', {
+      body: JSON.stringify(payload),
+    });
+
+    if (!res?.data) {
+      return { success: false, error: 'Invalid server response' };
+    }
+
+    const { accessToken, refreshToken, user } = res.data;
+
+    const cookieStore = cookies();
+
+    (await cookieStore).set('accessToken', accessToken, {
+      ...baseCookieOption,
+      maxAge: Number(envVars.jwt.accessTokenMaxAge),
+    });
+
+    (await cookieStore).set('refreshToken', refreshToken, {
+      ...baseCookieOption,
+      maxAge: Number(envVars.jwt.refreshTokenMaxAge),
+    });
+
+    revalidateTag('ME', 'max');
+
+    return {
+      success: true,
+      user,
+      message: 'Login successful',
+    };
+  } catch (error: any) {
+    if (error?.digest?.startsWith('NEXT_REDIRECT')) {
+      throw error;
+    }
+
+    return {
+      success: false,
+      user: null,
+      message:
+        envVars.nodeEnv === 'development'
+          ? error.message
+          : 'Login Failed. You might have entered incorrect email or password.',
+    };
+  }
+};
+
+export { loginAction };

@@ -1,7 +1,6 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import TeamFilters from '@/components/modules/Admin/team/TeamFilters';
 import TeamMembersTable from '@/components/modules/Admin/team/TeamMembersTable';
-import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getTeamMembers } from '@/services/team/team-member';
 import { SearchParams } from '@/types';
@@ -13,15 +12,13 @@ const TeamMembersPage = async ({ searchParams }: SearchParams) => {
 
   return (
     <>
-      <Container>
-        <ClientTableWrapper
-          tableTitle="All Team Members"
-          meta={meta}
-          filters={<TeamFilters />}
-        >
-          <TeamMembersTable members={data} />
-        </ClientTableWrapper>
-      </Container>
+      <ClientTableWrapper
+        tableTitle="All Team Members"
+        meta={meta}
+        filters={<TeamFilters />}
+      >
+        <TeamMembersTable members={data} />
+      </ClientTableWrapper>
     </>
   );
 };

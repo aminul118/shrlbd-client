@@ -16,8 +16,8 @@ const serverFetchHelper = async <T>(
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
-      ...headers,
       Cookie: accessToken ? `accessToken=${accessToken}` : '',
+      ...headers,
     },
     ...rest,
   });

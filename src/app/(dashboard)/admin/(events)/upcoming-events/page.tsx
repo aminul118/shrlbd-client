@@ -2,7 +2,6 @@ import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import UpcomingEventsFilter from '@/components/modules/Admin/upcoming-events/UpcomingEventsFilter';
 import UpcomingEventsTable from '@/components/modules/Admin/upcoming-events/UpcomingEventsTable';
 
-import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getUpcomingEvents } from '@/services/event/upcoming-event';
 import { SearchParams } from '@/types';
@@ -14,15 +13,13 @@ const UpcomingEventPage = async ({ searchParams }: SearchParams) => {
 
   return (
     <>
-      <Container>
-        <ClientTableWrapper
-          tableTitle="All Upcoming Events"
-          meta={meta}
-          filters={<UpcomingEventsFilter />}
-        >
-          <UpcomingEventsTable upcomingEvents={data} />
-        </ClientTableWrapper>
-      </Container>
+      <ClientTableWrapper
+        tableTitle="All Upcoming Events"
+        meta={meta}
+        filters={<UpcomingEventsFilter />}
+      >
+        <UpcomingEventsTable upcomingEvents={data} />
+      </ClientTableWrapper>
     </>
   );
 };

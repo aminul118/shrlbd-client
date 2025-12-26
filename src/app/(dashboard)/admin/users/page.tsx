@@ -1,7 +1,6 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import UsersFilters from '@/components/modules/Admin/users/UsersFiltes';
 import UsersTable from '@/components/modules/Admin/users/UsersTable';
-import Container from '@/components/ui/Container';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getUsers } from '@/services/user/users';
 import { SearchParams } from '@/types';
@@ -13,15 +12,13 @@ const UsersPage = async ({ searchParams }: SearchParams) => {
 
   return (
     <>
-      <Container>
-        <ClientTableWrapper
-          tableTitle="All Registered Users"
-          filters={<UsersFilters />}
-          meta={meta}
-        >
-          <UsersTable users={data} />
-        </ClientTableWrapper>
-      </Container>
+      <ClientTableWrapper
+        tableTitle="All Registered Users"
+        filters={<UsersFilters />}
+        meta={meta}
+      >
+        <UsersTable users={data} />
+      </ClientTableWrapper>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import generateQueryUrl from '@/lib/generateQueryUrl';
 import { getCookie } from '@/lib/jwt';
+import generateQueryUrl from '@/utils/generateQueryUrl';
 
 export type FetchOptions = RequestInit & {
   query?: Record<string, string>;

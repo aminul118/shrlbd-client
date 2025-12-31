@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,23 +11,24 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
+import SubmitButton from '@/components/common/button/submit-button';
 import Password from '@/components/ui/password';
-import { useRegisterMutation } from '@/redux/features/auth/auth.api';
+import { registerAction } from '@/services/user/user-register';
 import validation from '@/zod';
+import { registrationFormValidation } from '@/zod/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof validation.auth.registrationFormValidation>;
+
 const RegisterForm = () => {
-  const [register, { isLoading }] = useRegisterMutation();
   const router = useRouter();
-  const form = useForm<
-    z.infer<typeof validation.auth.registrationFormValidation>
-  >({
-    resolver: zodResolver(validation.auth.registrationFormValidation),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(registrationFormValidation),
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -39,34 +39,31 @@ const RegisterForm = () => {
     },
   });
 
-  const onSubmit = async (
-    data: z.infer<typeof validation.auth.registrationFormValidation>,
-  ) => {
-    const { firstName, lastName, email, phone, password } = data;
-    const payload = {
-      firstName,
-      lastName,
-      email,
-      phone,
-      password,
-    };
-
+  const onSubmit = async (values: FormValues) => {
     try {
-      const res = await register(payload).unwrap();
-      console.log('RES==>', res);
+      const formData = new FormData();
+
+      formData.append('firstName', values.firstName);
+      formData.append('lastName', values.lastName);
+      formData.append('email', values.email);
+      formData.append('phone', values.phone);
+      formData.append('password', values.password);
+
+      const res = await registerAction(formData);
+      console.log('RES=>', res);
+
       if (res.success) {
-        toast.success(res.message);
+        toast.success(res.message || 'Registration successful');
+        form.reset();
       }
 
-      if (res.statusCode === 201) {
-        router.push(`/verify?email=${email}`);
+      if (!res.data?.isVerified) {
+        router.push(`/verify?email=${res.data?.email}`);
+      } else {
+        toast.error(res.message || 'Failed to create user');
       }
     } catch (error: any) {
-      if (error?.status === 400) {
-        toast.error(error.data?.message || 'User already exists');
-      } else {
-        toast.error('Failed to create user');
-      }
+      toast.error('Failed to create user');
     }
   };
 
@@ -173,19 +170,10 @@ const RegisterForm = () => {
             )}
           />
 
-          <Button
-            type="submit"
+          <SubmitButton
+            loading={form.formState.isSubmitting}
             className="w-full"
-            disabled={isLoading || !form.formState.isValid}
-          >
-            {isLoading ? (
-              <>
-                Register <ButtonSpinner />
-              </>
-            ) : (
-              ' Register'
-            )}
-          </Button>
+          />
         </form>
       </Form>
     </div>

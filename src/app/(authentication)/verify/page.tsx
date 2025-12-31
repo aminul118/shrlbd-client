@@ -1,15 +1,11 @@
-import Spinner from '@/components/common/loader/ButtonSpinner';
 import VerifyOTPForm from '@/components/modules/Authentication/VerifyOTPForm';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 const VerifyOTPPage = () => {
   return (
     <section className="center">
-      <Suspense fallback={<Spinner />}>
-        <VerifyOTPForm />
-      </Suspense>
+      <VerifyOTPForm />
     </section>
   );
 };

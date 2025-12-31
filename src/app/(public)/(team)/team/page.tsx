@@ -2,10 +2,10 @@ import NotFound from '@/components/common/error/NotFound';
 import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
 import TeamMemberCard from '@/components/modules/Public/team/TeamMemberCard';
 import Container from '@/components/ui/Container';
-import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getTeamMembers } from '@/services/team/team-member';
 import { SearchParams } from '@/types';
+import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const TeamMemberPage = async ({ searchParams }: SearchParams) => {

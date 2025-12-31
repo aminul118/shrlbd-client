@@ -13,10 +13,7 @@ import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
 import useSearchParamsValues from '@/hooks/useSearchParamsValues';
 import { loginAction } from '@/services/auth/login';
-import {
-  getDefaultDashboardRoute,
-  UserRole,
-} from '@/services/user/user-access';
+import { getDefaultDashboardRoute, UserRole } from '@/utils/user-access';
 import { loginFormValidation } from '@/zod/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -53,12 +50,10 @@ const LoginForm = () => {
         );
         toast.success(res.message || 'Login successful!');
       } else {
-        toast.error(
-          'Login failed. Please check your credentials and try again.',
-        );
+        toast.error('Login failed. Please check your credentials.');
       }
     } catch (error) {
-      toast.error('Login failed. Please check your credentials and try again.');
+      toast.error('Login failed. Please check your credentials.');
     }
   };
 
@@ -106,7 +101,7 @@ const LoginForm = () => {
           )}
         />
 
-        <SubmitButton />
+        <SubmitButton loading={form.formState.isSubmitting} />
       </form>
     </Form>
   );

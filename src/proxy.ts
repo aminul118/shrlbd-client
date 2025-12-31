@@ -1,12 +1,12 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import getVerifiedUser from './services/user/verified-user';
 import {
   getDefaultDashboardRoute,
   getRouteOwner,
   isAuthRoute,
   isValidRedirectForRole,
   UserRole,
-} from './services/user/user-access';
-import getVerifiedUser from './services/user/verified-user';
+} from './utils/user-access';
 
 export const proxy = async (req: NextRequest) => {
   const { pathname, origin } = req.nextUrl;

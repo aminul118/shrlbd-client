@@ -15,8 +15,7 @@ const getTeamMembers = async (query: Record<string, string>) => {
 };
 
 const getSingleTeamMember = async (slug: string) => {
-  const res = await serverFetch.get<ApiResponse<ITeamMember>>(`/team/${slug}`);
-  return res;
+  return await serverFetch.get<ApiResponse<ITeamMember>>(`/team/${slug}`);
 };
 
 const deleteSingleTeamMember = async (slug: string) => {

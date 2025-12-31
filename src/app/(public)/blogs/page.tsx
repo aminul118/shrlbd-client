@@ -2,10 +2,10 @@ import NotFound from '@/components/common/error/NotFound';
 import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
 import BlogCard from '@/components/modules/Public/blogs/BlogCard';
 import Container from '@/components/ui/Container';
-import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getBlogs } from '@/services/blogs/blogs';
 import { SearchParams } from '@/types';
+import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const BlogsPage = async ({ searchParams }: SearchParams) => {

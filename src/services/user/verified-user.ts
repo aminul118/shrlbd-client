@@ -1,4 +1,4 @@
-import { verifyToken } from '@/lib/jwt';
+import { verifyAccessToken } from '@/lib/jwt';
 import type { NextRequest } from 'next/server';
 
 interface DecodedToken {
@@ -25,7 +25,7 @@ const getVerifiedUser = async (
 
     if (!accessToken) return null;
 
-    const verifiedUser = await verifyToken(accessToken);
+    const verifiedUser = await verifyAccessToken(accessToken);
     if (!verifiedUser) return null;
 
     // Optionally: validate shape more strictly

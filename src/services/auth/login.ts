@@ -1,12 +1,11 @@
 'use server';
 
-import baseCookieOption from '@/config/cookie.config';
 import envVars from '@/config/env.config';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse } from '@/types';
 import { ILogin } from '@/types/api.types';
 import { revalidateTag } from 'next/cache';
-import { cookies } from 'next/headers';
+import { setAccessToken, setRefreshToken } from './cookie-token';
 
 const loginAction = async (formData: FormData) => {
   try {
@@ -25,17 +24,8 @@ const loginAction = async (formData: FormData) => {
 
     const { accessToken, refreshToken, user } = res.data;
 
-    const cookieStore = cookies();
-
-    (await cookieStore).set('accessToken', accessToken, {
-      ...baseCookieOption,
-      maxAge: Number(envVars.jwt.accessTokenMaxAge),
-    });
-
-    (await cookieStore).set('refreshToken', refreshToken, {
-      ...baseCookieOption,
-      maxAge: Number(envVars.jwt.refreshTokenMaxAge),
-    });
+    await setAccessToken(accessToken);
+    await setRefreshToken(refreshToken);
 
     revalidateTag('ME', 'max');
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
+import SubmitButton from '@/components/common/button/submit-button';
 import Logo from '@/components/layouts/Logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,11 +15,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
-import { useForgotPasswordMutation } from '@/redux/features/auth/auth.api';
+import { forgotPassword } from '@/services/auth/forgotPassword';
 import validation from '@/zod';
 import { forgotPasswordValidation } from '@/zod/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Send } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -28,11 +27,7 @@ import { z } from 'zod';
 
 type FormValues = z.infer<typeof forgotPasswordValidation>;
 
-const ForgotPasswordForm = ({
-  className,
-  ...props
-}: React.ComponentProps<'div'>) => {
-  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
+const ForgotPasswordForm = ({ className }: { className?: string }) => {
   const router = useRouter();
 
   const form = useForm<FormValues>({
@@ -44,12 +39,13 @@ const ForgotPasswordForm = ({
 
   const onSubmit = async (values: FormValues) => {
     console.log('Forgot password values:', values);
-    // 🔑 Call forgot password API here
+    const formData = new FormData();
+    formData.append('email', values.email);
 
     try {
-      const res = await forgotPassword({ email: values.email }).unwrap();
+      const res = await forgotPassword(formData);
       console.log(res);
-      if (res.success) {
+      if (res && res.success) {
         toast.success(res.message || 'Check Your email');
       }
       form.reset();
@@ -60,7 +56,7 @@ const ForgotPasswordForm = ({
   };
 
   return (
-    <div data-aos="fade-right" className={cn('w-full', className)} {...props}>
+    <div data-aos="fade-right" className={cn('w-full', className)}>
       <Card className="mx-auto w-full max-w-md rounded-2xl shadow-xl">
         <CardHeader className="flex flex-col items-center space-y-2 pb-2">
           <Logo />
@@ -97,17 +93,7 @@ const ForgotPasswordForm = ({
                 )}
               />
 
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <ButtonSpinner /> Send Reset Email
-                  </>
-                ) : (
-                  <>
-                    <Send /> Send Reset Email
-                  </>
-                )}
-              </Button>
+              <SubmitButton text="Send" loading={form.formState.isSubmitting} />
             </form>
           </Form>
 

@@ -13,7 +13,10 @@ import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
 import useSearchParamsValues from '@/hooks/useSearchParamsValues';
 import { loginAction } from '@/services/auth/login';
-import { getDefaultDashboardRoute, UserRole } from '@/utils/user-access';
+import {
+  getDefaultDashboardRoute,
+  UserRole,
+} from '@/services/user/user-access';
 import { loginFormValidation } from '@/zod/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';

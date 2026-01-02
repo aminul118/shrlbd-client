@@ -1,13 +1,13 @@
 'use server';
 
-import { revalidateTag } from 'next/cache';
+import { revalidate } from '@/lib/revalidate';
 import { removeAccessToken, removeRefreshToken } from './cookie-token';
 
 const logOut = async () => {
   await removeAccessToken();
   await removeRefreshToken();
 
-  revalidateTag('ME', 'max');
+  revalidate('ME');
 
   return {
     success: true,

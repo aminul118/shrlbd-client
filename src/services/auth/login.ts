@@ -1,10 +1,10 @@
 'use server';
 
 import envVars from '@/config/env.config';
+import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse } from '@/types';
 import { ILogin } from '@/types/api.types';
-import { revalidateTag } from 'next/cache';
 import { setAccessToken, setRefreshToken } from './cookie-token';
 
 const loginAction = async (formData: FormData) => {
@@ -27,7 +27,7 @@ const loginAction = async (formData: FormData) => {
     await setAccessToken(accessToken);
     await setRefreshToken(refreshToken);
 
-    revalidateTag('ME', 'max');
+    revalidate('ME');
 
     return {
       success: true,

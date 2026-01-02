@@ -2,10 +2,10 @@ import NotFound from '@/components/common/error/NotFound';
 import ClientWrapper from '@/components/common/wrapper/ClientWrapper';
 import EventCard from '@/components/modules/Public/events/EventCard';
 import Container from '@/components/ui/Container';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import generateMetaTags from '@/seo/generateMetaTags';
 import { getEvents } from '@/services/event/event';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const EventPage = async ({ searchParams }: SearchParams) => {

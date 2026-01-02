@@ -1,9 +1,9 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import EventFilters from '@/components/modules/Admin/events/EventFilters';
 import PreviousEventTable from '@/components/modules/Admin/events/PreviousEventTable';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getEvents } from '@/services/event/event';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const PreviousEvents = async ({ searchParams }: SearchParams) => {

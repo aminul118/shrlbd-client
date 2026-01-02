@@ -2,9 +2,9 @@ import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import UpcomingEventsFilter from '@/components/modules/Admin/upcoming-events/UpcomingEventsFilter';
 import UpcomingEventsTable from '@/components/modules/Admin/upcoming-events/UpcomingEventsTable';
 
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getUpcomingEvents } from '@/services/event/upcoming-event';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const UpcomingEventPage = async ({ searchParams }: SearchParams) => {

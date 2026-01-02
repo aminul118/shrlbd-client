@@ -1,8 +1,8 @@
 'use server';
 
 import serverFetch from '@/lib/server-fetch';
+import { ActionError } from '@/lib/serverResponse';
 import { ApiResponse, IUser } from '@/types';
-import { ActionError } from '@/utils/serverResponse';
 import { setAccessToken, setRefreshToken } from '../cookie-token';
 
 interface IOtp {

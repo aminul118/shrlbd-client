@@ -1,8 +1,8 @@
 'use server';
 
+import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IJob } from '@/types';
-import { revalidateTag } from 'next/cache';
 
 const getJobs = async (query: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IJob[]>>(`/job`, {
@@ -22,7 +22,7 @@ const getSingleJob = async (slug: string) => {
 
 const deleteSingleJob = async (slug: string) => {
   const res = await serverFetch.delete<ApiResponse<IJob>>(`/job/${slug}`);
-  revalidateTag('jobs', { expire: 0 });
+  revalidate('jobs');
   return res;
 };
 

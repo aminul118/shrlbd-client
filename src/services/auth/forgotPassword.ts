@@ -1,8 +1,8 @@
 'use server';
 
 import serverFetch from '@/lib/server-fetch';
+import { ActionError } from '@/lib/serverResponse';
 import { ApiResponse } from '@/types';
-import { ActionError } from '@/utils/serverResponse';
 
 const forgotPassword = async (formData: FormData) => {
   try {

@@ -21,3 +21,8 @@ export interface Params {
 export interface SearchParams {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
+
+export interface ICache {
+  tags: string[];
+  revalidate?: boolean;
+}

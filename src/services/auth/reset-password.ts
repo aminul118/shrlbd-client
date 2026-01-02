@@ -3,7 +3,7 @@
 import baseCookieOption from '@/config/cookie.config';
 import envVars from '@/config/env.config';
 import serverFetch from '@/lib/server-fetch';
-import { ActionError } from '@/utils/serverResponse';
+import { ActionError } from '@/lib/serverResponse';
 import { cookies } from 'next/headers';
 
 const resetPassword = async (formData: FormData, id: string, token: string) => {

@@ -1,9 +1,9 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import TeamJoinFilters from '@/components/modules/Admin/join-team/TeamJoinFilters';
 import TeamJoinRequest from '@/components/modules/Admin/join-team/TeamJoinRequestTable';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getJoinMembers } from '@/services/team/team-join';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const TeamJoinRequestPage = async ({ searchParams }: SearchParams) => {

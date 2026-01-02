@@ -1,9 +1,9 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import BlogsFilters from '@/components/modules/Admin/blogs/BlogFilter';
 import BlogsTable from '@/components/modules/Admin/blogs/BlogsTable';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getBlogs } from '@/services/blogs/blogs';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const BlogPage = async ({ searchParams }: SearchParams) => {

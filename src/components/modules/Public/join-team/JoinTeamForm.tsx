@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useSendTeamJoinRequestMutation } from '@/redux/features/joinTeam/joinTeam.api';
-import { teamJoinValidation } from '@/zod/team';
+import { teamJoinValidation } from '@/validations/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';

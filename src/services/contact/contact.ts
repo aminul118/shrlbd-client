@@ -1,7 +1,7 @@
 'use server';
 
 import catchZodError from '@/helpers/catchZodError';
-import { contactSchemaZodValidation } from '@/zod/contact';
+import { contactSchemaZodValidation } from '@/validations/contact';
 
 const contactAction = async (_: any, formData: FormData) => {
   const rawData = {

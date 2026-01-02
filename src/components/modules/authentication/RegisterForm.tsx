@@ -14,8 +14,8 @@ import { Input } from '@/components/ui/input';
 import SubmitButton from '@/components/common/button/submit-button';
 import Password from '@/components/ui/password';
 import { registerAction } from '@/services/user/register';
-import validation from '@/zod';
-import { registrationFormValidation } from '@/zod/auth';
+import validation from '@/validations';
+import { registrationFormValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useRouter } from 'next/navigation';

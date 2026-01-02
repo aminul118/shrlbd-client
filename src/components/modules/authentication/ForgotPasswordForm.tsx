@@ -16,8 +16,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 import { forgotPassword } from '@/services/auth/forgotPassword';
-import validation from '@/zod';
-import { forgotPasswordValidation } from '@/zod/auth';
+import validation from '@/validations';
+import { forgotPasswordValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

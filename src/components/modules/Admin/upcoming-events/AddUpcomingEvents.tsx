@@ -18,7 +18,7 @@ import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
 import { useAddUpcomingEventMutation } from '@/redux/features/upcoming-event/upcomingEvent.api';
-import { upcomingEventValidation } from '@/zod/upcoming-event';
+import { upcomingEventValidation } from '@/validations/upcoming-event';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

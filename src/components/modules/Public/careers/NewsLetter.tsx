@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { NewsletterInput, newsletterSchema } from '@/zod/newsletter';
+import { NewsletterInput, newsletterSchema } from '@/validations/newsletter';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 

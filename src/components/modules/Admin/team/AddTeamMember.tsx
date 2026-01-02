@@ -16,7 +16,7 @@ import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
 import { useAddTeamMemberMutation } from '@/redux/features/team/team.api';
-import { addTeamMemberValidation } from '@/zod/team';
+import { addTeamMemberValidation } from '@/validations/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';

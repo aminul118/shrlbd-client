@@ -17,7 +17,7 @@ import {
   getDefaultDashboardRoute,
   UserRole,
 } from '@/services/user/user-access';
-import { loginFormValidation } from '@/zod/auth';
+import { loginFormValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

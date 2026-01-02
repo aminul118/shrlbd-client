@@ -26,7 +26,7 @@ import {
   getDefaultDashboardRoute,
   UserRole,
 } from '@/services/user/user-access';
-import { otpValidation } from '@/zod/auth';
+import { otpValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { forbidden, useRouter } from 'next/navigation';

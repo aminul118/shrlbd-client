@@ -34,7 +34,7 @@ import {
   useAddJobMutation,
   useGetAllJobTypesQuery,
 } from '@/redux/features/jobs/job.api';
-import { jobPostValidation } from '@/zod/job-post';
+import { jobPostValidation } from '@/validations/job-post';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

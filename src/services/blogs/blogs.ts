@@ -1,8 +1,8 @@
 'use server';
 
+import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IBlog } from '@/types';
-import { revalidateTag } from 'next/cache';
 
 const getBlogs = async (query: Record<string, string>) => {
   return await serverFetch.get<ApiResponse<IBlog[]>>('/blog', {
@@ -15,13 +15,12 @@ const getBlogs = async (query: Record<string, string>) => {
 };
 
 const getSingleBlog = async (slug: string) => {
-  const res = await serverFetch.get<ApiResponse<IBlog>>(`/blog/${slug}`);
-  return res;
+  return await serverFetch.get<ApiResponse<IBlog>>(`/blog/${slug}`);
 };
 
 const deleteSingleBlog = async (slug: string) => {
   const res = await serverFetch.delete<ApiResponse<IBlog>>(`/blog/${slug}`);
-  revalidateTag('blog', { expire: 0 });
+  revalidate('blog');
   return res;
 };
 

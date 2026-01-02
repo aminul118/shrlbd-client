@@ -1,9 +1,9 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import AiTrainingsTable from '@/components/modules/Admin/ai/AiTrainingsTable';
 import AiTrainngsFilters from '@/components/modules/Admin/ai/AiTrainngsFilters';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getAis } from '@/services/ai/ai';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const AiTrainingsPage = async ({ searchParams }: SearchParams) => {

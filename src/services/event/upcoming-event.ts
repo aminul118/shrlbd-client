@@ -1,22 +1,22 @@
 'use server';
 
+import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IUpcomingEvent } from '@/types';
-import { revalidateTag } from 'next/cache';
 
 const createUpcomingEvent = async (payload: Partial<IUpcomingEvent>) => {
   const res = await serverFetch.post('/upcoming-event/create', {
     body: JSON.stringify(payload),
   });
 
-  revalidateTag('upcoming-event', 'max');
+  revalidate('upcoming-event');
 
-  return createUpcomingEvent;
+  return res;
 };
 
 const deleteUpcomingEvent = async (slug: string) => {
   const res = await serverFetch.delete(`/upcoming-event/${slug}`);
-  revalidateTag('upcoming-event', 'max');
+  revalidate('upcoming-event');
   return res;
 };
 
@@ -35,10 +35,9 @@ const getUpcomingEvents = async (query?: Record<string, string>) => {
 };
 
 const getSingleUpcomingEvent = async (slug: string) => {
-  const res = await serverFetch.get<ApiResponse<IUpcomingEvent>>(
+  return await serverFetch.get<ApiResponse<IUpcomingEvent>>(
     `/upcoming-event/${slug}`,
   );
-  return res;
 };
 
 export {

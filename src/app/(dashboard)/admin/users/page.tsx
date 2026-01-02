@@ -1,9 +1,9 @@
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
 import UsersFilters from '@/components/modules/Admin/users/UsersFiltes';
 import UsersTable from '@/components/modules/Admin/users/UsersTable';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getUsers } from '@/services/user/users';
 import { SearchParams } from '@/types';
-import cleanSearchParams from '@/utils/cleanSearchParams';
 import { Metadata } from 'next';
 
 const UsersPage = async ({ searchParams }: SearchParams) => {

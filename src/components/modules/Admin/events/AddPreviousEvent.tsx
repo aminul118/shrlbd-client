@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import MultipleImageDrop from '@/components/ui/multiple-image-drop';
 
 import { useAddEventMutation } from '@/redux/features/event/event.api';
-import { previousEventValidation } from '@/zod/event';
+import { previousEventValidation } from '@/validations/event';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';

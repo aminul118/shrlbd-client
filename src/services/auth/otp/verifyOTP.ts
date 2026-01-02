@@ -1,11 +1,9 @@
 'use server';
 
-import baseCookieOption from '@/config/cookie.config';
-import envVars from '@/config/env.config';
 import serverFetch from '@/lib/server-fetch';
+import { ActionError } from '@/lib/serverResponse';
 import { ApiResponse, IUser } from '@/types';
-import { ActionError } from '@/utils/serverResponse';
-import { cookies } from 'next/headers';
+import { setAccessToken, setRefreshToken } from '../cookie-token';
 
 interface IOtp {
   accessToken: string;
@@ -13,7 +11,7 @@ interface IOtp {
   user: IUser;
 }
 
-export const verifyOTP = async (formData: FormData) => {
+const verifyOTP = async (formData: FormData) => {
   try {
     const payload = {
       email: formData.get('email'),
@@ -32,17 +30,9 @@ export const verifyOTP = async (formData: FormData) => {
     }
 
     const { accessToken, refreshToken, user } = res.data;
-    const cookieStore = cookies();
 
-    (await cookieStore).set('accessToken', accessToken, {
-      ...baseCookieOption,
-      maxAge: Number(envVars.jwt.accessTokenMaxAge),
-    });
-
-    (await cookieStore).set('refreshToken', refreshToken, {
-      ...baseCookieOption,
-      maxAge: Number(envVars.jwt.refreshTokenMaxAge),
-    });
+    await setAccessToken(accessToken);
+    await setRefreshToken(refreshToken);
 
     return {
       success: true,
@@ -53,3 +43,5 @@ export const verifyOTP = async (formData: FormData) => {
     return ActionError(false, null, 'Wrong OTP');
   }
 };
+
+export { verifyOTP };

@@ -23,7 +23,7 @@ import {
 import { Input } from '@/components/ui/input';
 import Password from '@/components/ui/password';
 import { useRegisterForAdminMutation } from '@/redux/features/auth/auth.api';
-import { registrationFormValidation } from '@/zod/auth';
+import { registrationFormValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';

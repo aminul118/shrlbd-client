@@ -18,6 +18,7 @@ export interface ApiResponse<T> {
 export type {
   Children,
   DivProps,
+  ICache,
   IGlobalError,
   Params,
   SearchParams,

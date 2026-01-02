@@ -1,25 +1,13 @@
 'use server';
 
-import baseCookieOption from '@/config/cookie.config';
-import { revalidateTag } from 'next/cache';
-import { cookies } from 'next/headers';
+import { revalidate } from '@/lib/revalidate';
+import { removeAccessToken, removeRefreshToken } from './cookie-token';
 
 const logOut = async () => {
-  const cookieStore = cookies();
+  await removeAccessToken();
+  await removeRefreshToken();
 
-  (await cookieStore).delete({
-    name: 'accessToken',
-    path: baseCookieOption.path,
-    domain: baseCookieOption.domain,
-  });
-
-  (await cookieStore).delete({
-    name: 'refreshToken',
-    path: baseCookieOption.path,
-    domain: baseCookieOption.domain,
-  });
-
-  revalidateTag('ME', 'max');
+  revalidate('ME');
 
   return {
     success: true,

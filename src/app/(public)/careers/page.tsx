@@ -3,7 +3,7 @@ import Career from '@/components/modules/Public/careers/CareerBanner';
 import CareerCTA from '@/components/modules/Public/careers/CareerCTA';
 import JobsList from '@/components/modules/Public/careers/JobList.';
 import Container from '@/components/ui/Container';
-import cleanSearchParams from '@/utils/cleanSearchParams';
+import cleanSearchParams from '@/lib/cleanSearchParams';
 
 import generateMetaTags from '@/seo/generateMetaTags';
 import { SearchParams } from '@/types';

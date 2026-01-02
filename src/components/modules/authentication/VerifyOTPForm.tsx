@@ -19,11 +19,14 @@ import {
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import useSearchParamsValues from '@/hooks/useSearchParamsValues';
-import { sendOTP } from '@/services/otp/sendOTP';
+import { sendOTP } from '@/services/auth/otp/sendOTP';
 
-import { verifyOTP } from '@/services/otp/verifyOTP';
-import { getDefaultDashboardRoute, UserRole } from '@/utils/user-access';
-import { otpValidation } from '@/zod/auth';
+import { verifyOTP } from '@/services/auth/otp/verifyOTP';
+import {
+  getDefaultDashboardRoute,
+  UserRole,
+} from '@/services/user/user-access';
+import { otpValidation } from '@/validations/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { forbidden, useRouter } from 'next/navigation';

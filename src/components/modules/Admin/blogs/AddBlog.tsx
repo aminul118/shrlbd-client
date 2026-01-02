@@ -16,7 +16,7 @@ import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import SingleImageUploader from '@/components/ui/single-image-uploader';
 import { useAddBlogMutation } from '@/redux/features/blog/blog.api';
-import { addBlogSchema } from '@/zod/blog';
+import { addBlogSchema } from '@/validations/blog';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';

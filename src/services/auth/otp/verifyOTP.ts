@@ -21,6 +21,9 @@ const verifyOTP = async (formData: FormData) => {
     const res = await serverFetch.post<ApiResponse<IOtp | null>>(
       '/otp/verify',
       {
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(payload),
       },
     );

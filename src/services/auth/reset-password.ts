@@ -15,6 +15,9 @@ const resetPassword = async (formData: FormData, id: string, token: string) => {
     };
     console.log(payload);
     const res = await serverFetch.post('/auth/reset-password', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
     const cookieStore = cookies();

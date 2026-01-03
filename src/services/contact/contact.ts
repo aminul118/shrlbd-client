@@ -1,26 +1,24 @@
 'use server';
 
-import catchZodError from '@/helpers/catchZodError';
-import { contactSchemaZodValidation } from '@/zod/contact';
+import serverFetch from '@/lib/server-fetch';
+import { ApiResponse, IContact } from '@/types';
 
-const contactAction = async (_: any, formData: FormData) => {
-  const rawData = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    subject: formData.get('subject'),
-    message: formData.get('message'),
-  };
+type ContactPayload = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
-  const result = catchZodError(contactSchemaZodValidation, rawData);
+const contactAction = async (payload: ContactPayload) => {
+  const res = await serverFetch.post<ApiResponse<IContact>>('/contact', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
 
-  if (!result.success) {
-    return result;
-  }
-
-  return {
-    success: true,
-    message: 'Message sent successfully!',
-  };
+  return res;
 };
 
 export { contactAction };

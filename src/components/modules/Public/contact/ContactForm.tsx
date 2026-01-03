@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/common/button/submit-button';
 import {
   Form,
   FormControl,
@@ -14,16 +13,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCreateContactMutation } from '@/redux/features/contact/contact.api';
+import { contactAction } from '@/services/contact/contact';
 import { contactSchemaZodValidation } from '@/zod/contact';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof contactSchemaZodValidation>;
+
 const ContactForm = () => {
-  const [contact] = useCreateContactMutation();
-  const form = useForm<z.infer<typeof contactSchemaZodValidation>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(contactSchemaZodValidation),
     defaultValues: {
       name: '',
@@ -33,117 +33,111 @@ const ContactForm = () => {
     },
   });
 
-  const onSubmit = async (data: z.infer<typeof contactSchemaZodValidation>) => {
-    console.log(data);
-    const toastId = toast.loading('Message Sending');
+  const onSubmit = async (data: FormValues) => {
     try {
-      const res = await contact(data).unwrap();
+      const res = await contactAction(data);
 
-      if (res.statusCode === 200) {
-        toast.success(res.message || 'Message sent', { id: toastId });
+      console.log(res, 'RES');
+
+      if (res.success) {
+        toast.success(res.message);
+        form.reset();
       }
-      form.reset();
     } catch (error: any) {
-      toast.error('Message not sent!');
+      toast.error(error.message || 'Message not sent!');
     }
   };
 
   return (
-    <>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {/* Top row: Name + Email */}
-          <div className="grid grid-cols-1 gap-6">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="John Doe"
-                      autoComplete="name"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription className="sr-only">
-                    Your full name
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        {/* Name */}
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="John Doe" autoComplete="name" {...field} />
+              </FormControl>
+              <FormDescription className="sr-only">
+                Your full name
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="john@company.com"
-                      autoComplete="email"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription className="sr-only">
-                    Your email address
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+        {/* Email */}
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  placeholder="john@company.com"
+                  autoComplete="email"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription className="sr-only">
+                Your email address
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          {/* Subject (full width) */}
-          <FormField
-            control={form.control}
-            name="subject"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Subject</FormLabel>
-                <FormControl>
-                  <Input placeholder="Joining Your Team" {...field} />
-                </FormControl>
-                <FormDescription className="sr-only">
-                  The topic of your message
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        {/* Subject */}
+        <FormField
+          control={form.control}
+          name="subject"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Subject</FormLabel>
+              <FormControl>
+                <Input placeholder="Joining Your Team" {...field} />
+              </FormControl>
+              <FormDescription className="sr-only">
+                Message topic
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          {/* Message (full width) */}
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <Textarea
-                    className="h-36"
-                    placeholder="Write your message here..."
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription className="sr-only">
-                  Your full message
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        {/* Message */}
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea
+                  className="h-36"
+                  placeholder="Write your message here..."
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription className="sr-only">
+                Full message
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-          <div className="pt-2">
-            <Button type="submit">Submit</Button>
-          </div>
-        </form>
-      </Form>
-    </>
+        <SubmitButton
+          loading={form.formState.isSubmitting}
+          text="Send Message"
+        />
+      </form>
+    </Form>
   );
 };
 

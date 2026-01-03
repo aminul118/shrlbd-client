@@ -15,16 +15,11 @@ const serverFetchHelper = async <T>(
 
   const res = await fetch(url, {
     headers: {
-      'Content-Type': 'application/json',
       Cookie: accessToken ? `accessToken=${accessToken}` : '',
       ...headers,
     },
     ...rest,
   });
-
-  if (!res.ok) {
-    throw new Error(`Request failed: ${res.status}`);
-  }
 
   return res.json() as Promise<T>;
 };

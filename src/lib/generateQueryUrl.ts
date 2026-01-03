@@ -1,6 +1,11 @@
 import envVars from '@/config/env.config';
 
-const generateQueryUrl = (endpoint: string, query?: Record<string, string>) => {
+type QueryValue = string | number | boolean | null | undefined;
+
+const generateQueryUrl = (
+  endpoint: string,
+  query?: Record<string, QueryValue>,
+) => {
   const url = new URL(`${envVars.baseUrl}${endpoint}`);
 
   if (query) {

@@ -1,6 +1,19 @@
 export type { MenuGroup } from './admin-menu';
+export type {
+  Auth,
+  IAiTraining,
+  IBlog,
+  IContact,
+  IEvent,
+  IJob,
+  IJobType,
+  IScrollingText,
+  ITeamJoinRequest,
+  ITeamMember,
+  IUpcomingEvent,
+  IUser,
+} from './api.types';
 export type { MetaConfig, MetaProps, Routes } from './meta.types';
-
 export interface IMeta {
   page: number;
   limit: number;
@@ -24,20 +37,6 @@ export type {
   SearchParams,
   SectionProps,
 } from './next.types';
-
-export type {
-  Auth,
-  IAiTraining,
-  IBlog,
-  IEvent,
-  IJob,
-  IJobType,
-  IScrollingText,
-  ITeamJoinRequest,
-  ITeamMember,
-  IUpcomingEvent,
-  IUser,
-} from './api.types';
 
 export enum Role {
   ADMIN = 'ADMIN',

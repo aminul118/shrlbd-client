@@ -11,6 +11,9 @@ const sendOTP = async (email: string | null) => {
     };
 
     const res = await serverFetch.post<ApiResponse<null>>('/otp/re-send', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
     return res;

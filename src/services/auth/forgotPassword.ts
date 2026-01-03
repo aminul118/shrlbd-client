@@ -10,6 +10,9 @@ const forgotPassword = async (formData: FormData) => {
       email: formData.get('email'),
     };
     return await serverFetch.post<ApiResponse<null>>('/auth/forgot-password', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
   } catch (error: any) {

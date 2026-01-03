@@ -10,6 +10,9 @@ const setPassword = async (formData: FormData) => {
       newPassword: formData.get('newPassword'),
     };
     return await serverFetch.post<ApiResponse<null>>('/auth/set-password', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
   } catch (error: any) {

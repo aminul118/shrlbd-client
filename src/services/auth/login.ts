@@ -15,6 +15,9 @@ const loginAction = async (formData: FormData) => {
     };
 
     const res = await serverFetch.post<ApiResponse<ILogin>>('/auth/login', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     });
 

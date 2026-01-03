@@ -1,7 +1,7 @@
 'use client';
 
+import SubmitButton from '@/components/common/button/submit-button';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
@@ -17,7 +17,7 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import { useAddUpcomingEventMutation } from '@/redux/features/upcoming-event/upcomingEvent.api';
+import { createUpcomingEvent } from '@/services/event/upcoming-event';
 import { upcomingEventValidation } from '@/zod/upcoming-event';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -30,7 +30,6 @@ type FormValues = z.infer<typeof upcomingEventValidation>;
 
 const AddUpcomingEvent = () => {
   const router = useRouter();
-  const [addUpcomingEvent, { isLoading }] = useAddUpcomingEventMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(upcomingEventValidation),
@@ -49,10 +48,13 @@ const AddUpcomingEvent = () => {
     formData.append('file', data.photo);
 
     try {
-      const res = await addUpcomingEvent(formData).unwrap();
-      toast.success(res.message || 'Event added successfully!');
-      form.reset();
-      router.push('/admin/upcoming-events');
+      const res = await createUpcomingEvent(formData);
+      console.log(res);
+      if (res.success) {
+        toast.success(res.message);
+        form.reset();
+        router.push('/admin/upcoming-events');
+      }
     } catch (error: any) {
       toast.error(error?.data?.message || 'Something went wrong');
     }
@@ -163,16 +165,10 @@ const AddUpcomingEvent = () => {
               </FormItem>
             )}
           />
-
-          <Button type="submit" disabled={!form.formState.isValid}>
-            {isLoading ? (
-              <>
-                <ButtonSpinner /> Add Event
-              </>
-            ) : (
-              'Add Event'
-            )}
-          </Button>
+          <SubmitButton
+            text="Add Upcoming Event"
+            loading={form.formState.isSubmitting}
+          />
         </form>
       </Form>
     </Container>

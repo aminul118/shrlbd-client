@@ -16,13 +16,12 @@ const registerAction = async (formData: FormData) => {
 
     const res = await serverFetch.post<ApiResponse<IUser>>('/user/register', {
       body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
-    return {
-      success: true,
-      data: res.data,
-      message: res.message,
-    };
+    return res;
   } catch (error: any) {
     return ActionError(false, null, error?.message || 'Something went wrong');
   }
@@ -38,15 +37,17 @@ const registerUserFromAdmin = async (formData: FormData) => {
       password: formData.get('password'),
     };
 
-    const res = await serverFetch.post<ApiResponse<IUser>>('/user/register', {
-      body: JSON.stringify(payload),
-    });
+    const res = await serverFetch.post<ApiResponse<IUser>>(
+      '/user/admin/register',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      },
+    );
 
-    return {
-      success: true,
-      data: res.data,
-      message: res.message,
-    };
+    return res;
   } catch (error: any) {
     return ActionError(false, null, error?.message || 'Something went wrong');
   }

@@ -4,6 +4,18 @@ import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IBlog } from '@/types';
 
+const createBlog = async (formData: FormData) => {
+  const body = new FormData();
+  body.append('data', formData.get('data') as string);
+  body.append('file', formData.get('file') as File);
+
+  const res = await serverFetch.post<ApiResponse<IBlog>>('/contact', {
+    body,
+  });
+
+  return res;
+};
+
 const getBlogs = async (query: Record<string, string>) => {
   return await serverFetch.get<ApiResponse<IBlog[]>>('/blog', {
     query,
@@ -24,4 +36,4 @@ const deleteSingleBlog = async (slug: string) => {
   return res;
 };
 
-export { deleteSingleBlog, getBlogs, getSingleBlog };
+export { createBlog, deleteSingleBlog, getBlogs, getSingleBlog };

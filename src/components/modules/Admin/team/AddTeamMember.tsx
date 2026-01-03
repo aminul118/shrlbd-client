@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import SubmitButton from '@/components/common/button/submit-button';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
@@ -15,7 +16,7 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import { useAddTeamMemberMutation } from '@/redux/features/team/team.api';
+import { createTeamMember } from '@/services/team/team-member';
 import { addTeamMemberValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, Trash2 } from 'lucide-react';
@@ -29,7 +30,6 @@ import z from 'zod';
 const AddTeamMember = () => {
   type FormValues = z.infer<typeof addTeamMemberValidation>;
   const router = useRouter();
-  const [addTeamMember] = useAddTeamMemberMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(addTeamMemberValidation),
@@ -59,10 +59,9 @@ const AddTeamMember = () => {
       formData.append('file', photo);
     }
 
-    const toastId = toast.loading('Adding team member…');
     try {
-      const res = await addTeamMember(formData).unwrap();
-      toast.success(res?.message || 'Team member added', { id: toastId });
+      const res = await createTeamMember(formData);
+      toast.success(res?.message || 'Team member added');
       form.reset({
         name: '',
         content: '',
@@ -75,9 +74,7 @@ const AddTeamMember = () => {
 
       router.push('/admin/team-members');
     } catch (error: any) {
-      toast.error(error?.message || 'Failed to add team member', {
-        id: toastId,
-      });
+      toast.error(error?.message || 'Failed to add team member');
     }
   };
   return (
@@ -225,9 +222,10 @@ const AddTeamMember = () => {
             )}
           />
 
-          <Button disabled={!form.formState.isValid} type="submit">
-            Submit
-          </Button>
+          <SubmitButton
+            loading={form.formState.isSubmitting}
+            text="Add Team Member"
+          />
         </form>
       </Form>
     </Container>

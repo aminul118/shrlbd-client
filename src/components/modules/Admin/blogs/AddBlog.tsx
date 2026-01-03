@@ -51,12 +51,11 @@ const AddBlog = () => {
     if (thumbnail instanceof File) {
       formData.append('file', thumbnail);
     }
-    const toastId = toast.loading('Adding blog…');
+
     try {
       console.log('Submitted data:', data);
       const res = await addBlog(formData).unwrap();
-      toast.success(res?.message || 'Blog added', { id: toastId });
-      form.reset();
+      toast.success(res?.message || 'Blog added');
       router.push('/admin/blogs');
     } catch (error) {
       toast.error('Failed to add blog!');

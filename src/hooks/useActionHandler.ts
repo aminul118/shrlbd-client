@@ -38,7 +38,7 @@ const useActionHandler = () => {
         console.log('RES==>', res);
       }
 
-      if (res?.success && res.statusCode === 201) {
+      if (res?.success) {
         toast.success(res.message || success?.message || 'Success', {
           id: toastId,
         });
@@ -52,6 +52,7 @@ const useActionHandler = () => {
             : router.push(success.redirectPath);
         }
 
+        // Page refresh and re call the API
         if (success?.isRefresh) {
           router.refresh();
         }

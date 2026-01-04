@@ -4,10 +4,13 @@ import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IScrollingText } from '@/types';
 
-const createScrollingText = async (payload: Partial<IScrollingText>) => {
+const createScrollingText = async (payload: Record<string, string>) => {
   const res = await serverFetch.post<ApiResponse<IScrollingText>>(
     '/scrolling-text/create',
     {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(payload),
     },
   );

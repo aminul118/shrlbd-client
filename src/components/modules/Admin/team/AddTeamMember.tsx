@@ -16,8 +16,7 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import useToast from '@/hooks/useToast';
-
+import useActionHandler from '@/hooks/useActionHandler';
 import { createTeamMember } from '@/services/team/team-member';
 import { addTeamMemberValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -25,13 +24,12 @@ import { Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { FieldArrayPath, useFieldArray, useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import z from 'zod';
 
 type FormValues = z.infer<typeof addTeamMemberValidation>;
 
 const AddTeamMember = () => {
-  const { handleSuccess } = useToast();
+  const { executePost } = useActionHandler();
   const form = useForm<FormValues>({
     resolver: zodResolver(addTeamMemberValidation),
     defaultValues: {
@@ -60,16 +58,15 @@ const AddTeamMember = () => {
       formData.append('file', photo);
     }
 
-    try {
-      const res = await createTeamMember(formData);
-      await handleSuccess({
-        res,
+    await executePost({
+      action: () => createTeamMember(formData),
+      success: {
         onSuccess: () => form.reset(),
-        path: '/admin/team-members',
-      });
-    } catch (error: any) {
-      toast.error(error?.message || 'Failed to add team member');
-    }
+        redirectPath: '/admin/team-members',
+        loadingText: 'Team member adding..',
+        message: 'Member added successfully',
+      },
+    });
   };
   return (
     <Container>

@@ -16,20 +16,19 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import SingleImageUploader from '@/components/ui/single-image-uploader';
+import useActionHandler from '@/hooks/useActionHandler';
 import { createBlog } from '@/services/blogs/blogs';
 import { addBlogSchema } from '@/zod/blog';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormValues = z.infer<typeof addBlogSchema>;
 
 const AddBlog = () => {
-  const router = useRouter();
+  const { executePost } = useActionHandler();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(addBlogSchema),
@@ -52,15 +51,15 @@ const AddBlog = () => {
       formData.append('file', thumbnail);
     }
 
-    try {
-      console.log('Submitted data:', data);
-      const res = await createBlog(formData);
-      toast.success(res?.message || 'Blog added');
-      router.push('/admin/blogs');
-    } catch (error) {
-      toast.error('Failed to add blog!');
-      console.error(error);
-    }
+    await executePost({
+      action: () => createBlog(formData),
+      success: {
+        onSuccess: () => form.reset(),
+        loadingText: 'Blog adding...',
+        message: 'Blog added successfully',
+        redirectPath: '/admin/blogs',
+      },
+    });
   };
 
   return (

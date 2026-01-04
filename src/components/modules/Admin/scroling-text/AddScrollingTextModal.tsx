@@ -21,21 +21,20 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import useToast from '@/hooks/useToast';
+import useActionHandler from '@/hooks/useActionHandler';
 import { createScrollingText } from '@/services/scrolling-text/scrolling-text';
 import { scrollingTextZodSchema } from '@/zod/scrollingText';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormValues = z.infer<typeof scrollingTextZodSchema>;
 
 const AddScrollingTextModal = () => {
   const [open, setOpen] = useState(false);
-  const { handleSuccess } = useToast();
+  const { executePost } = useActionHandler();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(scrollingTextZodSchema),
@@ -45,16 +44,15 @@ const AddScrollingTextModal = () => {
   });
 
   const onSubmit = async (values: FormValues) => {
-    try {
-      const res = await createScrollingText(values);
-      await handleSuccess({
-        res,
+    await executePost({
+      action: () => createScrollingText(values),
+      success: {
         onSuccess: () => form.reset(),
         modalClose: () => setOpen(false),
-      });
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to add scrolling text');
-    }
+        loadingText: 'Scrolling text adding....',
+        message: 'Text added successfully',
+      },
+    });
   };
 
   return (

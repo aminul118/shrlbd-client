@@ -13,16 +13,17 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import useActionHandler from '@/hooks/useActionHandler';
 import { contactAction } from '@/services/contact/contact';
 import { contactSchemaZodValidation } from '@/zod/contact';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormValues = z.infer<typeof contactSchemaZodValidation>;
 
 const ContactForm = () => {
+  const { executePost } = useActionHandler();
   const form = useForm<FormValues>({
     resolver: zodResolver(contactSchemaZodValidation),
     defaultValues: {
@@ -34,18 +35,14 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    try {
-      const res = await contactAction(data);
-
-      console.log(res, 'RES');
-
-      if (res.success) {
-        toast.success(res.message);
-        form.reset();
-      }
-    } catch (error: any) {
-      toast.error(error.message || 'Message not sent!');
-    }
+    await executePost({
+      action: () => contactAction(data),
+      success: {
+        onSuccess: () => form.reset(),
+        message: 'Message send to authority successfully',
+        loadingText: 'Message sending to authority..',
+      },
+    });
   };
 
   return (

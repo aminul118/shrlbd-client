@@ -31,21 +31,20 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import useToast from '@/hooks/useToast';
+import useActionHandler from '@/hooks/useActionHandler';
 import { useGetAllJobTypesQuery } from '@/redux/features/jobs/job.api';
 import { createJob } from '@/services/career/jobs';
 import { jobPostValidation } from '@/zod/job-post';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormValue = z.infer<typeof jobPostValidation>;
 
 const AddJobModal = () => {
   const [open, setOpen] = useState(false);
-  const { handleSuccess } = useToast();
+  const { executePost } = useActionHandler();
 
   const { data } = useGetAllJobTypesQuery({});
   const jobTypes = data?.data || [];
@@ -63,17 +62,13 @@ const AddJobModal = () => {
   });
 
   const onSubmit = async (values: FormValue) => {
-    try {
-      const res = await createJob(values);
-      await handleSuccess({
-        res,
-        message: 'Job created successfully',
+    await executePost({
+      action: () => createJob(values),
+      success: {
         onSuccess: () => form.reset(),
         modalClose: () => setOpen(false),
-      });
-    } catch (error: any) {
-      toast.error(error?.message || 'Failed to create job.');
-    }
+      },
+    });
   };
 
   return (

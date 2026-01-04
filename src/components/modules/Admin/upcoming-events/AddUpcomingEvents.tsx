@@ -17,19 +17,18 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
+import useActionHandler from '@/hooks/useActionHandler';
 import { createUpcomingEvent } from '@/services/event/upcoming-event';
 import { upcomingEventValidation } from '@/zod/upcoming-event';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormValues = z.infer<typeof upcomingEventValidation>;
 
 const AddUpcomingEvent = () => {
-  const router = useRouter();
+  const { executePost } = useActionHandler();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(upcomingEventValidation),
@@ -47,17 +46,14 @@ const AddUpcomingEvent = () => {
     formData.append('data', JSON.stringify(data));
     formData.append('file', data.photo);
 
-    try {
-      const res = await createUpcomingEvent(formData);
-      console.log(res);
-      if (res.success) {
-        toast.success(res.message);
-        form.reset();
-        router.push('/admin/upcoming-events');
-      }
-    } catch (error: any) {
-      toast.error(error?.data?.message || 'Something went wrong');
-    }
+    await executePost({
+      action: () => createUpcomingEvent(formData),
+      success: {
+        message: 'Event created successfully',
+        redirectPath: '/admin/upcoming-events',
+        onSuccess: () => form.reset(),
+      },
+    });
   };
 
   return (

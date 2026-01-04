@@ -13,17 +13,16 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import MultipleImageDrop from '@/components/ui/multiple-image-drop';
-import useToast from '@/hooks/useToast';
+import useActionHandler from '@/hooks/useActionHandler';
 import { createEvent } from '@/services/event/event';
 import { previousEventValidation } from '@/zod/event';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import z from 'zod';
 
 const AddPreviousEvent = () => {
-  const { handleSuccess } = useToast();
+  const { executePost } = useActionHandler();
   type FormValues = z.infer<typeof previousEventValidation>;
   const form = useForm<FormValues>({
     resolver: zodResolver(previousEventValidation),
@@ -35,27 +34,23 @@ const AddPreviousEvent = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    const toastId = toast.loading('Event adding....');
-    try {
-      const formData = new FormData();
-      formData.append('data', JSON.stringify(data));
+    const formData = new FormData();
+    formData.append('data', JSON.stringify(data));
 
-      // Append each file individually
-      data.photos.forEach((file) => {
-        formData.append('files', file); // 'files' must match backend key
-      });
+    // Append each file individually
+    data.photos.forEach((file) => {
+      formData.append('files', file); // 'files' must match backend key
+    });
 
-      const res = await createEvent(formData);
-
-      await handleSuccess({
-        res,
+    await executePost({
+      action: () => createEvent(formData),
+      success: {
         onSuccess: () => form.reset(),
-      });
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      toast.error(error.message || 'ERROR', { id: toastId });
-    }
+        loadingText: 'Event details adding...',
+        message: 'Event added successfully.',
+        redirectPath: '/admin/previous-events',
+      },
+    });
   };
 
   return (

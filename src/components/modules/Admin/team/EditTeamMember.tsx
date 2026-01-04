@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/form';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
+import useActionHandler from '@/hooks/useActionHandler';
 import { updateTeamMember } from '@/services/team/team-member';
 import { IModal, ITeamMember } from '@/types';
 import { updateTeamMemberValidation } from '@/zod/team';
@@ -31,7 +32,6 @@ import { Plus, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { FieldArrayPath, useFieldArray, useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import z from 'zod';
 
 interface Props extends IModal {
@@ -39,6 +39,7 @@ interface Props extends IModal {
 }
 
 const EditTeamMember = ({ member, open, setOpen }: Props) => {
+  const { executePost } = useActionHandler();
   type FormValues = z.infer<typeof updateTeamMemberValidation>;
   const router = useRouter();
 
@@ -71,26 +72,15 @@ const EditTeamMember = ({ member, open, setOpen }: Props) => {
       formData.append('file', photo);
     }
 
-    const toastId = toast.loading('Adding team member…');
-    try {
-      const res = await updateTeamMember(formData, member.slug);
-      toast.success(res?.message || 'Team member added', { id: toastId });
-      form.reset({
-        name: '',
-        content: '',
-        shrlDesignation: '',
-        designation: [''],
-        email: '',
-        phone: '',
-        photo: null,
-      });
-
-      router.push('/admin/team-members');
-    } catch (error: any) {
-      toast.error(error?.message || 'Failed to add team member', {
-        id: toastId,
-      });
-    }
+    await executePost({
+      action: () => updateTeamMember(formData, member.slug),
+      success: {
+        onSuccess: () => form.reset(),
+        redirectPath: '/admin/team-members',
+        loadingText: 'Member details Updating...',
+        message: 'Details update successfully',
+      },
+    });
   };
   return (
     <>

@@ -10,7 +10,6 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { deleteUpcomingEvent } from '@/services/event/upcoming-event';
-
 import { IUpcomingEvent } from '@/types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
@@ -21,8 +20,7 @@ const UpcomingEventActions = ({ event }: { event: IUpcomingEvent }) => {
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const res = await deleteUpcomingEvent(id);
-    return res;
+    return await deleteUpcomingEvent(id);
   };
 
   return (

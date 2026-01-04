@@ -20,18 +20,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import useToast from '@/hooks/useToast';
+import useActionHandler from '@/hooks/useActionHandler';
 import { createJoinMembers } from '@/services/team/team-join';
 import { teamJoinValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormValues = z.infer<typeof teamJoinValidation>;
 
 const JoinTeamForm = () => {
-  const { handleSuccess } = useToast();
+  const { executePost } = useActionHandler();
   const form = useForm<FormValues>({
     resolver: zodResolver(teamJoinValidation),
     defaultValues: {
@@ -49,16 +48,14 @@ const JoinTeamForm = () => {
   });
 
   const onSubmit = async (payload: FormValues) => {
-    try {
-      const res = await createJoinMembers(payload);
-
-      await handleSuccess({
-        res,
+    await executePost({
+      action: () => createJoinMembers(payload),
+      success: {
         onSuccess: () => form.reset(),
-      });
-    } catch (error: any) {
-      toast.error('Message not sent!');
-    }
+        loadingText: 'Application submitting..',
+        message: 'Application submitted successfully',
+      },
+    });
   };
 
   return (

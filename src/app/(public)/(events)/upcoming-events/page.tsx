@@ -1,13 +1,15 @@
 import ScrollingText from '@/components/modules/Public/upcoming-events/ScrollingText';
 import UpcomingEvents from '@/components/modules/Public/upcoming-events/UpcomingEvents';
 import generateMetaTags from '@/seo/generateMetaTags';
+import { getUpcomingEvents } from '@/services/event/upcoming-event';
 import { Metadata } from 'next';
 
-const UpcomingEventPage = () => {
+const UpcomingEventPage = async () => {
+  const { data } = await getUpcomingEvents();
   return (
     <>
       <ScrollingText />
-      <UpcomingEvents />
+      <UpcomingEvents events={data} />
     </>
   );
 };

@@ -4,6 +4,17 @@ import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IScrollingText } from '@/types';
 
+const createScrollingText = async (payload: Partial<IScrollingText>) => {
+  const res = await serverFetch.post<ApiResponse<IScrollingText>>(
+    '/scrolling-text/create',
+    {
+      body: JSON.stringify(payload),
+    },
+  );
+  revalidate('scrolling-text');
+  return res;
+};
+
 const getScrollingText = async (query?: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IScrollingText[]>>(
     '/scrolling-text',
@@ -22,17 +33,6 @@ const getSingleScrollingText = async (slug: string) => {
   const res = await serverFetch.get<ApiResponse<IScrollingText>>(
     `/scrolling-text/${slug}`,
   );
-  return res;
-};
-
-const createScrollingText = async (payload: Partial<IScrollingText>) => {
-  const res = await serverFetch.post<ApiResponse<IScrollingText>>(
-    '/scrolling-text/create',
-    {
-      body: JSON.stringify(payload),
-    },
-  );
-
   return res;
 };
 

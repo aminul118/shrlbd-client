@@ -24,6 +24,26 @@ const createEvent = async (formData: FormData) => {
   revalidate('events');
   return res;
 };
+const updateEvent = async (formData: FormData, slug: string) => {
+  const body = new FormData();
+
+  // pass JSON data
+  body.append('data', formData.get('data') as string);
+
+  // get ALL files, not just one
+  const files = formData.getAll('files') as File[];
+
+  files.forEach((file) => {
+    body.append('files', file);
+  });
+
+  const res = await serverFetch.post<ApiResponse<IEvent>>(`/event/${slug}`, {
+    body,
+  });
+
+  revalidate('events');
+  return res;
+};
 
 const getEvents = async (query: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IEvent[]>>('/event', {
@@ -48,4 +68,10 @@ const deleteSingleEvent = async (id: string) => {
   return res;
 };
 
-export { createEvent, deleteSingleEvent, getEvents, getSingleEvent };
+export {
+  createEvent,
+  deleteSingleEvent,
+  getEvents,
+  getSingleEvent,
+  updateEvent,
+};

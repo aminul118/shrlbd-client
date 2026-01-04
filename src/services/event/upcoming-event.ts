@@ -23,6 +23,25 @@ const createUpcomingEvent = async (formData: FormData) => {
   return res;
 };
 
+const updateUpcomingEvent = async (formData: FormData, slug: string) => {
+  const body = new FormData();
+  body.append('data', formData.get('data') as string);
+  const file = formData.get('file') as File | null;
+  if (file) {
+    body.append('file', file);
+  }
+
+  const res = await serverFetch.post<ApiResponse<IUpcomingEvent>>(
+    `/upcoming-event/${slug}`,
+    {
+      body,
+    },
+  );
+
+  revalidate('upcoming-event');
+  return res;
+};
+
 const getUpcomingEvents = async (query?: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IUpcomingEvent[]>>(
     `/upcoming-event`,
@@ -56,4 +75,5 @@ export {
   deleteUpcomingEvent,
   getSingleUpcomingEvent,
   getUpcomingEvents,
+  updateUpcomingEvent,
 };

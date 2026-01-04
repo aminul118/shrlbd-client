@@ -4,6 +4,21 @@ import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, ITeamJoinRequest } from '@/types';
 
+const createJoinMembers = async (payload: Record<string, string>) => {
+  const res = await serverFetch.post<ApiResponse<ITeamJoinRequest>>(
+    '/join-team/create',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    },
+  );
+
+  revalidate('join-team');
+  return res;
+};
+
 const getJoinMembers = async (query: Record<string, string>) => {
   return await serverFetch.get<ApiResponse<ITeamJoinRequest[]>>('/join-team', {
     query,
@@ -29,4 +44,9 @@ const deleteSingleJoinMember = async (slug: string) => {
   return res;
 };
 
-export { deleteSingleJoinMember, getJoinMembers, getSingleJoinMember };
+export {
+  createJoinMembers,
+  deleteSingleJoinMember,
+  getJoinMembers,
+  getSingleJoinMember,
+};

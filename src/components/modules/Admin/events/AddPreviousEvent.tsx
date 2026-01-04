@@ -13,6 +13,7 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import MultipleImageDrop from '@/components/ui/multiple-image-drop';
+import { handleSuccess } from '@/lib/toast';
 
 import { createEvent } from '@/services/event/event';
 import { previousEventValidation } from '@/zod/event';
@@ -45,10 +46,11 @@ const AddPreviousEvent = () => {
       });
 
       const res = await createEvent(formData);
-      if (res.success) {
-        toast.success(res.message);
-        form.reset();
-      }
+
+      await handleSuccess({
+        res,
+        onSuccess: () => form.reset(),
+      });
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

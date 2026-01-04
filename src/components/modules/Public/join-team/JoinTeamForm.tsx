@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { handleSuccess } from '@/lib/toast';
+import useToast from '@/hooks/useToast';
 import { createJoinMembers } from '@/services/team/team-join';
 import { teamJoinValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,6 +31,7 @@ import { z } from 'zod';
 type FormValues = z.infer<typeof teamJoinValidation>;
 
 const JoinTeamForm = () => {
+  const { handleSuccess } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(teamJoinValidation),
     defaultValues: {

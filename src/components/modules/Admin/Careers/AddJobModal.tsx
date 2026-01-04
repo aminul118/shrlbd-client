@@ -1,5 +1,6 @@
 'use client';
 
+import SubmitButton from '@/components/common/button/submit-button';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import {
   AlertDialog,
@@ -30,10 +31,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  useAddJobMutation,
-  useGetAllJobTypesQuery,
-} from '@/redux/features/jobs/job.api';
+import useToast from '@/hooks/useToast';
+import { useGetAllJobTypesQuery } from '@/redux/features/jobs/job.api';
+import { createJob } from '@/services/career/jobs';
 import { jobPostValidation } from '@/zod/job-post';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -45,7 +45,8 @@ type FormValue = z.infer<typeof jobPostValidation>;
 
 const AddJobModal = () => {
   const [open, setOpen] = useState(false);
-  const [addJob] = useAddJobMutation();
+  const { handleSuccess } = useToast();
+
   const { data } = useGetAllJobTypesQuery({});
   const jobTypes = data?.data || [];
 
@@ -63,13 +64,13 @@ const AddJobModal = () => {
 
   const onSubmit = async (values: FormValue) => {
     try {
-      const res = await addJob(values).unwrap();
-      if (res?.status === 201) {
-        console.log(res);
-        toast.success(res.message || 'Job created successfully!');
-        form.reset();
-        setOpen(false);
-      }
+      const res = await createJob(values);
+      await handleSuccess({
+        res,
+        message: 'Job created successfully',
+        onSuccess: () => form.reset(),
+        modalClose: () => setOpen(false),
+      });
     } catch (error: any) {
       toast.error(error?.message || 'Failed to create job.');
     }
@@ -212,9 +213,10 @@ const AddJobModal = () => {
               <AlertDialogCancel onClick={() => setOpen(false)}>
                 Cancel
               </AlertDialogCancel>
-              <Button type="submit" disabled={!form.formState.isValid}>
-                Post Job
-              </Button>
+              <SubmitButton
+                text=" Post Job"
+                loading={form.formState.isSubmitting}
+              />
             </AlertDialogFooter>
           </form>
         </Form>

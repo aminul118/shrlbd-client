@@ -48,3 +48,11 @@ export interface IModal {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
+
+export interface SuccessToastOptions {
+  res: any;
+  message?: string;
+  onSuccess?: () => void;
+  path?: string;
+  modalClose?: () => void;
+}

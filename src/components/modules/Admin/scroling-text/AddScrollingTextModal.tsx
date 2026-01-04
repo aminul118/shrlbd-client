@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Textarea } from '@/components/ui/textarea';
-import { handleSuccess } from '@/lib/toast';
+import useToast from '@/hooks/useToast';
 import { createScrollingText } from '@/services/scrolling-text/scrolling-text';
 import { scrollingTextZodSchema } from '@/zod/scrollingText';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -35,6 +35,7 @@ type FormValues = z.infer<typeof scrollingTextZodSchema>;
 
 const AddScrollingTextModal = () => {
   const [open, setOpen] = useState(false);
+  const { handleSuccess } = useToast();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(scrollingTextZodSchema),
@@ -49,9 +50,8 @@ const AddScrollingTextModal = () => {
       await handleSuccess({
         res,
         onSuccess: () => form.reset(),
+        modalClose: () => setOpen(false),
       });
-
-      setOpen(false);
     } catch (error: any) {
       toast.error(error.message || 'Failed to add scrolling text');
     }

@@ -13,8 +13,7 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import MultipleImageDrop from '@/components/ui/multiple-image-drop';
-import { handleSuccess } from '@/lib/toast';
-
+import useToast from '@/hooks/useToast';
 import { createEvent } from '@/services/event/event';
 import { previousEventValidation } from '@/zod/event';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,6 +23,7 @@ import { toast } from 'sonner';
 import z from 'zod';
 
 const AddPreviousEvent = () => {
+  const { handleSuccess } = useToast();
   type FormValues = z.infer<typeof previousEventValidation>;
   const form = useForm<FormValues>({
     resolver: zodResolver(previousEventValidation),

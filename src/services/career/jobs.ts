@@ -4,6 +4,17 @@ import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IJob } from '@/types';
 
+const createJob = async (payload: Record<string, string>) => {
+  const res = await serverFetch.post<ApiResponse<IJob>>('/job', {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+  revalidate('jobs');
+  return res;
+};
+
 const getJobs = async (query: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IJob[]>>(`/job`, {
     query,
@@ -26,4 +37,4 @@ const deleteSingleJob = async (slug: string) => {
   return res;
 };
 
-export { deleteSingleJob, getJobs, getSingleJob };
+export { createJob, deleteSingleJob, getJobs, getSingleJob };

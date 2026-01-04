@@ -9,19 +9,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteUpcomingEventMutation } from '@/redux/features/upcoming-event/upcomingEvent.api';
+import { deleteUpcomingEvent } from '@/services/event/upcoming-event';
+
 import { IUpcomingEvent } from '@/types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ViewUpcomingEventModal from './ViewUpcomingEventModal';
 
 const UpcomingEventActions = ({ event }: { event: IUpcomingEvent }) => {
-  const [deleteEvent] = useDeleteUpcomingEventMutation();
   const [detailsOpen, setDetailOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const res = await deleteEvent(id).unwrap();
+    const res = await deleteUpcomingEvent(id);
     return res;
   };
 

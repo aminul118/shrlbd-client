@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import SubmitButton from '@/components/common/button/submit-button';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
@@ -15,22 +16,22 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import { useAddTeamMemberMutation } from '@/redux/features/team/team.api';
-import { addTeamMemberValidation } from '@/validations/team';
+import useToast from '@/hooks/useToast';
+
+import { createTeamMember } from '@/services/team/team-member';
+import { addTeamMemberValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, Trash2 } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { FieldArrayPath, useFieldArray, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import z from 'zod';
 
-const AddTeamMember = () => {
-  type FormValues = z.infer<typeof addTeamMemberValidation>;
-  const router = useRouter();
-  const [addTeamMember] = useAddTeamMemberMutation();
+type FormValues = z.infer<typeof addTeamMemberValidation>;
 
+const AddTeamMember = () => {
+  const { handleSuccess } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(addTeamMemberValidation),
     defaultValues: {
@@ -59,25 +60,15 @@ const AddTeamMember = () => {
       formData.append('file', photo);
     }
 
-    const toastId = toast.loading('Adding team member…');
     try {
-      const res = await addTeamMember(formData).unwrap();
-      toast.success(res?.message || 'Team member added', { id: toastId });
-      form.reset({
-        name: '',
-        content: '',
-        shrlDesignation: '',
-        designation: [''],
-        email: '',
-        phone: '',
-        photo: null,
+      const res = await createTeamMember(formData);
+      await handleSuccess({
+        res,
+        onSuccess: () => form.reset(),
+        path: '/admin/team-members',
       });
-
-      router.push('/admin/team-members');
     } catch (error: any) {
-      toast.error(error?.message || 'Failed to add team member', {
-        id: toastId,
-      });
+      toast.error(error?.message || 'Failed to add team member');
     }
   };
   return (
@@ -225,9 +216,10 @@ const AddTeamMember = () => {
             )}
           />
 
-          <Button disabled={!form.formState.isValid} type="submit">
-            Submit
-          </Button>
+          <SubmitButton
+            loading={form.formState.isSubmitting}
+            text="Add Team Member"
+          />
         </form>
       </Form>
     </Container>

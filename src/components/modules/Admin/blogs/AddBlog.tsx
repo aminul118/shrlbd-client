@@ -1,5 +1,6 @@
 'use client';
 
+import SubmitButton from '@/components/common/button/submit-button';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/ui/Container';
@@ -15,8 +16,8 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import SingleImageUploader from '@/components/ui/single-image-uploader';
-import { useAddBlogMutation } from '@/redux/features/blog/blog.api';
-import { addBlogSchema } from '@/validations/blog';
+import { createBlog } from '@/services/blogs/blogs';
+import { addBlogSchema } from '@/zod/blog';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -29,7 +30,6 @@ type FormValues = z.infer<typeof addBlogSchema>;
 
 const AddBlog = () => {
   const router = useRouter();
-  const [addBlog, { isLoading }] = useAddBlogMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(addBlogSchema),
@@ -51,12 +51,11 @@ const AddBlog = () => {
     if (thumbnail instanceof File) {
       formData.append('file', thumbnail);
     }
-    const toastId = toast.loading('Adding blog…');
+
     try {
       console.log('Submitted data:', data);
-      const res = await addBlog(formData).unwrap();
-      toast.success(res?.message || 'Blog added', { id: toastId });
-      form.reset();
+      const res = await createBlog(formData);
+      toast.success(res?.message || 'Blog added');
       router.push('/admin/blogs');
     } catch (error) {
       toast.error('Failed to add blog!');
@@ -147,9 +146,7 @@ const AddBlog = () => {
           />
 
           {/* Submit */}
-          <Button type="submit" className="w-full">
-            Add Blog
-          </Button>
+          <SubmitButton loading={form.formState.isSubmitting} text="Add Blog" />
         </form>
       </Form>
     </Container>

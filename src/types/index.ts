@@ -1,6 +1,19 @@
 export type { MenuGroup } from './admin-menu';
+export type {
+  Auth,
+  IAiTraining,
+  IBlog,
+  IContact,
+  IEvent,
+  IJob,
+  IJobType,
+  IScrollingText,
+  ITeamJoinRequest,
+  ITeamMember,
+  IUpcomingEvent,
+  IUser,
+} from './api.types';
 export type { MetaConfig, MetaProps, Routes } from './meta.types';
-
 export interface IMeta {
   page: number;
   limit: number;
@@ -25,20 +38,6 @@ export type {
   SectionProps,
 } from './next.types';
 
-export type {
-  Auth,
-  IAiTraining,
-  IBlog,
-  IEvent,
-  IJob,
-  IJobType,
-  IScrollingText,
-  ITeamJoinRequest,
-  ITeamMember,
-  IUpcomingEvent,
-  IUser,
-} from './api.types';
-
 export enum Role {
   ADMIN = 'ADMIN',
   USER = 'USER',
@@ -48,4 +47,12 @@ export enum Role {
 export interface IModal {
   open: boolean;
   setOpen: (open: boolean) => void;
+}
+
+export interface SuccessToastOptions {
+  res: any;
+  message?: string;
+  onSuccess?: () => void;
+  path?: string;
+  modalClose?: () => void;
 }

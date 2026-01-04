@@ -133,3 +133,10 @@ export interface IJob {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IContact {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}

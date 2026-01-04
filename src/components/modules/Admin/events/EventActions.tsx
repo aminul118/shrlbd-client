@@ -9,19 +9,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteEventMutation } from '@/redux/features/event/event.api';
+import { deleteSingleEvent } from '@/services/event/event';
 import { IEvent } from '@/types/api.types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowPreviousEventModal from './ShowPreviousEventModal';
 
 const EventActions = ({ event }: { event: IEvent }) => {
-  const [deleteEvent] = useDeleteEventMutation();
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [showDetailsOpen, setShowDetailsOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const res = await deleteEvent(id).unwrap();
+    const res = await deleteSingleEvent(id);
     return res;
   };
 
@@ -61,7 +60,7 @@ const EventActions = ({ event }: { event: IEvent }) => {
       {/* Modals */}
 
       <DeleteFromTableDropDown
-        onConfirm={() => handleDelete(event._id)}
+        onConfirm={() => handleDelete(event.slug)}
         open={deleteOpen}
         setOpen={setDeleteOpen}
       />

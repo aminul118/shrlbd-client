@@ -13,9 +13,9 @@ import {
 import GradientTitle from '@/components/ui/gradientTitle';
 import { Input } from '@/components/ui/input';
 import MultipleImageDrop from '@/components/ui/multiple-image-drop';
-
-import { useAddEventMutation } from '@/redux/features/event/event.api';
-import { previousEventValidation } from '@/validations/event';
+import useToast from '@/hooks/useToast';
+import { createEvent } from '@/services/event/event';
+import { previousEventValidation } from '@/zod/event';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -23,7 +23,7 @@ import { toast } from 'sonner';
 import z from 'zod';
 
 const AddPreviousEvent = () => {
-  const [addEvent] = useAddEventMutation();
+  const { handleSuccess } = useToast();
   type FormValues = z.infer<typeof previousEventValidation>;
   const form = useForm<FormValues>({
     resolver: zodResolver(previousEventValidation),
@@ -37,22 +37,20 @@ const AddPreviousEvent = () => {
   const onSubmit = async (data: FormValues) => {
     const toastId = toast.loading('Event adding....');
     try {
-      const payload = {
-        title: data.title,
-        content: data.content,
-      };
-
       const formData = new FormData();
-      formData.append('data', JSON.stringify(payload));
+      formData.append('data', JSON.stringify(data));
 
       // Append each file individually
       data.photos.forEach((file) => {
         formData.append('files', file); // 'files' must match backend key
       });
 
-      const res = await addEvent(formData).unwrap();
-      toast.success(res.message, { id: toastId });
-      form.reset();
+      const res = await createEvent(formData);
+
+      await handleSuccess({
+        res,
+        onSuccess: () => form.reset(),
+      });
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

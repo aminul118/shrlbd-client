@@ -10,63 +10,58 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command';
-import { useGetAllTeamMembersQuery } from '@/redux/features/team/team.api';
+import { getTeamMembers } from '@/services/team/team-member';
 import { Search } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ButtonSpinner from '../loader/ButtonSpinner';
 
 export default function SearchTeamMember() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [membersFromApi, setMembersFromApi] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  // 🔹 Demo static data (first load)
+  // 🔹 Static members (shown before typing)
   const staticMembers = useMemo(
     () => [
-      {
-        _id: '1',
-        name: 'Professor Dr. Fatema Ashraf',
-        slug: '?search=fatema',
-      },
+      { _id: '1', name: 'Professor Dr. Fatema Ashraf', slug: 'fatema' },
       {
         _id: '2',
         name: 'Prof. Dr. Sharmeen Yasmeen',
-        slug: '?search=Prof. Dr. Sharmeen Yasmeen',
+        slug: 'sharmeen-yasmeen',
       },
-      {
-        _id: '3',
-        name: 'Dr. Moomtahina Fatima',
-        slug: '?search=moomtahina',
-      },
-      {
-        _id: '4',
-        name: 'Furkan Hossain',
-        slug: '?search=furkan',
-      },
+      { _id: '3', name: 'Dr. Moomtahina Fatima', slug: 'moomtahina' },
+      { _id: '4', name: 'Furkan Hossain', slug: 'furkan' },
     ],
     [],
   );
 
-  // 🔹 Fetch from API only if user types
-  const { data, isLoading, isFetching } = useGetAllTeamMembersQuery(
-    { search, limit: 5 },
-    { skip: !open || search.length === 0 }, // 👈 only call API if modal is open AND user typed
-  );
+  // 🔹 Fetch only when user types
+  useEffect(() => {
+    if (!search) return;
 
-  // Decide which data to show: static OR API
-  const members = useMemo(() => {
-    const apiMembers = data?.data ?? [];
-    if (search.length === 0) {
-      return staticMembers;
-    }
-    return apiMembers;
-  }, [search, data, staticMembers]);
+    const fetchMembers = async () => {
+      try {
+        setLoading(true);
+        const res = await getTeamMembers({ search });
+        setMembersFromApi(res?.data ?? []);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMembers();
+  }, [search]);
+
+  // 🔹 Decide which list to show
+  const members = search.length === 0 ? staticMembers : membersFromApi;
 
   return (
     <div className="w-full min-w-3xs">
-      {/* Fake Input Trigger */}
       <Button
         variant="outline"
         className="text-muted-foreground w-full justify-start"
@@ -76,27 +71,25 @@ export default function SearchTeamMember() {
         <span>Search team...</span>
       </Button>
 
-      {/* Search Dialog */}
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
           placeholder="Search team..."
           value={search}
           onValueChange={setSearch}
         />
+
         <CommandList>
-          {(isLoading || isFetching) && search.length > 0 && (
-            <ButtonSpinner className="py-2" />
-          )}
+          {loading && search.length > 0 && <ButtonSpinner className="py-2" />}
 
           <CommandEmpty>No team member found.</CommandEmpty>
 
           <CommandGroup heading="Team Members">
             {members.map((member) => (
               <CommandItem
-                key={member.slug}
+                key={member._id}
                 onSelect={() => {
                   setOpen(false);
-                  router.push(`/team/${member.slug}`); // 👈 e.g. /team/fatema
+                  router.push(`/team/${member.slug}`);
                 }}
               >
                 {member.name}

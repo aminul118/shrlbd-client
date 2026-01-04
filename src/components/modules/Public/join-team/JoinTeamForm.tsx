@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import SubmitButton from '@/components/common/button/submit-button';
 import Container from '@/components/ui/Container';
 import {
   Form,
@@ -20,8 +20,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { useSendTeamJoinRequestMutation } from '@/redux/features/joinTeam/joinTeam.api';
-import { teamJoinValidation } from '@/validations/team';
+import useToast from '@/hooks/useToast';
+import { createJoinMembers } from '@/services/team/team-join';
+import { teamJoinValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -30,7 +31,7 @@ import { z } from 'zod';
 type FormValues = z.infer<typeof teamJoinValidation>;
 
 const JoinTeamForm = () => {
-  const [joinTeam, { isLoading }] = useSendTeamJoinRequestMutation();
+  const { handleSuccess } = useToast();
   const form = useForm<FormValues>({
     resolver: zodResolver(teamJoinValidation),
     defaultValues: {
@@ -48,15 +49,14 @@ const JoinTeamForm = () => {
   });
 
   const onSubmit = async (payload: FormValues) => {
-    const toastId = toast.loading('Application sending…');
     try {
-      const res = await joinTeam(payload).unwrap();
-      console.log(res);
-      if (res.statusCode === 201) {
-        toast.success(res.message || 'From submitted', { id: toastId });
-        form.reset();
-      }
-    } catch {
+      const res = await createJoinMembers(payload);
+
+      await handleSuccess({
+        res,
+        onSuccess: () => form.reset(),
+      });
+    } catch (error: any) {
       toast.error('Message not sent!');
     }
   };
@@ -248,9 +248,10 @@ const JoinTeamForm = () => {
           />
 
           <div className="flex items-center gap-3">
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? 'Submitting…' : 'Submit'}
-            </Button>
+            <SubmitButton
+              loading={form.formState.isSubmitting}
+              text="Send Join Request"
+            />
           </div>
         </form>
       </Form>

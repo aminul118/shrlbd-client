@@ -1,8 +1,22 @@
 'use server';
 
+import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
 import { ApiResponse, IScrollingText } from '@/types';
-import { revalidateTag } from 'next/cache';
+
+const createScrollingText = async (payload: Record<string, string>) => {
+  const res = await serverFetch.post<ApiResponse<IScrollingText>>(
+    '/scrolling-text/create',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    },
+  );
+  revalidate('scrolling-text');
+  return res;
+};
 
 const getScrollingText = async (query?: Record<string, string>) => {
   const res = await serverFetch.get<ApiResponse<IScrollingText[]>>(
@@ -25,19 +39,6 @@ const getSingleScrollingText = async (slug: string) => {
   return res;
 };
 
-const createScrollingText = async (payload: Partial<IScrollingText>) => {
-  const res = await serverFetch.post<ApiResponse<IScrollingText>>(
-    '/scrolling-text/create',
-    {
-      body: JSON.stringify(payload),
-    },
-  );
-
-  revalidateTag('scrolling-text', { expire: 0 });
-
-  return res;
-};
-
 const updateScrollingText = async (
   slug: string,
   payload: Partial<IScrollingText>,
@@ -49,7 +50,7 @@ const updateScrollingText = async (
     },
   );
 
-  revalidateTag('scrolling-text', { expire: 0 });
+  revalidate('scrolling-text');
 
   return res;
 };
@@ -59,7 +60,7 @@ const deleteScrollingText = async (slug: string) => {
     `/scrolling-text/${slug}`,
   );
 
-  revalidateTag('scrolling-text', { expire: 0 });
+  revalidate('scrolling-text');
 
   return res;
 };

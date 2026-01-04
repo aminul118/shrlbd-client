@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+import SubmitButton from '@/components/common/button/submit-button';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -23,9 +23,9 @@ import {
 } from '@/components/ui/form';
 import ImageDrop from '@/components/ui/image-drop';
 import { Input } from '@/components/ui/input';
-import { useUpdateTeamMemberMutation } from '@/redux/features/team/team.api';
+import { updateTeamMember } from '@/services/team/team-member';
 import { IModal, ITeamMember } from '@/types';
-import { updateTeamMemberValidation } from '@/validations/team';
+import { updateTeamMemberValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -41,7 +41,6 @@ interface Props extends IModal {
 const EditTeamMember = ({ member, open, setOpen }: Props) => {
   type FormValues = z.infer<typeof updateTeamMemberValidation>;
   const router = useRouter();
-  const [updateTeamMember, { isLoading }] = useUpdateTeamMemberMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(updateTeamMemberValidation),
@@ -74,10 +73,7 @@ const EditTeamMember = ({ member, open, setOpen }: Props) => {
 
     const toastId = toast.loading('Adding team member…');
     try {
-      const res = await updateTeamMember({
-        member: formData,
-        id: member._id,
-      }).unwrap();
+      const res = await updateTeamMember(formData, member.slug);
       toast.success(res?.message || 'Team member added', { id: toastId });
       form.reset({
         name: '',
@@ -256,13 +252,10 @@ const EditTeamMember = ({ member, open, setOpen }: Props) => {
           </AlertDialogHeader>
           <AlertDialogFooter className="mt-3">
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction
-              type="submit"
-              form="update-user"
-              disabled={!form.formState.isValid || isLoading}
-            >
-              Submit
-            </AlertDialogAction>
+            <SubmitButton
+              loading={form.formState.isSubmitting}
+              text="Update Member"
+            />
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

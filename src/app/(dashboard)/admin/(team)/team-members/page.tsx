@@ -5,7 +5,6 @@ import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getTeamMembers } from '@/services/team/team-member';
 import { SearchParams } from '@/types';
 import { Metadata } from 'next';
-
 const TeamMembersPage = async ({ searchParams }: SearchParams) => {
   const params = await cleanSearchParams(searchParams);
   const { data, meta } = await getTeamMembers(params);

@@ -17,7 +17,7 @@ const UpcomingEventPage = async ({ searchParams }: SearchParams) => {
         meta={meta}
         filters={<UpcomingEventsFilter />}
       >
-        <UpcomingEventsTable upcomingEvents={data} />
+        <UpcomingEventsTable events={data} />
       </ClientTableWrapper>
     </>
   );

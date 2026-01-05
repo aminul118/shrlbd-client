@@ -102,7 +102,7 @@ export interface IUpcomingEvent {
 }
 
 export interface IBlog {
-  _id?: string;
+  _id: string;
   createdAt: string;
   updatedAt: string;
   title: string;

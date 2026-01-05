@@ -1,3 +1,4 @@
+import RefreshButton from '@/components/common/button/refresh-button';
 import ClearAllFilter from '@/components/common/filtering/ClearAllFilter';
 import PageLimit from '@/components/common/pagination/PageLimit';
 import SearchFilter from '@/components/common/searching/SearchFilter';
@@ -21,6 +22,7 @@ const UpcomingEventsFilter = () => {
           />
 
           <ClearAllFilter />
+          <RefreshButton />
           <Button asChild>
             <Link href="/admin/add-upcoming-event">
               <Plus />

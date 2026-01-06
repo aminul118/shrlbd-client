@@ -11,6 +11,7 @@ const GlobalError = ({ error, reset }: IGlobalError) => {
       <Card
         className="w-full max-w-lg rounded-2xl shadow-xl"
         data-aos="fade-up"
+        suppressHydrationWarning
       >
         <CardContent className="space-y-6 p-10 text-center">
           {/* Error Icon */}

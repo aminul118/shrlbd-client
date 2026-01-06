@@ -1,6 +1,4 @@
 import { montserrat } from '@/config/google-fonts';
-import AosProvider from '@/providers/AosProvider';
-import { AppDataProvider } from '@/providers/AppData';
 import ReduxProvider from '@/providers/ReduxProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
 import generateMetaTags from '@/seo/generateMetaTags';
@@ -24,9 +22,8 @@ const RootLayout = ({ children }: Children) => {
               enableSystem
               disableTransitionOnChange
             >
-              <AppDataProvider>
-                <AosProvider>{children}</AosProvider>
-              </AppDataProvider>
+              {children}
+
               <Toaster position="top-right" richColors theme="system" />
             </ThemeProvider>
           </ReduxProvider>

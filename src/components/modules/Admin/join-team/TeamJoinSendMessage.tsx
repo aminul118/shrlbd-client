@@ -1,6 +1,6 @@
 'use client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import ButtonSpinner from '@/components/common/loader/ButtonSpinner';
+
+import SubmitButton from '@/components/common/button/submit-button';
 import ReactQuil from '@/components/common/rich-text/ReactQuil';
 import {
   AlertDialog,
@@ -21,68 +21,47 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { useSendParticipantEmailMutation } from '@/redux/features/joinTeam/joinTeam.api';
+import useActionHandler from '@/hooks/useActionHandler';
+import { sendMessageToMember } from '@/services/team/team-join';
 import { IModal } from '@/types';
+import { TeamJoinSendMessageValidationSchema } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Send, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
-const formSchema = z.object({
-  subject: z
-    .string()
-    .trim()
-    .min(10, { message: 'Subject must be at least 10 characters.' }),
-  message: z
-    .string()
-    .trim()
-    .min(20, { message: 'Message must be at least 20 characters.' }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = z.infer<typeof TeamJoinSendMessageValidationSchema>;
 
 interface Props extends IModal {
   email: string;
 }
 
 const TeamJoinSendMessage = ({ email, open, setOpen }: Props) => {
-  const [sendEmail, { isLoading }] = useSendParticipantEmailMutation();
+  const { executePost } = useActionHandler();
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(TeamJoinSendMessageValidationSchema),
     defaultValues: { subject: '', message: '' },
     mode: 'onSubmit',
   });
 
-  const onSubmit = async (values: FormValues) => {
-    if (!email) {
-      toast.error('No recipient email found.');
-      return;
-    }
-
+  const onSubmit = async (data: FormValues) => {
     const payload = {
-      subject: values.subject.trim(),
-      message: values.message.trim(),
+      ...data,
       email,
     };
-
-    const toastId = toast.loading('Sending message…');
-
-    try {
-      const res = await sendEmail(payload).unwrap();
-      toast.success(res?.message || 'Message sent', { id: toastId });
-      setOpen(false);
-      form.reset();
-    } catch (err: any) {
-      const serverMsg =
-        err?.data?.message ||
-        err?.error ||
-        'Sending failed. Please check your connection and try again.';
-      toast.error(serverMsg, { id: toastId });
-      // Surface an error inline under the message box
-      form.setError('message', { message: serverMsg });
-    }
+    await executePost({
+      action: () => sendMessageToMember(payload),
+      success: {
+        onSuccess: () => {
+          form.reset();
+          setOpen(false);
+        },
+        loadingText: 'Message sending...',
+        message: 'Message send successfully.',
+      },
+      errorMessage: 'Error to send message to participant',
+    });
   };
 
   return (
@@ -143,18 +122,7 @@ const TeamJoinSendMessage = ({ email, open, setOpen }: Props) => {
                   <X /> Cancel
                 </Button>
               </AlertDialogCancel>
-              <Button
-                type="submit"
-                disabled={!form.formState.isValid || isLoading}
-              >
-                {isLoading ? (
-                  <ButtonSpinner />
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" /> Send
-                  </>
-                )}
-              </Button>
+              <SubmitButton loading={form.formState.isSubmitting} text="Send" />
             </AlertDialogFooter>
           </form>
         </Form>

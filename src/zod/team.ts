@@ -54,3 +54,14 @@ export const updateTeamMemberValidation = z.object({
   phone: z.string().min(5, { message: 'Phone number is required.' }).optional(),
   photo: z.instanceof(File).optional().or(z.null()),
 });
+
+export const TeamJoinSendMessageValidationSchema = z.object({
+  subject: z
+    .string()
+    .trim()
+    .min(10, { message: 'Subject must be at least 10 characters.' }),
+  message: z
+    .string()
+    .trim()
+    .min(20, { message: 'Message must be at least 20 characters.' }),
+});

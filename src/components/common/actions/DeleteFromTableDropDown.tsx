@@ -10,6 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import envVars from '@/config/env.config';
 import { toast } from 'sonner';
 
 interface IDeleteResponse {
@@ -28,7 +29,9 @@ const DeleteFromTableDropDown = ({ open, setOpen, onConfirm }: Props) => {
     const toastId = toast.loading('Removing...');
     try {
       const res = await onConfirm();
-      console.log('RES-->', res);
+      if (envVars.nodeEnv === 'development') {
+        console.log('DELETE RES-->', res);
+      }
       if (res.success) {
         toast.success(res.message ?? 'Removed Successfully', {
           id: toastId,

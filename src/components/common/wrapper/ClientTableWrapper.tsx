@@ -1,14 +1,12 @@
 'use client';
 
-import AppPagination from '@/components/common/pagination/AppPagination';
 import GradientTitle from '@/components/ui/gradientTitle';
 import { TransitionContext } from '@/context/useTransition';
 import { cn } from '@/lib/utils';
 import { IMeta } from '@/types';
 import { ReactNode, useTransition } from 'react';
 import CenterSpinner from '../loader/CenterSpinner';
-import GoToPage from '../pagination/GoToPage';
-import PaginationStatus from '../pagination/PaginationStatus';
+import TablePagination from '../table/TablePagination';
 
 interface Props {
   tableTitle: string;
@@ -55,15 +53,7 @@ const ClientTableWrapper = ({
         </div>
 
         {/* Pagination */}
-        {meta && (
-          <div className="mt-4 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
-            <GoToPage totalPage={meta.totalPage} />
-            <div className="flex items-center gap-4">
-              <PaginationStatus meta={meta} />
-              <AppPagination className="justify-end" meta={meta} />
-            </div>
-          </div>
-        )}
+        {meta && <TablePagination meta={meta} />}
       </section>
     </TransitionContext.Provider>
   );

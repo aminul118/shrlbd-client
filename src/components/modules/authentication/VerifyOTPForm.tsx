@@ -38,7 +38,7 @@ import { z } from 'zod';
 type FormValues = z.infer<typeof otpValidation>;
 
 const VerifyOTPForm = () => {
-  const [counter, setCounter] = useState(6); // 1 min timer
+  const [counter, setCounter] = useState(60); // 1 min timer
   const { email } = useSearchParamsValues('email');
   const router = useRouter();
 

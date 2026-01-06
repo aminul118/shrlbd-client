@@ -1,10 +1,13 @@
+import TableFilters from '@/components/common/table/TableFilters';
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
-import BlogsFilters from '@/components/modules/Admin/blogs/BlogFilter';
 import BlogsTable from '@/components/modules/Admin/blogs/BlogsTable';
+import { Button } from '@/components/ui/button';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getBlogs } from '@/services/blogs/blogs';
 import { SearchParams } from '@/types';
+import { Plus } from 'lucide-react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 const BlogPage = async ({ searchParams }: SearchParams) => {
   const params = await cleanSearchParams(searchParams);
@@ -15,8 +18,15 @@ const BlogPage = async ({ searchParams }: SearchParams) => {
       <ClientTableWrapper
         tableTitle="All Blogs"
         meta={meta}
-        filters={<BlogsFilters />}
+        action={
+          <Button asChild>
+            <Link href="/admin/add-blog">
+              <Plus /> Add Blog
+            </Link>
+          </Button>
+        }
       >
+        <TableFilters />
         <BlogsTable blogs={data} />
       </ClientTableWrapper>
     </>

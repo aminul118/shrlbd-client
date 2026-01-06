@@ -9,7 +9,7 @@ import {
 import { IModal, IScrollingText } from '@/types';
 
 interface Props extends IModal {
-  text: IScrollingText;
+  text?: IScrollingText | null;
 }
 
 const ViewScrollingTextModal = ({ text, open, setOpen }: Props) => {
@@ -19,7 +19,16 @@ const ViewScrollingTextModal = ({ text, open, setOpen }: Props) => {
         <DialogHeader>
           <DialogTitle>Scrolling Text</DialogTitle>
         </DialogHeader>
-        <DialogDescription className="space-y-2">{text.text}</DialogDescription>
+
+        {text ? (
+          <DialogDescription className="space-y-2">
+            {text.text}
+          </DialogDescription>
+        ) : (
+          <DialogDescription className="text-muted-foreground">
+            No text selected
+          </DialogDescription>
+        )}
       </DialogContent>
     </Dialog>
   );

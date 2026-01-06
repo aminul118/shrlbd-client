@@ -10,7 +10,19 @@ import CenterSpinner from '../loader/CenterSpinner';
 import GoToPage from '../pagination/GoToPage';
 import PaginationStatus from '../pagination/PaginationStatus';
 
+interface Props {
+  tableTitle: string;
+  description?: string;
+  filters?: ReactNode;
+  children: ReactNode;
+  meta?: IMeta;
+  className?: string;
+  loader?: ReactNode;
+  action?: ReactNode;
+}
+
 const ClientTableWrapper = ({
+  action,
   tableTitle,
   description,
   filters,
@@ -24,10 +36,12 @@ const ClientTableWrapper = ({
   return (
     <TransitionContext.Provider value={{ startTransition, isPending }}>
       <section className={cn('relative mx-auto w-11/12 py-8', className)}>
-        <div className="mb-12 flex justify-start">
-          <GradientTitle title={tableTitle} description={description} />
+        <div className="flex justify-between gap-6">
+          <div className="mb-12 flex justify-start">
+            <GradientTitle title={tableTitle} description={description} />
+          </div>
+          {action}
         </div>
-
         <>{filters}</>
         <div className="relative">
           <div className={cn(isPending && 'opacity-20')}>{children}</div>
@@ -56,13 +70,3 @@ const ClientTableWrapper = ({
 };
 
 export default ClientTableWrapper;
-
-interface Props {
-  tableTitle: string;
-  description?: string;
-  filters?: ReactNode;
-  children: ReactNode;
-  meta?: IMeta;
-  className?: string;
-  loader?: ReactNode;
-}

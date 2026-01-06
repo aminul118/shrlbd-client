@@ -1,10 +1,14 @@
+import TableFilters from '@/components/common/table/TableFilters';
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
-import EventFilters from '@/components/modules/Admin/events/EventFilters';
+
 import PreviousEventTable from '@/components/modules/Admin/events/PreviousEventTable';
+import { Button } from '@/components/ui/button';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getEvents } from '@/services/event/event';
 import { SearchParams } from '@/types';
+import { Plus } from 'lucide-react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 const PreviousEvents = async ({ searchParams }: SearchParams) => {
   const params = await cleanSearchParams(searchParams);
@@ -13,10 +17,15 @@ const PreviousEvents = async ({ searchParams }: SearchParams) => {
   return (
     <>
       <ClientTableWrapper
-        filters={<EventFilters />}
         meta={meta}
         tableTitle="All Previous Events"
+        action={
+          <Button>
+            <Plus /> <Link href={'/admin/add-previous-event'}>Add Event</Link>
+          </Button>
+        }
       >
+        <TableFilters />
         <PreviousEventTable events={data} />
       </ClientTableWrapper>
     </>

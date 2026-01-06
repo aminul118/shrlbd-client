@@ -47,8 +47,10 @@ const AddScrollingTextModal = () => {
     await executePost({
       action: () => createScrollingText(values),
       success: {
-        onSuccess: () => form.reset(),
-        modalClose: () => setOpen(false),
+        onSuccess: () => {
+          form.reset();
+          setOpen(false);
+        },
         loadingText: 'Scrolling text adding....',
         message: 'Text added successfully',
       },

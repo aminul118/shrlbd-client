@@ -65,9 +65,14 @@ const AddJobModal = () => {
     await executePost({
       action: () => createJob(values),
       success: {
-        onSuccess: () => form.reset(),
-        modalClose: () => setOpen(false),
+        onSuccess: () => {
+          form.reset();
+          setOpen(false);
+        },
+        loadingText: 'Job creating....',
+        message: 'Job created successfully',
       },
+      errorMessage: 'Job created failed.',
     });
   };
 

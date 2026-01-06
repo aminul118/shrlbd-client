@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import SubmitButton from '@/components/common/button/submit-button';
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -19,20 +19,22 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useAiTrainingsMutation } from '@/redux/features/ai/ai.api';
+import useActionHandler from '@/hooks/useActionHandler';
+import { createAi } from '@/services/ai/ai';
 import { aiValidation } from '@/zod/ai';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
+type FormValues = z.infer<typeof aiValidation>;
+
 const AddAiTrainingsModal = () => {
-  const [aiTraining] = useAiTrainingsMutation();
+  const { executePost } = useActionHandler();
   const [open, setOpen] = useState(false);
 
-  const form = useForm<z.infer<typeof aiValidation>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(aiValidation),
     defaultValues: {
       question: '',
@@ -40,16 +42,19 @@ const AddAiTrainingsModal = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof aiValidation>) => {
-    try {
-      const toastId = toast.loading('Adding scrolling text...');
-      const res = await aiTraining(values).unwrap();
-      toast.success(res.message || 'Scrolling text added', { id: toastId });
-      form.reset();
-      setOpen(false);
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to add scrolling text');
-    }
+  const onSubmit = async (values: FormValues) => {
+    executePost({
+      action: () => createAi(values),
+      success: {
+        onSuccess: () => {
+          setOpen(false);
+          form.reset();
+        },
+        loadingText: 'AI training data creating...',
+        message: 'AI training data created',
+      },
+      errorMessage: 'Something went wrong..',
+    });
   };
 
   return (
@@ -105,9 +110,8 @@ const AddAiTrainingsModal = () => {
                   Cancel
                 </Button>
               </AlertDialogCancel>
-              <Button type="submit" disabled={!form.formState.isValid}>
-                Submit
-              </Button>
+
+              <SubmitButton loading={form.formState.isSubmitting} />
             </AlertDialogFooter>
           </form>
         </Form>

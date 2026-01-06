@@ -39,13 +39,9 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     try {
-      const formData = new FormData();
-      formData.append('email', values.email);
-      formData.append('password', values.password);
-
-      const res = await loginAction(formData);
+      const res = await loginAction(data);
 
       if (res.success) {
         router.push(

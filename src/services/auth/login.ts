@@ -7,13 +7,8 @@ import { ApiResponse } from '@/types';
 import { ILogin } from '@/types/api.types';
 import { setAccessToken, setRefreshToken } from './cookie-token';
 
-const loginAction = async (formData: FormData) => {
+const loginAction = async (payload: Record<string, string>) => {
   try {
-    const payload = {
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
-    };
-
     const res = await serverFetch.post<ApiResponse<ILogin>>('/auth/login', {
       headers: {
         'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import DateFormat from '@/components/common/date-format';
 import PlaceHolderImage from '@/components/common/PlaceHolderImage';
-import { Column } from '@/components/common/table/ManageMentTable';
+import { Column } from '@/components/common/table/TableManageMent';
 import { IEvent } from '@/types';
 import Image from 'next/image';
 import EventActions from './EventActions';

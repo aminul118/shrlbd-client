@@ -1,6 +1,6 @@
 'use client';
 
-import ManagementTable from '@/components/common/table/ManageMentTable';
+import TableManageMent from '@/components/common/table/TableManageMent';
 import { ITeamMember } from '@/types';
 import TeamMembersColumn from './TeamMembersColumn';
 
@@ -11,7 +11,7 @@ interface Props {
 const TeamMembersTable = ({ members }: Props) => {
   return (
     <>
-      <ManagementTable
+      <TableManageMent
         columns={TeamMembersColumn}
         data={members}
         getRowKey={(m) => m._id}

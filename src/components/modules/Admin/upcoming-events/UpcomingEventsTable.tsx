@@ -1,6 +1,6 @@
 'use client';
 
-import ManagementTable from '@/components/common/table/ManageMentTable';
+import TableManageMent from '@/components/common/table/TableManageMent';
 import { IUpcomingEvent } from '@/types';
 import UpcomingEventsColumn from './UpcomingEventsColumn';
 
@@ -11,7 +11,7 @@ interface Props {
 const UpcomingEventsTable = ({ events }: Props) => {
   return (
     <>
-      <ManagementTable
+      <TableManageMent
         columns={UpcomingEventsColumn}
         data={events}
         getRowKey={(e) => e._id}

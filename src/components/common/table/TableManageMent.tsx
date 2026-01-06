@@ -24,7 +24,7 @@ export interface Column<T> {
   className?: string;
 }
 
-interface ManagementTableProps<T> {
+interface TableManageMentProps<T> {
   data: T[];
   columns: Column<T>[];
   onView?: (row: T) => void;
@@ -36,7 +36,7 @@ interface ManagementTableProps<T> {
   children?: ReactNode;
 }
 
-function ManagementTable<T>({
+function TableManageMent<T>({
   data = [],
   columns = [],
   onView,
@@ -45,7 +45,7 @@ function ManagementTable<T>({
   getRowKey,
   emptyMessage = 'No records found.',
   isRefreshing = false,
-}: ManagementTableProps<T>) {
+}: TableManageMentProps<T>) {
   const hasActions = !!(onView || onEdit || onDelete);
 
   return (
@@ -144,4 +144,4 @@ function ManagementTable<T>({
   );
 }
 
-export default ManagementTable;
+export default TableManageMent;

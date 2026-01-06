@@ -1,3 +1,5 @@
+'use client';
+
 import SubmitButton from '@/components/common/button/submit-button';
 import {
   AlertDialog,

@@ -1,6 +1,6 @@
 'use client';
 
-import ManagementTable from '@/components/common/table/ManageMentTable';
+import TableManageMent from '@/components/common/table/TableManageMent';
 import { IScrollingText } from '@/types';
 import { ScrollingTextColumns } from './ScrollingTextColumns';
 
@@ -11,7 +11,7 @@ interface props {
 const ScrollingTextTable = ({ scrollingTexts }: props) => {
   return (
     <>
-      <ManagementTable
+      <TableManageMent
         columns={ScrollingTextColumns}
         data={scrollingTexts}
         getRowKey={(sc) => sc._id}

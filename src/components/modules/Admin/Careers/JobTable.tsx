@@ -1,13 +1,13 @@
 'use client';
 
-import ManagementTable from '@/components/common/table/ManageMentTable';
+import TableManageMent from '@/components/common/table/TableManageMent';
 import { IJob } from '@/types';
 import JobColumn from './JobColumn';
 
 const JobTable = ({ jobs }: Props) => {
   return (
     <>
-      <ManagementTable
+      <TableManageMent
         columns={JobColumn}
         data={jobs}
         getRowKey={(j) => j._id}

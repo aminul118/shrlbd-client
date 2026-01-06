@@ -1,5 +1,5 @@
 import DateFormat from '@/components/common/date-format';
-import { Column } from '@/components/common/table/ManageMentTable';
+import { Column } from '@/components/common/table/TableManageMent';
 import { IAiTraining } from '@/types';
 import AiTrainingActions from './AiTrainingActions';
 

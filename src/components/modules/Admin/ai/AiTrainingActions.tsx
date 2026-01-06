@@ -9,20 +9,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useDeleteAiTrainingDataMutation } from '@/redux/features/ai/ai.api';
+
+import { deleteSingleAi } from '@/services/ai/ai';
 import { IAiTraining } from '@/types';
 import { EllipsisIcon, EyeIcon, Trash2Icon } from 'lucide-react';
 import { useState } from 'react';
 import ShowTrainingsModal from './ShowTrainingsModal';
 
 const AiTrainingActions = ({ payload }: { payload: IAiTraining }) => {
-  const [deleteAiData] = useDeleteAiTrainingDataMutation();
   const [detailsOpen, setDetailOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
 
   const handleDelete = async (id: string) => {
-    const res = await deleteAiData(id).unwrap();
-    return res;
+    return await deleteSingleAi(id);
   };
 
   return (

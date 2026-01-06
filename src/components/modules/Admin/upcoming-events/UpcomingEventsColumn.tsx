@@ -1,5 +1,5 @@
 import PlaceHolderImage from '@/components/common/PlaceHolderImage';
-import { Column } from '@/components/common/table/ManageMentTable';
+import { Column } from '@/components/common/table/TableManageMent';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { IUpcomingEvent } from '@/types';
 

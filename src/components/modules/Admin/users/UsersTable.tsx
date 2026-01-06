@@ -1,12 +1,12 @@
 'use client';
 
-import ManagementTable from '@/components/common/table/ManageMentTable';
+import TableManageMent from '@/components/common/table/TableManageMent';
 import { IUser } from '@/types/api.types';
 import UsersColum from './UsersColum';
 
 const UsersTable = ({ users }: { users: IUser[] }) => {
   return (
-    <ManagementTable
+    <TableManageMent
       columns={UsersColum}
       data={users}
       getRowKey={(u) => u._id}

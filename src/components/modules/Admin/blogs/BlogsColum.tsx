@@ -1,6 +1,6 @@
 import DateFormat from '@/components/common/date-format';
 import PlaceHolderImage from '@/components/common/PlaceHolderImage';
-import { Column } from '@/components/common/table/ManageMentTable';
+import { Column } from '@/components/common/table/TableManageMent';
 import { IBlog } from '@/types';
 import Image from 'next/image';
 import BlogActions from './BlogActions';

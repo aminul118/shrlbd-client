@@ -1,13 +1,13 @@
 'use client';
 
-import ManagementTable from '@/components/common/table/ManageMentTable';
+import TableManageMent from '@/components/common/table/TableManageMent';
 import { ITeamJoinRequest } from '@/types/api.types';
 import JoinTeamColumn from './JoinTeamColumn';
 
 const TeamJoinRequest = ({ teams }: { teams: ITeamJoinRequest[] }) => {
   return (
     <>
-      <ManagementTable
+      <TableManageMent
         columns={JoinTeamColumn}
         data={teams}
         getRowKey={(t) => t._id}

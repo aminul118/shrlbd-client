@@ -12,7 +12,6 @@ interface SuccessConfig<T> {
   cleanUrl?: boolean;
   isRefresh?: boolean;
   onSuccess?: (data?: T) => void;
-  modalClose?: () => void;
 }
 
 interface ExecuteOptions<T> {
@@ -34,6 +33,7 @@ const useActionHandler = () => {
     try {
       const res = await action();
 
+      // API response console in development
       if (envVars.nodeEnv === 'development') {
         console.log('RES==>', res);
       }
@@ -44,7 +44,6 @@ const useActionHandler = () => {
         });
 
         success?.onSuccess?.(res.data);
-        success?.modalClose?.();
 
         if (success?.redirectPath) {
           success.cleanUrl
@@ -63,6 +62,10 @@ const useActionHandler = () => {
       toast.error(res?.message || errorMessage, { id: toastId });
       return false;
     } catch (error: any) {
+      // Unwanted error console in development
+      if (envVars.nodeEnv === 'development') {
+        console.log('RES==>', error.message);
+      }
       toast.error(error?.message || errorMessage, { id: toastId });
       return false;
     }

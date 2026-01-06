@@ -1,56 +1,36 @@
 'use server';
 
+import { revalidate } from '@/lib/revalidate';
 import serverFetch from '@/lib/server-fetch';
-import { ActionError } from '@/lib/serverResponse';
 import { ApiResponse, IUser } from '@/types';
 
-const registerAction = async (formData: FormData) => {
-  try {
-    const payload = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      password: formData.get('password'),
-    };
+const registerAction = async (payload: Record<string, string>) => {
+  const res = await serverFetch.post<ApiResponse<IUser>>('/user/register', {
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-    const res = await serverFetch.post<ApiResponse<IUser>>('/user/register', {
-      body: JSON.stringify(payload),
+  revalidate('users');
+
+  return res;
+};
+
+const registerUserFromAdmin = async (payload: Record<string, string>) => {
+  const res = await serverFetch.post<ApiResponse<IUser>>(
+    '/user/admin/register',
+    {
       headers: {
         'Content-Type': 'application/json',
       },
-    });
+      body: JSON.stringify(payload),
+    },
+  );
 
-    return res;
-  } catch (error: any) {
-    return ActionError(false, null, error?.message || 'Something went wrong');
-  }
-};
+  revalidate('users');
 
-const registerUserFromAdmin = async (formData: FormData) => {
-  try {
-    const payload = {
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      password: formData.get('password'),
-    };
-
-    const res = await serverFetch.post<ApiResponse<IUser>>(
-      '/user/admin/register',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      },
-    );
-
-    return res;
-  } catch (error: any) {
-    return ActionError(false, null, error?.message || 'Something went wrong');
-  }
+  return res;
 };
 
 export { registerAction, registerUserFromAdmin };

@@ -7,9 +7,15 @@ import { useEffect } from 'react';
 
 const AosProvider = ({ children }: Children) => {
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const timeout = setTimeout(() => {
-      AOS.init({ duration: 1000, once: true });
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
     }, 50);
+
     return () => clearTimeout(timeout);
   }, []);
 

@@ -1,11 +1,13 @@
 import Profile from '@/components/modules/Public/profile/Profile';
+import { getMe } from '@/services/user/users';
 import { Metadata } from 'next';
 
-const ProfilePage = () => {
+const ProfilePage = async () => {
+  const { data } = await getMe();
   return (
-    <div>
-      <Profile />
-    </div>
+    <>
+      <Profile user={data} />
+    </>
   );
 };
 

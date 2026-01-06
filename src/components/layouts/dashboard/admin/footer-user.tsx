@@ -17,20 +17,13 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { AppDataContext } from '@/context/auth-context';
+import { IUser } from '@/types';
 import { Globe } from 'lucide-react';
 import Link from 'next/link';
-import { useContext } from 'react';
 import DashboardThemeToggle from './dashboard-theme-toggle';
 
-export function FooterUser() {
+const FooterUser = ({ user }: { user: IUser }) => {
   const { isMobile } = useSidebar();
-  const context = useContext(AppDataContext);
-
-  if (!context) {
-    throw new Error('AppDataContext must be used within AppDataProvider');
-  }
-  const userData = context.userData;
 
   return (
     <SidebarMenu>
@@ -43,17 +36,15 @@ export function FooterUser() {
             >
               <Avatar className="h-8 w-8 rounded-lg bg-slate-800">
                 <AvatarImage
-                  src={userData?.picture ? userData?.picture : '/profile.jpg'}
-                  alt={userData?.fullName}
+                  src={user?.picture ? user?.picture : '/profile.jpg'}
+                  alt={user?.fullName}
                 />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">
-                  {userData?.fullName}
-                </span>
+                <span className="truncate font-medium">{user?.fullName}</span>
                 <span className="text-muted-foreground truncate text-xs">
-                  {userData?.email}
+                  {user?.email}
                 </span>
               </div>
             </SidebarMenuButton>
@@ -68,17 +59,15 @@ export function FooterUser() {
               <div className="flex flex-col items-center justify-center gap-2 px-1 py-1.5 text-center text-sm">
                 <Avatar className="h-20 w-20 rounded-full bg-slate-800">
                   <AvatarImage
-                    src={userData?.picture ? userData?.picture : '/profile.jpg'}
-                    alt={userData?.fullName}
+                    src={user?.picture ? user?.picture : '/profile.jpg'}
+                    alt={user?.fullName}
                   />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-sm leading-tight">
-                  <span className="truncate font-medium">
-                    {userData?.fullName}
-                  </span>
+                  <span className="truncate font-medium">{user?.fullName}</span>
                   <span className="text-muted-foreground truncate text-xs">
-                    {userData?.email}
+                    {user?.email}
                   </span>
                 </div>
               </div>
@@ -99,4 +88,6 @@ export function FooterUser() {
       </SidebarMenuItem>
     </SidebarMenu>
   );
-}
+};
+
+export default FooterUser;

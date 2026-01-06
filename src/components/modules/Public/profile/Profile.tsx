@@ -12,14 +12,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { AppDataContext } from '@/context/auth-context';
+import { IUser } from '@/types';
+
 import { BadgeCheck, XCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { useContext } from 'react';
 
-const Profile = () => {
-  const context = useContext(AppDataContext);
-  const user = context?.userData;
+const Profile = ({ user }: { user: IUser }) => {
   const router = useRouter();
 
   const handleBack = () => {

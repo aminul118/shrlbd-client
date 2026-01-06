@@ -1,7 +1,7 @@
 import { IMeta } from '@/types';
-import AppPagination from './AppPagination';
-import GoToPage from './GoToPage';
-import PaginationStatus from './PaginationStatus';
+import AppPagination from '../pagination/AppPagination';
+import GoToPage from '../pagination/GoToPage';
+import PaginationStatus from '../pagination/PaginationStatus';
 
 const TablePagination = ({ meta }: { meta?: IMeta }) => {
   if (!meta) return null;

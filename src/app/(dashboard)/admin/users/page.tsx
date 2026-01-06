@@ -1,5 +1,6 @@
+import TableFilters from '@/components/common/table/TableFilters';
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
-import UsersFilters from '@/components/modules/Admin/users/UsersFiltes';
+import NewUserModal from '@/components/modules/Admin/users/NewUserModal';
 import UsersTable from '@/components/modules/Admin/users/UsersTable';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getUsers } from '@/services/user/users';
@@ -14,9 +15,10 @@ const UsersPage = async ({ searchParams }: SearchParams) => {
     <>
       <ClientTableWrapper
         tableTitle="All Registered Users"
-        filters={<UsersFilters />}
         meta={meta}
+        action={<NewUserModal />}
       >
+        <TableFilters />
         <UsersTable users={data} />
       </ClientTableWrapper>
     </>

@@ -7,12 +7,15 @@ import {
   SidebarHeader,
   SidebarRail,
 } from '@/components/ui/sidebar';
+import { getMe } from '@/services/user/users';
 import Link from 'next/link';
 import Logo from '../../Logo';
 import Menu from './Menu';
-import { FooterUser } from './footer-user';
+import FooterUser from './footer-user';
 
-const AdminSidebar = () => {
+const AdminSidebar = async () => {
+  const { data } = await getMe();
+
   return (
     <Sidebar collapsible="icon">
       {/* Header */}
@@ -33,7 +36,7 @@ const AdminSidebar = () => {
       {/* Footer */}
       <SidebarFooter className="py-6">
         <Separator className="mb-2" />
-        <FooterUser />
+        <FooterUser user={data} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

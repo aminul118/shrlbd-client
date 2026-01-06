@@ -39,18 +39,10 @@ const RegisterForm = () => {
     },
   });
 
-  const onSubmit = async (values: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    const { confirmPassword, ...rest } = data;
     try {
-      const formData = new FormData();
-
-      formData.append('firstName', values.firstName);
-      formData.append('lastName', values.lastName);
-      formData.append('email', values.email);
-      formData.append('phone', values.phone);
-      formData.append('password', values.password);
-
-      const res = await registerAction(formData);
-      console.log('RES=>', res);
+      const res = await registerAction(rest);
 
       if (res.success) {
         toast.success(res.message || 'Registration successful');

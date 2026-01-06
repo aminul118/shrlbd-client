@@ -1,5 +1,5 @@
+import TableFilters from '@/components/common/table/TableFilters';
 import ClientTableWrapper from '@/components/common/wrapper/ClientTableWrapper';
-import TeamJoinFilters from '@/components/modules/Admin/join-team/TeamJoinFilters';
 import TeamJoinRequest from '@/components/modules/Admin/join-team/TeamJoinRequestTable';
 import cleanSearchParams from '@/lib/cleanSearchParams';
 import { getJoinMembers } from '@/services/team/team-join';
@@ -11,11 +11,8 @@ const TeamJoinRequestPage = async ({ searchParams }: SearchParams) => {
   const { data, meta } = await getJoinMembers(params);
 
   return (
-    <ClientTableWrapper
-      tableTitle="Team Join Requests"
-      filters={<TeamJoinFilters />}
-      meta={meta}
-    >
+    <ClientTableWrapper tableTitle="Team Join Requests" meta={meta}>
+      <TableFilters />
       <TeamJoinRequest teams={data} />
     </ClientTableWrapper>
   );

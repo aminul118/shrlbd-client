@@ -19,9 +19,8 @@ import Link from 'next/link';
 import Logo from '../Logo';
 
 import SearchTeamMember from '@/components/common/searching/SearchTeamMember';
-import { AppDataContext } from '@/context/auth-context';
+import { IUser } from '@/types';
 import { BookOpenIcon, Briefcase, InfoIcon, LifeBuoyIcon } from 'lucide-react';
-import { useContext } from 'react';
 import NavProfile from './NavProfile';
 
 /* ---------- Types to make `href` never undefined on simple links ---------- */
@@ -87,10 +86,7 @@ const navigationLinks: NavItem[] = [
 ];
 
 /* ------------------------------ Component -------------------------------- */
-const Navbar = () => {
-  const context = useContext(AppDataContext);
-  const user = context?.userData;
-
+const Navbar = ({ user }: { user: IUser }) => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white px-4 py-2 md:px-6 dark:bg-black">
       <div className="container mx-auto flex h-16 items-center justify-between gap-4">
@@ -326,7 +322,7 @@ const Navbar = () => {
             <Briefcase /> <Link href="/careers">Careers</Link>
           </Button>
 
-          <NavProfile />
+          <NavProfile user={user} />
         </div>
       </div>
     </header>

@@ -24,6 +24,8 @@ import useActionHandler from '@/hooks/useActionHandler';
 import { createJoinMembers } from '@/services/team/team-join';
 import { teamJoinValidation } from '@/zod/team';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Turnstile } from '@marsidev/react-turnstile';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -31,6 +33,10 @@ type FormValues = z.infer<typeof teamJoinValidation>;
 
 const JoinTeamForm = () => {
   const { executePost } = useActionHandler();
+  // ✅ captcha states
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState('');
+  const turnstileRef = useRef<any>(null);
   const form = useForm<FormValues>({
     resolver: zodResolver(teamJoinValidation),
     defaultValues: {
@@ -48,10 +54,26 @@ const JoinTeamForm = () => {
   });
 
   const onSubmit = async (payload: FormValues) => {
+    //  block bots
+    if (!captchaToken) {
+      setCaptchaError('Please verify you are human');
+      return;
+    }
+
+    setCaptchaError('');
+
     await executePost({
-      action: () => createJoinMembers(payload),
+      action: () =>
+        createJoinMembers({
+          ...payload,
+          token: captchaToken,
+        }),
       success: {
-        onSuccess: () => form.reset(),
+        onSuccess: () => {
+          form.reset();
+          setCaptchaToken(null);
+          turnstileRef.current?.reset();
+        },
         loadingText: 'Application submitting..',
         message: 'Application submitted successfully',
       },
@@ -243,6 +265,20 @@ const JoinTeamForm = () => {
               </FormItem>
             )}
           />
+
+          {/* ✅ CAPTCHA */}
+          <div className="space-y-2">
+            <Turnstile
+              ref={turnstileRef}
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={(token) => setCaptchaToken(token)}
+              onExpire={() => setCaptchaToken(null)}
+            />
+
+            {captchaError && (
+              <p className="text-sm text-red-500">{captchaError}</p>
+            )}
+          </div>
 
           <div className="flex items-center gap-3">
             <SubmitButton

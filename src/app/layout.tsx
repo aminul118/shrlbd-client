@@ -1,3 +1,4 @@
+import envVars from '@/config/env.config';
 import { montserrat } from '@/config/google-fonts';
 import ReduxProvider from '@/providers/ReduxProvider';
 import ThemeProvider from '@/providers/ThemeProvider';
@@ -13,7 +14,7 @@ const RootLayout = ({ children }: Children) => {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
-        <GoogleAnalytics gaId="G-L76ZPJFQS4" />
+        <GoogleAnalytics gaId={envVars.analytics.googleAnalytics} />
         <body className={montserrat.className} suppressHydrationWarning>
           <ReduxProvider>
             <ThemeProvider

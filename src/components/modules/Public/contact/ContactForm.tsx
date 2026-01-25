@@ -13,10 +13,13 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import envVars from '@/config/env.config';
 import useActionHandler from '@/hooks/useActionHandler';
 import { contactAction } from '@/services/contact/contact';
 import { contactSchemaZodValidation } from '@/zod/contact';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Turnstile } from '@marsidev/react-turnstile';
+import { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -24,6 +27,7 @@ type FormValues = z.infer<typeof contactSchemaZodValidation>;
 
 const ContactForm = () => {
   const { executePost } = useActionHandler();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(contactSchemaZodValidation),
     defaultValues: {
@@ -34,11 +38,31 @@ const ContactForm = () => {
     },
   });
 
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState('');
+  const turnstileRef = useRef<any>(null);
+
   const onSubmit = async (data: FormValues) => {
+    // 🔒 block submit if captcha not solved
+    if (!captchaToken) {
+      setCaptchaError('Please verify you are human');
+      return;
+    }
+
+    setCaptchaError('');
+
     await executePost({
-      action: () => contactAction(data),
+      action: () =>
+        contactAction({
+          ...data,
+          token: captchaToken,
+        }),
       success: {
-        onSuccess: () => form.reset(),
+        onSuccess: () => {
+          form.reset();
+          setCaptchaToken(null);
+          turnstileRef.current?.reset();
+        },
         message: 'Message send to authority successfully',
         loadingText: 'Message sending to authority..',
       },
@@ -56,7 +80,7 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" autoComplete="name" {...field} />
+                <Input placeholder="John Doe" {...field} />
               </FormControl>
               <FormDescription className="sr-only">
                 Your full name
@@ -74,16 +98,8 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input
-                  type="email"
-                  placeholder="john@company.com"
-                  autoComplete="email"
-                  {...field}
-                />
+                <Input type="email" placeholder="john@company.com" {...field} />
               </FormControl>
-              <FormDescription className="sr-only">
-                Your email address
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -99,9 +115,6 @@ const ContactForm = () => {
               <FormControl>
                 <Input placeholder="Joining Your Team" {...field} />
               </FormControl>
-              <FormDescription className="sr-only">
-                Message topic
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -121,13 +134,24 @@ const ContactForm = () => {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="sr-only">
-                Full message
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+
+        {/*  Turnstile captcha */}
+        <div className="space-y-2">
+          <Turnstile
+            ref={turnstileRef}
+            siteKey={envVars.cloudFareTurnstile.cloudFareTurnstileSiteKey}
+            onSuccess={(token) => setCaptchaToken(token)}
+            onExpire={() => setCaptchaToken(null)}
+          />
+
+          {captchaError && (
+            <p className="text-sm text-red-500">{captchaError}</p>
+          )}
+        </div>
 
         <SubmitButton
           loading={form.formState.isSubmitting}
